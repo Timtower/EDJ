@@ -1,5 +1,7 @@
 package org.xenodev.edj.events;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.Modifier;
@@ -12,8 +14,8 @@ public class EngineerCraftEvent extends Event {
 	private String engineer, blueprintName;
 	private Integer engineerID, blueprintID, level;
 	private Double quality;
-	private Ingredient[] ingredients;
-	private Modifier[] modifiers;
+	private List<Ingredient> ingredients;
+	private List<Modifier> modifiers;
 	
 	public EngineerCraftEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -51,11 +53,11 @@ public class EngineerCraftEvent extends Event {
 		return quality;
 	}
 	
-	public Ingredient[] getIngredients() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 	
-	public Modifier[] getModifiers() {
+	public List<Modifier> getModifiers() {
 		return modifiers;
 	}
 

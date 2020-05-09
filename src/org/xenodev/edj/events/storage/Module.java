@@ -4,11 +4,11 @@ public class Module {
 	
 	String slot, item;
 	Boolean on;
-	int priority, ammoInClip, ammoInHopper, value;
-	double health;
+	Integer priority, ammoInClip, ammoInHopper;
+	Double health;
 	Engineering engineering;
 	
-	public Module(String slot, String item, Boolean on, int priority, int ammoInClip, int ammoInHopper, double health,	int value, Engineering engineering) {
+	public Module(String slot, String item, Boolean on, Integer priority, Integer ammoInClip, Integer ammoInHopper, Double health, Engineering engineering) {
 		this.slot = slot;
 		this.item = item;
 		this.on = on;
@@ -16,11 +16,10 @@ public class Module {
 		this.ammoInClip = ammoInClip;
 		this.ammoInHopper = ammoInHopper;
 		this.health = health;
-		this.value = value;
 		this.engineering = engineering;
 	}
 	
-	public Module(String slot, String item, Boolean on, int priority, int ammoInClip, int ammoInHopper, double health,	int value) {
+	public Module(String slot, String item, Boolean on, Integer priority, Integer ammoInClip, Integer ammoInHopper, Double health) {
 		this.slot = slot;
 		this.item = item;
 		this.on = on;
@@ -28,7 +27,6 @@ public class Module {
 		this.ammoInClip = ammoInClip;
 		this.ammoInHopper = ammoInHopper;
 		this.health = health;
-		this.value = value;
 	}
 
 	public String getSlot() {
@@ -55,44 +53,36 @@ public class Module {
 		this.on = on;
 	}
 
-	public int getPriority() {
+	public Integer getPriority() {
 		return priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(Integer priority) {
 		this.priority = priority;
 	}
 
-	public int getAmmoInClip() {
+	public Integer getAmmoInClip() {
 		return ammoInClip;
 	}
 
-	public void setAmmoInClip(int ammoInClip) {
+	public void setAmmoInClip(Integer ammoInClip) {
 		this.ammoInClip = ammoInClip;
 	}
 
-	public int getAmmoInHopper() {
+	public Integer getAmmoInHopper() {
 		return ammoInHopper;
 	}
 
-	public void setAmmoInHopper(int ammoInHopper) {
+	public void setAmmoInHopper(Integer ammoInHopper) {
 		this.ammoInHopper = ammoInHopper;
 	}
 
-	public double getHealth() {
+	public Double getHealth() {
 		return health;
 	}
 
 	public void setHealth(double health) {
 		this.health = health;
-	}
-
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
 	}
 
 	public Engineering getEngineering() {
@@ -104,7 +94,7 @@ public class Module {
 		this.engineering = engineering;
 	}
 	
-	public boolean hasEngineering() {
+	public Boolean hasEngineering() {
 		if(this.engineering != null) {
 			return true;
 		}

@@ -9,13 +9,12 @@ import org.xenodev.edj.utils.localiser.Reputation;
  */
 public class ReputationEvent extends Event {
 
-	int empire, federation, independent, alliance;
+	int empire, federation, alliance;
 
-	public ReputationEvent(String timestamp, int empire, int federation, int independent, int alliance) {
+	public ReputationEvent(String timestamp, int empire, int federation, int alliance) {
 		super(timestamp);
 		this.empire = empire;
 		this.federation = federation;
-		this.independent = independent;
 		this.alliance = alliance;
 	}
 
@@ -53,24 +52,6 @@ public class ReputationEvent extends Event {
 	 */
 	public String getFederationReputationLocalised() {
 		return Reputation.getReputationLocalised(federation);
-	}
-
-	/**
-	 * Get Independent reputation as an Integer between -100 an +100.
-	 * 
-	 * @return int Reputation as integer.
-	 */
-	public int getIndependentReputation() {
-		return independent;
-	}
-	
-	/**
-	 * Get Independent reputation as localized String.
-	 * 
-	 * @return String Reputation Name.
-	 */
-	public String getIndependentReputationLocalised() {
-		return Reputation.getReputationLocalised(independent);
 	}
 
 	/**

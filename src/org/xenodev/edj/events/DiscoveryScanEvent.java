@@ -4,17 +4,17 @@ import org.xenodev.edj.Event;
 
 public class DiscoveryScanEvent extends Event {
 	
-	long systemAdress;
-	int bodies;
+	Long systemAddress;
+	Integer bodies;
 	
-	public DiscoveryScanEvent(String timestamp, long systemAdress, int bodies) {
+	public DiscoveryScanEvent(String timestamp, Long systemAddress, Integer bodies) {
 		super(timestamp);
-		this.systemAdress = systemAdress;
+		this.systemAddress = systemAddress;
 		this.bodies = bodies;
 	}
 
-	public long getSystemAdress() {
-		return systemAdress;
+	public long getSystemAddress() {
+		return systemAddress;
 	}
 
 	public int getBodies() {

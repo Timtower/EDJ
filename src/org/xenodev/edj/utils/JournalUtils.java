@@ -2,7 +2,9 @@ package org.xenodev.edj.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -70,7 +72,7 @@ public class JournalUtils {
 		
 		for(Object comp : array) {
 			Item item;
-			JSONObject json = new JSONObject(comp);
+			JSONObject json = new JSONObject(comp.toString());
 			
 			item = new Item(json.getInt("id"), json.getInt("BuyPrice"),	json.getInt("SellPrice"), json.getInt("MeanPrice"), json.getInt("StockBracket"), json.getInt("DemandBracket"),
 			json.getInt("Stock"), json.getInt("Demand"), json.getString("Name"), json.getString("Category"), json.getBoolean("Consumer"), json.getBoolean("Producer"), json.getBoolean("Rare"));
@@ -88,7 +90,7 @@ public class JournalUtils {
 		
 		for(Object comp : array) {
 			EngineerProgress engineerProgress;
-			JSONObject json = new JSONObject(comp);
+			JSONObject json = new JSONObject(comp.toString());
 			
 			engineerProgress = new EngineerProgress(json.getString("Engineer"), json.getString("Progress"), json.getInt("Rank"), json.getInt("EngineerID"), json.getDouble("RankProgress"));
 			
@@ -99,18 +101,16 @@ public class JournalUtils {
 		return engineerProgressList;
 	}
 	
-	public static Ingredient[] createIngredientsList(JSONArray array) {
-		Ingredient[] ingredients = new Ingredient[] {};
-		int arrayPos = 0;
+	public static List<Ingredient> createIngredientsList(JSONArray array) {
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
 		
 		for(Object comp : array) {
 			Ingredient ingredient;
-			JSONObject json = new JSONObject(comp);
+			JSONObject json = new JSONObject(comp.toString());
 			
 			ingredient = new Ingredient(json.getString("Name"), json.getInt("Count"));
 			
-			ingredients[arrayPos] = ingredient;
-			arrayPos++;	
+			ingredients.add(ingredient);
 		}
 		
 		return ingredients;
@@ -146,7 +146,7 @@ public class JournalUtils {
 		
 		for(Object comp : array) {
 			Discovered discovered;
-			JSONObject json = new JSONObject(comp);
+			JSONObject json = new JSONObject(comp.toString());
 			
 			discovered = new Discovered(json.getString("SystemName"), json.getInt("NumBodies"));
 			
@@ -197,7 +197,7 @@ public class JournalUtils {
 		
 		for(Object comp : array) {
 			Ring ring;
-			JSONObject json = new JSONObject(comp);
+			JSONObject json = new JSONObject(comp.toString());
 			
 			ring = new Ring(json.getString("Name"), json.getString("RingClass"), json.getLong("MassMT"), json.getLong("InnerRad"), json.getLong("OuterRad"));
 			
@@ -231,7 +231,7 @@ public class JournalUtils {
 		
 		for(Object comp : array) {
 			AtmosphereComposition atmosphereComposition;
-			JSONObject obj = new JSONObject(comp);
+			JSONObject obj = new JSONObject(comp.toString());
 				
 			atmosphereComposition = new AtmosphereComposition(obj.getString("Name"), obj.getDouble("Percent"));
 			
@@ -254,25 +254,23 @@ public class JournalUtils {
 		return traits;
 	}
 	
-	public static double[] createPositionArray(JSONArray array) {
-		double[] pos = new double[3];
+	public static Double[] createPositionArray(JSONArray array) {
+		Double[] pos = new Double[3];
 		int arrayPos = 0;
 		
 		for(Object num : array) {
-			pos[arrayPos] = Double.parseDouble((String) num);
+			pos[arrayPos] = Double.parseDouble(num.toString());
 			arrayPos++;
 		}
 		
 		return pos;
 	}
 	
-	public static String[] createPowersArray(JSONArray array) {
-		String[] powers = new String[] {};
-		int arrayPos = 0;
+	public static List<String> createPowersArray(JSONArray array) {
+		List<String> powers = new ArrayList<String>();
 		
 		for(Object power : array) {
-			powers[arrayPos] = (String) power; 
-			arrayPos++;
+			powers.add(power.toString()); 
 		}
 		
 		return powers;
@@ -282,7 +280,7 @@ public class JournalUtils {
 		Killer[] killers = new Killer[] {};
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Killer killer;
 			int pos = 0;
 				
@@ -299,7 +297,7 @@ public class JournalUtils {
 		PassengerManifest[] passengers = new PassengerManifest[] {};
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			PassengerManifest passenger;
 			int pos = 0;
 				
@@ -316,7 +314,7 @@ public class JournalUtils {
 		BountyReward[] bountyRewards = new BountyReward[] {};
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			BountyReward bountyReward;
 			int pos = 0;
 				
@@ -329,19 +327,17 @@ public class JournalUtils {
 		return bountyRewards;				
 	}
 	
-	public static Faction[] createFactionList(JSONArray array) {
-		Faction[] factions = new Faction[] {};
+	public static List<Faction> createFactionList(JSONArray array) {
+		List<Faction> factions = new ArrayList<Faction>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Faction faction;
-			int pos = 0;
 				
-			faction = new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Government"), json.getString("Allegiance"), json.getString("Happiness_Localised"),
+			faction = new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Government"), json.getString("Allegiance"), JsonTranslator.getString(json, "Happiness_Localised"),
 					json.getDouble("MyReputation"), json.getDouble("Influence"));
 			
-			factions[pos] = faction;
-			pos++;
+			factions.add(faction);
 		}
 		
 		return factions;				
@@ -351,7 +347,7 @@ public class JournalUtils {
 		StationEconomy[] stationEconomies = new StationEconomy[] {};
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			StationEconomy stationEconomy;
 			int pos = 0;
 				
@@ -364,28 +360,27 @@ public class JournalUtils {
 		return stationEconomies;				
 	}
 	
-	public static Module[] createModuleList(JSONArray array) {
-		Module[] modules = new Module[] {};
+	public static List<Module> createModuleList(JSONArray array) {
+		List<Module> modules = new ArrayList<Module>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Module module;
-			int pos = 0;
 			
 			if(json.has("Engineering")) {				
 				JSONObject engineer = json.getJSONObject("Engineering");
-				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"), json.getInt("AmmoInClip"), json.getInt("AmmoInHopper"),
-						json.getDouble("health"), json.getInt("Value"), 
-							new Engineering(engineer.getString("Engineer"), engineer.getString("BlueprintName"), engineer.getString("ExperimentalEffect"),
-									engineer.getString("ExperimentalEffect_Localised"), engineer.getInt("EngineerID"), engineer.getInt("BlueprintID"), engineer.getInt("Level"),
-									engineer.getInt("Quality"), createModifierList(json.getJSONArray("Modifiers"))));
+				module = new Module(json.getString("Slot"), json.getString("Item"), JsonTranslator.getBoolean(json, "On"), JsonTranslator.getInteger(json, "Priority"),
+						JsonTranslator.getInteger(json, "AmmoInClip"), JsonTranslator.getInteger(json, "AmmoInHopper"), JsonTranslator.getDouble(json, "Health"),
+						new Engineering(JsonTranslator.getString(engineer, "Engineer"), JsonTranslator.getString(engineer, "BlueprintName"), JsonTranslator.getString(engineer, "ExperimentalEffect"),
+									JsonTranslator.getString(engineer, "ExperimentalEffect_Localised"), JsonTranslator.getInteger(engineer, "EngineerID"),
+									JsonTranslator.getInteger(engineer, "BlueprintID"), JsonTranslator.getInteger(engineer, "Level"), 
+									JsonTranslator.getDouble(engineer, "Quality"), createModifierList(engineer.getJSONArray("Modifiers"))));
 			}else {		
-				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"), json.getInt("AmmoInClip"), json.getInt("AmmoInHopper"),
-						json.getDouble("health"), json.getInt("Value"));
+				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"), JsonTranslator.getInteger(json, "AmmoInClip"),
+						JsonTranslator.getInteger(json, "AmmoInHopper"), json.getDouble("Health"));
 			}
 			
-			modules[pos] = module;
-			pos++;
+			modules.add(module);
 		}
 		
 		return modules;
@@ -396,7 +391,7 @@ public class JournalUtils {
 		Mission[] missions = new Mission[] {};
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Mission mission;
 			int pos = 0;
 				
@@ -409,83 +404,74 @@ public class JournalUtils {
 		return missions;				
 	}
 	
-	public static Modifier[] createModifierList(JSONArray array) {
-		Modifier[] modifier = new Modifier[] {};
+	public static List<Modifier> createModifierList(JSONArray array) {
+		List<Modifier> modifier = new ArrayList<Modifier>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Modifier mod;
-			int pos = 0;
 				
 			mod = new Modifier(json.getString("Label"), json.getDouble("Value"), json.getDouble("OriginalValue"), json.getInt("LessIsGood"));
 			
-			modifier[pos] = mod;
-			pos++;
+			modifier.add(mod);
 		}
 		
 		return modifier;				
 	}
 	
-	public static Raw[] createRawMaterialList(JSONArray array) {
-		Raw[] raw = new Raw[] {};
+	public static List<Raw> createRawMaterialList(JSONArray array) {
+		List<Raw> raw = new ArrayList<>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Raw rawMat;
-			int pos = 0;
-				
+			
 			rawMat = new Raw(json.getString("Name"), json.getInt("Count"));
 			
-			raw[pos] = rawMat;
-			pos++;
+			raw.add(rawMat);
 		}
 		
 		return raw;				
 	}
 	
-	public static Manufactured[] createManufacturedMaterialList(JSONArray array) {
-		Manufactured[] manufactured = new Manufactured[] {};
+	public static List<Manufactured> createManufacturedMaterialList(JSONArray array) {
+		List<Manufactured> manufactured = new ArrayList<Manufactured>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Manufactured manufacturedMat;
-			int pos = 0;
 				
 			manufacturedMat = new Manufactured(json.getString("Name"), json.getString("Name_Localised"), json.getInt("Count"));
 			
-			manufactured[pos] = manufacturedMat;
-			pos++;
+			manufactured.add(manufacturedMat);
 		}
 		
 		return manufactured;				
 	}
 	
-	public static Encoded[] createEncodedMaterialList(JSONArray array) {
-		Encoded[] encoded = new Encoded[] {};
+	public static List<Encoded> createEncodedMaterialList(JSONArray array) {
+		List<Encoded> encoded = new ArrayList<Encoded>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			Encoded encodedMat;
-			int pos = 0;
 				
 			encodedMat = new Encoded(json.getString("Name"), json.getString("Name_Localised"), json.getInt("Count"));
 			
-			encoded[pos] = encodedMat;
-			pos++;
+			encoded.add(encodedMat);
 		}
 		
 		return encoded;				
 	}
 	
-	public static CargoInventory[] createCargoInventory(JSONArray array) {
-		CargoInventory[] inv = new CargoInventory[] {};
+	public static List<CargoInventory> createCargoInventory(JSONArray array) {
+		List<CargoInventory> inv = new ArrayList<CargoInventory>();
 		
 		for(Object str : array) {
-			JSONObject json = new JSONObject(str);
+			JSONObject json = new JSONObject(str.toString());
 			CargoInventory cargoInv;
-			int pos = 0;
 			
-			if(json.has("MissionID")) {
+			if(!json.has("MissionID")) {
 				String name = json.getString("Name");
 				int count = json.getInt("Count");
 				int stolen = json.getInt("Stolen");
@@ -506,8 +492,7 @@ public class JournalUtils {
 				cargoInv = new CargoInventory(name, count, stolen, missionId);
 			}
 			
-			inv[pos] = cargoInv;
-			pos++;
+			inv.add(cargoInv);
 		}
 		
 		return inv;

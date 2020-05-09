@@ -15,7 +15,7 @@ public class Event {
 	 * {@literal} <b>12 Apr 2019</b>
 	 */
 	public String getTimestampFormatted() {
-		return JournalUtils.getFormattedDate("d MMM yyyy HH:mm:ss");
+		return JournalUtils.getFormattedDate("dd MMM yyyy HH:mm:ss");
 	}
 
 	/**

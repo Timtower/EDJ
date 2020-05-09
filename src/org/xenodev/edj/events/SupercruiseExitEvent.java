@@ -5,16 +5,16 @@ import org.xenodev.edj.Event;
 public class SupercruiseExitEvent extends Event {
 
 	String starSystem, body, bodyType;
-	long systemAdress;
-	int bodyID;
+	Long systemAddress;
+	Integer bodyID;
 	
-	public SupercruiseExitEvent(String timestamp, String starSystem, String body, String bodyType, long systemAdress,
+	public SupercruiseExitEvent(String timestamp, String starSystem, String body, String bodyType, Long systemAddress,
 			int bodyID) {
 		super(timestamp);
 		this.starSystem = starSystem;
 		this.body = body;
 		this.bodyType = bodyType;
-		this.systemAdress = systemAdress;
+		this.systemAddress = systemAddress;
 		this.bodyID = bodyID;
 	}
 
@@ -30,11 +30,11 @@ public class SupercruiseExitEvent extends Event {
 		return bodyType;
 	}
 
-	public long getSystemAdress() {
-		return systemAdress;
+	public Long getSystemAddress() {
+		return systemAddress;
 	}
 
-	public int getBodyID() {
+	public Integer getBodyID() {
 		return bodyID;
 	}
 

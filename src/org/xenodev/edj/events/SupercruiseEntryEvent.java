@@ -5,20 +5,20 @@ import org.xenodev.edj.Event;
 public class SupercruiseEntryEvent extends Event {
 	
 	String starSystem;
-	long systemAdress;
+	Long SystemAddress;
 	
-	public SupercruiseEntryEvent(String timestamp, String starSystem, long systemAdress) {
+	public SupercruiseEntryEvent(String timestamp, String starSystem, Long SystemAddress) {
 		super(timestamp);
 		this.starSystem = starSystem;
-		this.systemAdress = systemAdress;
+		this.SystemAddress = SystemAddress;
 	}
 
 	public String getStarSystem() {
 		return starSystem;
 	}
 
-	public long getSystemAdress() {
-		return systemAdress;
+	public Long getSystemAddress() {
+		return SystemAddress;
 	}
 
 }

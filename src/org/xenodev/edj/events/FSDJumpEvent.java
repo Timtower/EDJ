@@ -1,21 +1,23 @@
 package org.xenodev.edj.events;
 
+import java.util.List;
+
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.Faction;
 
 public class FSDJumpEvent extends Event {
 	
 	String starSystem, systemAllegiance, systemEconomy, systemEconomyLocalised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernmentLocalised, systemSecurity, systemSecurityLocalised;
-	long population, systemAddress;
-	double jumpDistance, fuelUsed, fuelLevel;
-	Faction[] factions;
-	double[] starPos;
+	Long population, systemAddress;
+	Double jumpDistance, fuelUsed, fuelLevel;
+	List<Faction> factions;
+	Double[] starPos;
 	
 	public FSDJumpEvent(String timestamp, String starSystem, String systemAllegiance, String systemEconomy,
 			String systemEconomyLocalised, String systemSecondEconomy, String systemSecondEconomy_Localised,
 			String systemGovernment, String systemGovernmentLocalised, String systemSecurity,
-			String systemSecurityLocalised, long population, long systemAddress, double jumpDistance, double fuelUsed,
-			double fuelLevel, Faction[] factions, double[] starPos) {
+			String systemSecurityLocalised, Long population, Long systemAddress, Double jumpDistance, Double fuelUsed,
+			Double fuelLevel, List<Faction> factions, Double[] starPos) {
 		super(timestamp);
 		this.starSystem = starSystem;
 		this.systemAllegiance = systemAllegiance;
@@ -76,31 +78,31 @@ public class FSDJumpEvent extends Event {
 		return systemSecurityLocalised;
 	}
 
-	public long getPopulation() {
+	public Long getPopulation() {
 		return population;
 	}
 
-	public long getSystemAddress() {
+	public Long getSystemAddress() {
 		return systemAddress;
 	}
 
-	public double getJumpDistance() {
+	public Double getJumpDistance() {
 		return jumpDistance;
 	}
 
-	public double getFuelUsed() {
+	public Double getFuelUsed() {
 		return fuelUsed;
 	}
 
-	public double getFuelLevel() {
+	public Double getFuelLevel() {
 		return fuelLevel;
 	}
 
-	public Faction[] getFactions() {
+	public List<Faction> getFactions() {
 		return factions;
 	}
 
-	public double[] getStarPos() {
+	public Double[] getStarPos() {
 		return starPos;
 	}
 	

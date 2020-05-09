@@ -1,5 +1,7 @@
 package org.xenodev.edj.events;
 
+import java.util.List;
+
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.material.Encoded;
 import org.xenodev.edj.events.storage.material.Manufactured;
@@ -7,39 +9,40 @@ import org.xenodev.edj.events.storage.material.Raw;
 
 public class MaterialsEvent extends Event {
 	
-	Raw[] raw;
-	Manufactured[] manufactured;
-	Encoded[] encoded;
+	List<Raw> raw;
+	List<Manufactured> manufactured;
+	List<Encoded> encoded;
 	
-	public MaterialsEvent(String timestamp, Raw[] raw, Manufactured[] manufactured, Encoded[] encoded) {
+	public MaterialsEvent(String timestamp, List<Raw> raw, List<Manufactured> manufactured, List<Encoded> encoded) {
 		super(timestamp);
 		this.raw = raw;
 		this.manufactured = manufactured;
 		this.encoded = encoded;
 	}
 
-	public Raw[] getRaw() {
+	public List<Raw> getRaw() {
 		return raw;
 	}
 
-	public void setRaw(Raw[] raw) {
+	public void setRaw(List<Raw> raw) {
 		this.raw = raw;
 	}
 
-	public Manufactured[] getManufactured() {
+	public List<Manufactured> getManufactured() {
 		return manufactured;
 	}
 
-	public void setManufactured(Manufactured[] manufactured) {
+	public void setManufactured(List<Manufactured> manufactured) {
 		this.manufactured = manufactured;
 	}
 
-	public Encoded[] getEncoded() {
+	public List<Encoded> getEncoded() {
 		return encoded;
 	}
 
-	public void setEncoded(Encoded[] encoded) {
+	public void setEncoded(List<Encoded> encoded) {
 		this.encoded = encoded;
-	}	
+	}
+	
 
 }

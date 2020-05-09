@@ -5,13 +5,13 @@ import org.xenodev.edj.Event;
 public class CodexEntryEvent extends Event {
 	
 	String name, subCategory, subCategory_Localised, category, category_Localised, region, system;
-	int entryID;
-	long systemAdress;
-	boolean isNewEntry, newTraitsDiscovered;
+	Integer entryID;
+	Long systemAdress;
+	Boolean isNewEntry, newTraitsDiscovered;
 	String[] traits;
 	
-	public CodexEntryEvent(String timestamp, String name, String subCategory, String subCategory_Localised,String category, String category_Localised, String region, String system, int entryID, long systemAdress,
-			boolean isNewEntry, boolean newTraitsDiscovered, String[] traits) {
+	public CodexEntryEvent(String timestamp, String name, String subCategory, String subCategory_Localised,String category, String category_Localised, String region, String system, Integer entryID,
+			Long systemAdress, Boolean isNewEntry, Boolean newTraitsDiscovered, String[] traits) {
 		super(timestamp);
 		this.name = name;
 		this.subCategory = subCategory;
@@ -55,19 +55,19 @@ public class CodexEntryEvent extends Event {
 		return system;
 	}
 
-	public int getEntryID() {
+	public Integer getEntryID() {
 		return entryID;
 	}
 
-	public long getSystemAdress() {
+	public Long getSystemAdress() {
 		return systemAdress;
 	}
 
-	public boolean isNewEntry() {
+	public Boolean isNewEntry() {
 		return isNewEntry;
 	}
 
-	public boolean isNewTraitsDiscovered() {
+	public Boolean isNewTraitsDiscovered() {
 		return newTraitsDiscovered;
 	}
 

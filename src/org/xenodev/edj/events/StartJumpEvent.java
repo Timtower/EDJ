@@ -5,14 +5,14 @@ import org.xenodev.edj.Event;
 public class StartJumpEvent extends Event {
 	
 	String jumpType, starSystem, starClass;
-	long systemAdress;
+	Long systemAddress;
 	
-	public StartJumpEvent(String timestamp, String jumpType, String starSystem, String starClass, long systemAdress) {
+	public StartJumpEvent(String timestamp, String jumpType, String starSystem, String starClass, Long systemAddress) {
 		super(timestamp);
 		this.jumpType = jumpType;
 		this.starSystem = starSystem;
 		this.starClass = starClass;
-		this.systemAdress = systemAdress;
+		this.systemAddress = systemAddress;
 	}
 	
 	public StartJumpEvent(String timestamp, String jumpType) {
@@ -32,7 +32,7 @@ public class StartJumpEvent extends Event {
 		return starClass;
 	}
 
-	public long getSystemAdress() {
-		return systemAdress;
+	public Long getSystemAddress() {
+		return systemAddress;
 	}
 }

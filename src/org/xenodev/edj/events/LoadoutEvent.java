@@ -1,16 +1,19 @@
 package org.xenodev.edj.events;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.Module;
 
 public class LoadoutEvent extends Event {
 	
 	String ship, shipName, shipIdent;
-	int shipID, hullValue, moduleValue, rebuy;
-	double hullHealth;
-	Module[] modules;
+	Integer shipID, hullValue, moduleValue, rebuy;
+	Double hullHealth;
+	List<Module> modules;
 	
-	public LoadoutEvent(String timestamp, String ship, String shipName, String shipIdent, int shipID, int hullValue, int moduleValue, double hullHealth, int rebuy, Module[] modules) {
+	public LoadoutEvent(String timestamp, String ship, String shipName, String shipIdent, int shipID, int hullValue, int moduleValue, double hullHealth, int rebuy, List<Module> modules) {
 		super(timestamp);
 		this.ship = ship;
 		this.shipName = shipName;
@@ -87,11 +90,11 @@ public class LoadoutEvent extends Event {
 		this.rebuy = rebuy;
 	}
 
-	public Module[] getModules() {
+	public List<Module> getModules() {
 		return modules;
 	}
 
-	public void setModules(Module[] modules) {
+	public void setModules(List<Module> modules) {
 		this.modules = modules;
 	}
 	

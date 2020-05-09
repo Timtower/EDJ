@@ -1,24 +1,26 @@
 package org.xenodev.edj.events;
 
+import java.util.List;
+
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.Faction;
 
 public class LocationEvent extends Event {
 	
 	String starSystem, systemAllegiance, systemEconomy, systemEconomy_Localised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernment_Localised, systemSecurity, systemSecurity_Localised, body, bodyType, systemFaction_Name, systemFaction_State, powerplayState;
-	double[] starPos;
-	long starAdress, population, marketID;
-	int bodyID;
-	boolean docked;
-	Faction[] factions;
-	String[] powers;
+	Double[] starPos;
+	Long systemAddress, population, marketID;
+	Integer bodyID;
+	Boolean docked;
+	List<Faction> factions;
+	List<String> powers;
 	
 	public LocationEvent(String timestamp, String starSystem, String systemAllegiance, String systemEconomy,
 			String systemEconomy_Localised, String systemSecondEconomy, String systemSecondEconomy_Localised,
 			String systemGovernment, String systemGovernment_Localised, String systemSecurity,
 			String systemSecurity_Localised, String body, String bodyType, String systemFaction_Name,
-			String systemFaction_State, String powerplayState, double[] starPos, long starAdress, long population,
-			long marketID, int bodyID, boolean docked, Faction[] factions, String[] powers) {
+			String systemFaction_State, String powerplayState, Double[] starPos, Long systemAddress, Long population,
+			Long marketID, Integer bodyID, Boolean docked, List<Faction> factions, List<String> powers) {
 		super(timestamp);
 		this.starSystem = starSystem;
 		this.systemAllegiance = systemAllegiance;
@@ -36,7 +38,7 @@ public class LocationEvent extends Event {
 		this.systemFaction_State = systemFaction_State;
 		this.powerplayState = powerplayState;
 		this.starPos = starPos;
-		this.starAdress = starAdress;
+		this.systemAddress = systemAddress;
 		this.population = population;
 		this.marketID = marketID;
 		this.bodyID = bodyID;
@@ -49,8 +51,8 @@ public class LocationEvent extends Event {
 			String systemEconomy_Localised, String systemSecondEconomy, String systemSecondEconomy_Localised,
 			String systemGovernment, String systemGovernment_Localised, String systemSecurity,
 			String systemSecurity_Localised, String body, String bodyType, String systemFaction_Name,
-			String systemFaction_State, double[] starPos, long starAdress, long population,
-			long marketID, int bodyID, boolean docked, Faction[] factions) {
+			String systemFaction_State, Double[] starPos, Long systemAddress, Long population,
+			Long marketID, Integer bodyID, Boolean docked, List<Faction> factions) {
 		super(timestamp);
 		this.starSystem = starSystem;
 		this.systemAllegiance = systemAllegiance;
@@ -67,7 +69,7 @@ public class LocationEvent extends Event {
 		this.systemFaction_Name = systemFaction_Name;
 		this.systemFaction_State = systemFaction_State;
 		this.starPos = starPos;
-		this.starAdress = starAdress;
+		this.systemAddress = systemAddress;
 		this.population = population;
 		this.marketID = marketID;
 		this.bodyID = bodyID;
@@ -78,8 +80,8 @@ public class LocationEvent extends Event {
 	public LocationEvent(String timestamp, String starSystem, String systemAllegiance, String systemEconomy,
 			String systemEconomy_Localised, String systemSecondEconomy, String systemSecondEconomy_Localised,
 			String systemGovernment, String systemGovernment_Localised, String systemSecurity,
-			String systemSecurity_Localised, String body, String bodyType, double[] starPos, long starAdress, long population,
-			long marketID, int bodyID, boolean docked) {
+			String systemSecurity_Localised, String body, String bodyType, Double[] starPos, Long systemAddress, Long population,
+			Long marketID, Integer bodyID, Boolean docked) {
 		super(timestamp);
 		this.starSystem = starSystem;
 		this.systemAllegiance = systemAllegiance;
@@ -94,7 +96,7 @@ public class LocationEvent extends Event {
 		this.body = body;
 		this.bodyType = bodyType;
 		this.starPos = starPos;
-		this.starAdress = starAdress;
+		this.systemAddress = systemAddress;
 		this.population = population;
 		this.marketID = marketID;
 		this.bodyID = bodyID;
@@ -161,35 +163,35 @@ public class LocationEvent extends Event {
 		return powerplayState;
 	}
 
-	public double[] getStarPos() {
+	public Double[] getStarPos() {
 		return starPos;
 	}
 
-	public long getStarAdress() {
-		return starAdress;
+	public Long getSystemAddress() {
+		return systemAddress;
 	}
 
-	public long getPopulation() {
+	public Long getPopulation() {
 		return population;
 	}
 
-	public long getMarketID() {
+	public Long getMarketID() {
 		return marketID;
 	}
 
-	public int getBodyID() {
+	public Integer getBodyID() {
 		return bodyID;
 	}
 
-	public boolean isDocked() {
+	public Boolean isDocked() {
 		return docked;
 	}
 
-	public Faction[] getFactions() {
+	public List<Faction> getFactions() {
 		return factions;
 	}
 
-	public String[] getPowers() {
+	public List<String> getPowers() {
 		return powers;
 	}
 	

@@ -9,6 +9,11 @@ public class FileHandler {
 	public static File getLatestJournalFile() {
 		File latest = null;
 		
+		if(EDJApi.getJournalDir().toFile().listFiles() == null) {
+			System.out.println("No PlayerJournals were found, waiting for game.");
+			System.exit(0);
+		}
+		
 		for(File file : EDJApi.getJournalDir().toFile().listFiles()) {
 			
 			 if(!file.isDirectory()) {

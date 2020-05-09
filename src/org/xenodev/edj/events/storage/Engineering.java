@@ -1,15 +1,17 @@
 package org.xenodev.edj.events.storage;
 
+import java.util.List;
+
 public class Engineering {
 	
 	String engineer, blueprintName, experimentalEffect, experimentalEffect_Localised;
-	int engineerID, blueprintID, level;
-	double quality;
-	Modifier[] modifiers;
+	Integer engineerID, blueprintID, level;
+	Double quality;
+	List<Modifier> modifiers;
 	
 	public Engineering(String engineer, String blueprintName, String experimentalEffect,
-			String experimentalEffect_Localised, int engineerID, int blueprintID, int level, double quality,
-			Modifier[] modifiers) {
+			String experimentalEffect_Localised, Integer engineerID, Integer blueprintID, Integer level, Double quality,
+			List<Modifier> modifiers) {
 		this.engineer = engineer;
 		this.blueprintName = blueprintName;
 		this.experimentalEffect = experimentalEffect;
@@ -53,43 +55,43 @@ public class Engineering {
 		this.experimentalEffect_Localised = experimentalEffect_Localised;
 	}
 
-	public int getEngineerID() {
+	public Integer getEngineerID() {
 		return engineerID;
 	}
 
-	public void setEngineerID(int engineerID) {
+	public void setEngineerID(Integer engineerID) {
 		this.engineerID = engineerID;
 	}
 
-	public int getBlueprintID() {
+	public Integer getBlueprintID() {
 		return blueprintID;
 	}
 
-	public void setBlueprintID(int blueprintID) {
+	public void setBlueprintID(Integer blueprintID) {
 		this.blueprintID = blueprintID;
 	}
 
-	public int getLevel() {
+	public Integer getLevel() {
 		return level;
 	}
 
-	public void setLevel(int level) {
+	public void setLevel(Integer level) {
 		this.level = level;
 	}
 
-	public double getQuality() {
+	public Double getQuality() {
 		return quality;
 	}
 
-	public void setQuality(double quality) {
+	public void setQuality(Double quality) {
 		this.quality = quality;
 	}
 
-	public Modifier[] getModifiers() {
+	public List<Modifier> getModifiers() {
 		return modifiers;
 	}
 
-	public void setModifiers(Modifier[] modifiers) {
+	public void setModifiers(List<Modifier> modifiers) {
 		this.modifiers = modifiers;
 	}
 	
