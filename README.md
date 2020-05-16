@@ -51,7 +51,7 @@ That's it! Now the API will run the code defined in the EventListeners whenever 
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 ----
 ###### Got any ideas or want to chat? DM me on Discord *XenoPyax#5647* or send me one on Twitter [@xenopyax](https://twitter.com/XenoPyax).
