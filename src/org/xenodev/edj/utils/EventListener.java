@@ -1,91 +1,6 @@
 package org.xenodev.edj.utils;
 
-import org.xenodev.edj.events.ApproachBodyEvent;
-import org.xenodev.edj.events.AsteroidCrackedEvent;
-import org.xenodev.edj.events.BountyEvent;
-import org.xenodev.edj.events.BuyAmmoEvent;
-import org.xenodev.edj.events.BuyDronesEvent;
-import org.xenodev.edj.events.BuyExplorationDataEvent;
-import org.xenodev.edj.events.BuyTradeDataEvent;
-import org.xenodev.edj.events.CapShipBondEvent;
-import org.xenodev.edj.events.CargoDepotEvent;
-import org.xenodev.edj.events.CargoEvent;
-import org.xenodev.edj.events.ClearSavedGameEvent;
-import org.xenodev.edj.events.CodexEntryEvent;
-import org.xenodev.edj.events.CollectCargoEvent;
-import org.xenodev.edj.events.CommanderEvent;
-import org.xenodev.edj.events.CommunityGoalDiscardEvent;
-import org.xenodev.edj.events.CommunityGoalEvent;
-import org.xenodev.edj.events.CommunityGoalJoinEvent;
-import org.xenodev.edj.events.CommunityGoalRewardEvent;
-import org.xenodev.edj.events.CrewAssignEvent;
-import org.xenodev.edj.events.CrewFireEvent;
-import org.xenodev.edj.events.CrewHireEvent;
-import org.xenodev.edj.events.DiedByWingEvent;
-import org.xenodev.edj.events.DiedEvent;
-import org.xenodev.edj.events.DiscoveryScanEvent;
-import org.xenodev.edj.events.DockedEvent;
-import org.xenodev.edj.events.DockingCancelledEvent;
-import org.xenodev.edj.events.DockingDeniedEvent;
-import org.xenodev.edj.events.DockingGrantedEvent;
-import org.xenodev.edj.events.DockingRequestedEvent;
-import org.xenodev.edj.events.EjectCargoEvent;
-import org.xenodev.edj.events.EngineerContributionEvent;
-import org.xenodev.edj.events.EngineerCraftEvent;
-import org.xenodev.edj.events.EngineerProgressEvent;
-import org.xenodev.edj.events.EscapeInterdictionEvent;
-import org.xenodev.edj.events.FSDJumpEvent;
-import org.xenodev.edj.events.FSDTargetEvent;
-import org.xenodev.edj.events.FSSAllBodiesFoundEvent;
-import org.xenodev.edj.events.FSSDiscoveryScanEvent;
-import org.xenodev.edj.events.FSSSignalDiscoveredEvent;
-import org.xenodev.edj.events.FactionKillBondEvent;
-import org.xenodev.edj.events.FetchRemoteModuleEvent;
-import org.xenodev.edj.events.FighterDestroyedEvent;
-import org.xenodev.edj.events.HeatDamageEvent;
-import org.xenodev.edj.events.HeatWarningEvent;
-import org.xenodev.edj.events.HullDamageEvent;
-import org.xenodev.edj.events.InterdictedByNpcEvent;
-import org.xenodev.edj.events.InterdictedByPlayerEvent;
-import org.xenodev.edj.events.InterdictionByNpcEvent;
-import org.xenodev.edj.events.InterdictionByPlayerEvent;
-import org.xenodev.edj.events.LeaveBodyEvent;
-import org.xenodev.edj.events.LiftoffEvent;
-import org.xenodev.edj.events.LoadGameEvent;
-import org.xenodev.edj.events.LoadoutEvent;
-import org.xenodev.edj.events.LocationEvent;
-import org.xenodev.edj.events.MarketBuyEvent;
-import org.xenodev.edj.events.MarketEvent;
-import org.xenodev.edj.events.MarketSellEvent;
-import org.xenodev.edj.events.MaterialCollectedEvent;
-import org.xenodev.edj.events.MaterialDiscardedEvent;
-import org.xenodev.edj.events.MaterialDiscoveredEvent;
-import org.xenodev.edj.events.MaterialsEvent;
-import org.xenodev.edj.events.MiningRefinedEvent;
-import org.xenodev.edj.events.MissionsEvent;
-import org.xenodev.edj.events.MultiSellExplorationDataEvent;
-import org.xenodev.edj.events.NavBeaconScanEvent;
-import org.xenodev.edj.events.NewCommanderEvent;
-import org.xenodev.edj.events.PassengersEvent;
-import org.xenodev.edj.events.PowerplayEvent;
-import org.xenodev.edj.events.ProgressEvent;
-import org.xenodev.edj.events.PvPKillEvent;
-import org.xenodev.edj.events.RankEvent;
-import org.xenodev.edj.events.ReputationEvent;
-import org.xenodev.edj.events.SAAScanCompleteEvent;
-import org.xenodev.edj.events.SRVDestroyedEvent;
-import org.xenodev.edj.events.ScanEvent;
-import org.xenodev.edj.events.ScreenshotEvent;
-import org.xenodev.edj.events.SellExplorationDataEvent;
-import org.xenodev.edj.events.ShieldStateEvent;
-import org.xenodev.edj.events.ShipTargetedEvent;
-import org.xenodev.edj.events.StartJumpEvent;
-import org.xenodev.edj.events.StatisticsEvent;
-import org.xenodev.edj.events.SupercruiseEntryEvent;
-import org.xenodev.edj.events.SupercruiseExitEvent;
-import org.xenodev.edj.events.TouchdownEvent;
-import org.xenodev.edj.events.UnderAttackEvent;
-import org.xenodev.edj.events.UndockedEvent;
+import org.xenodev.edj.events.*;
 
 public abstract class EventListener {
 	
@@ -98,7 +13,7 @@ public abstract class EventListener {
 	public void onMissionEvent(MissionsEvent event) {}
 	public void onNewCommanderEvent(NewCommanderEvent event) {}
 	public void onLoadGameEvent(LoadGameEvent event) {}
-	//public void onPassengers(PassengersEvent event) {} TDOD: Missing JSON Event Data
+	//public void onPassengers(PassengersEvent event) {} TODO: Missing JSON event data
 	public void onPowerPlayEvent(PowerplayEvent event) {}
 	public void onProgressEvent(ProgressEvent event) {}
 	public void onRankEvent(RankEvent event) {}
@@ -187,5 +102,40 @@ public abstract class EventListener {
 	public void onEngineerProgressEvent(EngineerProgressEvent event) {}
 	public void onFetchRemoteModuleEvent(FetchRemoteModuleEvent event) {}
 	public void onMarketEvent(MarketEvent event) {}
+	public void onMassModuleStore(MassModuleStoreEvent event) {}
+	public void onMaterialTrade(MaterialTradeEvent event) {}
+	public void onMissionAbandoned(MissionAbandonedEvent event) {}
+	public void onMissionAccepted(MissionAcceptedEvent event) {}
+	public void onMissionCompleted(MissionCompletedEvent event) {}
+	public void onMissionFailed(MissionFailedEvent event) {}
+	public void onMissionRedirected(MissionRedirectedEvent event) {}
+	public void onModuleBuy(ModuleBuyEvent event) {}
+	public void onModuleRetrieve(ModuleRetrieveEvent event) {}
+	public void onModuleSell(ModuleSellEvent event) {}
+	public void onModuleSellRemote(ModuleSellRemote event) {}
+	public void onModuleStore(ModuleStoreEvent event) {}
+	public void onModuleSwap(ModuleSwapEvent event) {}
+	public void onOutfitting(OutfittingEvent event) {}
+	public void onPayBounties(PayBountiesEvent event) {}
+	public void onPayFines(PayFinesEvent event) {}
+	public void onRedeemVoucher(RedeemVoucherEvent event) {}
+	public void onRefuelAll(RefuelAllEvent event) {}
+	//public void onRefuelPartial(RefuelPartialEvent event) {} TODO: Missing JSON event data
+	public void onRepair(RepairEvent event) {}
+	public void onRepairAll(RepairAllEvent event) {}
+	public void onRestockVehicle(RestockVehicleEvent event) {}
+	//public void onScientificResearch(ScientificResearchEvent event) {} TODO: Missing JSON event data
+	public void onSearchAndRescue(SearchAndRescueEvent event) {}
+	public void onSellDrones(SellDronesEvent event) {}
+	//public void onSellShipOnRebuy(SellShipOnRebuyEvent event) {} TODO: Missing JSON event data
+	public void onSetUserShipName(SetUserShipNameEvent event) {}
+	public void onShipyard(ShipyardEvent event) {}
+	public void onShipyardBuy(ShipyardBuyEvent eveent) {}
+	public void onShipyardNew(ShipyardNewEvent event) {}
+	public void onShipyardSell(ShipyardSellEvent event) {}
+	public void onShipyardTransfer(ShipyardTransferEvent event) {}
+	public void onShipyardSwap(ShipyardSwapEvent event) {}
+	public void onStoredModules(StoredModulesEvent event) {}
+	public void onStoredShips(StoredShipsEvent event) {}
 	
 }

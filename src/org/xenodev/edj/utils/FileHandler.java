@@ -5,6 +5,11 @@ import java.io.File;
 import org.xenodev.edj.EDJApi;
 
 public class FileHandler {
+	
+	public static String getFileExtension(File file) {
+		Integer sep = file.getName().lastIndexOf(".");
+		return file.getName().substring(sep);
+	}
 
 	public static File getLatestJournalFile() {
 		File latest = null;
@@ -18,7 +23,7 @@ public class FileHandler {
 			
 			 if(!file.isDirectory()) {
 				 
-				 if(file.getName().contains("Journal")) {
+				 if(file.getName().contains("Journal") && getFileExtension(file).equals(".log")) {
 					 
 					 if(latest == null) {
 						 latest = file;

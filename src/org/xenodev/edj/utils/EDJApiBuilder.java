@@ -9,9 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchEvent.Kind;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,92 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xenodev.edj.EDJApi;
-import org.xenodev.edj.events.ApproachBodyEvent;
-import org.xenodev.edj.events.AsteroidCrackedEvent;
-import org.xenodev.edj.events.BountyEvent;
-import org.xenodev.edj.events.BuyAmmoEvent;
-import org.xenodev.edj.events.BuyDronesEvent;
-import org.xenodev.edj.events.BuyExplorationDataEvent;
-import org.xenodev.edj.events.BuyTradeDataEvent;
-import org.xenodev.edj.events.CapShipBondEvent;
-import org.xenodev.edj.events.CargoDepotEvent;
-import org.xenodev.edj.events.CargoEvent;
-import org.xenodev.edj.events.ClearSavedGameEvent;
-import org.xenodev.edj.events.CodexEntryEvent;
-import org.xenodev.edj.events.CollectCargoEvent;
-import org.xenodev.edj.events.CommanderEvent;
-import org.xenodev.edj.events.CommunityGoalDiscardEvent;
-import org.xenodev.edj.events.CommunityGoalEvent;
-import org.xenodev.edj.events.CommunityGoalJoinEvent;
-import org.xenodev.edj.events.CommunityGoalRewardEvent;
-import org.xenodev.edj.events.CrewAssignEvent;
-import org.xenodev.edj.events.CrewFireEvent;
-import org.xenodev.edj.events.CrewHireEvent;
-import org.xenodev.edj.events.DiedByWingEvent;
-import org.xenodev.edj.events.DiedEvent;
-import org.xenodev.edj.events.DiscoveryScanEvent;
-import org.xenodev.edj.events.DockedEvent;
-import org.xenodev.edj.events.DockingCancelledEvent;
-import org.xenodev.edj.events.DockingDeniedEvent;
-import org.xenodev.edj.events.DockingGrantedEvent;
-import org.xenodev.edj.events.DockingRequestedEvent;
-import org.xenodev.edj.events.EjectCargoEvent;
-import org.xenodev.edj.events.EngineerContributionEvent;
-import org.xenodev.edj.events.EngineerCraftEvent;
-import org.xenodev.edj.events.EngineerProgressEvent;
-import org.xenodev.edj.events.EscapeInterdictionEvent;
-import org.xenodev.edj.events.FSDJumpEvent;
-import org.xenodev.edj.events.FSDTargetEvent;
-import org.xenodev.edj.events.FSSAllBodiesFoundEvent;
-import org.xenodev.edj.events.FSSDiscoveryScanEvent;
-import org.xenodev.edj.events.FSSSignalDiscoveredEvent;
-import org.xenodev.edj.events.FactionKillBondEvent;
-import org.xenodev.edj.events.FetchRemoteModuleEvent;
-import org.xenodev.edj.events.FighterDestroyedEvent;
-import org.xenodev.edj.events.HeatDamageEvent;
-import org.xenodev.edj.events.HeatWarningEvent;
-import org.xenodev.edj.events.HullDamageEvent;
-import org.xenodev.edj.events.InterdictedByNpcEvent;
-import org.xenodev.edj.events.InterdictedByPlayerEvent;
-import org.xenodev.edj.events.InterdictionByNpcEvent;
-import org.xenodev.edj.events.InterdictionByPlayerEvent;
-import org.xenodev.edj.events.LeaveBodyEvent;
-import org.xenodev.edj.events.LiftoffEvent;
-import org.xenodev.edj.events.LoadGameEvent;
-import org.xenodev.edj.events.LoadoutEvent;
-import org.xenodev.edj.events.LocationEvent;
-import org.xenodev.edj.events.MarketBuyEvent;
-import org.xenodev.edj.events.MarketEvent;
-import org.xenodev.edj.events.MarketSellEvent;
-import org.xenodev.edj.events.MaterialCollectedEvent;
-import org.xenodev.edj.events.MaterialDiscardedEvent;
-import org.xenodev.edj.events.MaterialDiscoveredEvent;
-import org.xenodev.edj.events.MaterialsEvent;
-import org.xenodev.edj.events.MiningRefinedEvent;
-import org.xenodev.edj.events.MissionsEvent;
-import org.xenodev.edj.events.MultiSellExplorationDataEvent;
-import org.xenodev.edj.events.NavBeaconScanEvent;
-import org.xenodev.edj.events.NewCommanderEvent;
-import org.xenodev.edj.events.PassengersEvent;
-import org.xenodev.edj.events.PowerplayEvent;
-import org.xenodev.edj.events.ProgressEvent;
-import org.xenodev.edj.events.PvPKillEvent;
-import org.xenodev.edj.events.RankEvent;
-import org.xenodev.edj.events.ReputationEvent;
-import org.xenodev.edj.events.SAAScanCompleteEvent;
-import org.xenodev.edj.events.SRVDestroyedEvent;
-import org.xenodev.edj.events.ScanEvent;
-import org.xenodev.edj.events.ScreenshotEvent;
-import org.xenodev.edj.events.SellExplorationDataEvent;
-import org.xenodev.edj.events.ShieldStateEvent;
-import org.xenodev.edj.events.ShipTargetedEvent;
-import org.xenodev.edj.events.StartJumpEvent;
-import org.xenodev.edj.events.StatisticsEvent;
-import org.xenodev.edj.events.SupercruiseEntryEvent;
-import org.xenodev.edj.events.SupercruiseExitEvent;
-import org.xenodev.edj.events.TouchdownEvent;
-import org.xenodev.edj.events.UnderAttackEvent;
-import org.xenodev.edj.events.UndockedEvent;
+import org.xenodev.edj.events.*;
 
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
@@ -119,6 +32,10 @@ public class EDJApiBuilder {
 	
 	public EDJApiBuilder(Boolean debug) {
 		this.debug = debug;
+	}
+	
+	public void runTests() {
+		//TODO: run testes for all events
 	}
 	
     /**
@@ -180,11 +97,10 @@ public class EDJApiBuilder {
                                 		List<String> journalEntries = Files.readAllLines(new File(EDJApi.getJournalDir() + "/" + watchEventPath).toPath());
                                 		
 										for(int i = lineCount; i < journalEntries.size(); i++) {
+											if(debug) System.out.println(journalEntries.get(i));
+											
 											fireEvent(new JSONObject(journalEntries.get(i)), l);
-											if(debug) {
-												String timeDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
-												System.out.println("{" + timeDate + "} [DEBUG] processing journal entry: " + journalEntries.get(i));
-											}
+											
 											lineCount++;
 										}
 										
@@ -263,7 +179,7 @@ public class EDJApiBuilder {
 			listener.onLoadGameEvent(loadGameEvent);
 			break;
 		case "Passengers":
-			listener.onPassengerEvent(new PassengersEvent(timestamp, JournalUtils.createPassengerManifest(json.getJSONArray("Manifest"))));
+			//listener.onPassengerEvent(new PassengersEvent(timestamp, JournalUtils.createPassengerManifest(json.getJSONArray("Manifest")))); TODO: Disabled missing data
 			break;
 		case "Powerplay":
 			PowerplayEvent powerplayEvent = new PowerplayEvent(timestamp, json.getString("Power"), json.getInt("Rank"), json.getInt("Merits"), json.getInt("Votes"), json.getInt("TimePledged"));
@@ -280,7 +196,7 @@ public class EDJApiBuilder {
 			listener.onRankEvent(rankEvent);
 			break;
 		case "Reputation":
-			ReputationEvent reputationEvent = new ReputationEvent(timestamp, (int)json.getDouble("Empire"), (int)json.getDouble("Federation"), (int)json.getDouble("Alliance"));
+			ReputationEvent reputationEvent = new ReputationEvent(timestamp, json.getDouble("Empire").intValue(), json.getDouble("Federation").intValue(), json.getDouble("Alliance").intValue());
 			listener.onReputationEvent(reputationEvent);
 			break;
 		case "Statistics":
@@ -517,8 +433,7 @@ public class EDJApiBuilder {
 			listener.onCodexEntryEvent(codexEntryEvent);
 			break;
 		case "DiscoveryScan":
-			DiscoveryScanEvent discoveryScanEvent = new DiscoveryScanEvent(timestamp, json.getLong("SystemAddress"), json.getInt("Bodies"));
-			listener.onDiscoveryScanEvent(discoveryScanEvent);
+			listener.onDiscoveryScanEvent(new DiscoveryScanEvent(timestamp, json));
 			break;
 		case "Scan":
 			listener.onScanEvent(new ScanEvent(timestamp, json));
@@ -624,7 +539,112 @@ public class EDJApiBuilder {
 			break;
 		case "Market":
 			listener.onMarketEvent(new MarketEvent(timestamp, json));
-			break;			
+			break;
+		case "MassModuleStore":
+			listener.onMassModuleStore(new MassModuleStoreEvent(timestamp, json));
+			break;
+		case "MaterialTrade":
+			listener.onMaterialTrade(new MaterialTradeEvent(timestamp, json));
+			break;
+		case "MissionAbandoned":
+			listener.onMissionAbandoned(new MissionAbandonedEvent(timestamp, json));
+			break;
+		case "MissionAccepted":
+			listener.onMissionAccepted(new MissionAcceptedEvent(timestamp, json));
+			break;
+		case "MissionCompleted":
+			listener.onMissionCompleted(new MissionCompletedEvent(timestamp, json));
+			break;
+		case "MissionFailed":
+			listener.onMissionFailed(new MissionFailedEvent(timestamp, json));
+			break;
+		case "MissionRedirected":
+			listener.onMissionRedirected(new MissionRedirectedEvent(timestamp, json));
+			break;
+		case "ModuleBuy":
+			listener.onModuleBuy(new ModuleBuyEvent(timestamp, json));
+			break;
+		case "ModuleRetrieve":
+			listener.onModuleRetrieve(new ModuleRetrieveEvent(timestamp, json));
+			break;
+		case "ModuleSell":
+			listener.onModuleSell(new ModuleSellEvent(timestamp, json));
+			break;
+		case "ModuleSellRemote":
+			listener.onModuleSellRemote(new ModuleSellRemote(timestamp, json));
+			break;
+		case "ModuleStore":
+			listener.onModuleStore(new ModuleStoreEvent(timestamp, json));
+			break;
+		case "ModuleSwap":
+			listener.onModuleSwap(new ModuleSwapEvent(timestamp, json));
+			break;
+		case "Outfitting":
+			listener.onOutfitting(new OutfittingEvent(timestamp, json));
+			break;
+		case "PayBounties":
+			listener.onPayBounties(new PayBountiesEvent(timestamp, json));
+			break;
+		case "PayFines":
+			listener.onPayFines(new PayFinesEvent(timestamp, json));
+			break;
+		case "RedeemVoucher":
+			listener.onRedeemVoucher(new RedeemVoucherEvent(timestamp, json));
+			break;
+		case "RefuelAll":
+			listener.onRefuelAll(new RefuelAllEvent(timestamp, json));
+			break;
+		case "RefuelPartial":
+			//listener.onRefuelPartial(new RefuelPartialEvent(timestamp, json)); TODO: Disabled missing data
+			break;
+		case "Repair":
+			listener.onRepair(new RepairEvent(timestamp, json));
+			break;
+		case "RepairAll":
+			listener.onRepairAll(new RepairAllEvent(timestamp, json));
+			break;
+		case "RestockVehicle":
+			listener.onRestockVehicle(new RestockVehicleEvent(timestamp, json));
+			break;
+		case "ScientificResearch":
+			//listener.onScientificResearch(new ScientificResearchEvent(timestamp, json)); TODO: Disabled missing data
+			break;
+		case "SearchAndRescue":
+			listener.onSearchAndRescue(new SearchAndRescueEvent(timestamp, json));
+			break;
+		case "SellDrones":
+			listener.onSellDrones(new SellDronesEvent(timestamp, json));
+			break;
+		case "SellShipOnRebuy":
+			//listener.onSellShipOnRebuy(new SellShipOnRebuyEvent(timestamp, json)); TODO: Disabled missing data
+			break;
+		case "SetUserShipName":
+			listener.onSetUserShipName(new SetUserShipNameEvent(timestamp, json));
+			break;
+		case "Shipyard":
+			listener.onShipyard(new ShipyardEvent(timestamp, json));
+			break;
+		case "ShipyardBuy":
+			listener.onShipyardBuy(new ShipyardBuyEvent(timestamp, json));
+			break;
+		case "ShipyardNew":
+			listener.onShipyardNew(new ShipyardNewEvent(timestamp, json));
+			break;
+		case "ShipyardSell":
+			listener.onShipyardSell(new ShipyardSellEvent(timestamp, json));
+			break;
+		case "ShipyardTransfer":
+			listener.onShipyardTransfer(new ShipyardTransferEvent(timestamp, json));
+			break;
+		case "ShipyardSwap":
+			listener.onShipyardSwap(new ShipyardSwapEvent(timestamp, json));
+			break;
+		case "StoredModules":
+			listener.onStoredModules(new StoredModulesEvent(timestamp, json));
+			break;
+		case "StoredShips":
+			listener.onStoredShips(new StoredShipsEvent(timestamp, json));
+			break;
 		}
 		
 	}

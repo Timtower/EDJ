@@ -17,9 +17,13 @@ import org.xenodev.edj.events.storage.Killer;
 import org.xenodev.edj.events.storage.Mission;
 import org.xenodev.edj.events.storage.Modifier;
 import org.xenodev.edj.events.storage.Module;
+import org.xenodev.edj.events.storage.ModuleItem;
 import org.xenodev.edj.events.storage.PassengerManifest;
 import org.xenodev.edj.events.storage.StationEconomy;
+import org.xenodev.edj.events.storage.StoredModule;
+import org.xenodev.edj.events.storage.TradeData;
 import org.xenodev.edj.events.storage.bounty.BountyReward;
+import org.xenodev.edj.events.storage.bounty.FactionBounty;
 import org.xenodev.edj.events.storage.engineer.EngineerProgress;
 import org.xenodev.edj.events.storage.engineer.Ingredient;
 import org.xenodev.edj.events.storage.market.Item;
@@ -496,6 +500,54 @@ public class JournalUtils {
 		}
 		
 		return inv;
+	}
+
+	public static List<ModuleItem> createModuleItemsList(JSONArray array) {
+		List<ModuleItem> itemList = new ArrayList<ModuleItem>();
+		
+		for(Object str : array) {
+			JSONObject json = new JSONObject(str.toString());
+			String slot = JsonTranslator.getString(json, "Slot");
+			String name = JsonTranslator.getString(json, "Name");
+			String nameLocalised = JsonTranslator.getString(json, "Name_Localised");
+			Boolean hot = JsonTranslator.getBoolean(json, "Hot");
+			String engineerModifications = JsonTranslator.getString(json, "EngineerModifications");
+			Integer engineeeredLevel = JsonTranslator.getInteger(json, "Level");
+			Double quality = JsonTranslator.getDouble(json, "Quality");
+			
+			itemList.add(new ModuleItem(slot, name, nameLocalised, engineerModifications, hot, engineeeredLevel, quality));
+		}
+		
+		return itemList;
+	}
+
+	public static TradeData createTradeData(JSONArray array) {
+		JSONObject json = new JSONObject(array.toString());
+		TradeData tData = new TradeData(json.getString("Material"), json.getString("Material_Localised"), json.getString("Category"), json.getString("Category_Localised"), json.getInt("Quantity"));
+		return tData;
+	}
+	
+	public static List<FactionBounty> createFactionBountyList(JSONArray array) {
+		List<FactionBounty> factionBountyList = new ArrayList<FactionBounty>();
+		
+		for(Object str : array) {
+			JSONObject json = new JSONObject(str.toString());
+			factionBountyList.add(new FactionBounty(json.getString("Faction"), json.getLong("Amount")));
+		}
+		
+		return factionBountyList;
+	}
+
+	public static List<StoredModule> createStoredModuleList(JSONArray array) {
+		List<StoredModule> storedModuleList = new ArrayList<StoredModule>();
+		
+		for(Object str : array) {
+			JSONObject json = new JSONObject(str.toString());
+			storedModuleList.add(new StoredModule(json.getString("Name"), json.getString("Name_Localised"), json.getString("StarSystem"), json.getInt("StorageSlot"), json.getLong("MarketID"),
+					json.getLong("TransferCost"), json.getLong("TransferTime"), json.getLong("BuyPrice"), json.getBoolean("Hot")));
+		}
+		
+		return storedModuleList;
 	}
 
 }

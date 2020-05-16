@@ -9,9 +9,9 @@ import org.xenodev.edj.utils.localiser.Reputation;
  */
 public class ReputationEvent extends Event {
 
-	int empire, federation, alliance;
+	Integer empire, federation, alliance;
 
-	public ReputationEvent(String timestamp, int empire, int federation, int alliance) {
+	public ReputationEvent(String timestamp, Integer empire, Integer federation, Integer alliance) {
 		super(timestamp);
 		this.empire = empire;
 		this.federation = federation;
@@ -23,7 +23,7 @@ public class ReputationEvent extends Event {
 	 * 
 	 * @return empire Reputation as integer.
 	 */
-	public int getEmpireReputation() {
+	public Integer getEmpireReputation() {
 		return empire;
 	}
 	
@@ -39,9 +39,9 @@ public class ReputationEvent extends Event {
 	/**
 	 * Get Federation reputation as an Integer between -100 an +100.
 	 * 
-	 * @return int Reputation as integer.
+	 * @return Integer Reputation as integer.
 	 */
-	public int getFederationReputation() {
+	public Integer getFederationReputation() {
 		return federation;
 	}
 	
@@ -57,9 +57,9 @@ public class ReputationEvent extends Event {
 	/**
 	 * Get Alliance reputation as an Integer between -100 an +100.
 	 * 
-	 * @return int Reputation as integer.
+	 * @return Integer Reputation as integer.
 	 */
-	public int getAllianceReputation() {
+	public Integer getAllianceReputation() {
 		return alliance;
 	}
 	
