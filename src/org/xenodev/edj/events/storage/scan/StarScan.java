@@ -3,7 +3,6 @@ package org.xenodev.edj.events.storage.scan;
 import org.json.JSONObject;
 import org.xenodev.edj.events.interfaces.ScanInfo;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class StarScan implements ScanInfo {
 	
@@ -15,26 +14,26 @@ public class StarScan implements ScanInfo {
 	Ring[] rings;
 	
 	public StarScan(JSONObject json) {
-		this.scanType = JsonTranslator.getString(json, "ScanType");
-		this.bodyName = JsonTranslator.getString(json, "BodyName");
-		this.starType = JsonTranslator.getString(json, "StarType");
-		this.luminosity = JsonTranslator.getString(json, "Luminosity");
-		this.distanceFromArrivalLS = JsonTranslator.getDouble(json, "DistanceFromArrivalLS");
-		this.stellarMass = JsonTranslator.getDouble(json, "StellarMass");
-		this.surfaceTemperature = JsonTranslator.getDouble(json, "SurfaceTemperature");
-		this.eccentricity = JsonTranslator.getDouble(json, "Eccentricity");
-		this.orbitalInclination = JsonTranslator.getDouble(json, "OrbitalInclination");
-		this.periapsis = JsonTranslator.getDouble(json, "Periapsis");
-		this.rotationPeriod = JsonTranslator.getDouble(json, "RotationPeriod");
-		this.axialTilt = JsonTranslator.getDouble(json, "AxialTilt");
-		this.absoluteMagnitude = JsonTranslator.getDouble(json, "AbsoluteMagnitude");
-		this.bodyID = JsonTranslator.getInteger(json, "BodyID");
-		this.radius = JsonTranslator.getLong(json, "Radius");
-		this.semiMajorAxis = JsonTranslator.getLong(json, "SemiMajorAxis");
-		this.orbitalPeriod = JsonTranslator.getLong(json, "OrbitalPeriod");
-		this.ageMY = JsonTranslator.getLong(json, "AgeMY");
-		this.parents = JournalUtils.createParentList(JsonTranslator.getJSONObject(json, "Parents"));
-		this.rings = JournalUtils.createRingsList(JsonTranslator.getJSONArray(json, "Rings"));
+		this.scanType = json.getString("ScanType");
+		this.bodyName = json.getString("BodyName");
+		this.starType = json.getString("StarType");
+		this.luminosity = json.getString("Luminosity");
+		this.distanceFromArrivalLS = json.getDouble("DistanceFromArrivalLS");
+		this.stellarMass = json.getDouble("StellarMass");
+		this.surfaceTemperature = json.getDouble("SurfaceTemperature");
+		this.eccentricity = json.getDouble("Eccentricity");
+		this.orbitalInclination = json.getDouble("OrbitalInclination");
+		this.periapsis = json.getDouble("Periapsis");
+		this.rotationPeriod = json.getDouble("RotationPeriod");
+		this.axialTilt = json.getDouble("AxialTilt");
+		this.absoluteMagnitude = json.getDouble("AbsoluteMagnitude");
+		this.bodyID = json.getInt("BodyID");
+		this.radius = json.getLong("Radius");
+		this.semiMajorAxis = json.getLong("SemiMajorAxis");
+		this.orbitalPeriod = json.getLong("OrbitalPeriod");
+		this.ageMY = json.getLong("AgeMY");
+		this.parents = JournalUtils.createParentList(json.getJSONObject("Parents"));
+		this.rings = JournalUtils.createRingsList(json.getJSONArray("Rings"));
 	}
 
 	public String getScanType() {

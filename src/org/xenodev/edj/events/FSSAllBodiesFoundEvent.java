@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class FSSAllBodiesFoundEvent extends Event {
 	
@@ -12,9 +11,9 @@ public class FSSAllBodiesFoundEvent extends Event {
 	
 	public FSSAllBodiesFoundEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.systemName = JsonTranslator.getString(json, "SystemName");
-		this.systemAdress = JsonTranslator.getLong(json, "SystemAdress");
-		this.count = JsonTranslator.getInteger(json, "Count");
+		this.systemName = json.getString("SystemName");
+		this.systemAdress = json.getLong("SystemAdress");
+		this.count = json.getInt("Count");
 	}
 
 	public String getSystemName() {

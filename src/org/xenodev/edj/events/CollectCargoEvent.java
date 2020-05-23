@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class CollectCargoEvent extends Event {
 	
@@ -12,9 +11,9 @@ public class CollectCargoEvent extends Event {
 	
 	public CollectCargoEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.type = JsonTranslator.getString(json, "Type");
-		this.missionID = JsonTranslator.getLong(json, "MissionID");
-		this.stolen = JsonTranslator.getBoolean(json, "Stolen");
+		this.type = json.getString("Type");
+		this.missionID = json.getLong("MissionID");
+		this.stolen = json.getBoolean("Stolen");
 	}
 
 	public String getType() {

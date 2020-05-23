@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.ModuleItem;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MassModuleStoreEvent extends Event {
 	
@@ -23,9 +22,9 @@ public class MassModuleStoreEvent extends Event {
 
 	public MassModuleStoreEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketID = JsonTranslator.getLong(json, "MarketID");
-		this.ship = JsonTranslator.getString(json, "Ship");
-		this.shipId = JsonTranslator.getInteger(json, "ShipID");
+		this.marketID = json.getLong("MarketID");
+		this.ship = json.getString("Ship");
+		this.shipId = json.getInt("ShipID");
 		this.items = JournalUtils.createModuleItemsList(json.getJSONArray("Items"));
 	}
 

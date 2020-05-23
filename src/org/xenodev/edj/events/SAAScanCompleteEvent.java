@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class SAAScanCompleteEvent extends Event {
 	
@@ -11,10 +10,10 @@ public class SAAScanCompleteEvent extends Event {
 	
 	public SAAScanCompleteEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.bodyName = JsonTranslator.getString(json, "BodyName");
-		this.bodyID = JsonTranslator.getInteger(json, "BodyID");
-		this.probesUsed = JsonTranslator.getInteger(json, "ProbesUsed");
-		this.efficiencyTarget = JsonTranslator.getInteger(json, "EfficiencyTarget");
+		this.bodyName = json.getString("BodyName");
+		this.bodyID = json.getInt("BodyID");
+		this.probesUsed = json.getInt("ProbesUsed");
+		this.efficiencyTarget = json.getInt("EfficiencyTarget");
 	}
 
 	public String getBodyName() {

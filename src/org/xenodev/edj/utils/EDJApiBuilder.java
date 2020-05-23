@@ -11,10 +11,6 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchEvent.Kind;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xenodev.edj.EDJApi;
@@ -141,272 +137,174 @@ public class EDJApiBuilder {
 		switch(event) {
 		case "Cargo":
 			if(json.has("Inventory")) {
-				CargoEvent cargoEvent = new CargoEvent(timestamp, json.getString("Vessel"), JournalUtils.createCargoInventory(json.getJSONArray("Inventory")));
+				CargoEvent cargoEvent = new CargoEvent(timestamp, json);
 				listener.onCargoEvent(cargoEvent);
 			}
 			break;
 		case "ClearSavedGame":
-			ClearSavedGameEvent clearSavedGameEvent = new ClearSavedGameEvent(timestamp, json.getString("Name"), json.getString("FID"));
+			ClearSavedGameEvent clearSavedGameEvent = new ClearSavedGameEvent(timestamp, json);
 			listener.onClearSavedGameEvent(clearSavedGameEvent);
 			break;
 		case "Commander":
-			CommanderEvent commanderEvent = new CommanderEvent(timestamp, json.getString("Name"), json.getString("FID"));
+			CommanderEvent commanderEvent = new CommanderEvent(timestamp, json);
 			listener.onCommanderEvent(commanderEvent);
 			break;
 		case "Loadout":
-			LoadoutEvent loadoutEvent = new LoadoutEvent(timestamp, json.getString("Ship"), json.getString("ShipName"), json.getString("ShipIdent"), json.getInt("ShipID"),
-					json.getInt("HullValue"), json.getInt("ModulesValue"), json.getInt("HullHealth"), json.getInt("Rebuy"), JournalUtils.createModuleList(json.getJSONArray("Modules")));
+			LoadoutEvent loadoutEvent = new LoadoutEvent(timestamp, json);
 			listener.onLoadoutEvent(loadoutEvent);
 			break;
 		case "Materials":
-			MaterialsEvent materialEvent = new MaterialsEvent(timestamp, JournalUtils.createRawMaterialList(json.getJSONArray("Raw")),
-					JournalUtils.createManufacturedMaterialList(json.getJSONArray("Manufactured")), JournalUtils.createEncodedMaterialList(json.getJSONArray("Encoded")));
+			MaterialsEvent materialEvent = new MaterialsEvent(timestamp, json);
 			listener.onMaterialsEvent(materialEvent);
 			break;
 		case "Missions":
-			MissionsEvent missionEvent = new MissionsEvent(timestamp, JournalUtils.createMissionList(json.getJSONArray("Active")), JournalUtils.createMissionList(json.getJSONArray("Failed")),
-					JournalUtils.createMissionList(json.getJSONArray("Complete")));
+			MissionsEvent missionEvent = new MissionsEvent(timestamp, json);
 			listener.onMissionEvent(missionEvent);
 			break;
 		case "NewCommander":
-			NewCommanderEvent newCommanderEvent = new NewCommanderEvent(timestamp, json.getString("Name"), json.getString("FID"), json.getString("starterPackage"));
+			NewCommanderEvent newCommanderEvent = new NewCommanderEvent(timestamp, json);
 			listener.onNewCommanderEvent(newCommanderEvent);
 			break;
 		case "LoadGame":
-			LoadGameEvent loadGameEvent = new LoadGameEvent(timestamp, json.getString("Commander"), json.getString("FID"), json.getString("Ship"), json.getString("ShipName"),
-					json.getString("ShipIdent"), json.getString("GameMode"), json.getInt("ShipID"), json.getDouble("FuelLevel"), json.getDouble("FuelCapacity"), json.getLong("Credits"),
-					json.getLong("Loan"), json.getBoolean("Horizons"));
+			LoadGameEvent loadGameEvent = new LoadGameEvent(timestamp, json);
 			listener.onLoadGameEvent(loadGameEvent);
 			break;
 		case "Passengers":
-			//listener.onPassengerEvent(new PassengersEvent(timestamp, JournalUtils.createPassengerManifest(json.getJSONArray("Manifest")))); TODO: Disabled missing data
+			PassengersEvent passengersEvent = new PassengersEvent(timestamp, json);
+			listener.onPassengerEvent(passengersEvent);
 			break;
 		case "Powerplay":
-			PowerplayEvent powerplayEvent = new PowerplayEvent(timestamp, json.getString("Power"), json.getInt("Rank"), json.getInt("Merits"), json.getInt("Votes"), json.getInt("TimePledged"));
+			PowerplayEvent powerplayEvent = new PowerplayEvent(timestamp, json);
 			listener.onPowerPlayEvent(powerplayEvent);
 			break;
 		case "Progress":
-			ProgressEvent progressEvent = new ProgressEvent(timestamp, json.getInt("Combat"), json.getInt("Trade"), json.getInt("Explore"), json.getInt("Empire"), json.getInt("Federation"),
-					json.getInt("CQC"));
+			ProgressEvent progressEvent = new ProgressEvent(timestamp, json);
 			listener.onProgressEvent(progressEvent);
 			break;
 		case "Rank":
-			RankEvent rankEvent = new RankEvent(timestamp, json.getInt("Combat"), json.getInt("Trade"), json.getInt("Explore"), json.getInt("Empire"), json.getInt("Federation"),
-					json.getInt("CQC"));
+			RankEvent rankEvent = new RankEvent(timestamp, json);
 			listener.onRankEvent(rankEvent);
 			break;
 		case "Reputation":
-			ReputationEvent reputationEvent = new ReputationEvent(timestamp, json.getDouble("Empire").intValue(), json.getDouble("Federation").intValue(), json.getDouble("Alliance").intValue());
+			ReputationEvent reputationEvent = new ReputationEvent(timestamp, json);
 			listener.onReputationEvent(reputationEvent);
 			break;
 		case "Statistics":
-			JSONObject bankAccount = json.getJSONObject("Bank_Account");
-			JSONObject combat = json.getJSONObject("Combat");
-			JSONObject crime = json.getJSONObject("Crime");
-			JSONObject smuggling = json.getJSONObject("Smuggling");
-			JSONObject trading = json.getJSONObject("Trading");
-			JSONObject mining = json.getJSONObject("Mining");
-			JSONObject exploration = json.getJSONObject("Exploration");
-			JSONObject passengers = json.getJSONObject("Passengers");
-			JSONObject searchAndRescue = json.getJSONObject("Search_And_Rescue");
-			JSONObject thargoid = json.getJSONObject("TG_ENCOUNTERS");
-			JSONObject crafting = json.getJSONObject("Crafting");
-			JSONObject crew = json.getJSONObject("Crew");
-			JSONObject multicrew = json.getJSONObject("Multicrew");
-			JSONObject materialTrader = json.getJSONObject("Material_Trader_Stats");
-			StatisticsEvent statisticsEvent = new StatisticsEvent(timestamp, bankAccount.getLong("Current_Wealth"), bankAccount.getLong("Spent_On_Ships"), 
-					bankAccount.getLong("Spent_On_Outfitting"), bankAccount.getLong("Spent_On_Repairs"), bankAccount.getLong("Spent_On_Fuel"), bankAccount.getLong("Spent_On_Ammo_Consumables"),
-					bankAccount.getLong("Spent_On_Insurance"), combat.getLong("Bounty_Hunting_Profit"), combat.getLong("Combat_Bond_Profits"), combat.getLong("Assassination_Profits"),
-					crime.getLong("Total_Fines"), crime.getLong("Total_Bounties"), smuggling.getLong("Black_Markets_Profits"), smuggling.getLong("Average_Profit"),
-					trading.getLong("Market_Profits"),	mining.getLong("Mining_Profits"),	exploration.getLong("Exploration_Profits"), searchAndRescue.getLong("SearchRescue_Profit"),
-					crew.getLong("NpcCrew_TotalWages"), crime.getInt("Bounties_Received"), bankAccount.getInt("Insurance_Claims"), bankAccount.getInt("Owned_Ship_Count"),
-					combat.getInt("Bounties_Claimed"), combat.getInt("Combat_Bonds"), combat.getInt("Assassinations"), combat.getInt("Highest_Single_Reward"), combat.getInt("Skimmers_Killed"),
-					crime.getInt("Notoriety"), crime.getInt("Fines"), crime.getInt("Highest_Bounty"), smuggling.getInt("Black_Markets_Traded_With"), smuggling.getInt("Resources_Smuggled"),
-					smuggling.getInt("Highest_Single_Transaction"), trading.getInt("Markets_Traded_With"), trading.getInt("Resources_Traded"), trading.getInt("Average_Profit"),
-					trading.getInt("Highest_Single_Transaction"), mining.getInt("Quantity_Mined"), mining.getInt("Materials_Collected"), exploration.getInt("Systems_Visited"),
-					exploration.getInt("Planets_Scanned_To_Level_2"), exploration.getInt("Planets_Scanned_To_Level_3"),	exploration.getInt("Efficient_Scans"),
-					exploration.getInt("Highest_Payout"), exploration.getInt("Total_Hyperspace_Distance"), exploration.getInt("Total_Hyperspace_Jumps"),
-					exploration.getInt("Greatest_Distance_From_Start"), exploration.getInt("Time_Played"), passengers.getInt("Passengers_Missions_Accepted"),
-					passengers.getInt("Passengers_Missions_Disgruntled"), passengers.getInt("Passengers_Missions_Bulk"), passengers.getInt("Passengers_Missions_VIP"),
-					passengers.getInt("Passengers_Missions_Delivered"), passengers.getInt("Passengers_Missions_Ejected"), searchAndRescue.getInt("SearchRescue_Traded"),
-					searchAndRescue.getInt("SearchRescue_Count"), thargoid.getInt("TG_ENCOUNTER_TOTAL"), thargoid.getInt("TG_SCOUT_COUNT"), crafting.getInt("Count_Of_Used_Engineers"),
-					crafting.getInt("Recipes_Generated"), crafting.getInt("Recipes_Generated_Rank_1"), crafting.getInt("Recipes_Generated_Rank_2"), crafting.getInt("Recipes_Generated_Rank_3"),
-					crafting.getInt("Recipes_Generated_Rank_4"), crafting.getInt("Recipes_Generated_Rank_5"), crew.getInt("NpcCrew_Hired"), crew.getInt("NpcCrew_Fired"),
-					multicrew.getInt("Multicrew_Time_Total"), multicrew.getInt("Multicrew_Gunner_Time_Total"), multicrew.getInt("Multicrew_Fighter_Time_Total"),
-					multicrew.getInt("Multicrew_Credits_Total"), multicrew.getInt("Multicrew_Fines_Total"), materialTrader.getInt("Trades_Completed"), materialTrader.getInt("Materials_Traded"),
-					materialTrader.getInt("Encoded_Materials_Traded"), materialTrader.getInt("Grade_1_Materials_Traded"), materialTrader.getInt("Grade_2_Materials_Traded"),
-					materialTrader.getInt("Grade_3_Materials_Traded"), materialTrader.getInt("Grade_4_Materials_Traded"), materialTrader.getInt("Grade_5_Materials_Traded"),
-					thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_SYSTEM"), thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP"), thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_SHIP"));
+			StatisticsEvent statisticsEvent = new StatisticsEvent(timestamp, json);
 			listener.onStatisticsEvent(statisticsEvent);
 			break;
 		case "ApproachBody":
-			ApproachBodyEvent approachBodyEvent = new ApproachBodyEvent(timestamp, json.getString("StartSystem"), json.getString("Body"), json.getInt("BodyID"), json.getLong("SystemAddress"));
+			ApproachBodyEvent approachBodyEvent = new ApproachBodyEvent(timestamp, json);
 			listener.onApproachBodyEvent(approachBodyEvent);
 			break;
 		case "Docked":
-			JSONObject stationFaction = json.getJSONObject("StationFaction");
-			JSONArray array = json.getJSONArray("StationServices");
-			DockedEvent dockedEvent = new DockedEvent(timestamp, json.getString("StationName"), json.getString("StationType"), json.getString("StarSystem"), json.getString("Name"),
-					stationFaction.getString("State"), json.getString("StationGovernment"), json.getString("StationGovernment_Localised"), json.getString("StationAllegiance"),
-					json.getString("StationEconomy"), json.getString("StationEconomy_Localised"), JournalUtils.createStationEconomiesList(json.getJSONArray("StationEconomies")),
-					json.getLong("SystemAddress"), json.getLong("MarketID"), json.getDouble("DistFromStarLS"), array.toList().stream()
-					.map(object -> Objects.toString(object))
-					.collect(Collectors.toList()));
+			DockedEvent dockedEvent = new DockedEvent(timestamp, json);
 			listener.onDockedEvent(dockedEvent);
 			break;
 		case "DockingDenied":
-			DockingDeniedEvent dockingDeniedEvent = new DockingDeniedEvent(timestamp, json.getString("Reason"), json.getString("StationName"), json.getString("StationType"),
-					json.getLong("marketID"));
+			DockingDeniedEvent dockingDeniedEvent = new DockingDeniedEvent(timestamp, json);
 			listener.onDockingDeniedEvent(dockingDeniedEvent);
 			break;
 		case "DockingGranted":
-			DockingGrantedEvent dockingGrantedEvent = new DockingGrantedEvent(timestamp, json.getString("StationName"), json.getString("StationType"), json.getLong("MarketID"),
-					json.getInt("LandingPad"));
+			DockingGrantedEvent dockingGrantedEvent = new DockingGrantedEvent(timestamp, json);
 			listener.onDockingGrantedEvent(dockingGrantedEvent);
 			break;
 		case "DockingCancelled":
-			DockingCancelledEvent dockingCancelledEvent = new DockingCancelledEvent(timestamp);
+			DockingCancelledEvent dockingCancelledEvent = new DockingCancelledEvent(timestamp, json);
 			listener.onDockingCancelledEvent(dockingCancelledEvent);
 			break;
 		case "DockingRequested":
-			DockingRequestedEvent dockingRequestedEvent = new DockingRequestedEvent(timestamp,  json.getString("StationName"), json.getString("StationType"), json.getLong("MarketID"));
+			DockingRequestedEvent dockingRequestedEvent = new DockingRequestedEvent(timestamp,  json);
 			listener.onDockingRequestedEvent(dockingRequestedEvent);
 			break;
 		case "FSDJump":
-			FSDJumpEvent fsdJumpEvent = new FSDJumpEvent(timestamp, json.getString("StarSystem"), json.getString("SystemAllegiance"),json.getString("SystemEconomy"),
-					json.getString("SystemEconomy_Localised"), json.getString("SystemSecondEconomy"), json.getString("SystemSecondEconomy_Localised"), json.getString("SystemGovernment"),
-					json.getString("SystemGovernment_Localised"), json.getString("SystemSecurity"), json.getString("SystemSecurity_Localised"), json.getLong("Population"),
-					json.getLong("SystemAddress"), json.getDouble("JumpDist"), json.getDouble("FuelUsed"), json.getDouble("FuelLevel"),
-					JournalUtils.createFactionList(json.getJSONArray("Factions")), JournalUtils.createPositionArray(json.getJSONArray("StarPos")));
+			FSDJumpEvent fsdJumpEvent = new FSDJumpEvent(timestamp, json);
 			listener.onFSDJumpEvent(fsdJumpEvent);
 			break;
 		case "FSDTarget":
-			FSDTargetEvent fsdTargetEvent = new FSDTargetEvent(timestamp, json.getString("Name"), json.getLong("SystemAddress"));
+			FSDTargetEvent fsdTargetEvent = new FSDTargetEvent(timestamp, json);
 			listener.onFSDTargetEvent(fsdTargetEvent);
 			break;
 		case "LeaveBody":
-			LeaveBodyEvent leaveBodyEvent = new LeaveBodyEvent(timestamp, json.getString("StarSystem"), json.getString("Body"), json.getLong("SystemAddress"), json.getInt("BodyID"));
+			LeaveBodyEvent leaveBodyEvent = new LeaveBodyEvent(timestamp, json);
 			listener.onLeaveBodyEvent(leaveBodyEvent);
 			break;
 		case "Liftoff":
-			LiftoffEvent liftoffEvent = new LiftoffEvent(timestamp, json.getBoolean("PlayerControlled"));
-			if(json.getBoolean("PlayerControlled")) {
-				liftoffEvent = new LiftoffEvent(timestamp, json.getBoolean("PlayerControlled"), json.getDouble("Longitude"), json.getDouble("Latitude"));
-			}
+			LiftoffEvent liftoffEvent = new LiftoffEvent(timestamp, json);
 			listener.onLiftoffEvent(liftoffEvent);
 			break;
 		case "Location":
-			LocationEvent locationEvent = new LocationEvent(timestamp, json.getString("StarSystem"), json.getString("SystemAllegiance"), json.getString("SystemEconomy"),
-					json.getString("SystemEconomy_Localised"), json.getString("SystemSecondEconomy"), json.getString("SystemSecondEconomy_Localised"), json.getString("SystemGovernment"),
-					json.getString("SystemGovernment_Localised"), json.getString("SystemSecurity"), json.getString("SystemSecurity_Localised"), json.getString("Body"),
-					json.getString("BodyType"), JournalUtils.createPositionArray(json.getJSONArray("StarPos")), json.getLong("SystemAddress"),
-					json.getLong("Population"), JsonTranslator.getLong(json, "MarketID"), json.getInt("BodyID"), json.getBoolean("Docked"));
-			if(json.has("Powers")) {
-				locationEvent = new LocationEvent(timestamp, json.getString("StarSystem"), json.getString("SystemAllegiance"), json.getString("SystemEconomy"),
-						json.getString("SystemEconomy_Localised"), json.getString("SystemSecondEconomy"), json.getString("SystemSecondEconomy_Localised"),
-						json.getString("SystemGovernment"), json.getString("SystemGovernment_Localised"), json.getString("SystemSecurity"), json.getString("SystemSecurity_Localised"),
-						json.getString("Body"), json.getString("BodyType"), json.getJSONObject("SystemFaction").getString("Name"), json.getJSONObject("SystemFaction").getString("FactionState"),
-						json.getString("PowerplayState"), JournalUtils.createPositionArray(json.getJSONArray("StarPos")), json.getLong("SystemAddress"), json.getLong("Population"),
-						JsonTranslator.getLong(json, "MarketID"), json.getInt("BodyID"), json.getBoolean("Docked"), JournalUtils.createFactionList(json.getJSONArray("Factions")),
-						JournalUtils.createPowersArray(json.getJSONArray("Powers")));
-			}else if(!json.has("Powers") && json.has("")) {
-				locationEvent = new LocationEvent(timestamp, json.getString("StarSystem"), json.getString("SystemAllegiance"), json.getString("SystemEconomy"),
-						json.getString("SystemEconomy_Localised"), json.getString("SystemSecondEconomy"), json.getString("SystemSecondEconomy_Localised"), json.getString("SystemGovernment"),
-						json.getString("SystemGovernment_Localised"), json.getString("SystemSecurity"), json.getString("SystemSecurity_Localised"), json.getString("Body"),
-						json.getString("BodyType"), json.getJSONObject("SystemFaction").getString("Name"), json.getJSONObject("SystemFaction").getString("FactionState"),
-						JournalUtils.createPositionArray(json.getJSONArray("StarPos")),	json.getLong("SystemAddress"), json.getLong("Population"), JsonTranslator.getLong(json, "MarketID"),
-						json.getInt("BodyID"), json.getBoolean("Docked"), JournalUtils.createFactionList(json.getJSONArray("Factions")));
-			}
+			LocationEvent locationEvent = new LocationEvent(timestamp, json);
 			listener.onLocationEvent(locationEvent);
 			break;
 		case "StartJump":
-			StartJumpEvent startJumpEvent = new StartJumpEvent(timestamp, json.getString("JumpType"));
-			if(json.getString("JumpType").equals("SuperCruise")) {
-				startJumpEvent = new StartJumpEvent(timestamp, json.getString("JumpType"), json.getString("StarSystem"), json.getString("StarClass"), json.getLong("SystemAddress"));
-			}
+			StartJumpEvent startJumpEvent = new StartJumpEvent(timestamp, json);
 			listener.onStartJumpEvent(startJumpEvent);
 			break;
 		case "SupercruiseEntry":
-			SupercruiseEntryEvent supercruiseEntryEvent = new SupercruiseEntryEvent(timestamp, json.getString("StarSystem"), json.getLong("SystemAddress"));
+			SupercruiseEntryEvent supercruiseEntryEvent = new SupercruiseEntryEvent(timestamp, json);
 			listener.onSupercruiseEntryEvent(supercruiseEntryEvent);
 			break;
 		case "SupercruiseExit":
-			SupercruiseExitEvent supercruiseExitEvent = new SupercruiseExitEvent(timestamp, json.getString("StarSystem"), json.getString("Body"), json.getString("BodyType"),
-					json.getLong("SystemAddress"), json.getInt("BodyID"));
+			SupercruiseExitEvent supercruiseExitEvent = new SupercruiseExitEvent(timestamp, json);
 			listener.onSupercruiseExitEvent(supercruiseExitEvent);
 			break;
 		case "Touchdown":
-			TouchdownEvent touchdownEvent = new TouchdownEvent(timestamp, json.getBoolean("PlayerControlled"));
-			if(json.getBoolean("PlayerControlled")) {
-				touchdownEvent = new TouchdownEvent(timestamp, json.getBoolean("PlayerControlled"), json.getDouble("Longitude"), json.getDouble("Latitude"));
-			}
+			TouchdownEvent touchdownEvent = new TouchdownEvent(timestamp, json);
 			listener.onTouchdownEvent(touchdownEvent);
 			break;
 		case "Undocked":
-			UndockedEvent undockedEvent = new UndockedEvent(timestamp, json.getString("StationName"), json.getString("StationType"), json.getLong("MarketID"));
+			UndockedEvent undockedEvent = new UndockedEvent(timestamp, json);
 			listener.onUndockedEvent(undockedEvent);
 			break;
 		case "Bounty":
-			listener.onBountyEvent(new BountyEvent(timestamp, json));
+			BountyEvent bountyEvent = new BountyEvent(timestamp, json);
+			listener.onBountyEvent(bountyEvent);
 			break;
 		case "EscapeInterdiction":
-			EscapeInterdictionEvent escapeInterdictionEvent = new EscapeInterdictionEvent(timestamp, json.getString("Interdictor"), json.getBoolean("IsPlayer"));
+			EscapeInterdictionEvent escapeInterdictionEvent = new EscapeInterdictionEvent(timestamp, json);
 			listener.onEscapeInterdictionEvent(escapeInterdictionEvent);
 			break;
 		case "FighterDestroyed":
-			listener.onFighterDestroyedEvent(new FighterDestroyedEvent(timestamp));
+			FighterDestroyedEvent fighterDestroyedEvent = new FighterDestroyedEvent(timestamp, json);
+			listener.onFighterDestroyedEvent(fighterDestroyedEvent);
 			break;
 		case "CapShipBond":
-			CapShipBondEvent capShipBondEvent = new CapShipBondEvent(timestamp, json.getString("VictimFaction"), json.getString("AwardingFaction"), json.getInt("Reward"));
+			CapShipBondEvent capShipBondEvent = new CapShipBondEvent(timestamp, json);
 			listener.onCapShipBondEvent(capShipBondEvent);
 			break;
 		case "Died":
 			if(!json.has("Killers")) {
-				DiedEvent diedEvent = new DiedEvent(timestamp, json.getString("KillerName"), json.getString("KillerShip"), json.getString("KillerRank"));
+				DiedEvent diedEvent = new DiedEvent(timestamp, json);
 				listener.onDiedEvent(diedEvent);
 			}else {
-				DiedByWingEvent diedByWingEvent = new DiedByWingEvent(timestamp, JournalUtils.createKillerList(json.getJSONArray("Killers")));
+				DiedByWingEvent diedByWingEvent = new DiedByWingEvent(timestamp, json);
 				listener.onDiedByWingEvent(diedByWingEvent);
 			}
 			break;
 		case "FactionKillBond":
-			FactionKillBondEvent factionKillBondEvent = new FactionKillBondEvent(timestamp, json.getString("VictimFaction"), json.getString("AwardingFaction"), json.getInt("Reward"));
+			FactionKillBondEvent factionKillBondEvent = new FactionKillBondEvent(timestamp, json);
 			listener.onFactionKillBondEvent(factionKillBondEvent);
 			break;
 		case "HeatDamage":
-			listener.onHeatDamageEvent(new HeatDamageEvent(timestamp));
+			HeatDamageEvent heatDamageEvent = new HeatDamageEvent(timestamp, json);
+			listener.onHeatDamageEvent(heatDamageEvent);
 			break;
 		case "HeatWarning":
-			listener.onHeatWarningEvent(new HeatWarningEvent(timestamp));
+			HeatWarningEvent hHeatWarningEvent = new HeatWarningEvent(timestamp, json);
+			listener.onHeatWarningEvent(hHeatWarningEvent);
 			break;
 		case "HullDamage":
-			HullDamageEvent hullDamageEvent = new HullDamageEvent(timestamp, json.getDouble("Health"), json.getBoolean("PlayerPilot"));
-			if(json.has("Fighter")) {
-				hullDamageEvent = new HullDamageEvent(timestamp, json.getDouble("Health"), json.getBoolean("PlayerPilot"), json.getBoolean("Fighter"));
-			}
+			HullDamageEvent hullDamageEvent = new HullDamageEvent(timestamp, json);
 			listener.onHullDamageEvent(hullDamageEvent);
 			break;
 		case "Interdicted":
-			if(json.getBoolean("IsPlayer")) {
-				InterdictedByPlayerEvent interdictedByPlayerEvent = new InterdictedByPlayerEvent(timestamp, json.getBoolean("Submitted"), json.getBoolean("IsPlayer"),
-						json.getString("Interdictor"), json.getInt("CombatRank"));
-				listener.onInterdictedByPlayerEvent(interdictedByPlayerEvent);
-			}else {
-				InterdictedByNpcEvent interdictedByNpcEvent = new InterdictedByNpcEvent(timestamp, json.getBoolean("Submitted"), json.getBoolean("IsPlayer"), json.getString("Interdictor"),
-						json.getString("Faction"), json.getString("Power"));
-				listener.onInterdictedByNpcEvent(interdictedByNpcEvent);
-			}
+			InterdictedEvent interdictedEvent = new InterdictedEvent(timestamp, json);
+			listener.onInterdictedEvent(interdictedEvent);
 			break;
 		case "Interdiction":
-			if(json.getBoolean("IsPlayer")) {
-				InterdictionByPlayerEvent InterdictionByPlayerEvent = new InterdictionByPlayerEvent(timestamp, json.getBoolean("Submitted"), json.getBoolean("IsPlayer"),
-						json.getString("Interdictor"), json.getInt("CombatRank"));
-				listener.onInterdictionByPlayerEvent(InterdictionByPlayerEvent);
-			}else {
-				InterdictionByNpcEvent InterdictionByNpcEvent = new InterdictionByNpcEvent(timestamp, json.getBoolean("Submitted"), json.getBoolean("IsPlayer"), json.getString("Interdictor"),
-						json.getString("Faction"), json.getString("Power"));
-				listener.onInterdictionByNpcEvent(InterdictionByNpcEvent);
-			}
+			InterdictionEvent InterdictionEvent = new InterdictionEvent(timestamp, json);
+			listener.onInterdictionEvent(InterdictionEvent);
 			break;
 		case "PvPKill":
 			PvPKillEvent pvpKillEvent = new PvPKillEvent(timestamp, json);
@@ -595,7 +493,8 @@ public class EDJApiBuilder {
 			listener.onRefuelAll(new RefuelAllEvent(timestamp, json));
 			break;
 		case "RefuelPartial":
-			//listener.onRefuelPartial(new RefuelPartialEvent(timestamp, json)); TODO: Disabled missing data
+			RefuelPartialEvent refuelPartialEvent = new RefuelPartialEvent(timestamp, json);
+			listener.onRefuelPartial(refuelPartialEvent);
 			break;
 		case "Repair":
 			listener.onRepair(new RepairEvent(timestamp, json));
@@ -607,7 +506,8 @@ public class EDJApiBuilder {
 			listener.onRestockVehicle(new RestockVehicleEvent(timestamp, json));
 			break;
 		case "ScientificResearch":
-			//listener.onScientificResearch(new ScientificResearchEvent(timestamp, json)); TODO: Disabled missing data
+			ScientificResearchEvent scientificResearchEvent = new ScientificResearchEvent(timestamp, json);
+			listener.onScientificResearch(scientificResearchEvent);
 			break;
 		case "SearchAndRescue":
 			listener.onSearchAndRescue(new SearchAndRescueEvent(timestamp, json));
@@ -616,7 +516,8 @@ public class EDJApiBuilder {
 			listener.onSellDrones(new SellDronesEvent(timestamp, json));
 			break;
 		case "SellShipOnRebuy":
-			//listener.onSellShipOnRebuy(new SellShipOnRebuyEvent(timestamp, json)); TODO: Disabled missing data
+			SellShipOnRebuyEvent sellShipOnRebuyEvent = new SellShipOnRebuyEvent(timestamp, json);
+			listener.onSellShipOnRebuy(sellShipOnRebuyEvent);
 			break;
 		case "SetUserShipName":
 			listener.onSetUserShipName(new SetUserShipNameEvent(timestamp, json));

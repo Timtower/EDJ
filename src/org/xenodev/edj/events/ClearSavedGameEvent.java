@@ -1,16 +1,20 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ClearSavedGameEvent extends Event {
 	
 	String name;
 	String FID;
 	
-	public ClearSavedGameEvent(String timestamp, String name, String FID) {
+	public ClearSavedGameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = name;
-		this.FID = FID;
+		this.name = json.getString("Name");
+		this.FID = json.getString("FID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getName() {

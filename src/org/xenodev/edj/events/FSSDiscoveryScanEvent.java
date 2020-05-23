@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class FSSDiscoveryScanEvent extends Event {
 	
@@ -11,9 +10,9 @@ public class FSSDiscoveryScanEvent extends Event {
 	
 	public FSSDiscoveryScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.progress = JsonTranslator.getDouble(json, "Progress");
-		this.bodyCount = JsonTranslator.getInteger(json, "BodyCount");
-		this.nonBodyCount = JsonTranslator.getInteger(json, "NonBodyCount");
+		this.progress = json.getDouble("Progress");
+		this.bodyCount = json.getInt("BodyCount");
+		this.nonBodyCount = json.getInt("NonBodyCount");
 	}
 
 	public Double getProgress() {

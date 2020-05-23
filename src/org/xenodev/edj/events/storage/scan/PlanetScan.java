@@ -3,7 +3,6 @@ package org.xenodev.edj.events.storage.scan;
 import org.json.JSONObject;
 import org.xenodev.edj.events.interfaces.ScanInfo;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class PlanetScan implements ScanInfo {
 	
@@ -19,31 +18,31 @@ public class PlanetScan implements ScanInfo {
 	Composition[] composition;
 	
 	public PlanetScan(JSONObject json) {
-		this.scanType = JsonTranslator.getString(json, "ScanType");
-		this.bodyName = JsonTranslator.getString(json, "BodyName");
-		this.terraformState = JsonTranslator.getString(json, "TerraformState");
-		this.planetClass = JsonTranslator.getString(json, "PlanetClass");
-		this.atmosphere = JsonTranslator.getString(json, "Atmosphere");
-		this.atmosphereType = JsonTranslator.getString(json, "AtmosphereType");
-		this.atmosphereComposition = JournalUtils.createAtmosphereCompositionList(JsonTranslator.getJSONArray(json, "AtmosphereComposition"));
-		this.volcanism = JsonTranslator.getString(json, "Volcanism");
-		this.reserveLevel = JsonTranslator.getString(json, "ReserveLevel");
-		this.distanceFromArrivalLS = JsonTranslator.getDouble(json, "DistanceFromArrivalLS");
-		this.massEM = JsonTranslator.getDouble(json, "MassEM");
-		this.surfaceGravity = JsonTranslator.getDouble(json, "SurfaceGravity");
-		this.surfaceTemperature = JsonTranslator.getDouble(json, "SurfaceTemperature");
-		this.surfacePressure = JsonTranslator.getDouble(json, "SurfacePressure");
-		this.eccentricity = JsonTranslator.getDouble(json, "Eccentricity");
-		this.orbitalInclination = JsonTranslator.getDouble(json, "OrbitalInclination");
-		this.periapsis = JsonTranslator.getDouble(json, "Periapsis");
-		this.rotationPeriod = JsonTranslator.getDouble(json, "RotationPeriod");
-		this.axialTilt = JsonTranslator.getDouble(json, "AxialTilt");
-		this.bodyID = JsonTranslator.getInteger(json, "BodyID");
-		this.radius = JsonTranslator.getLong(json, "Radius");
-		this.semiMajorAxis = JsonTranslator.getLong(json, "SemiMajorAxis");
-		this.orbitalPeriod = JsonTranslator.getLong(json, "OrbitalPeriod");
-		this.tidalLock = JsonTranslator.getBoolean(json, "TidalLock");
-		this.landable = JsonTranslator.getBoolean(json, "Landable");
+		this.scanType = json.getString("ScanType");
+		this.bodyName = json.getString("BodyName");
+		this.terraformState = json.getString("TerraformState");
+		this.planetClass = json.getString("PlanetClass");
+		this.atmosphere = json.getString("Atmosphere");
+		this.atmosphereType = json.getString("AtmosphereType");
+		this.atmosphereComposition = JournalUtils.createAtmosphereCompositionList(json.getJSONArray("AtmosphereComposition"));
+		this.volcanism = json.getString("Volcanism");
+		this.reserveLevel = json.getString("ReserveLevel");
+		this.distanceFromArrivalLS = json.getDouble("DistanceFromArrivalLS");
+		this.massEM = json.getDouble("MassEM");
+		this.surfaceGravity = json.getDouble("SurfaceGravity");
+		this.surfaceTemperature = json.getDouble("SurfaceTemperature");
+		this.surfacePressure = json.getDouble("SurfacePressure");
+		this.eccentricity = json.getDouble("Eccentricity");
+		this.orbitalInclination = json.getDouble("OrbitalInclination");
+		this.periapsis = json.getDouble("Periapsis");
+		this.rotationPeriod = json.getDouble("RotationPeriod");
+		this.axialTilt = json.getDouble("AxialTilt");
+		this.bodyID = json.getInt("BodyID");
+		this.radius = json.getLong("Radius");
+		this.semiMajorAxis = json.getLong("SemiMajorAxis");
+		this.orbitalPeriod = json.getLong("OrbitalPeriod");
+		this.tidalLock = json.getBoolean("TidalLock");
+		this.landable = json.getBoolean("Landable");
 		this.parents = JournalUtils.createParentList(json);
 		this.rings = JournalUtils.createRingsList(json.getJSONArray("Rings"));
 		this.materials = JournalUtils.createMaterialList(json);

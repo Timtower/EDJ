@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class CrewHireEvent extends Event {
 	
@@ -11,11 +10,11 @@ public class CrewHireEvent extends Event {
 	
 	public CrewHireEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = JsonTranslator.getString(json, "Name");
-		this.faction = JsonTranslator.getString(json, "Faction");
-		this.crewID = JsonTranslator.getInteger(json, "CrewID");
-		this.cost = JsonTranslator.getInteger(json, "Cost");
-		this.combatRank = JsonTranslator.getInteger(json, "CombatRank");
+		this.name = json.getString("Name");
+		this.faction = json.getString("Faction");
+		this.crewID = json.getInt("CrewID");
+		this.cost = json.getInt("Cost");
+		this.combatRank = json.getInt("CombatRank");
 	}
 	
 	public String getName() {

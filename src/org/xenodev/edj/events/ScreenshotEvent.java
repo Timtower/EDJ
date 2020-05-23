@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class ScreenshotEvent extends Event {
 	
@@ -12,15 +11,15 @@ public class ScreenshotEvent extends Event {
 	
 	public ScreenshotEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.filename = JsonTranslator.getString(json, "Filename");
-		this.system = JsonTranslator.getString(json, "System");
-		this.body = JsonTranslator.getString(json, "Body");
-		this.width = JsonTranslator.getInteger(json, "Width");
-		this.height = JsonTranslator.getInteger(json, "Height");
-		this.heading = JsonTranslator.getInteger(json, "Heading");
-		this.latitude = JsonTranslator.getDouble(json, "Latitude");
-		this.longitude = JsonTranslator.getDouble(json, "Longitude");
-		this.altitude = JsonTranslator.getDouble(json, "Altitude");
+		this.filename = json.getString("Filename");
+		this.system = json.getString("System");
+		this.body = json.getString("Body");
+		this.width = json.getInt("Width");
+		this.height = json.getInt("Height");
+		this.heading = json.getInt("Heading");
+		this.latitude = json.getDouble("Latitude");
+		this.longitude = json.getDouble("Longitude");
+		this.altitude = json.getDouble("Altitude");
 	}
 
 	public String getFilename() {

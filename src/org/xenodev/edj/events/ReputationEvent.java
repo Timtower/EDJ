@@ -1,6 +1,8 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 import org.xenodev.edj.utils.localiser.Reputation;
 
 /**
@@ -11,11 +13,14 @@ public class ReputationEvent extends Event {
 
 	Integer empire, federation, alliance;
 
-	public ReputationEvent(String timestamp, Integer empire, Integer federation, Integer alliance) {
+	public ReputationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.empire = empire;
-		this.federation = federation;
-		this.alliance = alliance;
+		
+		this.empire = json.getDouble("Empire").intValue();
+		this.federation = json.getDouble("Federation").intValue();
+		this.alliance = json.getDouble("Alliance").intValue();
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	/**
@@ -70,6 +75,18 @@ public class ReputationEvent extends Event {
 	 */
 	public String getAllianceReputationLocalised() {
 		return Reputation.getReputationLocalised(alliance);
+	}
+
+	public void setEmpire(Integer empire) {
+		this.empire = empire;
+	}
+
+	public void setFederation(Integer federation) {
+		this.federation = federation;
+	}
+
+	public void setAlliance(Integer alliance) {
+		this.alliance = alliance;
 	}	
 	
 }

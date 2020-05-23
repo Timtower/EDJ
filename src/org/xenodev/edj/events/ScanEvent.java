@@ -5,7 +5,6 @@ import org.xenodev.edj.Event;
 import org.xenodev.edj.events.interfaces.ScanInfo;
 import org.xenodev.edj.events.storage.scan.PlanetScan;
 import org.xenodev.edj.events.storage.scan.StarScan;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class ScanEvent extends Event {
 	
@@ -16,7 +15,7 @@ public class ScanEvent extends Event {
 	public ScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		this.json = json;
-		this.scanType = JsonTranslator.getString(json, "ScanType");
+		this.scanType = json.getString("ScanType");
 		this.star = json.has("StarType");
 	}
 	

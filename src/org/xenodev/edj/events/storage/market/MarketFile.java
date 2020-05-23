@@ -8,7 +8,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xenodev.edj.utils.FileHandler;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MarketFile {
 	
@@ -31,7 +30,7 @@ public class MarketFile {
 			e.printStackTrace();
 		}
 		
-		JSONArray array = JsonTranslator.getJSONArray(new JSONObject(marketFileContent), "Items");
+		JSONArray array = new JSONObject(marketFileContent).getJSONArray("Items");
 		items = JournalUtils.createItemList(array);
 	}
 

@@ -1,371 +1,818 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class StatisticsEvent extends Event {
 	
-	long currentWealth, spentOnShips, spentOnOutfitting, spentOnRepairs, spentOnFuel, spentOnAmmoConsumables, spentOnInsurance, bountyHuntingProfit, combatBondsProfit, assassinationProfits, totalFines, totalBounties, blackMarketsProfit, averageSmugglingProfit, marketProfit, miningProfits, explorationProfits, searchRescueProfit, totalNpcCrewWages;
-	int bountiesReceived, insuranceClaims, ownedShipCount, bountiesClaimed, combatBonds, assassinations, highestSingleReward, skimmersKilled, notoriety, fines, highestBounty, blackMartketsTradedWith, ressourcesSmuggled, highestSingleSmugglingTransaction, marketsTradedWith, ressourcesTraded, averageTradingProfit, highestSingleTradingTransaction, quantityMined, materialsCollected, systemsVisited, planetsScannedToLevel2, planetsScannedToLevel3, EfficientScans, highestPayout, totalHyperspaceDistance, totalHyperspaceJumps, greatestDistanceFromStart, timePlayed, passengersMissionsAccepted, passengersMissionsDisgruntled, passengersMissionsBulk, passengersMissionsVIP, passengersMissionsDelivered, passengersMissionsEjected, searchRescueTraded, searchRescueCount, totalTGEncounters, TGScoutCount, engineersUsedCount, totalRecipesGenerated, recipesGeneratedRank1, recipesGeneratedRank2, recipesGeneratedRank3, recipesGeneratedRank4, recipesGeneratedRank5, hiredNpcCrew, firedNpcCrew, totalMulticrewTime, totalMulticrewTimeGunner, totalMulticrewTimeFighter, totalMulticrewCredits, totalMulticrewFines, materialTraderTradesCompledted, materialTraderMaterialsTraded, materialTraderEncodedMaterialsTraded, materialTraderGrade1Traded, materialTraderGrade2Traded, materialTraderGrade3Traded, materialTraderGrade4Traded, materialTraderGrade5Traded;
-	String LastTGEncounterSystem, lastTGEncounterTime, lastTGEncounterShip;
+	Long currentWealth, spentOnShips, spentOnOutfitting, spentOnRepairs, spentOnFuel, spentOnAmmoConsumables, spentOnInsurance, bountyHuntingProfit, combatBondsProfit, assassinationProfits,
+	totalFines, totalBounties, blackMarketsProfit, averageSmugglingProfit, marketProfit, miningProfits, explorationProfits, searchRescueProfit, totalNpcCrewWages;
 	
-	public StatisticsEvent(String timestamp, long currentWealth, long spentOnShips, long spentOnOutfitting,
-			long spentOnRepairs, long spentOnFuel, long spentOnAmmoConsumables, long spentOnInsurance,
-			long bountyHuntingProfit, long combatBondsProfit, long assassinationProfits, long totalFines,
-			long totalBounties, long blackMarketsProfit, long averageSmugglingProfit,
-			long marketProfit, long miningProfits, long explorationProfits, long searchRescueProfit,
-			long totalNpcCrewWages, int bountiesReceived, int insuranceClaims, int ownedShipCount, int bountiesClaimed, int combatBonds,
-			int assassinations, int highestSingleReward, int skimmersKilled, int notoriety, int fines,
-			int highestBounty, int blackMartketsTradedWith, int ressourcesSmuggled,
-			int highestSingleSmugglingTransaction, int marketsTradedWith, int ressourcesTraded,
-			int averageTradingProfit, int highestSingleTradingTransaction, int quantityMined, int materialsCollected,
-			int systemsVisited, int planetsScannedToLevel2, int planetsScannedToLevel3, int efficientScans,
-			int highestPayout, int totalHyperspaceDistance, int totalHyperspaceJumps, int greatestDistanceFromStart,
-			int timePlayed, int passengersMissionsAccepted, int passengersMissionsDisgruntled,
-			int passengersMissionsBulk, int passengersMissionsVIP, int passengersMissionsDelivered,
-			int passengersMissionsEjected, int searchRescueTraded, int searchRescueCount, int totalTGEncounters,
-			int tGScoutCount, int engineersUsedCount, int totalRecipesGenerated, int recipesGeneratedRank1,
-			int recipesGeneratedRank2, int recipesGeneratedRank3, int recipesGeneratedRank4, int recipesGeneratedRank5,
-			int hiredNpcCrew, int firedNpcCrew, int totalMulticrewTime, int totalMulticrewTimeGunner,
-			int totalMulticrewTimeFighter, int totalMulticrewCredits, int totalMulticrewFines,
-			int materialTraderTradesCompledted, int materialTraderMaterialsTraded,
-			int materialTraderEncodedMaterialsTraded, int materialTraderGrade1Traded, int materialTraderGrade2Traded,
-			int materialTraderGrade3Traded, int materialTraderGrade4Traded, int materialTraderGrade5Traded,
-			String lastTGEncounterSystem, String lastTGEncounterTime, String lastTGEncounterShip) {
+	Integer bountiesReceived, insuranceClaims, ownedShipCount, bountiesClaimed, combatBonds, assassinations, highestSingleReward, skimmersKilled, notoriety, fines, highestBounty,
+	blackMartketsTradedWith, ressourcesSmuggled, highestSingleSmugglingTransaction, marketsTradedWith, ressourcesTraded, averageTradingProfit, highestSingleTradingTransaction, quantityMined,
+	materialsCollected, systemsVisited, planetsScannedToLevel2, planetsScannedToLevel3, efficientScans, highestPayout, totalHyperspaceDistance, totalHyperspaceJumps, greatestDistanceFromStart,
+	timePlayed, passengersMissionsAccepted, passengersMissionsDisgruntled, passengersMissionsBulk, passengersMissionsVIP, passengersMissionsDelivered, passengersMissionsEjected, searchRescueTraded,
+	searchRescueCount, totalTGEncounters, tGScoutCount, engineersUsedCount, totalRecipesGenerated, recipesGeneratedRank1, recipesGeneratedRank2, recipesGeneratedRank3, recipesGeneratedRank4,
+	recipesGeneratedRank5, hiredNpcCrew, firedNpcCrew, totalMulticrewTime, totalMulticrewTimeGunner, totalMulticrewTimeFighter, totalMulticrewCredits, totalMulticrewFines,
+	materialTraderTradesCompledted, materialTraderMaterialsTraded, materialTraderEncodedMaterialsTraded, materialTraderGrade1Traded, materialTraderGrade2Traded, materialTraderGrade3Traded,
+	materialTraderGrade4Traded, materialTraderGrade5Traded;
+	
+	String lastTGEncounterSystem, lastTGEncounterTime, lastTGEncounterShip;
+	
+	public StatisticsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.currentWealth = currentWealth;
-		this.spentOnShips = spentOnShips;
-		this.spentOnOutfitting = spentOnOutfitting;
-		this.spentOnRepairs = spentOnRepairs;
-		this.spentOnFuel = spentOnFuel;
-		this.spentOnAmmoConsumables = spentOnAmmoConsumables;
-		this.spentOnInsurance = spentOnInsurance;
-		this.bountyHuntingProfit = bountyHuntingProfit;
-		this.combatBondsProfit = combatBondsProfit;
-		this.assassinationProfits = assassinationProfits;
-		this.totalFines = totalFines;
-		this.bountiesReceived = bountiesReceived;
-		this.totalBounties = totalBounties;
-		this.blackMarketsProfit = blackMarketsProfit;
-		this.averageSmugglingProfit = averageSmugglingProfit;
-		this.marketProfit = marketProfit;
-		this.miningProfits = miningProfits;
-		this.explorationProfits = explorationProfits;
-		this.searchRescueProfit = searchRescueProfit;
-		this.totalNpcCrewWages = totalNpcCrewWages;
-		this.insuranceClaims = insuranceClaims;
-		this.ownedShipCount = ownedShipCount;
-		this.bountiesClaimed = bountiesClaimed;
-		this.combatBonds = combatBonds;
-		this.assassinations = assassinations;
-		this.highestSingleReward = highestSingleReward;
-		this.skimmersKilled = skimmersKilled;
-		this.notoriety = notoriety;
-		this.fines = fines;
-		this.highestBounty = highestBounty;
-		this.blackMartketsTradedWith = blackMartketsTradedWith;
-		this.ressourcesSmuggled = ressourcesSmuggled;
-		this.highestSingleSmugglingTransaction = highestSingleSmugglingTransaction;
-		this.marketsTradedWith = marketsTradedWith;
-		this.ressourcesTraded = ressourcesTraded;
-		this.averageTradingProfit = averageTradingProfit;
-		this.highestSingleTradingTransaction = highestSingleTradingTransaction;
-		this.quantityMined = quantityMined;
-		this.materialsCollected = materialsCollected;
-		this.systemsVisited = systemsVisited;
-		this.planetsScannedToLevel2 = planetsScannedToLevel2;
-		this.planetsScannedToLevel3 = planetsScannedToLevel3;
-		EfficientScans = efficientScans;
-		this.highestPayout = highestPayout;
-		this.totalHyperspaceDistance = totalHyperspaceDistance;
-		this.totalHyperspaceJumps = totalHyperspaceJumps;
-		this.greatestDistanceFromStart = greatestDistanceFromStart;
-		this.timePlayed = timePlayed;
-		this.passengersMissionsAccepted = passengersMissionsAccepted;
-		this.passengersMissionsDisgruntled = passengersMissionsDisgruntled;
-		this.passengersMissionsBulk = passengersMissionsBulk;
-		this.passengersMissionsVIP = passengersMissionsVIP;
-		this.passengersMissionsDelivered = passengersMissionsDelivered;
-		this.passengersMissionsEjected = passengersMissionsEjected;
-		this.searchRescueTraded = searchRescueTraded;
-		this.searchRescueCount = searchRescueCount;
-		this.totalTGEncounters = totalTGEncounters;
-		TGScoutCount = tGScoutCount;
-		this.engineersUsedCount = engineersUsedCount;
-		this.totalRecipesGenerated = totalRecipesGenerated;
-		this.recipesGeneratedRank1 = recipesGeneratedRank1;
-		this.recipesGeneratedRank2 = recipesGeneratedRank2;
-		this.recipesGeneratedRank3 = recipesGeneratedRank3;
-		this.recipesGeneratedRank4 = recipesGeneratedRank4;
-		this.recipesGeneratedRank5 = recipesGeneratedRank5;
-		this.hiredNpcCrew = hiredNpcCrew;
-		this.firedNpcCrew = firedNpcCrew;
-		this.totalMulticrewTime = totalMulticrewTime;
-		this.totalMulticrewTimeGunner = totalMulticrewTimeGunner;
-		this.totalMulticrewTimeFighter = totalMulticrewTimeFighter;
-		this.totalMulticrewCredits = totalMulticrewCredits;
-		this.totalMulticrewFines = totalMulticrewFines;
-		this.materialTraderTradesCompledted = materialTraderTradesCompledted;
-		this.materialTraderMaterialsTraded = materialTraderMaterialsTraded;
-		this.materialTraderEncodedMaterialsTraded = materialTraderEncodedMaterialsTraded;
-		this.materialTraderGrade1Traded = materialTraderGrade1Traded;
-		this.materialTraderGrade2Traded = materialTraderGrade2Traded;
-		this.materialTraderGrade3Traded = materialTraderGrade3Traded;
-		this.materialTraderGrade4Traded = materialTraderGrade4Traded;
-		this.materialTraderGrade5Traded = materialTraderGrade5Traded;
-		LastTGEncounterSystem = lastTGEncounterSystem;
-		this.lastTGEncounterTime = lastTGEncounterTime;
-		this.lastTGEncounterShip = lastTGEncounterShip;
+		JSONObject bankAccount = json.getJSONObject("Bank_Account");
+		JSONObject combat = json.getJSONObject("Combat");
+		JSONObject crime = json.getJSONObject("Crime");
+		JSONObject smuggling = json.getJSONObject("Smuggling");
+		JSONObject trading = json.getJSONObject("Trading");
+		JSONObject mining = json.getJSONObject("Mining");
+		JSONObject exploration = json.getJSONObject("Exploration");
+		JSONObject passengers = json.getJSONObject("Passengers");
+		JSONObject searchAndRescue = json.getJSONObject("Search_And_Rescue");
+		JSONObject thargoid = json.getJSONObject("TG_ENCOUNTERS");
+		JSONObject crafting = json.getJSONObject("Crafting");
+		JSONObject crew = json.getJSONObject("Crew");
+		JSONObject multicrew = json.getJSONObject("Multicrew");
+		JSONObject materialTrader = json.getJSONObject("Material_Trader_Stats");
+		
+		// Bank Account
+		this.currentWealth = bankAccount.getLong("Current_Wealth");
+		this.spentOnShips = bankAccount.getLong("Spent_On_Ships");
+		this.spentOnOutfitting = bankAccount.getLong("Spent_On_Outfitting");
+		this.spentOnRepairs = bankAccount.getLong("Spent_On_Repairs");
+		this.spentOnFuel = bankAccount.getLong("Spent_On_Fuel");
+		this.spentOnAmmoConsumables = bankAccount.getLong("Spent_On_Ammo_Consumables");
+		this.spentOnInsurance = bankAccount.getLong("Spent_On_Insurance");
+		this.insuranceClaims = bankAccount.getInt("Insurance_Claims");
+		this.ownedShipCount = bankAccount.getInt("Owned_Ship_Count");
+		
+		// Combat
+		this.bountyHuntingProfit = combat.getLong("Bounty_Hunting_Profit");
+		this.combatBondsProfit = combat.getLong("Combat_Bond_Profits");
+		this.assassinationProfits = combat.getLong("Assassination_Profits");
+		this.bountiesClaimed = combat.getInt("Bounties_Claimed");
+		this.combatBonds = combat.getInt("Combat_Bonds");
+		this.assassinations = combat.getInt("Assassinations");
+		this.highestSingleReward = combat.getInt("Highest_Single_Reward");
+		this.skimmersKilled = combat.getInt("Skimmers_Killed");
+		
+		// Crime
+		this.totalFines = crime.getLong("Total_Fines");
+		this.totalBounties = crime.getLong("Total_Bounties");
+		this.bountiesReceived = crime.getInt("Bounties_Received");
+		this.notoriety = crime.getInt("Notoriety");
+		this.fines = crime.getInt("Fines");
+		this.highestBounty = crime.getInt("Highest_Bounty");
+		
+		// Smuggling
+		this.blackMarketsProfit = smuggling.getLong("Black_Markets_Profits");
+		this.averageSmugglingProfit = smuggling.getLong("Average_Profit");
+		this.blackMartketsTradedWith = smuggling.getInt("Black_Markets_Traded_With");
+		this.ressourcesSmuggled = smuggling.getInt("Resources_Smuggled");
+		this.highestSingleSmugglingTransaction = smuggling.getInt("Highest_Single_Transaction");
+		
+		// Trading
+		this.marketProfit = trading.getLong("Market_Profits");
+		this.marketsTradedWith = trading.getInt("Markets_Traded_With");
+		this.ressourcesTraded = trading.getInt("Resources_Traded");
+		this.averageTradingProfit = trading.getInt("Average_Profit");
+		this.highestSingleTradingTransaction = trading.getInt("Highest_Single_Transaction");
+		
+		// Mining
+		this.miningProfits = mining.getLong("Mining_Profits");
+		this.quantityMined = mining.getInt("Quantity_Mined");
+		this.materialsCollected = mining.getInt("Materials_Collected");
+		
+		// Exploration
+		this.explorationProfits = exploration.getLong("Exploration_Profits");
+		this.systemsVisited = exploration.getInt("Systems_Visited");
+		this.planetsScannedToLevel2 = exploration.getInt("Planets_Scanned_To_Level_2");
+		this.planetsScannedToLevel3 = exploration.getInt("Planets_Scanned_To_Level_3");
+		this.efficientScans = exploration.getInt("Efficient_Scans");
+		this.highestPayout = exploration.getInt("Highest_Payout");
+		this.totalHyperspaceDistance = exploration.getInt("Total_Hyperspace_Distance");
+		this.totalHyperspaceJumps = exploration.getInt("Total_Hyperspace_Jumps");
+		this.greatestDistanceFromStart = exploration.getInt("Greatest_Distance_From_Start");
+		this.timePlayed = exploration.getInt("Time_Played");
+		
+		// Search & Rescue
+		this.searchRescueProfit = searchAndRescue.getLong("SearchRescue_Profit");
+		this.searchRescueTraded = searchAndRescue.getInt("SearchRescue_Traded");
+		this.searchRescueCount = searchAndRescue.getInt("SearchRescue_Count");
+		
+		// Crew
+		this.totalNpcCrewWages = crew.getLong("NpcCrew_TotalWages");
+		this.hiredNpcCrew = crew.getInt("NpcCrew_Hired");
+		this.firedNpcCrew = crew.getInt("NpcCrew_Fired");
+		
+		// Passengers
+		this.passengersMissionsAccepted = passengers.getInt("Passengers_Missions_Accepted");
+		this.passengersMissionsDisgruntled = passengers.getInt("Passengers_Missions_Disgruntled");
+		this.passengersMissionsBulk = passengers.getInt("Passengers_Missions_Bulk");
+		this.passengersMissionsVIP = passengers.getInt("Passengers_Missions_VIP");
+		this.passengersMissionsDelivered = passengers.getInt("Passengers_Missions_Delivered");
+		this.passengersMissionsEjected = passengers.getInt("Passengers_Missions_Ejected");
+		
+		// Thargoid
+		this.totalTGEncounters = thargoid.getInt("TG_ENCOUNTER_TOTAL");
+		this.tGScoutCount = thargoid.getInt("TG_SCOUT_COUNT");
+		this.lastTGEncounterSystem = thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_SYSTEM");
+		this.lastTGEncounterTime = thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_TIMESTAMP");
+		this.lastTGEncounterShip = thargoid.getString("TG_ENCOUNTER_TOTAL_LAST_SHIP");
+		
+		// Crafting
+		this.engineersUsedCount = crafting.getInt("Count_Of_Used_Engineers");
+		this.totalRecipesGenerated = crafting.getInt("Recipes_Generated");
+		this.recipesGeneratedRank1 = crafting.getInt("Recipes_Generated_Rank_1");
+		this.recipesGeneratedRank2 = crafting.getInt("Recipes_Generated_Rank_2");
+		this.recipesGeneratedRank3 = crafting.getInt("Recipes_Generated_Rank_3");
+		this.recipesGeneratedRank4 = crafting.getInt("Recipes_Generated_Rank_4");
+		this.recipesGeneratedRank5 = crafting.getInt("Recipes_Generated_Rank_5");
+		
+		// Multicrew
+		this.totalMulticrewTime = multicrew.getInt("Multicrew_Time_Total");
+		this.totalMulticrewTimeGunner = multicrew.getInt("Multicrew_Gunner_Time_Total");
+		this.totalMulticrewTimeFighter = multicrew.getInt("Multicrew_Fighter_Time_Total");
+		this.totalMulticrewCredits = multicrew.getInt("Multicrew_Credits_Total");
+		this.totalMulticrewFines = multicrew.getInt("Multicrew_Fines_Total");
+		
+		// Material Traders
+		this.materialTraderTradesCompledted = materialTrader.getInt("Trades_Completed");
+		this.materialTraderMaterialsTraded = materialTrader.getInt("Materials_Traded");
+		this.materialTraderEncodedMaterialsTraded = materialTrader.getInt("Encoded_Materials_Traded");
+		this.materialTraderGrade1Traded = materialTrader.getInt("Grade_1_Materials_Traded");
+		this.materialTraderGrade2Traded = materialTrader.getInt("Grade_2_Materials_Traded");
+		this.materialTraderGrade3Traded = materialTrader.getInt("Grade_3_Materials_Traded");
+		this.materialTraderGrade4Traded = materialTrader.getInt("Grade_4_Materials_Traded");
+		this.materialTraderGrade5Traded = materialTrader.getInt("Grade_5_Materials_Traded");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
-	
-	public long getCurrentWealth() {
+
+	public Long getCurrentWealth() {
 		return currentWealth;
 	}
-	public long getSpentOnShips() {
+
+	public void setCurrentWealth(Long currentWealth) {
+		this.currentWealth = currentWealth;
+	}
+
+	public Long getSpentOnShips() {
 		return spentOnShips;
 	}
-	public long getSpentOnOutfitting() {
+
+	public void setSpentOnShips(Long spentOnShips) {
+		this.spentOnShips = spentOnShips;
+	}
+
+	public Long getSpentOnOutfitting() {
 		return spentOnOutfitting;
 	}
-	public long getSpentOnRepairs() {
+
+	public void setSpentOnOutfitting(Long spentOnOutfitting) {
+		this.spentOnOutfitting = spentOnOutfitting;
+	}
+
+	public Long getSpentOnRepairs() {
 		return spentOnRepairs;
 	}
-	public long getSpentOnFuel() {
+
+	public void setSpentOnRepairs(Long spentOnRepairs) {
+		this.spentOnRepairs = spentOnRepairs;
+	}
+
+	public Long getSpentOnFuel() {
 		return spentOnFuel;
 	}
-	public long getSpentOnAmmoConsumables() {
+
+	public void setSpentOnFuel(Long spentOnFuel) {
+		this.spentOnFuel = spentOnFuel;
+	}
+
+	public Long getSpentOnAmmoConsumables() {
 		return spentOnAmmoConsumables;
 	}
-	public long getSpentOnInsurance() {
+
+	public void setSpentOnAmmoConsumables(Long spentOnAmmoConsumables) {
+		this.spentOnAmmoConsumables = spentOnAmmoConsumables;
+	}
+
+	public Long getSpentOnInsurance() {
 		return spentOnInsurance;
 	}
-	public long getBountyHuntingProfit() {
+
+	public void setSpentOnInsurance(Long spentOnInsurance) {
+		this.spentOnInsurance = spentOnInsurance;
+	}
+
+	public Long getBountyHuntingProfit() {
 		return bountyHuntingProfit;
 	}
-	public long getCombatBondsProfit() {
+
+	public void setBountyHuntingProfit(Long bountyHuntingProfit) {
+		this.bountyHuntingProfit = bountyHuntingProfit;
+	}
+
+	public Long getCombatBondsProfit() {
 		return combatBondsProfit;
 	}
-	public long getAssassinationProfits() {
+
+	public void setCombatBondsProfit(Long combatBondsProfit) {
+		this.combatBondsProfit = combatBondsProfit;
+	}
+
+	public Long getAssassinationProfits() {
 		return assassinationProfits;
 	}
-	public long getTotalFines() {
+
+	public void setAssassinationProfits(Long assassinationProfits) {
+		this.assassinationProfits = assassinationProfits;
+	}
+
+	public Long getTotalFines() {
 		return totalFines;
 	}
-	public long getBountiesReceived() {
-		return bountiesReceived;
+
+	public void setTotalFines(Long totalFines) {
+		this.totalFines = totalFines;
 	}
-	public long getTotalBounties() {
+
+	public Long getTotalBounties() {
 		return totalBounties;
 	}
-	public long getBlackMarketsProfit() {
+
+	public void setTotalBounties(Long totalBounties) {
+		this.totalBounties = totalBounties;
+	}
+
+	public Long getBlackMarketsProfit() {
 		return blackMarketsProfit;
 	}
-	public long getAverageSmugglingProfit() {
+
+	public void setBlackMarketsProfit(Long blackMarketsProfit) {
+		this.blackMarketsProfit = blackMarketsProfit;
+	}
+
+	public Long getAverageSmugglingProfit() {
 		return averageSmugglingProfit;
 	}
-	public long getMarketProfit() {
+
+	public void setAverageSmugglingProfit(Long averageSmugglingProfit) {
+		this.averageSmugglingProfit = averageSmugglingProfit;
+	}
+
+	public Long getMarketProfit() {
 		return marketProfit;
 	}
-	public long getMiningProfits() {
+
+	public void setMarketProfit(Long marketProfit) {
+		this.marketProfit = marketProfit;
+	}
+
+	public Long getMiningProfits() {
 		return miningProfits;
 	}
-	public long getExplorationProfits() {
+
+	public void setMiningProfits(Long miningProfits) {
+		this.miningProfits = miningProfits;
+	}
+
+	public Long getExplorationProfits() {
 		return explorationProfits;
 	}
-	public long getSearchRescueProfit() {
+
+	public void setExplorationProfits(Long explorationProfits) {
+		this.explorationProfits = explorationProfits;
+	}
+
+	public Long getSearchRescueProfit() {
 		return searchRescueProfit;
 	}
-	public long getTotalNpcCrewWages() {
+
+	public void setSearchRescueProfit(Long searchRescueProfit) {
+		this.searchRescueProfit = searchRescueProfit;
+	}
+
+	public Long getTotalNpcCrewWages() {
 		return totalNpcCrewWages;
 	}
-	public int getInsuranceClaims() {
+
+	public void setTotalNpcCrewWages(Long totalNpcCrewWages) {
+		this.totalNpcCrewWages = totalNpcCrewWages;
+	}
+
+	public Integer getBountiesReceived() {
+		return bountiesReceived;
+	}
+
+	public void setBountiesReceived(Integer bountiesReceived) {
+		this.bountiesReceived = bountiesReceived;
+	}
+
+	public Integer getInsuranceClaims() {
 		return insuranceClaims;
 	}
-	public int getOwnedShipCount() {
+
+	public void setInsuranceClaims(Integer insuranceClaims) {
+		this.insuranceClaims = insuranceClaims;
+	}
+
+	public Integer getOwnedShipCount() {
 		return ownedShipCount;
 	}
-	public int getBountiesClaimed() {
+
+	public void setOwnedShipCount(Integer ownedShipCount) {
+		this.ownedShipCount = ownedShipCount;
+	}
+
+	public Integer getBountiesClaimed() {
 		return bountiesClaimed;
 	}
-	public int getCombatBonds() {
+
+	public void setBountiesClaimed(Integer bountiesClaimed) {
+		this.bountiesClaimed = bountiesClaimed;
+	}
+
+	public Integer getCombatBonds() {
 		return combatBonds;
 	}
-	public int getAssassinations() {
+
+	public void setCombatBonds(Integer combatBonds) {
+		this.combatBonds = combatBonds;
+	}
+
+	public Integer getAssassinations() {
 		return assassinations;
 	}
-	public int getHighestSingleReward() {
+
+	public void setAssassinations(Integer assassinations) {
+		this.assassinations = assassinations;
+	}
+
+	public Integer getHighestSingleReward() {
 		return highestSingleReward;
 	}
-	public int getSkimmersKilled() {
+
+	public void setHighestSingleReward(Integer highestSingleReward) {
+		this.highestSingleReward = highestSingleReward;
+	}
+
+	public Integer getSkimmersKilled() {
 		return skimmersKilled;
 	}
-	public int getNotoriety() {
+
+	public void setSkimmersKilled(Integer skimmersKilled) {
+		this.skimmersKilled = skimmersKilled;
+	}
+
+	public Integer getNotoriety() {
 		return notoriety;
 	}
-	public int getFines() {
+
+	public void setNotoriety(Integer notoriety) {
+		this.notoriety = notoriety;
+	}
+
+	public Integer getFines() {
 		return fines;
 	}
-	public int getHighestBounty() {
+
+	public void setFines(Integer fines) {
+		this.fines = fines;
+	}
+
+	public Integer getHighestBounty() {
 		return highestBounty;
 	}
-	public int getBlackMartketsTradedWith() {
+
+	public void setHighestBounty(Integer highestBounty) {
+		this.highestBounty = highestBounty;
+	}
+
+	public Integer getBlackMartketsTradedWith() {
 		return blackMartketsTradedWith;
 	}
-	public int getRessourcesSmuggled() {
+
+	public void setBlackMartketsTradedWith(Integer blackMartketsTradedWith) {
+		this.blackMartketsTradedWith = blackMartketsTradedWith;
+	}
+
+	public Integer getRessourcesSmuggled() {
 		return ressourcesSmuggled;
 	}
-	public int getHighestSingleSmugglingTransaction() {
+
+	public void setRessourcesSmuggled(Integer ressourcesSmuggled) {
+		this.ressourcesSmuggled = ressourcesSmuggled;
+	}
+
+	public Integer getHighestSingleSmugglingTransaction() {
 		return highestSingleSmugglingTransaction;
 	}
-	public int getMarketsTradedWith() {
+
+	public void setHighestSingleSmugglingTransaction(Integer highestSingleSmugglingTransaction) {
+		this.highestSingleSmugglingTransaction = highestSingleSmugglingTransaction;
+	}
+
+	public Integer getMarketsTradedWith() {
 		return marketsTradedWith;
 	}
-	public int getRessourcesTraded() {
+
+	public void setMarketsTradedWith(Integer marketsTradedWith) {
+		this.marketsTradedWith = marketsTradedWith;
+	}
+
+	public Integer getRessourcesTraded() {
 		return ressourcesTraded;
 	}
-	public int getAverageTradingProfit() {
+
+	public void setRessourcesTraded(Integer ressourcesTraded) {
+		this.ressourcesTraded = ressourcesTraded;
+	}
+
+	public Integer getAverageTradingProfit() {
 		return averageTradingProfit;
 	}
-	public int getHighestSingleTradingTransaction() {
+
+	public void setAverageTradingProfit(Integer averageTradingProfit) {
+		this.averageTradingProfit = averageTradingProfit;
+	}
+
+	public Integer getHighestSingleTradingTransaction() {
 		return highestSingleTradingTransaction;
 	}
-	public int getQuantityMined() {
+
+	public void setHighestSingleTradingTransaction(Integer highestSingleTradingTransaction) {
+		this.highestSingleTradingTransaction = highestSingleTradingTransaction;
+	}
+
+	public Integer getQuantityMined() {
 		return quantityMined;
 	}
-	public int getMaterialsCollected() {
+
+	public void setQuantityMined(Integer quantityMined) {
+		this.quantityMined = quantityMined;
+	}
+
+	public Integer getMaterialsCollected() {
 		return materialsCollected;
 	}
-	public int getSystemsVisited() {
+
+	public void setMaterialsCollected(Integer materialsCollected) {
+		this.materialsCollected = materialsCollected;
+	}
+
+	public Integer getSystemsVisited() {
 		return systemsVisited;
 	}
-	public int getPlanetsScannedToLevel2() {
+
+	public void setSystemsVisited(Integer systemsVisited) {
+		this.systemsVisited = systemsVisited;
+	}
+
+	public Integer getPlanetsScannedToLevel2() {
 		return planetsScannedToLevel2;
 	}
-	public int getPlanetsScannedToLevel3() {
+
+	public void setPlanetsScannedToLevel2(Integer planetsScannedToLevel2) {
+		this.planetsScannedToLevel2 = planetsScannedToLevel2;
+	}
+
+	public Integer getPlanetsScannedToLevel3() {
 		return planetsScannedToLevel3;
 	}
-	public int getEfficientScans() {
-		return EfficientScans;
+
+	public void setPlanetsScannedToLevel3(Integer planetsScannedToLevel3) {
+		this.planetsScannedToLevel3 = planetsScannedToLevel3;
 	}
-	public int getHighestPayout() {
+
+	public Integer getEfficientScans() {
+		return efficientScans;
+	}
+
+	public void setEfficientScans(Integer efficientScans) {
+		this.efficientScans = efficientScans;
+	}
+
+	public Integer getHighestPayout() {
 		return highestPayout;
 	}
-	public int getTotalHyperspaceDistance() {
+
+	public void setHighestPayout(Integer highestPayout) {
+		this.highestPayout = highestPayout;
+	}
+
+	public Integer getTotalHyperspaceDistance() {
 		return totalHyperspaceDistance;
 	}
-	public int getTotalHyperspaceJumps() {
+
+	public void setTotalHyperspaceDistance(Integer totalHyperspaceDistance) {
+		this.totalHyperspaceDistance = totalHyperspaceDistance;
+	}
+
+	public Integer getTotalHyperspaceJumps() {
 		return totalHyperspaceJumps;
 	}
-	public int getGreatestDistanceFromStart() {
+
+	public void setTotalHyperspaceJumps(Integer totalHyperspaceJumps) {
+		this.totalHyperspaceJumps = totalHyperspaceJumps;
+	}
+
+	public Integer getGreatestDistanceFromStart() {
 		return greatestDistanceFromStart;
 	}
-	public int getTimePlayed() {
+
+	public void setGreatestDistanceFromStart(Integer greatestDistanceFromStart) {
+		this.greatestDistanceFromStart = greatestDistanceFromStart;
+	}
+
+	public Integer getTimePlayed() {
 		return timePlayed;
 	}
-	public int getPassengersMissionsAccepted() {
+
+	public void setTimePlayed(Integer timePlayed) {
+		this.timePlayed = timePlayed;
+	}
+
+	public Integer getPassengersMissionsAccepted() {
 		return passengersMissionsAccepted;
 	}
-	public int getPassengersMissionsDisgruntled() {
+
+	public void setPassengersMissionsAccepted(Integer passengersMissionsAccepted) {
+		this.passengersMissionsAccepted = passengersMissionsAccepted;
+	}
+
+	public Integer getPassengersMissionsDisgruntled() {
 		return passengersMissionsDisgruntled;
 	}
-	public int getPassengersMissionsBulk() {
+
+	public void setPassengersMissionsDisgruntled(Integer passengersMissionsDisgruntled) {
+		this.passengersMissionsDisgruntled = passengersMissionsDisgruntled;
+	}
+
+	public Integer getPassengersMissionsBulk() {
 		return passengersMissionsBulk;
 	}
-	public int getPassengersMissionsVIP() {
+
+	public void setPassengersMissionsBulk(Integer passengersMissionsBulk) {
+		this.passengersMissionsBulk = passengersMissionsBulk;
+	}
+
+	public Integer getPassengersMissionsVIP() {
 		return passengersMissionsVIP;
 	}
-	public int getPassengersMissionsDelivered() {
+
+	public void setPassengersMissionsVIP(Integer passengersMissionsVIP) {
+		this.passengersMissionsVIP = passengersMissionsVIP;
+	}
+
+	public Integer getPassengersMissionsDelivered() {
 		return passengersMissionsDelivered;
 	}
-	public int getPassengersMissionsEjected() {
+
+	public void setPassengersMissionsDelivered(Integer passengersMissionsDelivered) {
+		this.passengersMissionsDelivered = passengersMissionsDelivered;
+	}
+
+	public Integer getPassengersMissionsEjected() {
 		return passengersMissionsEjected;
 	}
-	public int getSearchRescueTraded() {
+
+	public void setPassengersMissionsEjected(Integer passengersMissionsEjected) {
+		this.passengersMissionsEjected = passengersMissionsEjected;
+	}
+
+	public Integer getSearchRescueTraded() {
 		return searchRescueTraded;
 	}
-	public int getSearchRescueCount() {
+
+	public void setSearchRescueTraded(Integer searchRescueTraded) {
+		this.searchRescueTraded = searchRescueTraded;
+	}
+
+	public Integer getSearchRescueCount() {
 		return searchRescueCount;
 	}
-	public int getTotalTGEncounters() {
+
+	public void setSearchRescueCount(Integer searchRescueCount) {
+		this.searchRescueCount = searchRescueCount;
+	}
+
+	public Integer getTotalTGEncounters() {
 		return totalTGEncounters;
 	}
-	public int getTGScoutCount() {
-		return TGScoutCount;
+
+	public void setTotalTGEncounters(Integer totalTGEncounters) {
+		this.totalTGEncounters = totalTGEncounters;
 	}
-	public int getEngineersUsedCount() {
+
+	public Integer gettGScoutCount() {
+		return tGScoutCount;
+	}
+
+	public void settGScoutCount(Integer tGScoutCount) {
+		this.tGScoutCount = tGScoutCount;
+	}
+
+	public Integer getEngineersUsedCount() {
 		return engineersUsedCount;
 	}
-	public int getTotalRecipesGenerated() {
+
+	public void setEngineersUsedCount(Integer engineersUsedCount) {
+		this.engineersUsedCount = engineersUsedCount;
+	}
+
+	public Integer getTotalRecipesGenerated() {
 		return totalRecipesGenerated;
 	}
-	public int getRecipesGeneratedRank1() {
+
+	public void setTotalRecipesGenerated(Integer totalRecipesGenerated) {
+		this.totalRecipesGenerated = totalRecipesGenerated;
+	}
+
+	public Integer getRecipesGeneratedRank1() {
 		return recipesGeneratedRank1;
 	}
-	public int getRecipesGeneratedRank2() {
+
+	public void setRecipesGeneratedRank1(Integer recipesGeneratedRank1) {
+		this.recipesGeneratedRank1 = recipesGeneratedRank1;
+	}
+
+	public Integer getRecipesGeneratedRank2() {
 		return recipesGeneratedRank2;
 	}
-	public int getRecipesGeneratedRank3() {
+
+	public void setRecipesGeneratedRank2(Integer recipesGeneratedRank2) {
+		this.recipesGeneratedRank2 = recipesGeneratedRank2;
+	}
+
+	public Integer getRecipesGeneratedRank3() {
 		return recipesGeneratedRank3;
 	}
-	public int getRecipesGeneratedRank4() {
+
+	public void setRecipesGeneratedRank3(Integer recipesGeneratedRank3) {
+		this.recipesGeneratedRank3 = recipesGeneratedRank3;
+	}
+
+	public Integer getRecipesGeneratedRank4() {
 		return recipesGeneratedRank4;
 	}
-	public int getRecipesGeneratedRank5() {
+
+	public void setRecipesGeneratedRank4(Integer recipesGeneratedRank4) {
+		this.recipesGeneratedRank4 = recipesGeneratedRank4;
+	}
+
+	public Integer getRecipesGeneratedRank5() {
 		return recipesGeneratedRank5;
 	}
-	public int getHiredNpcCrew() {
+
+	public void setRecipesGeneratedRank5(Integer recipesGeneratedRank5) {
+		this.recipesGeneratedRank5 = recipesGeneratedRank5;
+	}
+
+	public Integer getHiredNpcCrew() {
 		return hiredNpcCrew;
 	}
-	public int getFiredNpcCrew() {
+
+	public void setHiredNpcCrew(Integer hiredNpcCrew) {
+		this.hiredNpcCrew = hiredNpcCrew;
+	}
+
+	public Integer getFiredNpcCrew() {
 		return firedNpcCrew;
 	}
-	public int getTotalMulticrewTime() {
+
+	public void setFiredNpcCrew(Integer firedNpcCrew) {
+		this.firedNpcCrew = firedNpcCrew;
+	}
+
+	public Integer getTotalMulticrewTime() {
 		return totalMulticrewTime;
 	}
-	public int getTotalMulticrewTimeGunner() {
+
+	public void setTotalMulticrewTime(Integer totalMulticrewTime) {
+		this.totalMulticrewTime = totalMulticrewTime;
+	}
+
+	public Integer getTotalMulticrewTimeGunner() {
 		return totalMulticrewTimeGunner;
 	}
-	public int getTotalMulticrewTimeFighter() {
+
+	public void setTotalMulticrewTimeGunner(Integer totalMulticrewTimeGunner) {
+		this.totalMulticrewTimeGunner = totalMulticrewTimeGunner;
+	}
+
+	public Integer getTotalMulticrewTimeFighter() {
 		return totalMulticrewTimeFighter;
 	}
-	public int getTotalMulticrewCredits() {
+
+	public void setTotalMulticrewTimeFighter(Integer totalMulticrewTimeFighter) {
+		this.totalMulticrewTimeFighter = totalMulticrewTimeFighter;
+	}
+
+	public Integer getTotalMulticrewCredits() {
 		return totalMulticrewCredits;
 	}
-	public int getTotalMulticrewFines() {
+
+	public void setTotalMulticrewCredits(Integer totalMulticrewCredits) {
+		this.totalMulticrewCredits = totalMulticrewCredits;
+	}
+
+	public Integer getTotalMulticrewFines() {
 		return totalMulticrewFines;
 	}
-	public int getMaterialTraderTradesCompledted() {
+
+	public void setTotalMulticrewFines(Integer totalMulticrewFines) {
+		this.totalMulticrewFines = totalMulticrewFines;
+	}
+
+	public Integer getMaterialTraderTradesCompledted() {
 		return materialTraderTradesCompledted;
 	}
-	public int getMaterialTraderMaterialsTraded() {
+
+	public void setMaterialTraderTradesCompledted(Integer materialTraderTradesCompledted) {
+		this.materialTraderTradesCompledted = materialTraderTradesCompledted;
+	}
+
+	public Integer getMaterialTraderMaterialsTraded() {
 		return materialTraderMaterialsTraded;
 	}
-	public int getMaterialTraderEncodedMaterialsTraded() {
+
+	public void setMaterialTraderMaterialsTraded(Integer materialTraderMaterialsTraded) {
+		this.materialTraderMaterialsTraded = materialTraderMaterialsTraded;
+	}
+
+	public Integer getMaterialTraderEncodedMaterialsTraded() {
 		return materialTraderEncodedMaterialsTraded;
 	}
-	public int getMaterialTraderGrade1Traded() {
+
+	public void setMaterialTraderEncodedMaterialsTraded(Integer materialTraderEncodedMaterialsTraded) {
+		this.materialTraderEncodedMaterialsTraded = materialTraderEncodedMaterialsTraded;
+	}
+
+	public Integer getMaterialTraderGrade1Traded() {
 		return materialTraderGrade1Traded;
 	}
-	public int getMaterialTraderGrade2Traded() {
+
+	public void setMaterialTraderGrade1Traded(Integer materialTraderGrade1Traded) {
+		this.materialTraderGrade1Traded = materialTraderGrade1Traded;
+	}
+
+	public Integer getMaterialTraderGrade2Traded() {
 		return materialTraderGrade2Traded;
 	}
-	public int getMaterialTraderGrade3Traded() {
+
+	public void setMaterialTraderGrade2Traded(Integer materialTraderGrade2Traded) {
+		this.materialTraderGrade2Traded = materialTraderGrade2Traded;
+	}
+
+	public Integer getMaterialTraderGrade3Traded() {
 		return materialTraderGrade3Traded;
 	}
-	public int getMaterialTraderGrade4Traded() {
+
+	public void setMaterialTraderGrade3Traded(Integer materialTraderGrade3Traded) {
+		this.materialTraderGrade3Traded = materialTraderGrade3Traded;
+	}
+
+	public Integer getMaterialTraderGrade4Traded() {
 		return materialTraderGrade4Traded;
 	}
-	public int getMaterialTraderGrade5Traded() {
+
+	public void setMaterialTraderGrade4Traded(Integer materialTraderGrade4Traded) {
+		this.materialTraderGrade4Traded = materialTraderGrade4Traded;
+	}
+
+	public Integer getMaterialTraderGrade5Traded() {
 		return materialTraderGrade5Traded;
 	}
-	public String getLastTGEncounterSystem() {
-		return LastTGEncounterSystem;
+
+	public void setMaterialTraderGrade5Traded(Integer materialTraderGrade5Traded) {
+		this.materialTraderGrade5Traded = materialTraderGrade5Traded;
 	}
+
+	public String getLastTGEncounterSystem() {
+		return lastTGEncounterSystem;
+	}
+
+	public void setLastTGEncounterSystem(String lastTGEncounterSystem) {
+		this.lastTGEncounterSystem = lastTGEncounterSystem;
+	}
+
 	public String getLastTGEncounterTime() {
 		return lastTGEncounterTime;
 	}
+
+	public void setLastTGEncounterTime(String lastTGEncounterTime) {
+		this.lastTGEncounterTime = lastTGEncounterTime;
+	}
+
 	public String getLastTGEncounterShip() {
 		return lastTGEncounterShip;
 	}
-	
+
+	public void setLastTGEncounterShip(String lastTGEncounterShip) {
+		this.lastTGEncounterShip = lastTGEncounterShip;
+	}
 	
 }

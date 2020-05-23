@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class EngineerContributionEvent extends Event {
 	
@@ -11,14 +10,14 @@ public class EngineerContributionEvent extends Event {
 	
 	public EngineerContributionEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.engineer = JsonTranslator.getString(json, "Engineer");
-		this.type = JsonTranslator.getString(json, "Type");
-		this.commodity = JsonTranslator.getString(json, "Commodity");
-		this.faction = JsonTranslator.getString(json, "Faction");
-		this.material = JsonTranslator.getString(json, "Material");
-		this.engineerID = JsonTranslator.getInteger(json, "EngineerID");
-		this.quantity = JsonTranslator.getInteger(json, "Quantity");
-		this.totalQuantity = JsonTranslator.getInteger(json, "TotalQuantity");
+		this.engineer = json.getString("Engineer");
+		this.type = json.getString("Type");
+		this.commodity = json.getString("Commodity");
+		this.faction = json.getString("Faction");
+		this.material = json.getString("Material");
+		this.engineerID = json.getInt("EngineerID");
+		this.quantity = json.getInt("Quantity");
+		this.totalQuantity = json.getInt("TotalQuantity");
 	}
 	
 	public String getEngineer() {

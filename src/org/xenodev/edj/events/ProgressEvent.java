@@ -1,66 +1,70 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ProgressEvent extends Event {
 	
-	int combat, trade, explore, empire, federation, cqc;
+	Integer combat, trade, explore, empire, federation, cqc;
 
-	public ProgressEvent(String timestamp, int combat, int trade, int explore, int empire, int federation, int cqc) {
+	public ProgressEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.combat = combat;
-		this.trade = trade;
-		this.explore = explore;
-		this.empire = empire;
-		this.federation = federation;
-		this.cqc = cqc;
+		this.combat = json.getInt("Combat");
+		this.trade = json.getInt("Trade");
+		this.explore = json.getInt("Explore");
+		this.empire = json.getInt("Empire");
+		this.federation = json.getInt("Federation");
+		this.cqc = json.getInt("CQC");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public int getCombatRankProgress() {
+	public Integer getCombatRankProgress() {
 		return combat;
 	}
 
-	public void setCombatRankProgress(int combat) {
+	public void setCombatRankProgress(Integer combat) {
 		this.combat = combat;
 	}
 
-	public int getTradeRankProgress() {
+	public Integer getTradeRankProgress() {
 		return trade;
 	}
 
-	public void setTradeRankProgress(int trade) {
+	public void setTradeRankProgress(Integer trade) {
 		this.trade = trade;
 	}
 
-	public int getExploreRankProgress() {
+	public Integer getExploreRankProgress() {
 		return explore;
 	}
 
-	public void setExploreRankProgress(int explore) {
+	public void setExploreRankProgress(Integer explore) {
 		this.explore = explore;
 	}
 
-	public int getEmpireRankProgress() {
+	public Integer getEmpireRankProgress() {
 		return empire;
 	}
 
-	public void setEmpireRankProgress(int empire) {
+	public void setEmpireRankProgress(Integer empire) {
 		this.empire = empire;
 	}
 
-	public int getFederationRankProgress() {
+	public Integer getFederationRankProgress() {
 		return federation;
 	}
 
-	public void setFederationRankProgress(int federation) {
+	public void setFederationRankProgress(Integer federation) {
 		this.federation = federation;
 	}
 
-	public int getCqcRankProgress() {
+	public Integer getCqcRankProgress() {
 		return cqc;
 	}
 
-	public void setCqcRankProgress(int cqc) {
+	public void setCqcRankProgress(Integer cqc) {
 		this.cqc = cqc;
 	}
 	

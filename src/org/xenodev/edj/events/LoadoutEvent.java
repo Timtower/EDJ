@@ -1,10 +1,11 @@
 package org.xenodev.edj.events;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.Module;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class LoadoutEvent extends Event {
 	
@@ -13,17 +14,20 @@ public class LoadoutEvent extends Event {
 	Double hullHealth;
 	List<Module> modules;
 	
-	public LoadoutEvent(String timestamp, String ship, String shipName, String shipIdent, int shipID, int hullValue, int moduleValue, double hullHealth, int rebuy, List<Module> modules) {
+	public LoadoutEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.ship = ship;
-		this.shipName = shipName;
-		this.shipIdent = shipIdent;
-		this.shipID = shipID;
-		this.hullValue = hullValue;
-		this.moduleValue = moduleValue;
-		this.hullHealth = hullHealth;
-		this.rebuy = rebuy;
-		this.modules = modules;
+		
+		this.ship = json.getString("Ship");
+		this.shipName = json.getString("ShipName");
+		this.shipIdent = json.getString("ShipIdent");
+		this.shipID = json.getInt("ShipID");
+		this.hullValue = json.getInt("HullValue");
+		this.moduleValue = json.getInt("ModulesValue");
+		this.hullHealth = json.getDouble("HullHealth");
+		this.rebuy = json.getInt("Rebuy");
+		this.modules = JournalUtils.createModuleList(json.getJSONArray("Modules"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getShip() {
@@ -50,44 +54,44 @@ public class LoadoutEvent extends Event {
 		this.shipIdent = shipIdent;
 	}
 
-	public int getShipID() {
+	public Integer getShipID() {
 		return shipID;
 	}
 
-	public void setShipID(int shipID) {
+	public void setShipID(Integer shipID) {
 		this.shipID = shipID;
 	}
 
-	public int getHullValue() {
+	public Integer getHullValue() {
 		return hullValue;
 	}
 
-	public void setHullValue(int hullValue) {
+	public void setHullValue(Integer hullValue) {
 		this.hullValue = hullValue;
 	}
 
-	public int getModuleValue() {
+	public Integer getModuleValue() {
 		return moduleValue;
 	}
 
-	public void setModuleValue(int moduleValue) {
+	public void setModuleValue(Integer moduleValue) {
 		this.moduleValue = moduleValue;
 	}
 
-	public double getHullHealth() {
-		return hullHealth;
-	}
-
-	public void setHullHealth(double hullHealth) {
-		this.hullHealth = hullHealth;
-	}
-
-	public int getRebuy() {
+	public Integer getRebuy() {
 		return rebuy;
 	}
 
-	public void setRebuy(int rebuy) {
+	public void setRebuy(Integer rebuy) {
 		this.rebuy = rebuy;
+	}
+
+	public Double getHullHealth() {
+		return hullHealth;
+	}
+
+	public void setHullHealth(Double hullHealth) {
+		this.hullHealth = hullHealth;
 	}
 
 	public List<Module> getModules() {
@@ -98,5 +102,4 @@ public class LoadoutEvent extends Event {
 		this.modules = modules;
 	}
 	
-
 }

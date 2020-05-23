@@ -4,7 +4,6 @@ import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.station.Discovered;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MultiSellExplorationDataEvent extends Event {
 	
@@ -14,9 +13,9 @@ public class MultiSellExplorationDataEvent extends Event {
 	public MultiSellExplorationDataEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		this.discovered = JournalUtils.createDiscoveredList(json.getJSONArray("Discovered"));
-		this.baseValue = JsonTranslator.getInteger(json, "BaseValue");
-		this.totalEarnings = JsonTranslator.getInteger(json, "TotalEarnings");
-		this.bonus = JsonTranslator.getInteger(json, "Bonus");
+		this.baseValue = json.getInt("BaseValue");
+		this.totalEarnings = json.getInt("TotalEarnings");
+		this.bonus = json.getInt("Bonus");
 	}
 	
 	public Discovered[] getDiscovered() {

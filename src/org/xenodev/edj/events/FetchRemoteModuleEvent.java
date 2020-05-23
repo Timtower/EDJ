@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class FetchRemoteModuleEvent extends Event {
 	
@@ -11,14 +10,14 @@ public class FetchRemoteModuleEvent extends Event {
 	
 	public FetchRemoteModuleEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.storageSlots = JsonTranslator.getInteger(json, "StorageSlots");
-		this.serverId = JsonTranslator.getInteger(json, "ServerId");
-		this.transferCost = JsonTranslator.getInteger(json, "TransferCost");
-		this.transferTime = JsonTranslator.getInteger(json, "TransferTime");
-		this.shipId = JsonTranslator.getInteger(json, "ShipId");
-		this.storedItem = JsonTranslator.getString(json, "StoredItem");
-		this.storedItem_Localised = JsonTranslator.getString(json, "StoredItem_Localised");
-		this.ship = JsonTranslator.getString(json, "Ship");
+		this.storageSlots = json.getInt("StorageSlots");
+		this.serverId = json.getInt("ServerId");
+		this.transferCost = json.getInt( "TransferCost");
+		this.transferTime = json.getInt("TransferTime");
+		this.shipId = json.getInt("ShipId");
+		this.storedItem = json.getString("StoredItem");
+		this.storedItem_Localised = json.getString("StoredItem_Localised");
+		this.ship = json.getString("Ship");
 	}
 
 	public Integer getStorageSlots() {

@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MaterialDiscoveredEvent extends Event {
 	
@@ -11,9 +10,9 @@ public class MaterialDiscoveredEvent extends Event {
 	
 	public MaterialDiscoveredEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.category = JsonTranslator.getString(json, "Category");
-		this.name = JsonTranslator.getString(json, "Category");
-		this.count = JsonTranslator.getInteger(json, "Category");
+		this.category = json.getString("Category");
+		this.name = json.getString("Category");
+		this.count = json.getInt("Category");
 	}
 
 	public String getCategory() {

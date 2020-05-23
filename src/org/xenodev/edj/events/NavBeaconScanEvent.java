@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class NavBeaconScanEvent extends Event {
 	
@@ -11,8 +10,8 @@ public class NavBeaconScanEvent extends Event {
 	
 	public NavBeaconScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.systemAddress = JsonTranslator.getLong(json, "SystemAddress");
-		this.numBodies = JsonTranslator.getInteger(json, "NumBodies");
+		this.systemAddress = json.getLong("SystemAddress");
+		this.numBodies = json.getInt("NumBodies");
 	}
 	
 	public Long getSystemAddress() {

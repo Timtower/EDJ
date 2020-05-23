@@ -1,37 +1,46 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class HullDamageEvent extends Event {
 	
-	double health;
-	boolean playerPilot, fighter;
+	Double health;
+	Boolean playerPilot, fighter;
 	
-	public HullDamageEvent(String timestamp, double health, boolean playerPilot, boolean fighter) {
+	public HullDamageEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.health = health;
-		this.playerPilot = playerPilot;
-		this.fighter = fighter;
+		
+		this.health = json.getDouble("Health");
+		this.playerPilot = json.getBoolean("PlayerPilot");
+		this.fighter = json.has("Fighter") ? json.getBoolean("Fighter") : null;
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public HullDamageEvent(String timestamp, double health, boolean playerPilot) {
-		super(timestamp);
-		this.health = health;
-		this.playerPilot = playerPilot;
-		this.fighter = false;
-	}
-
-	public double getHealth() {
+	public Double getHealth() {
 		return health;
 	}
 
-	public boolean isPlayerPilot() {
+	public void setHealth(Double health) {
+		this.health = health;
+	}
+
+	public Boolean getPlayerPilot() {
 		return playerPilot;
 	}
 
-	public boolean isFighter() {
+	public void setPlayerPilot(Boolean playerPilot) {
+		this.playerPilot = playerPilot;
+	}
+
+	public Boolean getFighter() {
 		return fighter;
 	}
-	
+
+	public void setFighter(Boolean fighter) {
+		this.fighter = fighter;
+	}	
 	
 }

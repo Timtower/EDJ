@@ -1,19 +1,24 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class PowerplayEvent extends Event {
 	
 	String power;
-	int rank, merits, votes, timePledged;
+	Integer rank, merits, votes, timePledged;
 	
-	public PowerplayEvent(String timestamp, String power, int rank, int merits, int votes, int timePledged) {
+	public PowerplayEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.power = power;
-		this.rank = rank;
-		this.merits = merits;
-		this.votes = votes;
-		this.timePledged = timePledged;
+		
+		this.power = json.getString("Power");
+		this.rank = json.getInt("Rank");
+		this.merits = json.getInt("Merits");
+		this.votes = json.getInt("Votes");
+		this.timePledged = json.getInt("TimePledged");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getPower() {
@@ -24,35 +29,35 @@ public class PowerplayEvent extends Event {
 		this.power = power;
 	}
 
-	public int getRank() {
+	public Integer getRank() {
 		return rank;
 	}
 
-	public void setRank(int rank) {
+	public void setRank(Integer rank) {
 		this.rank = rank;
 	}
 
-	public int getMerits() {
+	public Integer getMerits() {
 		return merits;
 	}
 
-	public void setMerits(int merits) {
+	public void setMerits(Integer merits) {
 		this.merits = merits;
 	}
 
-	public int getVotes() {
+	public Integer getVotes() {
 		return votes;
 	}
 
-	public void setVotes(int votes) {
+	public void setVotes(Integer votes) {
 		this.votes = votes;
 	}
 
-	public int getTimePledged() {
+	public Integer getTimePledged() {
 		return timePledged;
 	}
 
-	public void setTimePledged(int timePledged) {
+	public void setTimePledged(Integer timePledged) {
 		this.timePledged = timePledged;
 	}
 

@@ -1,38 +1,55 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class StartJumpEvent extends Event {
 	
 	String jumpType, starSystem, starClass;
 	Long systemAddress;
 	
-	public StartJumpEvent(String timestamp, String jumpType, String starSystem, String starClass, Long systemAddress) {
+	public StartJumpEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.jumpType = jumpType;
-		this.starSystem = starSystem;
-		this.starClass = starClass;
-		this.systemAddress = systemAddress;
-	}
-	
-	public StartJumpEvent(String timestamp, String jumpType) {
-		super(timestamp);
-		this.jumpType = jumpType;
+		
+		this.jumpType = json.getString("JumpType");
+		this.starSystem = jumpType.equals("SuperCruise") ? json.getString("StarSystem") : null;
+		this.starClass = jumpType.equals("SuperCruise") ? json.getString("StarClass") : null;
+		this.systemAddress = jumpType.equals("SuperCruise") ? json.getLong("SystemAddress") : null;
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getJumpType() {
 		return jumpType;
 	}
 
+	public void setJumpType(String jumpType) {
+		this.jumpType = jumpType;
+	}
+
 	public String getStarSystem() {
 		return starSystem;
+	}
+
+	public void setStarSystem(String starSystem) {
+		this.starSystem = starSystem;
 	}
 
 	public String getStarClass() {
 		return starClass;
 	}
 
+	public void setStarClass(String starClass) {
+		this.starClass = starClass;
+	}
+
 	public Long getSystemAddress() {
 		return systemAddress;
 	}
+
+	public void setSystemAddress(Long systemAddress) {
+		this.systemAddress = systemAddress;
+	}
+	
 }

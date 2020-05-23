@@ -2,7 +2,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class CargoDepotEvent extends Event{
 	
@@ -13,16 +13,19 @@ public class CargoDepotEvent extends Event{
 	
 	public CargoDepotEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.missionID = JsonTranslator.getLong(json, "MissionID");
-		this.startMarketID = JsonTranslator.getLong(json, "StartMarketID");
-		this.endMarketID = JsonTranslator.getLong(json, "EndMarketID");
-		this.count = JsonTranslator.getInteger(json, "Count");
-		this.itemCollected = JsonTranslator.getInteger(json, "ItemCollected");
-		this.itemsDelivered = JsonTranslator.getInteger(json, "ItemDelivered");
-		this.totalItemsToDeliver = JsonTranslator.getInteger(json, "TotalItemsToDeliver");
-		this.updateType = JsonTranslator.getString(json, "UpdateType");
-		this.cargoType = JsonTranslator.getString(json, "CargoType");
-		this.progress = JsonTranslator.getDouble(json, "Progress");
+		
+		this.missionID = json.getLong("MissionID");
+		this.startMarketID = json.getLong("StartMarketID");
+		this.endMarketID = json.getLong("EndMarketID");
+		this.count = json.getInt("Count");
+		this.itemCollected = json.getInt("ItemCollected");
+		this.itemsDelivered = json.getInt("ItemDelivered");
+		this.totalItemsToDeliver = json.getInt("TotalItemsToDeliver");
+		this.updateType = json.getString("UpdateType");
+		this.cargoType = json.getString("CargoType");
+		this.progress = json.getDouble("Progress");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMissionID() {

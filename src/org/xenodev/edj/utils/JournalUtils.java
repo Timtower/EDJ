@@ -354,7 +354,7 @@ public class JournalUtils {
 			JSONObject json = new JSONObject(str.toString());
 			Faction faction;
 				
-			faction = new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Government"), json.getString("Allegiance"), JsonTranslator.getString(json, "Happiness_Localised"),
+			faction = new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Government"), json.getString("Allegiance"), json.getString("Happiness_Localised"),
 					json.getDouble("MyReputation"), json.getDouble("Influence"));
 			
 			factions.add(faction);
@@ -389,15 +389,15 @@ public class JournalUtils {
 			
 			if(json.has("Engineering")) {				
 				JSONObject engineer = json.getJSONObject("Engineering");
-				module = new Module(json.getString("Slot"), json.getString("Item"), JsonTranslator.getBoolean(json, "On"), JsonTranslator.getInteger(json, "Priority"),
-						JsonTranslator.getInteger(json, "AmmoInClip"), JsonTranslator.getInteger(json, "AmmoInHopper"), JsonTranslator.getDouble(json, "Health"),
-						new Engineering(JsonTranslator.getString(engineer, "Engineer"), JsonTranslator.getString(engineer, "BlueprintName"), JsonTranslator.getString(engineer, "ExperimentalEffect"),
-									JsonTranslator.getString(engineer, "ExperimentalEffect_Localised"), JsonTranslator.getInteger(engineer, "EngineerID"),
-									JsonTranslator.getInteger(engineer, "BlueprintID"), JsonTranslator.getInteger(engineer, "Level"), 
-									JsonTranslator.getDouble(engineer, "Quality"), createModifierList(engineer.getJSONArray("Modifiers"))));
+				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"),
+						json.getInt("AmmoInClip"), json.getInt("AmmoInHopper"), json.getDouble("Health"),
+						new Engineering(engineer.getString("Engineer"), engineer.getString("BlueprintName"), engineer.getString("ExperimentalEffect"),
+								engineer.getString("ExperimentalEffect_Localised"), engineer.getInt("EngineerID"),
+								engineer.getInt("BlueprintID"), engineer.getInt("Level"), 
+									engineer.getDouble("Quality"), createModifierList(engineer.getJSONArray("Modifiers"))));
 			}else {		
-				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"), JsonTranslator.getInteger(json, "AmmoInClip"),
-						JsonTranslator.getInteger(json, "AmmoInHopper"), json.getDouble("Health"));
+				module = new Module(json.getString("Slot"), json.getString("Item"), json.getBoolean("On"), json.getInt("Priority"), json.getInt("AmmoInClip"),
+						json.getInt("AmmoInHopper"), json.getDouble("Health"));
 			}
 			
 			modules.add(module);
@@ -523,13 +523,13 @@ public class JournalUtils {
 		
 		for(Object str : array) {
 			JSONObject json = new JSONObject(str.toString());
-			String slot = JsonTranslator.getString(json, "Slot");
-			String name = JsonTranslator.getString(json, "Name");
-			String nameLocalised = JsonTranslator.getString(json, "Name_Localised");
-			Boolean hot = JsonTranslator.getBoolean(json, "Hot");
-			String engineerModifications = JsonTranslator.getString(json, "EngineerModifications");
-			Integer engineeeredLevel = JsonTranslator.getInteger(json, "Level");
-			Double quality = JsonTranslator.getDouble(json, "Quality");
+			String slot = json.getString("Slot");
+			String name = json.getString("Name");
+			String nameLocalised = json.getString("Name_Localised");
+			Boolean hot = json.getBoolean("Hot");
+			String engineerModifications = json.getString("EngineerModifications");
+			Integer engineeeredLevel = json.getInt("Level");
+			Double quality = json.getDouble("Quality");
 			
 			itemList.add(new ModuleItem(slot, name, nameLocalised, engineerModifications, hot, engineeeredLevel, quality));
 		}
@@ -564,6 +564,15 @@ public class JournalUtils {
 		}
 		
 		return storedModuleList;
+	}
+
+	public static List<String> createStationServiceList(JSONArray array) {
+		List<String> stationServiceList = new ArrayList<String>();
+		
+		for(Object str : array) {
+			stationServiceList.add(str.toString());
+		}
+		return stationServiceList;
 	}
 
 }

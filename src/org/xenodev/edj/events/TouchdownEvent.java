@@ -1,34 +1,46 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class TouchdownEvent extends Event {
 	
-	boolean playerControlled;
-	double latitude, longitude;
+	Boolean playerControlled;
+	Double latitude, longitude;
 	
-	public TouchdownEvent(String timestamp, boolean playerControlled, double latitude, double longitude) {
+	public TouchdownEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.playerControlled = playerControlled;
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-	
-	public TouchdownEvent(String timestamp, boolean playerControlled) {
-		super(timestamp);
-		this.playerControlled = playerControlled;
+		
+		this.playerControlled = json.getBoolean("PlayerControlled");
+		this.latitude = playerControlled ?  json.getDouble("Latitude") : null;
+		this.longitude = playerControlled ?  json.getDouble("Longitude") : null;
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public boolean isPlayerControlled() {
+	public Boolean getPlayerControlled() {
 		return playerControlled;
 	}
 
-	public double getLatitude() {
+	public void setPlayerControlled(Boolean playerControlled) {
+		this.playerControlled = playerControlled;
+	}
+
+	public Double getLatitude() {
 		return latitude;
 	}
 
-	public double getLongitude() {
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
 		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 }

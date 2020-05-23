@@ -3,7 +3,6 @@ package org.xenodev.edj.events;
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.market.MarketFile;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MarketEvent extends Event {
 	
@@ -13,9 +12,9 @@ public class MarketEvent extends Event {
 	
 	public MarketEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.stationName = JsonTranslator.getString(json, "StationName");
-		this.starSystem = JsonTranslator.getString(json, "StarSystem");
-		this.marketID = JsonTranslator.getInteger(json, "MarketID");
+		this.stationName = json.getString("StationName");
+		this.starSystem = json.getString("StarSystem");
+		this.marketID = json.getInt("MarketID");
 		this.marketFile = new MarketFile();
 	}
 	

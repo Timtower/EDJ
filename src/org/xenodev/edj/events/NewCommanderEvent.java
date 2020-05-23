@@ -1,16 +1,17 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
 
 public class NewCommanderEvent extends Event {
 	
 	String name, FID, starterPackage;
 
-	public NewCommanderEvent(String timestamp, String name, String FID, String starterPackage) {
+	public NewCommanderEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = name;
-		this.FID = FID;
-		this.starterPackage = starterPackage;
+		this.name = json.getString("Name");
+		this.FID = json.getString("FID");
+		this.starterPackage = json.getString("starterPackage");
 	}
 
 	public String getName() {

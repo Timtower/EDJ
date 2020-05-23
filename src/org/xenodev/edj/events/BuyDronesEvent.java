@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class BuyDronesEvent extends Event {
 	
@@ -11,10 +10,10 @@ public class BuyDronesEvent extends Event {
 	
 	public BuyDronesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.count = JsonTranslator.getInteger(json, "Count");
-		this.buyPrice = JsonTranslator.getInteger(json, "BuyPrice");
-		this.totalPrice = JsonTranslator.getInteger(json, "TotalPrice");
-		this.type = JsonTranslator.getString(json, "Type");
+		this.count = json.getInt("Count");
+		this.buyPrice = json.getInt("BuyPrice");
+		this.totalPrice = json.getInt("TotalPrice");
+		this.type = json.getString("Type");
 	}
 
 	public Integer getCount() {

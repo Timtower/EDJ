@@ -1,29 +1,46 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class CapShipBondEvent extends Event {
 	
 	String victimFaction, awardingFaction;
-	int reward;
+	Integer reward;
 	
-	public CapShipBondEvent(String timestamp, String victimFaction, String awardingFaction, int reward) {
+	public CapShipBondEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.victimFaction = victimFaction;
-		this.awardingFaction = awardingFaction;
-		this.reward = reward;
+		
+		this.victimFaction = json.getString("VictimFaction");
+		this.awardingFaction = json.getString("AwardingFaction");
+		this.reward = json.getInt("Reward");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getVictimFaction() {
 		return victimFaction;
 	}
 
+	public void setVictimFaction(String victimFaction) {
+		this.victimFaction = victimFaction;
+	}
+
 	public String getAwardingFaction() {
 		return awardingFaction;
 	}
 
-	public int getReward() {
+	public void setAwardingFaction(String awardingFaction) {
+		this.awardingFaction = awardingFaction;
+	}
+
+	public Integer getReward() {
 		return reward;
+	}
+
+	public void setReward(Integer reward) {
+		this.reward = reward;
 	}
 
 }

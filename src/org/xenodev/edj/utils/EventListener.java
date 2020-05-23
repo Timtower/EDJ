@@ -13,7 +13,7 @@ public abstract class EventListener {
 	public void onMissionEvent(MissionsEvent event) {}
 	public void onNewCommanderEvent(NewCommanderEvent event) {}
 	public void onLoadGameEvent(LoadGameEvent event) {}
-	//public void onPassengers(PassengersEvent event) {} TODO: Missing JSON event data
+	public void onPassengers(PassengersEvent event) {}
 	public void onPowerPlayEvent(PowerplayEvent event) {}
 	public void onProgressEvent(ProgressEvent event) {}
 	public void onRankEvent(RankEvent event) {}
@@ -50,10 +50,8 @@ public abstract class EventListener {
 	public void onHeatWarningEvent(HeatWarningEvent heatWarningEvent) {}
 	public void onPassengerEvent(PassengersEvent event) {}
 	public void onHullDamageEvent(HullDamageEvent event) {}
-	public void onInterdictedByPlayerEvent(InterdictedByPlayerEvent event) {}
-	public void onInterdictedByNpcEvent(InterdictedByNpcEvent event) {}
-	public void onInterdictionByPlayerEvent(InterdictionByPlayerEvent event) {}
-	public void onInterdictionByNpcEvent(InterdictionByNpcEvent event) {}
+	public void onInterdictedEvent(InterdictedEvent event) {}
+	public void onInterdictionEvent(InterdictionEvent event) {}
 	public void onPvPKillEvent(PvPKillEvent event) {}
 	public void onShieldStateEvent(ShieldStateEvent event) {}
 	public void onShipTargetedEvent(ShipTargetedEvent event) {}
@@ -120,14 +118,14 @@ public abstract class EventListener {
 	public void onPayFines(PayFinesEvent event) {}
 	public void onRedeemVoucher(RedeemVoucherEvent event) {}
 	public void onRefuelAll(RefuelAllEvent event) {}
-	//public void onRefuelPartial(RefuelPartialEvent event) {} TODO: Missing JSON event data
+	public void onRefuelPartial(RefuelPartialEvent event) {}
 	public void onRepair(RepairEvent event) {}
 	public void onRepairAll(RepairAllEvent event) {}
 	public void onRestockVehicle(RestockVehicleEvent event) {}
-	//public void onScientificResearch(ScientificResearchEvent event) {} TODO: Missing JSON event data
+	public void onScientificResearch(ScientificResearchEvent event) {}
 	public void onSearchAndRescue(SearchAndRescueEvent event) {}
 	public void onSellDrones(SellDronesEvent event) {}
-	//public void onSellShipOnRebuy(SellShipOnRebuyEvent event) {} TODO: Missing JSON event data
+	public void onSellShipOnRebuy(SellShipOnRebuyEvent event) {}
 	public void onSetUserShipName(SetUserShipNameEvent event) {}
 	public void onShipyard(ShipyardEvent event) {}
 	public void onShipyardBuy(ShipyardBuyEvent eveent) {}

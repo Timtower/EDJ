@@ -3,7 +3,6 @@ package org.xenodev.edj.events;
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class SellExplorationDataEvent extends Event {
 	
@@ -14,9 +13,9 @@ public class SellExplorationDataEvent extends Event {
 		super(timestamp);
 		this.systemns = JournalUtils.createDataSystemsList(json.getJSONArray("Systems"));
 		this.discovered = JournalUtils.createDataDiscoveredList(json.getJSONArray("Discovered"));
-		this.baseValue = JsonTranslator.getInteger(json, "BaseValue");
-		this.bonus = JsonTranslator.getInteger(json, "Bonus");
-		this.totalEarnings = JsonTranslator.getInteger(json, "TotalEarnings");
+		this.baseValue = json.getInt("BaseValue");
+		this.bonus = json.getInt("Bonus");
+		this.totalEarnings = json.getInt("TotalEarnings");
 	}
 
 	public String[] getSystemns() {

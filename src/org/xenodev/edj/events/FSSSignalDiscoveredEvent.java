@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class FSSSignalDiscoveredEvent extends Event {
 
@@ -14,18 +13,18 @@ public class FSSSignalDiscoveredEvent extends Event {
 	
 	public FSSSignalDiscoveredEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.signalName = JsonTranslator.getString(json, "SignalName");
-		this.signalName_Localised = JsonTranslator.getString(json, "SignalName_Localised");
-		this.USSType = JsonTranslator.getString(json, "USSType");
-		this.USSType_Localised = JsonTranslator.getString(json, "USSType_Localised");
-		this.spawningState = JsonTranslator.getString(json, "SpawningState");
-		this.spawningState_Localised = JsonTranslator.getString(json, "SpawningState_Localised");
-		this.spawningFaction = JsonTranslator.getString(json, "SpawningFaction");
-		this.spawningFaction_Localised = JsonTranslator.getString(json, "SpawningFaction_Localised");
-		this.threatLevel = JsonTranslator.getInteger(json, "ThreatLevel");
-		this.systemAddress = JsonTranslator.getLong(json, "SystemAddress");
-		this.timeRemaining = JsonTranslator.getDouble(json, "TimeRemaining");
-		this.isStation = JsonTranslator.getBoolean(json, "IsStation");
+		this.signalName = json.getString("SignalName");
+		this.signalName_Localised = json.getString("SignalName_Localised");
+		this.USSType = json.getString("USSType");
+		this.USSType_Localised = json.getString("USSType_Localised");
+		this.spawningState = json.getString("SpawningState");
+		this.spawningState_Localised = json.getString("SpawningState_Localised");
+		this.spawningFaction = json.getString("SpawningFaction");
+		this.spawningFaction_Localised = json.getString("SpawningFaction_Localised");
+		this.threatLevel = json.getInt("ThreatLevel");
+		this.systemAddress = json.getLong("SystemAddress");
+		this.timeRemaining = json.getDouble("TimeRemaining");
+		this.isStation = json.getBoolean("IsStation");
 	}
 
 	public String getSignalName() {

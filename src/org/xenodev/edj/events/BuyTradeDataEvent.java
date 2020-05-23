@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class BuyTradeDataEvent extends Event {
 	
@@ -11,8 +10,8 @@ public class BuyTradeDataEvent extends Event {
 	
 	public BuyTradeDataEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.system = JsonTranslator.getString(json, "System");
-		this.cost = JsonTranslator.getInteger(json, "Cost");
+		this.system = json.getString("System");
+		this.cost = json.getInt("Cost");
 	}
 	
 	public String getSystem() {

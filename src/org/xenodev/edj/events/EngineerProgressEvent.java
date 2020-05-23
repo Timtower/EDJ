@@ -7,7 +7,6 @@ import org.xenodev.edj.events.storage.engineer.EngineerProgress;
 import org.xenodev.edj.events.storage.engineer.EngineerProgressStartup;
 import org.xenodev.edj.events.storage.engineer.EngineerProgressUpdate;
 import org.xenodev.edj.utils.JournalUtils;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class EngineerProgressEvent extends Event {
 	
@@ -22,8 +21,8 @@ public class EngineerProgressEvent extends Event {
 		if(json.has("Engineers")) {
 			return new EngineerProgressStartup(JournalUtils.createEngineerProgressList(json.getJSONArray("Engineers")));
 		}
-		return new EngineerProgressUpdate(new EngineerProgress(JsonTranslator.getString(json, "Engineer"), JsonTranslator.getString(json, "Progress"),
-				JsonTranslator.getInteger(json, "EngineerID"), JsonTranslator.getInteger(json, "Rank"), JsonTranslator.getDouble(json, "RankProgress")));
+		return new EngineerProgressUpdate(new EngineerProgress(json.getString("Engineer"), json.getString("Progress"),
+				json.getInt("EngineerID"), json.getInt("Rank"), json.getDouble("RankProgress")));
 	}
 
 }

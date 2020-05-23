@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class CommunityGoalJoinEvent extends Event {
 	
@@ -11,9 +10,9 @@ public class CommunityGoalJoinEvent extends Event {
 	
 	public CommunityGoalJoinEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.cgid = JsonTranslator.getInteger(json, "CGID");
-		this.name = JsonTranslator.getString(json, "Name");
-		this.system = JsonTranslator.getString(json, "System");
+		this.cgid = json.getInt("CGID");
+		this.name = json.getString("Name");
+		this.system = json.getString("System");
 	}
 
 	public Integer getCgid() {

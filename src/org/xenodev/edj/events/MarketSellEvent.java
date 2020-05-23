@@ -2,7 +2,6 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
-import org.xenodev.edj.utils.JsonTranslator;
 
 public class MarketSellEvent extends Event {
 	
@@ -13,15 +12,15 @@ public class MarketSellEvent extends Event {
 	
 	public MarketSellEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketID = JsonTranslator.getLong(json, "MarketID");
-		this.type = JsonTranslator.getString(json, "Type");
-		this.count = JsonTranslator.getInteger(json, "Count");
-		this.sellPrice = JsonTranslator.getInteger(json, "SellPrice");
-		this.totalSale = JsonTranslator.getInteger(json, "TotalPrice");
-		this.avgPricePaid = JsonTranslator.getInteger(json, "AvgPricePaid");
-		this.illegalGoods = JsonTranslator.getBoolean(json, "IllegalGoods");
-		this.stolenGoods = JsonTranslator.getBoolean(json, "StolenGoods");
-		this.blackMarket = JsonTranslator.getBoolean(json, "BlackMarket");
+		this.marketID = json.getLong("MarketID");
+		this.type = json.getString("Type");
+		this.count = json.getInt("Count");
+		this.sellPrice = json.getInt("SellPrice");
+		this.totalSale = json.getInt("TotalPrice");
+		this.avgPricePaid = json.getInt("AvgPricePaid");
+		this.illegalGoods = json.getBoolean("IllegalGoods");
+		this.stolenGoods = json.getBoolean("StolenGoods");
+		this.blackMarket = json.getBoolean("BlackMarket");
 	}
 
 	public Long getMarketID() {

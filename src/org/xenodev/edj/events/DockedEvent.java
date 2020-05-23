@@ -1,39 +1,39 @@
 package org.xenodev.edj.events;
 
 import java.util.List;
-
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.StationEconomy;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class DockedEvent extends Event {
 	
 	String stationName, stationType, starSystem, stationFactionName, stationFactionState, stationGovernment, stationGovernmentLocalised, stationAllegiance, stationEconomy, stationEconomyLocalised;
 	StationEconomy[] stationEconomies;
-	long systemAddress, marketID;
-	double distanceFromStarLS;
+	Long systemAddress, marketID;
+	Double distanceFromStarLS;
 	List<String> stationServices;
 	
-	public DockedEvent(String timestamp, String stationName, String stationType, String starSystem,
-			String stationFactionName, String stationFactionState, String stationGovernment,
-			String stationGovernmentLocalised, String stationAllegiance, String stationEconomy,
-			String stationEconomyLocalised, StationEconomy[] stationEconomies, long systemAddress, long marketID,
-			double distanceFromStarLS, List<String> stationServices) {
+	public DockedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.stationName = stationName;
-		this.stationType = stationType;
-		this.starSystem = starSystem;
-		this.stationFactionName = stationFactionName;
-		this.stationFactionState = stationFactionState;
-		this.stationGovernment = stationGovernment;
-		this.stationGovernmentLocalised = stationGovernmentLocalised;
-		this.stationAllegiance = stationAllegiance;
-		this.stationEconomy = stationEconomy;
-		this.stationEconomyLocalised = stationEconomyLocalised;
-		this.stationEconomies = stationEconomies;
-		this.systemAddress = systemAddress;
-		this.marketID = marketID;
-		this.distanceFromStarLS = distanceFromStarLS;
-		this.stationServices = stationServices;
+		
+		this.stationName = json.getString("StationName");
+		this.stationType = json.getString("StationType");
+		this.starSystem = json.getString("StarSystem");
+		this.stationFactionName = json.getJSONObject("StationFaction").getString("FactionName");
+		this.stationFactionState = json.getJSONObject("StationFaction").getString("FactionState");
+		this.stationGovernment = json.getString("StationGovernment");
+		this.stationGovernmentLocalised = json.getString("StationGovernment_Localised");
+		this.stationAllegiance = json.getString("StationAllegiance");
+		this.stationEconomy = json.getString("StationEconomy");
+		this.stationEconomyLocalised = json.getString("StationEconomy_Localised");
+		this.stationEconomies = JournalUtils.createStationEconomiesList(json.getJSONArray("StationEconomies"));
+		this.systemAddress = json.getLong("SystemAddress");
+		this.marketID = json.getLong("MarketID");
+		this.distanceFromStarLS = json.getDouble("DistFromStarLS");
+		this.stationServices = JournalUtils.createStationServiceList(json.getJSONArray("StationServices"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getStationName() {
