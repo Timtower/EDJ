@@ -1,78 +1,129 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class CodexEntryEvent extends Event {
 	
-	String name, subCategory, subCategory_Localised, category, category_Localised, region, system;
+	String name, subCategory, subCategoryLocalised, category, categoryLocalised, region, system;
 	Integer entryID;
 	Long systemAdress;
 	Boolean isNewEntry, newTraitsDiscovered;
 	String[] traits;
 	
-	public CodexEntryEvent(String timestamp, String name, String subCategory, String subCategory_Localised,String category, String category_Localised, String region, String system, Integer entryID,
-			Long systemAdress, Boolean isNewEntry, Boolean newTraitsDiscovered, String[] traits) {
+	public CodexEntryEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = name;
-		this.subCategory = subCategory;
-		this.subCategory_Localised = subCategory_Localised;
-		this.category = category;
-		this.category_Localised = category_Localised;
-		this.region = region;
-		this.system = system;
-		this.entryID = entryID;
-		this.systemAdress = systemAdress;
-		this.isNewEntry = isNewEntry;
-		this.newTraitsDiscovered = newTraitsDiscovered;
-		this.traits = traits;
+		this.name = json.pullString("Name");
+		this.subCategory = json.pullString("SubCategory");
+		this.subCategoryLocalised = json.pullString("SubCategory_Localised");
+		this.category = json.pullString("Category");
+		this.categoryLocalised = json.pullString("Category_Localised");
+		this.region = json.pullString("Region");
+		this.system = json.pullString("System");
+		this.entryID = json.pullInt("EntryID");
+		this.systemAdress = json.pullLong("SystemAddress");
+		this.isNewEntry = json.pullBoolean("IsNewEntry");
+		this.newTraitsDiscovered = json.pullBoolean("NewTraitsDiscovered");
+		this.traits = JournalUtils.createTraitsList(json.pullJSONArray("Traits"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getSubCategory() {
 		return subCategory;
 	}
 
-	public String getSubCategory_Localised() {
-		return subCategory_Localised;
+	public void setSubCategory(String subCategory) {
+		this.subCategory = subCategory;
+	}
+
+	public String getSubCategoryLocalised() {
+		return subCategoryLocalised;
+	}
+
+	public void setSubCategory_Localised(String subCategoryLocalised) {
+		this.subCategoryLocalised = subCategoryLocalised;
 	}
 
 	public String getCategory() {
 		return category;
 	}
 
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	public String getCategory_Localised() {
-		return category_Localised;
+		return categoryLocalised;
+	}
+
+	public void setCategory_Localised(String categoryLocalised) {
+		this.categoryLocalised = categoryLocalised;
 	}
 
 	public String getRegion() {
 		return region;
 	}
 
+	public void setRegion(String region) {
+		this.region = region;
+	}
+
 	public String getSystem() {
 		return system;
+	}
+
+	public void setSystem(String system) {
+		this.system = system;
 	}
 
 	public Integer getEntryID() {
 		return entryID;
 	}
 
+	public void setEntryID(Integer entryID) {
+		this.entryID = entryID;
+	}
+
 	public Long getSystemAdress() {
 		return systemAdress;
 	}
 
-	public Boolean isNewEntry() {
+	public void setSystemAdress(Long systemAdress) {
+		this.systemAdress = systemAdress;
+	}
+
+	public Boolean getIsNewEntry() {
 		return isNewEntry;
 	}
 
-	public Boolean isNewTraitsDiscovered() {
+	public void setIsNewEntry(Boolean isNewEntry) {
+		this.isNewEntry = isNewEntry;
+	}
+
+	public Boolean getNewTraitsDiscovered() {
 		return newTraitsDiscovered;
+	}
+
+	public void setNewTraitsDiscovered(Boolean newTraitsDiscovered) {
+		this.newTraitsDiscovered = newTraitsDiscovered;
 	}
 
 	public String[] getTraits() {
 		return traits;
+	}
+
+	public void setTraits(String[] traits) {
+		this.traits = traits;
 	}
 
 }

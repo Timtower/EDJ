@@ -10,6 +10,7 @@ import java.util.Map.Entry;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.CargoInventory;
 import org.xenodev.edj.events.storage.Engineering;
 import org.xenodev.edj.events.storage.Faction;
@@ -36,6 +37,7 @@ import org.xenodev.edj.events.storage.scan.Material;
 import org.xenodev.edj.events.storage.scan.Parent;
 import org.xenodev.edj.events.storage.scan.Ring;
 import org.xenodev.edj.events.storage.station.Discovered;
+import org.xenodev.edj.utils.exceptions.UnusedEventDataException;
 
 public class JournalUtils {
 	
@@ -54,6 +56,20 @@ public class JournalUtils {
 		}
 		
 		return formattedDate;
+	}
+	
+	public static void isAllEventDataProcessed(Event event, JSONObject json) {
+		
+		try {
+			
+			if(json.length() > 0) {
+				throw new UnusedEventDataException();
+			}
+			
+		}catch(UnusedEventDataException e) {
+			System.out.println(String.format("We found unused event data in %s, please report the unused data to the API developer: %s", event.getClass().getName(), json.toString()));
+		}
+		
 	}
 	
 	public static long getTimeMillis(String timestamp) {

@@ -135,8 +135,8 @@ public class EDJApiBuilder {
     }
 
 	private void fireEvent(JSONObject json, EventListener listener) {
-		String timestamp = json.getString("timestamp");
-		String event = json.getString("event");
+		String timestamp = json.pullString("timestamp");
+		String event = json.pullString("event");
 		
 		switch(event) {
 		case "Cargo":
@@ -409,11 +409,11 @@ public class EDJApiBuilder {
 			}
 			break;
 		case "PvPKill":
-			PvPKillEvent pvpKillEvent = new PvPKillEvent(timestamp, json.getString("Victim"), json.getInt("CombatRank"));
+			PvPKillEvent pvpKillEvent = new PvPKillEvent(timestamp, json);
 			listener.onPvPKillEvent(pvpKillEvent);
 			break;
 		case "ShieldState":
-			ShieldStateEvent shieldStateEvent = new ShieldStateEvent(timestamp, json.getBoolean("ShieldsUp"));
+			ShieldStateEvent shieldStateEvent = new ShieldStateEvent(timestamp, json);
 			listener.onShieldStateEvent(shieldStateEvent);
 			break;
 		case "ShipTargeted":
@@ -421,15 +421,15 @@ public class EDJApiBuilder {
 			listener.onShipTargetedEvent(shipTargetedEvent);
 			break;
 		case "SRVDestroyed":
-			listener.onSRVDestroyedEvent(new SRVDestroyedEvent(timestamp));
+			SRVDestroyedEvent srvDestroyedEvent = new SRVDestroyedEvent(timestamp, json);
+			listener.onSRVDestroyedEvent(srvDestroyedEvent);
 			break;
 		case "UnderAttack":
-			listener.onUnderAttackEvent(new UnderAttackEvent(timestamp, json.getString("Target")));
+			UnderAttackEvent underAttackEvent = new UnderAttackEvent(timestamp, json);
+			listener.onUnderAttackEvent(underAttackEvent);
 			break;
 		case "CodexEntry":
-			CodexEntryEvent codexEntryEvent = new CodexEntryEvent(timestamp, json.getString("Name"), json.getString("SubCategory"), json.getString("SubCategory_Localised"),
-					json.getString("Category"), json.getString("Category_Localised"), json.getString("Region"), json.getString("System"), json.getInt("EntryID"), json.getLong("SystemAddress"),
-					json.getBoolean("IsNewEntry"), json.getBoolean("NewTraitsDiscovered"), JournalUtils.createTraitsList(json.getJSONArray("Traits")));
+			CodexEntryEvent codexEntryEvent = new CodexEntryEvent(timestamp, json);
 			listener.onCodexEntryEvent(codexEntryEvent);
 			break;
 		case "DiscoveryScan":

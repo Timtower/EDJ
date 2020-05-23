@@ -7,6 +7,7 @@ import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage0;
 import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage1;
 import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage2;
 import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage3;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipTargetedEvent extends Event {
 
@@ -15,8 +16,10 @@ public class ShipTargetedEvent extends Event {
 	
 	public ShipTargetedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.scanStage = json.getInt("ScanStage");
+		this.scanStage = json.pullInt("ScanStage");
 		this.json = json;
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 	
 	public ScanStageInfo getScanStageInfo() {

@@ -736,6 +736,7 @@ public class JSONObject {
         	return null;
         }
     }
+   
 
     /**
      * Get the int value associated with a key.
@@ -2618,4 +2619,274 @@ public class JSONObject {
                 "JSONObject[" + quote(key) + "] is not a " + valueType + " (" + value + ")."
                 , cause);
     }
+    
+    
+    /* 
+     * CHANGELOG 21/05/2020
+     * 
+     *  Author: XenoPyax
+     *  
+     *  ADDED pull methods that get the Object and delete it from the JSON String
+     */
+    
+    /**
+     * Get the string associated with a key and removes it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return A string which is the value.
+     * @throws JSONException
+     *             if there is no string value for the key.
+     */
+    public String pullString(String key) throws JSONException {
+        Object object = this.get(key);
+        if (object instanceof String) {
+        	this.remove(key);
+            return (String) object;
+        }
+        throw wrongValueFormatException(key, "string", null);
+    }
+
+
+    /**
+     * Get the long value associated with a key and removes it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The long value.
+     * @throws JSONException
+     *             if the key is not found or if the value cannot be converted
+     *             to a long.
+     */
+    public Long pullLong(String key) throws JSONException {
+        final Object object = this.get(key);
+        if(object instanceof Number) {
+        	this.remove(key);
+            return ((Number)object).longValue();
+        }
+        try {
+        	Long l = Long.parseLong(object.toString());
+        	this.remove(key);
+            return l;
+        } catch (NumberFormatException e) {
+            throw wrongValueFormatException(key, "long", e);
+        } catch (NullPointerException ex) {
+        	return null;
+        }
+    }
+	
+	/**
+     * Get the JSONObject value associated with a key and removes it from the root JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return A JSONObject which is the value.
+     * @throws JSONException
+     *             if the key is not found or if the value is not a JSONObject.
+     */
+    public JSONObject pullJSONObject(String key) throws JSONException {
+        Object object = this.get(key);
+        if (object instanceof JSONObject) {
+        	this.remove(key);
+            return (JSONObject) object;
+        }
+        throw wrongValueFormatException(key, "JSONObject", null);
+    }
+	
+	
+	/**
+     * Get the JSONArray value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return A JSONArray which is the value.
+     * @throws JSONException
+     *             if the key is not found or if the value is not a JSONArray.
+     */
+    public JSONArray pullJSONArray(String key) throws JSONException {
+        Object object = this.get(key);
+        if (object instanceof JSONArray) {
+        	this.remove(key);
+            return (JSONArray) object;
+        }
+        throw wrongValueFormatException(key, "JSONArray", null);
+    }
+	
+	
+	/**
+     * Get the int value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The integer value.
+     * @throws JSONException
+     *             if the key is not found or if the value cannot be converted
+     *             to an integer.
+     */
+    public Integer pullInt(String key) throws JSONException {
+        final Object object = this.get(key);
+        if(object instanceof Number) {
+        	this.remove(key);
+            return ((Number)object).intValue();
+        }
+        try {
+        	Integer i = Integer.parseInt(object.toString());
+        	this.remove(key);
+            return i;
+        } catch (NumberFormatException e) {
+            throw wrongValueFormatException(key, "int", e);
+        } catch (NullPointerException ex) {
+        	return null;
+        }
+    }
+	
+	/**
+     * Get the Number value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The numeric value.
+     * @throws JSONException
+     *             if the key is not found or if the value is not a Number
+     *             object and cannot be converted to a number.
+     */
+    public Number pullNumber(String key) throws JSONException {
+        Object object = this.get(key);
+        try {
+            if (object instanceof Number) {
+            	this.remove(key);
+                return (Number)object;
+            }
+            this.remove(key);
+            return stringToNumber(object.toString());
+        } catch (NumberFormatException e) {
+            throw wrongValueFormatException(key, "number", e);
+        } catch (NullPointerException ex) {
+        	return null;
+        }
+    }
+	
+	/**
+     * Get the float value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The numeric value.
+     * @throws JSONException
+     *             if the key is not found or if the value is not a Number
+     *             object and cannot be converted to a number.
+     */
+    public Float pullFloat(String key) throws JSONException {
+        final Object object = this.get(key);
+        if(object instanceof Number) {
+        	this.remove(key);
+            return ((Number)object).floatValue();
+        }
+        try {
+        	Float f =  Float.parseFloat(object.toString());
+            this.remove(key);
+        	return f;
+        } catch (NumberFormatException e) {
+            throw wrongValueFormatException(key, "float", e);
+        } catch (NullPointerException ex) {
+        	return null;
+        }
+    }
+	
+    /**
+     * Get the double value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The numeric value.
+     * @throws JSONException
+     *             if the key is not found or if the value is not a Number
+     *             object and cannot be converted to a number.
+     */
+    public Double pullDouble(String key) throws JSONException {
+        final Object object = this.get(key);
+        if(object instanceof Number) {
+        	this.remove(key);
+            return ((Number)object).doubleValue();
+        }
+        try {
+        	Double d = Double.parseDouble(object.toString());
+        	this.remove(key);
+            return d;
+        } catch (NumberFormatException e) {
+            throw wrongValueFormatException(key, "double", e);
+        } catch (NullPointerException ex) {
+        	return null;
+        }
+        	
+    }
+	
+	/**
+     * Get the BigDecimal value associated with a key and remove it from the JSONObject. If the value is float or
+     * double, the the {@link BigDecimal#BigDecimal(double)} constructor will
+     * be used. See notes on the constructor for conversion issues that may
+     * arise.
+     *
+     * @param key
+     *            A key string.
+     * @return The numeric value.
+     * @throws JSONException
+     *             if the key is not found or if the value
+     *             cannot be converted to BigDecimal.
+     */
+    public BigDecimal pullBigDecimal(String key) throws JSONException {
+        Object object = this.get(key);
+        BigDecimal ret = objectToBigDecimal(object, null);
+        if (ret != null) {
+            return ret;
+        }
+        throw wrongValueFormatException(key, "BigDecimal", object, null);
+    }
+	
+	/**
+     * Get the BigInteger value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The numeric value.
+     * @throws JSONException
+     *             if the key is not found or if the value cannot 
+     *             be converted to BigInteger.
+     */
+    public BigInteger pullBigInteger(String key) throws JSONException {
+        Object object = this.get(key);
+        BigInteger ret = objectToBigInteger(object, null);
+        if (ret != null) {
+        	this.remove(key);
+            return ret;
+        }
+        throw wrongValueFormatException(key, "BigInteger", object, null);
+    }
+	
+	/**
+     * Get the boolean value associated with a key and remove it from the JSONObject.
+     *
+     * @param key
+     *            A key string.
+     * @return The truth.
+     * @throws JSONException
+     *             if the value is not a Boolean or the String "true" or
+     *             "false".
+     */
+    public Boolean pullBoolean(String key) throws JSONException {
+        Object object = this.get(key);
+        if (object.equals(Boolean.FALSE)
+                || (object instanceof String && ((String) object)
+                        .equalsIgnoreCase("false"))) {
+        	this.remove(key);
+            return false;
+        } else if (object.equals(Boolean.TRUE)
+                || (object instanceof String && ((String) object)
+                        .equalsIgnoreCase("true"))) {
+            this.remove(key);
+        	return true;
+        }
+        throw wrongValueFormatException(key, "Boolean", null);
+    }	
+    
 }

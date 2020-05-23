@@ -1,18 +1,26 @@
 package org.xenodev.edj.events;
 
+import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ShieldStateEvent extends Event {
 	
-	boolean shieldsUp;
+	Boolean shieldsUp;
 
-	public ShieldStateEvent(String timestamp, boolean shieldsUp) {
+	public ShieldStateEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.shieldsUp = shieldsUp;
+		this.shieldsUp = json.getBoolean("ShieldsUp");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public boolean isShieldsUp() {
+	public Boolean isShieldsUp() {
 		return shieldsUp;
+	}
+
+	public void setShieldsUp(Boolean shieldsUp) {
+		this.shieldsUp = shieldsUp;
 	}
 
 }
