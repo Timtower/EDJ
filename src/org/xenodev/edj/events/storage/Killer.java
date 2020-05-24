@@ -14,12 +14,24 @@ public class Killer {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getShip() {
 		return ship;
 	}
 
+	public void setShip(String ship) {
+		this.ship = ship;
+	}
+
 	public String getRank() {
 		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
 	}
 
 }

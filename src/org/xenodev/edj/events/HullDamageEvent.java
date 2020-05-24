@@ -13,8 +13,8 @@ public class HullDamageEvent extends Event {
 		super(timestamp);
 		
 		this.health = json.getDouble("Health");
-		this.playerPilot = json.getBoolean("PlayerPilot");
-		this.fighter = json.has("Fighter") ? json.getBoolean("Fighter") : null;
+		this.playerPilot = json.pullBoolean("PlayerPilot");
+		this.fighter = json.has("Fighter") ? json.pullBoolean("Fighter") : null;
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

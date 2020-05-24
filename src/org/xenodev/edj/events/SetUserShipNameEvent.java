@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class SetUserShipNameEvent extends Event {
 	
@@ -17,10 +18,13 @@ public class SetUserShipNameEvent extends Event {
 	
 	public SetUserShipNameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.ship = json.getString("Ship");
-		this.shipId = json.getInt("ShipID");
-		this.userShipName = json.getString("UserShipName");
-		this.userShipId = json.getString("UserShipId");
+		
+		this.ship = json.pullString("Ship");
+		this.shipId = json.pullInt("ShipID");
+		this.userShipName = json.pullString("UserShipName");
+		this.userShipId = json.pullString("UserShipId");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getShip() {

@@ -12,8 +12,8 @@ public class EscapeInterdictionEvent extends Event {
 	public EscapeInterdictionEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.interdictor = json.getString("Interdictor");
-		this.isPlayer = json.getBoolean("IsPlayer");
+		this.interdictor = json.pullString("Interdictor");
+		this.isPlayer = json.pullBoolean("IsPlayer");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

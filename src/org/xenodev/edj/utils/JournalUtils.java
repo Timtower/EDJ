@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import org.xenodev.edj.Event;
 import org.xenodev.edj.events.storage.CargoInventory;
 import org.xenodev.edj.events.storage.Engineering;
-import org.xenodev.edj.events.storage.Faction;
 import org.xenodev.edj.events.storage.Killer;
 import org.xenodev.edj.events.storage.Mission;
 import org.xenodev.edj.events.storage.Modifier;
@@ -185,7 +184,7 @@ public class JournalUtils {
 			Material material;
 			int pos = 0;
 				
-			material = new Material(map.getKey(), (int)map.getValue());
+			material = new Material(map.getKey(), (Double) map.getValue());
 			
 			materials[pos] = material;
 			pos++;
@@ -338,29 +337,13 @@ public class JournalUtils {
 			BountyReward bountyReward;
 			int pos = 0;
 				
-			bountyReward = new BountyReward(json.getString("Faction"), json.getInt("Reward"));
+			bountyReward = new BountyReward(json.getString("Faction"), json.getLong("Reward"));
 			
 			bountyRewards[pos] = bountyReward;
 			pos++;
 		}
 		
 		return bountyRewards;				
-	}
-	
-	public static List<Faction> createFactionList(JSONArray array) {
-		List<Faction> factions = new ArrayList<Faction>();
-		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
-			Faction faction;
-				
-			faction = new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Government"), json.getString("Allegiance"), json.getString("Happiness_Localised"),
-					json.getDouble("MyReputation"), json.getDouble("Influence"));
-			
-			factions.add(faction);
-		}
-		
-		return factions;				
 	}
 	
 	public static StationEconomy[] createStationEconomiesList(JSONArray array) {

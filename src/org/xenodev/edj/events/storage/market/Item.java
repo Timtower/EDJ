@@ -28,6 +28,58 @@ public class Item {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setBuyPricce(Integer buyPricce) {
+		this.buyPricce = buyPricce;
+	}
+
+	public void setSellPrice(Integer sellPrice) {
+		this.sellPrice = sellPrice;
+	}
+
+	public void setMeanPrice(Integer meanPrice) {
+		this.meanPrice = meanPrice;
+	}
+
+	public void setStockBracket(Integer stockBracket) {
+		this.stockBracket = stockBracket;
+	}
+
+	public void setDemandBracket(Integer demandBracket) {
+		this.demandBracket = demandBracket;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+	public void setDemand(Integer demand) {
+		this.demand = demand;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public void setConsumer(Boolean consumer) {
+		this.consumer = consumer;
+	}
+
+	public void setProducer(Boolean producer) {
+		this.producer = producer;
+	}
+
+	public void setRare(Boolean rare) {
+		this.rare = rare;
+	}
+
 	public Integer getBuyPricce() {
 		return buyPricce;
 	}

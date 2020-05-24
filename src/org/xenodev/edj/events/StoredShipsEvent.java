@@ -8,18 +8,21 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class StoredShipsEvent extends Event {
 	
 	String stationName, starSystem;
 	Long marketId;
 	
-	//TODO: Missing ShipsHere & ShipsRemote arrays
 	public StoredShipsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.stationName = json.getString("StationName");
-		this.starSystem = json.getString("StarSystem");
-		this.marketId = json.getLong("MarketID");
+		
+		this.stationName = json.pullString("StationName");
+		this.starSystem = json.pullString("StarSystem");
+		this.marketId = json.pullLong("MarketID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getStationName() {

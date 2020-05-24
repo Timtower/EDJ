@@ -38,6 +38,22 @@ public class MarketFile {
 		return marketID;
 	}
 
+	public void setMarketID(Integer marketID) {
+		this.marketID = marketID;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
+	public void setStarSystem(String starSystem) {
+		this.starSystem = starSystem;
+	}
+
+	public void setItems(Item[] items) {
+		this.items = items;
+	}
+
 	public String getStationName() {
 		return stationName;
 	}

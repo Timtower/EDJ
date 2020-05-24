@@ -13,10 +13,10 @@ public class ApproachBodyEvent extends Event {
 	public ApproachBodyEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.startSystem = json.getString("StartSystem");
-		this.body = json.getString("Body");
-		this.bodyID = json.getInt("BodyID");
-		this.systemAddress = json.getLong("SystemAddress");
+		this.startSystem = json.pullString("StartSystem");
+		this.body = json.pullString("Body");
+		this.bodyID = json.pullInt("BodyID");
+		this.systemAddress = json.pullLong("SystemAddress");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

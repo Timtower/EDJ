@@ -17,10 +17,10 @@ public class BountyEvent extends Event {
 	}
 
 	public BountyInfo getBountyInfo() {
-		if(json.getString("Target").equals("Skimmer")) {
-			return new SkimmerBounty(json.getString("Faction"), json.getString("Target"), json.getString("VictimsFaction"), json.getInt("Reward"));
+		if(json.pullString("Target").equals("Skimmer")) {
+			return new SkimmerBounty(json.pullString("Faction"), json.pullString("Target"), json.pullString("VictimsFaction"), json.pullLong("Reward"));
 		}else {
-			return new DefaultBounty(json.getString("Target"), json.getString("VictimFaction"), json.getInt("TotalReward"), JournalUtils.createBountyRewardList(json.getJSONArray("Rewards")));
+			return new DefaultBounty(json.pullString("Target"), json.pullString("VictimFaction"), json.pullLong("TotalReward"), JournalUtils.createBountyRewardList(json.getJSONArray("Rewards")));
 		}
 	}
 

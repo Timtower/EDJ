@@ -7,14 +7,14 @@ import org.xenodev.edj.utils.JournalUtils;
 public class DockingRequestedEvent extends Event {
 	
 	String stationmName, stationType;
-	long marketID;
+	Long marketID;
 	
 	public DockingRequestedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.stationmName = json.getString("StationName");
-		this.stationType = json.getString("StationType");
-		this.marketID = json.getLong("MarketID");
+		this.stationmName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
+		this.marketID = json.pullLong("MarketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -35,11 +35,11 @@ public class DockingRequestedEvent extends Event {
 		this.stationType = stationType;
 	}
 
-	public long getMarketID() {
+	public Long getMarketID() {
 		return marketID;
 	}
 
-	public void setMarketID(long marketID) {
+	public void setMarketID(Long marketID) {
 		this.marketID = marketID;
 	}
 

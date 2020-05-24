@@ -46,8 +46,8 @@ public class StoredModule {
 		return starSystem;
 	}
 
-	public void setStarSystem(String sarSystem) {
-		this.starSystem = sarSystem;
+	public void setStarSystem(String starSystem) {
+		this.starSystem = starSystem;
 	}
 
 	public Integer getStorageSlot() {

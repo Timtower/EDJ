@@ -2,6 +2,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class MiningRefinedEvent extends Event {
 	
@@ -9,11 +10,18 @@ public class MiningRefinedEvent extends Event {
 
 	public MiningRefinedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.type = json.getString("Type");
+		
+		this.type = json.pullString("Type");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getType() {
 		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

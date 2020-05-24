@@ -3,9 +3,9 @@ package org.xenodev.edj.events.storage.scan;
 public class Ring {
 	
 	String name, ringClass;
-    long massMT, innerRad, outerRad;
+	Long massMT, innerRad, outerRad;
     
-	public Ring(String name, String ringClass, long massMT, long innerRad, long outerRad) {
+	public Ring(String name, String ringClass, Long massMT, Long innerRad, Long outerRad) {
 		this.name = name;
 		this.ringClass = ringClass;
 		this.massMT = massMT;
@@ -17,20 +17,40 @@ public class Ring {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public String getRingClass() {
 		return ringClass;
 	}
 
-	public long getMassMT() {
+	public void setRingClass(String ringClass) {
+		this.ringClass = ringClass;
+	}
+
+	public Long getMassMT() {
 		return massMT;
 	}
 
-	public long getInnerRad() {
+	public void setMassMT(Long massMT) {
+		this.massMT = massMT;
+	}
+
+	public Long getInnerRad() {
 		return innerRad;
 	}
 
-	public long getOuterRad() {
+	public void setInnerRad(Long innerRad) {
+		this.innerRad = innerRad;
+	}
+
+	public Long getOuterRad() {
 		return outerRad;
+	}
+
+	public void setOuterRad(Long outerRad) {
+		this.outerRad = outerRad;
 	}
 
 }

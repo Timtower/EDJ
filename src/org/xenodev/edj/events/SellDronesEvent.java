@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class SellDronesEvent extends Event {
 	
@@ -17,10 +18,13 @@ public class SellDronesEvent extends Event {
 	
 	public SellDronesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.type = json.getString("Type");
-		this.count = json.getInt("Count");
-		this.sellPrice = json.getLong("SellPrice");
-		this.totalSale = json.getLong("TotalSale");
+		
+		this.type = json.pullString("Type");
+		this.count = json.pullInt("Count");
+		this.sellPrice = json.pullLong("SellPrice");
+		this.totalSale = json.pullLong("TotalSale");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getType() {

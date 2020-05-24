@@ -14,15 +14,18 @@ public class EngineerProgressEvent extends Event {
 
 	public EngineerProgressEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		
 		this.json = json;
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 	
 	public EngineerProgressInfo getEngineerProgressInfo() {
 		if(json.has("Engineers")) {
 			return new EngineerProgressStartup(JournalUtils.createEngineerProgressList(json.getJSONArray("Engineers")));
 		}
-		return new EngineerProgressUpdate(new EngineerProgress(json.getString("Engineer"), json.getString("Progress"),
-				json.getInt("EngineerID"), json.getInt("Rank"), json.getDouble("RankProgress")));
+		return new EngineerProgressUpdate(new EngineerProgress(json.pullString("Engineer"), json.pullString("Progress"),
+				json.pullInt("EngineerID"), json.pullInt("Rank"), json.getDouble("RankProgress")));
 	}
 
 }

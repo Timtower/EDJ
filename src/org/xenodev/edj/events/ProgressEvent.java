@@ -10,12 +10,13 @@ public class ProgressEvent extends Event {
 
 	public ProgressEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.combat = json.getInt("Combat");
-		this.trade = json.getInt("Trade");
-		this.explore = json.getInt("Explore");
-		this.empire = json.getInt("Empire");
-		this.federation = json.getInt("Federation");
-		this.cqc = json.getInt("CQC");
+		
+		this.combat = json.pullInt("Combat");
+		this.trade = json.pullInt("Trade");
+		this.explore = json.pullInt("Explore");
+		this.empire = json.pullInt("Empire");
+		this.federation = json.pullInt("Federation");
+		this.cqc = json.pullInt("CQC");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

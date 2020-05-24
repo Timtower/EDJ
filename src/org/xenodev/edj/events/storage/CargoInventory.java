@@ -3,9 +3,7 @@ package org.xenodev.edj.events.storage;
 public class CargoInventory {
 	
 	String name;
-	int count;
-	int stolen;
-	int missionId;
+	Integer count, missionId, stolen;
 	
 	public CargoInventory(String name, int count, int stolen, int missionId) {
 		this.name = name;
@@ -30,28 +28,28 @@ public class CargoInventory {
 		this.name = name;
 	}
 
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
 
-	public int getStolen() {
-		return stolen;
-	}
-
-	public void setStolen(int stolen) {
-		this.stolen = stolen;
-	}
-
-	public int getMissionId() {
+	public Integer getMissionId() {
 		return missionId;
 	}
 
-	public void setMissionId(int missionId) {
+	public void setMissionId(Integer missionId) {
 		this.missionId = missionId;
+	}
+
+	public Integer getStolen() {
+		return stolen;
+	}
+
+	public void setStolen(Integer stolen) {
+		this.stolen = stolen;
 	}
 
 }

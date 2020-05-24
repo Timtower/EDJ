@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ModuleRetrieveEvent extends Event {
 	
@@ -18,15 +19,18 @@ public class ModuleRetrieveEvent extends Event {
 	
 	public ModuleRetrieveEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.slot = json.getString("Slot");
-		this.retrievedItem = json.getString("RetrievedItem");
-		this.retrievedItemLocalised = json.getString("RetrievedItem_Localised");
-		this.ship = json.getString("Ship");
-		this.swapOutItem = json.getString("SwapOutItem");
-		this.swapOutItemLocalised = json.getString("SwapOutItem_Localised");
-		this.shipId = json.getInt("ShipID");
-		this.hot = json.getBoolean("Hot");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.slot = json.pullString("Slot");
+		this.retrievedItem = json.pullString("RetrievedItem");
+		this.retrievedItemLocalised = json.pullString("RetrievedItem_Localised");
+		this.ship = json.pullString("Ship");
+		this.swapOutItem = json.pullString("SwapOutItem");
+		this.swapOutItemLocalised = json.pullString("SwapOutItem_Localised");
+		this.shipId = json.pullInt("ShipID");
+		this.hot = json.pullBoolean("Hot");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

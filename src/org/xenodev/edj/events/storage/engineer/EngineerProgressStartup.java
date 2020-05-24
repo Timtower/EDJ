@@ -10,8 +10,12 @@ public class EngineerProgressStartup implements EngineerProgressInfo {
 		this.engineerProgress = engineerProgress;
 	}
 
-	public EngineerProgress[] getProgress() {
+	public EngineerProgress[] getEngineerProgress() {
 		return engineerProgress;
+	}
+
+	public void setEngineerProgress(EngineerProgress[] engineerProgress) {
+		this.engineerProgress = engineerProgress;
 	}
 
 }

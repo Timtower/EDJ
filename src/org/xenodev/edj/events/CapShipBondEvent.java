@@ -12,9 +12,9 @@ public class CapShipBondEvent extends Event {
 	public CapShipBondEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.victimFaction = json.getString("VictimFaction");
-		this.awardingFaction = json.getString("AwardingFaction");
-		this.reward = json.getInt("Reward");
+		this.victimFaction = json.pullString("VictimFaction");
+		this.awardingFaction = json.pullString("AwardingFaction");
+		this.reward = json.pullInt("Reward");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

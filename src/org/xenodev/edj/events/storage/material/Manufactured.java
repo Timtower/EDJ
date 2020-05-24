@@ -4,9 +4,9 @@ public class Manufactured {
 	
 	String name;
 	String name_localised;
-	int count;
+	Integer count;
 	
-	public Manufactured(String name, String name_localised, int count) {
+	public Manufactured(String name, String name_localised, Integer count) {
 		this.name = name;
 		this.name_localised = name_localised;
 		this.count = count;
@@ -28,12 +28,12 @@ public class Manufactured {
 		this.name_localised = name_localised;
 	}
 
-	public int getCount() {
+	public Integer getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Integer count) {
 		this.count = count;
 	}
-	
+
 }

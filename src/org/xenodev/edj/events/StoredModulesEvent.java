@@ -22,10 +22,13 @@ public class StoredModulesEvent extends Event {
 	
 	public StoredModulesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.stationName = json.getString("StationName");
-		this.starSystem = json.getString("StarSystem");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.stationName = json.pullString("StationName");
+		this.starSystem = json.pullString("StarSystem");
 		this.moduleList = JournalUtils.createStoredModuleList(json.getJSONArray("Items"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

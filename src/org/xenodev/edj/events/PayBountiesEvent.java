@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class PayBountiesEvent extends Event {
 	
@@ -17,11 +18,14 @@ public class PayBountiesEvent extends Event {
 	
 	public PayBountiesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.amount = json.getLong("Amount");
-		this.faction = json.getString("Faction");
-		this.factionLocalised = json.getString("Faction_Localised");
-		this.shipId = json.getInt("ShipID");
-		this.brokerPercentage = json.getInt("BrokerPercentage");
+		
+		this.amount = json.pullLong("Amount");
+		this.faction = json.pullString("Faction");
+		this.factionLocalised = json.pullString("Faction_Localised");
+		this.shipId = json.pullInt("ShipID");
+		this.brokerPercentage = json.pullInt("BrokerPercentage");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getAmount() {

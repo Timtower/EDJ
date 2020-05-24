@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class RepairEvent extends Event {
 	
@@ -16,8 +17,11 @@ public class RepairEvent extends Event {
 	
 	public RepairEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.item = json.getString("Item");
-		this.cost = json.getLong("Cost");
+		
+		this.item = json.pullString("Item");
+		this.cost = json.pullLong("Cost");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getItem() {

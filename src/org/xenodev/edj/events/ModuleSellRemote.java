@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ModuleSellRemote extends Event {
 	
@@ -17,6 +18,7 @@ public class ModuleSellRemote extends Event {
 	
 	public ModuleSellRemote(String timestamp, JSONObject json) {
 		super(timestamp);
+		
 		this.storageSlot = json.getInt("StorageSlot");
 		this.shipId = json.getInt("ShipID");
 		this.sellItem = json.getString("SellItem");
@@ -24,6 +26,8 @@ public class ModuleSellRemote extends Event {
 		this.ship = json.getString("Ship");
 		this.serverId = json.getLong("ServerId");
 		this.sellPrice = json.getLong("SellPrice");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Integer getStorageSlot() {

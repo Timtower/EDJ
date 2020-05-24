@@ -13,12 +13,12 @@ public class InterdictedEvent extends Event {
 	public InterdictedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.submitted = json.getBoolean("Submitted");
-		this.isPlayer = json.getBoolean("IsPlayer");
-		this.interdictor = json.getString("Interdictor");
-		this.combatRank = isPlayer ? json.getInt("CombatRank") : null;
-		this.faction = isPlayer ? null : json.getString("Faction");
-		this.power = isPlayer ? null : json.getString("Power");
+		this.submitted = json.pullBoolean("Submitted");
+		this.isPlayer = json.pullBoolean("IsPlayer");
+		this.interdictor = json.pullString("Interdictor");
+		this.combatRank = isPlayer ? json.pullInt("CombatRank") : null;
+		this.faction = isPlayer ? null : json.pullString("Faction");
+		this.power = isPlayer ? null : json.pullString("Power");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

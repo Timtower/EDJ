@@ -3,11 +3,11 @@ package org.xenodev.edj.events.storage;
 public class PassengerManifest {
 	
 	String type;
-	int count;
-	boolean vip, wanted;
-	long missionID;
+	Integer count;
+	Boolean vip, wanted;
+	Long missionID;
 	
-	public PassengerManifest(String type, int count, boolean vip, boolean wanted, long missionID) {
+	public PassengerManifest(String type, Integer count, Boolean vip, Boolean wanted, Long missionID) {
 		this.type = type;
 		this.count = count;
 		this.vip = vip;
@@ -19,20 +19,40 @@ public class PassengerManifest {
 		return type;
 	}
 
-	public int getCount() {
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Integer getCount() {
 		return count;
 	}
 
-	public boolean isVip() {
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
+	public Boolean getVip() {
 		return vip;
 	}
 
-	public boolean isWanted() {
+	public void setVip(Boolean vip) {
+		this.vip = vip;
+	}
+
+	public Boolean getWanted() {
 		return wanted;
 	}
 
-	public long getMissionID() {
+	public void setWanted(Boolean wanted) {
+		this.wanted = wanted;
+	}
+
+	public Long getMissionID() {
 		return missionID;
+	}
+
+	public void setMissionID(Long missionID) {
+		this.missionID = missionID;
 	}
 
 }

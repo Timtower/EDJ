@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class MissionCompletedEvent extends Event {
 	
@@ -16,13 +17,16 @@ public class MissionCompletedEvent extends Event {
 	
 	public MissionCompletedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.faction = json.getString("Faction");
-		this.name = json.getString("Name");
-		this.targetFaction = json.getString("TargetFaction");
-		this.destinationSystem = json.getString("DestinationSystem");
-		this.destinationStation = json.getString("DestinationStation");
-		this.missionId = json.getLong("MissionID");
-		this.reward = json.getLong("Reward");
+		
+		this.faction = json.pullString("Faction");
+		this.name = json.pullString("Name");
+		this.targetFaction = json.pullString("TargetFaction");
+		this.destinationSystem = json.pullString("DestinationSystem");
+		this.destinationStation = json.pullString("DestinationStation");
+		this.missionId = json.pullLong("MissionID");
+		this.reward = json.pullLong("Reward");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getFaction() {

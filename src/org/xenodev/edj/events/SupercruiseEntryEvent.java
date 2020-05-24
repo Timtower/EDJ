@@ -12,8 +12,8 @@ public class SupercruiseEntryEvent extends Event {
 	public SupercruiseEntryEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.starSystem = json.getString("StarSystem");
-		this.SystemAddress = json.getLong("SystemAddress");
+		this.starSystem = json.pullString("StarSystem");
+		this.SystemAddress = json.pullLong("SystemAddress");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

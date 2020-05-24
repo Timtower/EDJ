@@ -10,7 +10,8 @@ public class ShieldStateEvent extends Event {
 
 	public ShieldStateEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.shieldsUp = json.getBoolean("ShieldsUp");
+		
+		this.shieldsUp = json.pullBoolean("ShieldsUp");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

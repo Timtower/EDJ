@@ -3,9 +3,9 @@ package org.xenodev.edj.events.storage.bounty;
 public class BountyReward {
 	
 	String faction;
-	int reward;
+	Long reward;
 	
-	public BountyReward(String faction, int reward) {
+	public BountyReward(String faction, Long reward) {
 		this.faction = faction;
 		this.reward = reward;
 	}
@@ -14,8 +14,16 @@ public class BountyReward {
 		return faction;
 	}
 
-	public int getReward() {
+	public Long getReward() {
 		return reward;
+	}
+
+	public void setFaction(String faction) {
+		this.faction = faction;
+	}
+
+	public void setReward(Long reward) {
+		this.reward = reward;
 	}
 
 }

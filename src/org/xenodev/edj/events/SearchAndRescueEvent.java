@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class SearchAndRescueEvent extends Event {
 	
@@ -17,11 +18,14 @@ public class SearchAndRescueEvent extends Event {
 	
 	public SearchAndRescueEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.reward = json.getLong("Reward");
-		this.name = json.getString("Name");
-		this.nameLocalised = json.getString("Name_Localised");
-		this.count = json.getInt("Count");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.reward = json.pullLong("Reward");
+		this.name = json.pullString("Name");
+		this.nameLocalised = json.pullString("Name_Localised");
+		this.count = json.pullInt("Count");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

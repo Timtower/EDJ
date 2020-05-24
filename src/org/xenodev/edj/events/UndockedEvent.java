@@ -11,9 +11,9 @@ public class UndockedEvent extends Event {
 	
 	public UndockedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.stationName = json.getString("StationName");
-		this.stationType = json.getString("StationType");
-		this.marketID = json.getLong("MarketID");
+		this.stationName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
+		this.marketID = json.pullLong("MarketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

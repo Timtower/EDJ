@@ -19,10 +19,13 @@ public class MaterialTradeEvent extends Event {
 
 	public MaterialTradeEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.traderType = json.getString("TraderType");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.traderType = json.pullString("TraderType");
 		this.paid = JournalUtils.createTradeData(json.getJSONArray("Paid"));
 		this.received = JournalUtils.createTradeData(json.getJSONArray("Received"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

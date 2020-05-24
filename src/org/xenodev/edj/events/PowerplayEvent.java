@@ -12,11 +12,11 @@ public class PowerplayEvent extends Event {
 	public PowerplayEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.power = json.getString("Power");
-		this.rank = json.getInt("Rank");
-		this.merits = json.getInt("Merits");
-		this.votes = json.getInt("Votes");
-		this.timePledged = json.getInt("TimePledged");
+		this.power = json.pullString("Power");
+		this.rank = json.pullInt("Rank");
+		this.merits = json.pullInt("Merits");
+		this.votes = json.pullInt("Votes");
+		this.timePledged = json.pullInt("TimePledged");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

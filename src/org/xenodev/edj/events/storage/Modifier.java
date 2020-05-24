@@ -17,16 +17,32 @@ public class Modifier {
 		return label;
 	}
 
-	public double getValue() {
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public Double getValue() {
 		return value;
 	}
 
-	public double getOriginalValue() {
+	public void setValue(Double value) {
+		this.value = value;
+	}
+
+	public Double getOriginalValue() {
 		return originalValue;
 	}
 
-	public int getLessIsGood() {
+	public void setOriginalValue(Double originalValue) {
+		this.originalValue = originalValue;
+	}
+
+	public Integer getLessIsGood() {
 		return lessIsGood;
-	}	
+	}
+
+	public void setLessIsGood(Integer lessIsGood) {
+		this.lessIsGood = lessIsGood;
+	}
 	
 }

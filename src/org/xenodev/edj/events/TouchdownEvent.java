@@ -12,7 +12,7 @@ public class TouchdownEvent extends Event {
 	public TouchdownEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.playerControlled = json.getBoolean("PlayerControlled");
+		this.playerControlled = json.pullBoolean("PlayerControlled");
 		this.latitude = playerControlled ?  json.getDouble("Latitude") : null;
 		this.longitude = playerControlled ?  json.getDouble("Longitude") : null;
 		

@@ -17,22 +17,22 @@ public class FSDJumpEvent extends Event {
 	
 	public FSDJumpEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.starSystem = json.getString("StarSystem");
-		this.systemAllegiance = json.getString("SystemAllegiance");
-		this.systemEconomy = json.getString("SystemEconomy");
-		this.systemEconomyLocalised = json.getString("SystemEconomy_Localised");
-		this.systemSecondEconomy = json.getString("SystemSecondEconomy");
-		this.systemSecondEconomy_Localised = json.getString("SystemSecondEconomy_Localised");
-		this.systemGovernment = json.getString("SystemGovernment");
-		this.systemGovernmentLocalised = json.getString("SystemGovernment_Localised");
-		this.systemSecurity = json.getString("SystemSecurity");
-		this.systemSecurityLocalised = json.getString("SystemSecurity_Localised");
-		this.population = json.getLong("Population");
-		this.systemAddress = json.getLong("SystemAddress");
+		
+		this.starSystem = json.pullString("StarSystem");
+		this.systemAllegiance = json.pullString("SystemAllegiance");
+		this.systemEconomy = json.pullString("SystemEconomy");
+		this.systemEconomyLocalised = json.pullString("SystemEconomy_Localised");
+		this.systemSecondEconomy = json.pullString("SystemSecondEconomy");
+		this.systemSecondEconomy_Localised = json.pullString("SystemSecondEconomy_Localised");
+		this.systemGovernment = json.pullString("SystemGovernment");
+		this.systemGovernmentLocalised = json.pullString("SystemGovernment_Localised");
+		this.systemSecurity = json.pullString("SystemSecurity");
+		this.systemSecurityLocalised = json.pullString("SystemSecurity_Localised");
+		this.population = json.pullLong("Population");
+		this.systemAddress = json.pullLong("SystemAddress");
 		this.jumpDistance = json.getDouble("JumpDist");
 		this.fuelUsed = json.getDouble("FuelUsed");
 		this.fuelLevel = json.getDouble("FuelLevel");
-		this.factions = JournalUtils.createFactionList(json.getJSONArray("Factions"));
 		this.starPos = JournalUtils.createPositionArray(json.getJSONArray("StarPos"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);

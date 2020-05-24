@@ -14,6 +14,7 @@ public class CodexEntryEvent extends Event {
 	
 	public CodexEntryEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		
 		this.name = json.pullString("Name");
 		this.subCategory = json.pullString("SubCategory");
 		this.subCategoryLocalised = json.pullString("SubCategory_Localised");

@@ -18,4 +18,12 @@ public class Ingredient {
 		return count;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
+
 }

@@ -14,8 +14,16 @@ public class Discovered {
 		return systemName;
 	}
 
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+
 	public Integer getNumBodies() {
 		return numBodies;
-	}	
+	}
+
+	public void setNumBodies(Integer numBodies) {
+		this.numBodies = numBodies;
+	}
 
 }

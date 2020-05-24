@@ -12,8 +12,8 @@ public class FSDTargetEvent extends Event {
 	public FSDTargetEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.name = json.getString("Name");
-		this.systemAdress = json.getLong("SystemAddress");
+		this.name = json.pullString("Name");
+		this.systemAdress = json.pullLong("SystemAddress");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

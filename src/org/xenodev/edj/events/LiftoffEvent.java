@@ -12,7 +12,7 @@ public class LiftoffEvent extends Event {
 	public LiftoffEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.playerControlled = json.getBoolean("PlayerControlled");
+		this.playerControlled = json.pullBoolean("PlayerControlled");
 		this.longitude = playerControlled ? json.getDouble("Longitude") : null;
 		this.latitude = playerControlled ? json.getDouble("Latitude") : null;
 		

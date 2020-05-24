@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipyardSwapEvent extends Event {
 	
@@ -17,12 +18,15 @@ public class ShipyardSwapEvent extends Event {
 	
 	public ShipyardSwapEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.shipType = json.getString("ShipType");
-		this.shipTypeLocalised = json.getString("ShipType_Localised");
-		this.storeOldShip = json.getString("StoreOldShip");
-		this.shipId = json.getInt("ShipID");
-		this.storeShipId = json.getInt("StoreShipID");
-		this.marketId = json.getLong("MarketID");
+		
+		this.shipType = json.pullString("ShipType");
+		this.shipTypeLocalised = json.pullString("ShipType_Localised");
+		this.storeOldShip = json.pullString("StoreOldShip");
+		this.shipId = json.pullInt("ShipID");
+		this.storeShipId = json.pullInt("StoreShipID");
+		this.marketId = json.pullLong("MarketID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getShipType() {

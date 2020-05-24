@@ -5,10 +5,10 @@ import org.xenodev.edj.events.interfaces.BountyInfo;
 public class DefaultBounty implements BountyInfo {
 	
 	String target, victimFaction;
-	int totalReward;
+	Long totalReward;
 	BountyReward[] rewards;
 	
-	public DefaultBounty(String target, String victimFaction, int totalReward, BountyReward[] rewards) {
+	public DefaultBounty(String target, String victimFaction, Long totalReward, BountyReward[] rewards) {
 		this.target = target;
 		this.victimFaction = victimFaction;
 		this.totalReward = totalReward;
@@ -23,7 +23,23 @@ public class DefaultBounty implements BountyInfo {
 		return victimFaction;
 	}
 
-	public int getTotalReward() {
+	public void setTarget(String target) {
+		this.target = target;
+	}
+
+	public void setVictimFaction(String victimFaction) {
+		this.victimFaction = victimFaction;
+	}
+
+	public void setTotalReward(Long totalReward) {
+		this.totalReward = totalReward;
+	}
+
+	public void setRewards(BountyReward[] rewards) {
+		this.rewards = rewards;
+	}
+
+	public Long getTotalReward() {
 		return totalReward;
 	}
 

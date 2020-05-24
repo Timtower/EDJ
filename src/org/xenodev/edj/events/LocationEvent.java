@@ -20,28 +20,27 @@ public class LocationEvent extends Event {
 	public LocationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.starSystem = json.getString("StarSystem");
-		this.systemAllegiance = json.getString("SystemAllegiance");
-		this.systemEconomy = json.getString("SystemEconomy");
-		this.systemEconomy_Localised = json.getString("SystemEconomy_Localised");
-		this.systemSecondEconomy = json.getString("SystemSecondEconomy");
-		this.systemSecondEconomy_Localised = json.getString("SystemSecondEconomy_Localised");
-		this.systemGovernment = json.getString("SystemGovernment");
-		this.systemGovernment_Localised = json.getString("SystemGovernment_Localised");
-		this.systemSecurity = json.getString("SystemSecurity");
-		this.systemSecurity_Localised = json.getString("SystemSecurity_Localised");
-		this.body = json.getString("Body");
-		this.bodyType = json.getString("BodyType");
+		this.starSystem = json.pullString("StarSystem");
+		this.systemAllegiance = json.pullString("SystemAllegiance");
+		this.systemEconomy = json.pullString("SystemEconomy");
+		this.systemEconomy_Localised = json.pullString("SystemEconomy_Localised");
+		this.systemSecondEconomy = json.pullString("SystemSecondEconomy");
+		this.systemSecondEconomy_Localised = json.pullString("SystemSecondEconomy_Localised");
+		this.systemGovernment = json.pullString("SystemGovernment");
+		this.systemGovernment_Localised = json.pullString("SystemGovernment_Localised");
+		this.systemSecurity = json.pullString("SystemSecurity");
+		this.systemSecurity_Localised = json.pullString("SystemSecurity_Localised");
+		this.body = json.pullString("Body");
+		this.bodyType = json.pullString("BodyType");
 		this.systemFaction_Name = json.getJSONObject("SystemFaction").getString("FactionName");
 		this.systemFaction_State = json.getJSONObject("SystemFaction").getString("FactionState");
-		this.powerplayState = json.getString("PowerplayState");
+		this.powerplayState = json.pullString("PowerplayState");
 		this.starPos = JournalUtils.createPositionArray(json.getJSONArray("StarPos"));
-		this.systemAddress = json.getLong("SystemAddress");
-		this.population = json.getLong("Population");
-		this.marketID = json.getLong("MarketID");
-		this.bodyID = json.getInt("BodyID");
-		this.docked = json.getBoolean("Docked");
-		this.factions = json.has("Factions") ? JournalUtils.createFactionList(json.getJSONArray("Factions")) : null;
+		this.systemAddress = json.pullLong("SystemAddress");
+		this.population = json.pullLong("Population");
+		this.marketID = json.pullLong("MarketID");
+		this.bodyID = json.pullInt("BodyID");
+		this.docked = json.pullBoolean("Docked");
 		this.powers = json.has("Powers") ? JournalUtils.createPowersArray(json.getJSONArray("Powers")) : null;
 		
 		JournalUtils.isAllEventDataProcessed(this, json);

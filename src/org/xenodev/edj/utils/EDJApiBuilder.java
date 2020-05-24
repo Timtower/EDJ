@@ -28,6 +28,7 @@ public class EDJApiBuilder {
 	
 	public EDJApiBuilder(Boolean debug) {
 		this.debug = debug;
+		new UpdateChecker().checkIsLatestVersion();
 	}
 	
 	public void runTests() {

@@ -4,26 +4,38 @@ import org.xenodev.edj.events.interfaces.ScanStageInfo;
 
 public class ShipScanStage0 implements ScanStageInfo {
 	
-	boolean targetLocked;
+	Boolean targetLocked;
 	String ship;
-	int scanStage;
+	Integer scanStage;
 	
-	public ShipScanStage0(boolean targetLocked, String ship, int scanStage) {
+	public ShipScanStage0(Boolean targetLocked, String ship, Integer scanStage) {
 		this.targetLocked = targetLocked;
 		this.ship = ship;
 		this.scanStage = scanStage;
 	}
 
-	public boolean isTargetLocked() {
+	public Boolean getTargetLocked() {
 		return targetLocked;
+	}
+
+	public void setTargetLocked(Boolean targetLocked) {
+		this.targetLocked = targetLocked;
 	}
 
 	public String getShip() {
 		return ship;
 	}
 
-	public int getScanStage() {
+	public void setShip(String ship) {
+		this.ship = ship;
+	}
+
+	public Integer getScanStage() {
 		return scanStage;
 	}
 
+	public void setScanStage(Integer scanStage) {
+		this.scanStage = scanStage;
+	}
+	
 }

@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class PayFinesEvent extends Event {
 	
@@ -15,7 +16,10 @@ public class PayFinesEvent extends Event {
 
 	public PayFinesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.amount = json.getLong("Amount");
+		
+		this.amount = json.pullLong("Amount");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getAmount() {

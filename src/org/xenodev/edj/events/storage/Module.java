@@ -81,25 +81,16 @@ public class Module {
 		return health;
 	}
 
-	public void setHealth(double health) {
+	public void setHealth(Double health) {
 		this.health = health;
 	}
 
 	public Engineering getEngineering() {
-		if(hasEngineering()) return null;
 		return engineering;
 	}
 
 	public void setEngineering(Engineering engineering) {
 		this.engineering = engineering;
 	}
-	
-	public Boolean hasEngineering() {
-		if(this.engineering != null) {
-			return true;
-		}
-		return false;
-	}
-	
 
 }

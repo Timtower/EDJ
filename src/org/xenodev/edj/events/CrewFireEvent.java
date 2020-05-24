@@ -10,16 +10,24 @@ public class CrewFireEvent extends Event {
 	
 	public CrewFireEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = json.getString("Name");
-		this.crewID = json.getInt("CrewID");
+		this.name = json.pullString("Name");
+		this.crewID = json.pullInt("CrewID");
 	}
 
 	public String getName() {
 		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public Integer getCrewID() {
 		return crewID;
+	}
+
+	public void setCrewID(Integer crewID) {
+		this.crewID = crewID;
 	}
 
 }

@@ -6,7 +6,7 @@ public class ShipScanStage3 extends ShipScanStage2 implements ScanStageInfo {
 	
 	String faction, legalStatus;
 
-	public ShipScanStage3(boolean targetLocked, String ship, int scanStage, String pilotName, String pilotName_Localised, String pilotRank, double shieldHealth, double hullHealth,
+	public ShipScanStage3(Boolean targetLocked, String ship, Integer scanStage, String pilotName, String pilotName_Localised, String pilotRank, Double shieldHealth, Double hullHealth,
 			String faction,	String legalStatus) {
 		super(targetLocked, ship, scanStage, pilotName, pilotName_Localised, pilotRank, shieldHealth, hullHealth);
 		this.faction = faction;
@@ -17,8 +17,16 @@ public class ShipScanStage3 extends ShipScanStage2 implements ScanStageInfo {
 		return faction;
 	}
 
+	public void setFaction(String faction) {
+		this.faction = faction;
+	}
+
 	public String getLegalStatus() {
 		return legalStatus;
+	}
+
+	public void setLegalStatus(String legalStatus) {
+		this.legalStatus = legalStatus;
 	}
 
 }

@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class MissionRedirectedEvent extends Event {
 	
@@ -16,12 +17,15 @@ public class MissionRedirectedEvent extends Event {
 	
 	public MissionRedirectedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = json.getString("Name");
-		this.newDestinationStation = json.getString("NewDestinationStation");
-		this.newDestinationSystem = json.getString("NewDestinationSystem");
-		this.oldDestinationStation = json.getString("OldDestinationStation");
-		this.oldDestinationSystem = json.getString("OldDestinationSystem");
-		this.missionId = json.getLong("MissionID");
+		
+		this.name = json.pullString("Name");
+		this.newDestinationStation = json.pullString("NewDestinationStation");
+		this.newDestinationSystem = json.pullString("NewDestinationSystem");
+		this.oldDestinationStation = json.pullString("OldDestinationStation");
+		this.oldDestinationSystem = json.pullString("OldDestinationSystem");
+		this.missionId = json.pullLong("MissionID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getName() {

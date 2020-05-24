@@ -17,17 +17,20 @@ public class MissionAcceptedEvent extends Event {
 	
 	public MissionAcceptedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.faction = json.getString("Faction");
-		this.name = json.getString("Name");
-		this.localisedName = json.getString("LocalisedName");
-		this.targetFaction = json.getString("TargetFaction");
-		this.destinationSystem = json.getString("DestinationSystem");
-		this.destinationStation = json.getString("DestinationStation");
-		this.expiry = JournalUtils.getTimeMillis(json.getString("Expiry"));
-		this.influence = json.getString("Influence");
-		this.reputation = json.getString("Reputation");
-		this.reward = json.getLong("Reward");
-		this.missionId = json.getLong("MissionID");
+		
+		this.faction = json.pullString("Faction");
+		this.name = json.pullString("Name");
+		this.localisedName = json.pullString("LocalisedName");
+		this.targetFaction = json.pullString("TargetFaction");
+		this.destinationSystem = json.pullString("DestinationSystem");
+		this.destinationStation = json.pullString("DestinationStation");
+		this.expiry = JournalUtils.getTimeMillis(json.pullString("Expiry"));
+		this.influence = json.pullString("Influence");
+		this.reputation = json.pullString("Reputation");
+		this.reward = json.pullLong("Reward");
+		this.missionId = json.pullLong("MissionID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getFaction() {

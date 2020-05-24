@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class RefuelAllEvent extends Event {
 	
@@ -16,8 +17,11 @@ public class RefuelAllEvent extends Event {
 	
 	public RefuelAllEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.cost = json.getLong("Cost");
+		
+		this.cost = json.pullLong("Cost");
 		this.amount = json.getDouble("Amount");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getCost() {

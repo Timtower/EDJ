@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipyardEvent extends Event {
 	
@@ -16,9 +17,12 @@ public class ShipyardEvent extends Event {
 	
 	public ShipyardEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.stationName = json.getString("StationName");
-		this.starSystem = json.getString("StarSystem");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.stationName = json.pullString("StationName");
+		this.starSystem = json.pullString("StarSystem");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

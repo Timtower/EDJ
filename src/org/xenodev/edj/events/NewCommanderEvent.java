@@ -2,6 +2,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class NewCommanderEvent extends Event {
 	
@@ -9,9 +10,12 @@ public class NewCommanderEvent extends Event {
 
 	public NewCommanderEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = json.getString("Name");
-		this.FID = json.getString("FID");
-		this.starterPackage = json.getString("starterPackage");
+		
+		this.name = json.pullString("Name");
+		this.FID = json.pullString("FID");
+		this.starterPackage = json.pullString("starterPackage");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getName() {

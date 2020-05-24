@@ -12,10 +12,10 @@ public class DockingDeniedEvent extends Event {
 	public DockingDeniedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.reason = json.getString("Reason");
-		this.stationName = json.getString("StationName");
-		this.stationType = json.getString("StationType");
-		this.marketID = json.getLong("marketID");
+		this.reason = json.pullString("Reason");
+		this.stationName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
+		this.marketID = json.pullLong("marketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

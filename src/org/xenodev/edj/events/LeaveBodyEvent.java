@@ -13,10 +13,10 @@ public class LeaveBodyEvent extends Event {
 	public LeaveBodyEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.starSystem = json.getString("StarSystem");
-		this.body = json.getString("Body");
-		this.systemAdress = json.getLong("SystemAddress");
-		this.bodyID = json.getInt("BodyID");
+		this.starSystem = json.pullString("StarSystem");
+		this.body = json.pullString("Body");
+		this.systemAdress = json.pullLong("SystemAddress");
+		this.bodyID = json.pullInt("BodyID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ModuleBuyEvent extends Event {
 	
@@ -17,14 +18,17 @@ public class ModuleBuyEvent extends Event {
 	
 	public ModuleBuyEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.slot = json.getString("Slot");
-		this.storedItem = json.getString("StoredItem");
-		this.storedItemLocalised = json.getString("StoredItem_Localised");
-		this.buyItem = json.getString("BuyItem");
-		this.buyItemLocalised = json.getString("BuyItem_Localised");
-		this.ship = json.getString("Ship");
-		this.buyPrice = json.getLong("BuyPrice");
-		this.shipId = json.getInt("ShipID");
+		
+		this.slot = json.pullString("Slot");
+		this.storedItem = json.pullString("StoredItem");
+		this.storedItemLocalised = json.pullString("StoredItem_Localised");
+		this.buyItem = json.pullString("BuyItem");
+		this.buyItemLocalised = json.pullString("BuyItem_Localised");
+		this.ship = json.pullString("Ship");
+		this.buyPrice = json.pullLong("BuyPrice");
+		this.shipId = json.pullInt("ShipID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getSlot() {

@@ -15,18 +15,18 @@ public class LoadGameEvent extends Event {
 	public LoadGameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.commander = json.getString("Commander");
-		this.FID = json.getString("FID");
-		this.ship = json.getString("Ship");
-		this.shipName = json.getString("ShipName");
-		this.shipIdent = json.getString("ShipIdent");
-		this.gameMode = json.getString("GameMode");
-		this.shipId = json.getInt("ShipID");
+		this.commander = json.pullString("Commander");
+		this.FID = json.pullString("FID");
+		this.ship = json.pullString("Ship");
+		this.shipName = json.pullString("ShipName");
+		this.shipIdent = json.pullString("ShipIdent");
+		this.gameMode = json.pullString("GameMode");
+		this.shipId = json.pullInt("ShipID");
 		this.fuelLevel = json.getDouble("FuelLevel");
 		this.fuelCapacity = json.getDouble("FuelCapacity");
-		this.credits = json.getLong("Credits");
-		this.loan = json.getLong("Loan");
-		this.horizons = json.getBoolean("Horizons");
+		this.credits = json.pullLong("Credits");
+		this.loan = json.pullLong("Loan");
+		this.horizons = json.pullBoolean("Horizons");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

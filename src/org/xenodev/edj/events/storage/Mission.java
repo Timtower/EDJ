@@ -2,30 +2,30 @@ package org.xenodev.edj.events.storage;
 
 public class Mission {
 	
-	int missionID, expires;
+	Integer missionID, expires;
 	String name;
-	boolean passengerMission;
+	Boolean passengerMission;
 	
-	public Mission(int missionID, String name, boolean passengerMission, int expires) {
+	public Mission(Integer missionID, String name, Boolean passengerMission, Integer expires) {
 		this.missionID = missionID;
 		this.expires = expires;
 		this.name = name;
 		this.passengerMission = passengerMission;
 	}
 
-	public int getMissionID() {
+	public Integer getMissionID() {
 		return missionID;
 	}
 
-	public void setMissionID(int missionID) {
+	public void setMissionID(Integer missionID) {
 		this.missionID = missionID;
 	}
 
-	public int getExpires() {
+	public Integer getExpires() {
 		return expires;
 	}
 
-	public void setExpires(int expires) {
+	public void setExpires(Integer expires) {
 		this.expires = expires;
 	}
 
@@ -37,11 +37,11 @@ public class Mission {
 		this.name = name;
 	}
 
-	public boolean isPassengerMission() {
+	public Boolean getPassengerMission() {
 		return passengerMission;
 	}
 
-	public void setPassengerMission(boolean passengerMission) {
+	public void setPassengerMission(Boolean passengerMission) {
 		this.passengerMission = passengerMission;
 	}
 

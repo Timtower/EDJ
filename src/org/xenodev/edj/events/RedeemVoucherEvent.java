@@ -21,9 +21,12 @@ public class RedeemVoucherEvent extends Event {
 	
 	public RedeemVoucherEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.type = json.getString("Type");
-		this.totalAmount = json.getLong("Amount");
+		
+		this.type = json.pullString("Type");
+		this.totalAmount = json.pullLong("Amount");
 		this.factionBounties = JournalUtils.createFactionBountyList(json.getJSONArray("Factions"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getType() {

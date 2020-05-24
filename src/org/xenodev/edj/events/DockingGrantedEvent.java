@@ -13,10 +13,10 @@ public class DockingGrantedEvent extends Event {
 	public DockingGrantedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.stationName = json.getString("StationName");
-		this.stationType = json.getString("StationType");
-		this.marketID = json.getLong("MarketID");
-		this.landingPad = json.getInt("LandingPad");
+		this.stationName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
+		this.marketID = json.pullLong("MarketID");
+		this.landingPad = json.pullInt("LandingPad");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

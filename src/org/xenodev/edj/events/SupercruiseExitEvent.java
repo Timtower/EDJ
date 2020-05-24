@@ -13,11 +13,11 @@ public class SupercruiseExitEvent extends Event {
 	public SupercruiseExitEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.starSystem = json.getString("StarSystem");
-		this.body = json.getString("Body");
-		this.bodyType = json.getString("BodyType");
-		this.systemAddress = json.getLong("SystemAddress");
-		this.bodyID = json.getInt("BodyID");
+		this.starSystem = json.pullString("StarSystem");
+		this.body = json.pullString("Body");
+		this.bodyType = json.pullString("BodyType");
+		this.systemAddress = json.pullLong("SystemAddress");
+		this.bodyID = json.pullInt("BodyID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

@@ -17,14 +17,14 @@ public class LoadoutEvent extends Event {
 	public LoadoutEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.ship = json.getString("Ship");
-		this.shipName = json.getString("ShipName");
-		this.shipIdent = json.getString("ShipIdent");
-		this.shipID = json.getInt("ShipID");
-		this.hullValue = json.getInt("HullValue");
-		this.moduleValue = json.getInt("ModulesValue");
+		this.ship = json.pullString("Ship");
+		this.shipName = json.pullString("ShipName");
+		this.shipIdent = json.pullString("ShipIdent");
+		this.shipID = json.pullInt("ShipID");
+		this.hullValue = json.pullInt("HullValue");
+		this.moduleValue = json.pullInt("ModulesValue");
 		this.hullHealth = json.getDouble("HullHealth");
-		this.rebuy = json.getInt("Rebuy");
+		this.rebuy = json.pullInt("Rebuy");
 		this.modules = JournalUtils.createModuleList(json.getJSONArray("Modules"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);

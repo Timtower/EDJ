@@ -2,6 +2,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class UnderAttackEvent extends Event {
 	
@@ -9,7 +10,10 @@ public class UnderAttackEvent extends Event {
 
 	public UnderAttackEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		
 		this.target = json.pullString("Target");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getTarget() {

@@ -11,8 +11,9 @@ public class ClearSavedGameEvent extends Event {
 	
 	public ClearSavedGameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.name = json.getString("Name");
-		this.FID = json.getString("FID");
+		
+		this.name = json.pullString("Name");
+		this.FID = json.pullString("FID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class ModuleSwapEvent extends Event {
 
@@ -17,15 +18,18 @@ public class ModuleSwapEvent extends Event {
 	
 	public ModuleSwapEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketId = json.getLong("MarketID");
-		this.fromSlot = json.getString("FromSlot");
-		this.toSlot = json.getString("ToSlot");
-		this.fromItem = json.getString("FromItem");
-		this.fromItemLocalised = json.getString("FromItem_Localised");
-		this.toItem = json.getString("ToItem");
-		this.toItemLocalised = json.getString("ToItem_Localised");
-		this.ship = json.getString("Ship");
-		this.shipId = json.getInt("ShipID");
+		
+		this.marketId = json.pullLong("MarketID");
+		this.fromSlot = json.pullString("FromSlot");
+		this.toSlot = json.pullString("ToSlot");
+		this.fromItem = json.pullString("FromItem");
+		this.fromItemLocalised = json.pullString("FromItem_Localised");
+		this.toItem = json.pullString("ToItem");
+		this.toItemLocalised = json.pullString("ToItem_Localised");
+		this.ship = json.pullString("Ship");
+		this.shipId = json.pullInt("ShipID");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketId() {

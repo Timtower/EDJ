@@ -22,10 +22,13 @@ public class MassModuleStoreEvent extends Event {
 
 	public MassModuleStoreEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.marketID = json.getLong("MarketID");
-		this.ship = json.getString("Ship");
-		this.shipId = json.getInt("ShipID");
+		
+		this.marketID = json.pullLong("MarketID");
+		this.ship = json.pullString("Ship");
+		this.shipId = json.pullInt("ShipID");
 		this.items = JournalUtils.createModuleItemsList(json.getJSONArray("Items"));
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public Long getMarketID() {

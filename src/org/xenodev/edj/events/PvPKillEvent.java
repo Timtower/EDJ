@@ -12,8 +12,8 @@ public class PvPKillEvent extends Event {
 	public PvPKillEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.victim = json.getString("Victim");
-		this.combatRank = json.getInt("CombatRank");
+		this.victim = json.pullString("Victim");
+		this.combatRank = json.pullInt("CombatRank");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

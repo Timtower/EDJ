@@ -2,6 +2,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class BuyTradeDataEvent extends Event {
 	
@@ -10,16 +11,27 @@ public class BuyTradeDataEvent extends Event {
 	
 	public BuyTradeDataEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.system = json.getString("System");
-		this.cost = json.getInt("Cost");
+		
+		this.system = json.pullString("System");
+		this.cost = json.pullInt("Cost");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
-	
+
 	public String getSystem() {
 		return system;
 	}
-	
+
+	public void setSystem(String system) {
+		this.system = system;
+	}
+
 	public Integer getCost() {
 		return cost;
+	}
+
+	public void setCost(Integer cost) {
+		this.cost = cost;
 	}
 	
 }

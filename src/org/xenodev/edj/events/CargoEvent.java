@@ -15,7 +15,7 @@ public class CargoEvent extends Event {
 	public CargoEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.vessel = json.getString("Vessel");
+		this.vessel = json.pullString("Vessel");
 		this.inventory =  JournalUtils.createCargoInventory(json.getJSONArray("Inventory"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);

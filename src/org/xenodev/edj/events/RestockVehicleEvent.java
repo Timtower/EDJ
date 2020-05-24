@@ -8,6 +8,7 @@ package org.xenodev.edj.events;
 
 import org.json.JSONObject;
 import org.xenodev.edj.Event;
+import org.xenodev.edj.utils.JournalUtils;
 
 public class RestockVehicleEvent extends Event {
 	
@@ -17,10 +18,13 @@ public class RestockVehicleEvent extends Event {
 	
 	public RestockVehicleEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		this.type = json.getString("Type");
-		this.loadout = json.getString("Loadout");
-		this.cost = json.getLong("Cost");
-		this.count = json.getInt("Count");
+		
+		this.type = json.pullString("Type");
+		this.loadout = json.pullString("Loadout");
+		this.cost = json.pullLong("Cost");
+		this.count = json.pullInt("Count");
+		
+		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
 	public String getType() {
