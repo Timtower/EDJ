@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.xenodev.edj.Event;
+import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.storage.CargoInventory;
 import org.xenodev.edj.events.storage.Engineering;
 import org.xenodev.edj.events.storage.Killer;
