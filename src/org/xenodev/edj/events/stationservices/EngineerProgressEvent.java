@@ -1,5 +1,6 @@
 package org.xenodev.edj.events.stationservices;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.EngineerProgressInfo;
@@ -10,22 +11,32 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class EngineerProgressEvent extends Event {
 	
-	JSONObject json;
+	String engineer, progress;
+	Integer engineerId, rank;
+	Double rankProgress;
+	JSONArray engineersArray;
 
 	public EngineerProgressEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.json = json;
+		if(json.has("Engineers")) {
+			this.engineersArray = json.pullJSONArray("Engineers");
+		}else {
+			this.engineer = json.pullString("Engineer");
+			this.progress = json.pullString("Progress");
+			this.engineerId = json.pullInt("EngineerID");
+			this.rank = json.pullInt("Rank");
+			this.rankProgress = json.getDouble("RankProgress");
+		}
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 	
 	public EngineerProgressInfo getEngineerProgressInfo() {
-		if(json.has("Engineers")) {
-			return new EngineerProgressStartup(JournalUtils.createEngineerProgressList(json.getJSONArray("Engineers")));
+		if(engineersArray != null) {
+			return new EngineerProgressStartup(JournalUtils.createEngineerProgressList(engineersArray));
 		}
-		return new EngineerProgressUpdate(new EngineerProgress(json.pullString("Engineer"), json.pullString("Progress"),
-				json.pullInt("EngineerID"), json.pullInt("Rank"), json.getDouble("RankProgress")));
+		return new EngineerProgressUpdate(new EngineerProgress(engineer, progress, engineerId, rank, rankProgress));
 	}
 
 }

@@ -1,21 +1,23 @@
 package org.xenodev.edj.events.storage.engineer;
 
+import java.util.List;
+
 import org.xenodev.edj.events.interfaces.EngineerProgressInfo;
 
 public class EngineerProgressStartup implements EngineerProgressInfo {
 	
-	private EngineerProgress[] engineerProgress;
+	private List<EngineerProgress> engineerProgressList;
 
-	public EngineerProgressStartup(EngineerProgress[] engineerProgress) {
-		this.engineerProgress = engineerProgress;
+	public EngineerProgressStartup(List<EngineerProgress> engineerProgressList) {
+		this.engineerProgressList = engineerProgressList;
 	}
 
-	public EngineerProgress[] getEngineerProgress() {
-		return engineerProgress;
+	public List<EngineerProgress> getEngineerProgress() {
+		return engineerProgressList;
 	}
 
-	public void setEngineerProgress(EngineerProgress[] engineerProgress) {
-		this.engineerProgress = engineerProgress;
+	public void setEngineerProgress(List<EngineerProgress> engineerProgressList) {
+		this.engineerProgressList = engineerProgressList;
 	}
 
 }

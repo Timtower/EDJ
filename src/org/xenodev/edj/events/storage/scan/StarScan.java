@@ -1,8 +1,6 @@
 package org.xenodev.edj.events.storage.scan;
 
-import org.json.JSONObject;
 import org.xenodev.edj.events.interfaces.ScanInfo;
-import org.xenodev.edj.utils.JournalUtils;
 
 public class StarScan implements ScanInfo {
 	
@@ -12,28 +10,31 @@ public class StarScan implements ScanInfo {
 	Long radius, semiMajorAxis, orbitalPeriod, ageMY;
 	Parent[] parents;
 	Ring[] rings;
-	
-	public StarScan(JSONObject json) {
-		this.scanType = json.getString("ScanType");
-		this.bodyName = json.getString("BodyName");
-		this.starType = json.getString("StarType");
-		this.luminosity = json.getString("Luminosity");
-		this.distanceFromArrivalLS = json.getDouble("DistanceFromArrivalLS");
-		this.stellarMass = json.getDouble("StellarMass");
-		this.surfaceTemperature = json.getDouble("SurfaceTemperature");
-		this.eccentricity = json.getDouble("Eccentricity");
-		this.orbitalInclination = json.getDouble("OrbitalInclination");
-		this.periapsis = json.getDouble("Periapsis");
-		this.rotationPeriod = json.getDouble("RotationPeriod");
-		this.axialTilt = json.getDouble("AxialTilt");
-		this.absoluteMagnitude = json.getDouble("AbsoluteMagnitude");
-		this.bodyID = json.getInt("BodyID");
-		this.radius = json.getLong("Radius");
-		this.semiMajorAxis = json.getLong("SemiMajorAxis");
-		this.orbitalPeriod = json.getLong("OrbitalPeriod");
-		this.ageMY = json.getLong("AgeMY");
-		this.parents = JournalUtils.createParentList(json.getJSONObject("Parents"));
-		this.rings = JournalUtils.createRingsList(json.getJSONArray("Rings"));
+
+	public StarScan(String scanType, String bodyName, String starType, String luminosity, Double distanceFromArrivalLS,
+			Double stellarMass, Double surfaceTemperature, Double eccentricity, Double orbitalInclination,
+			Double periapsis, Double rotationPeriod, Double axialTilt, Double absoluteMagnitude, Integer bodyID,
+			Long radius, Long semiMajorAxis, Long orbitalPeriod, Long ageMY, Parent[] parents, Ring[] rings) {
+		this.scanType = scanType;
+		this.bodyName = bodyName;
+		this.starType = starType;
+		this.luminosity = luminosity;
+		this.distanceFromArrivalLS = distanceFromArrivalLS;
+		this.stellarMass = stellarMass;
+		this.surfaceTemperature = surfaceTemperature;
+		this.eccentricity = eccentricity;
+		this.orbitalInclination = orbitalInclination;
+		this.periapsis = periapsis;
+		this.rotationPeriod = rotationPeriod;
+		this.axialTilt = axialTilt;
+		this.absoluteMagnitude = absoluteMagnitude;
+		this.bodyID = bodyID;
+		this.radius = radius;
+		this.semiMajorAxis = semiMajorAxis;
+		this.orbitalPeriod = orbitalPeriod;
+		this.ageMY = ageMY;
+		this.parents = parents;
+		this.rings = rings;
 	}
 
 	public String getScanType() {

@@ -1,17 +1,15 @@
 package org.xenodev.edj.events.storage;
 
-import java.util.List;
-
 public class Faction {
 	
 	String name, factionState, goverment, allegiance, happiness;
 	Double myReputation, influence;
-	List<String> activeStates, pendingStates, recoveringStates;
+	FactionState activeStates, pendingStates, recoveringStates;
 	Boolean squadronSystem, happiestSystem, homeSystem;
 	
 	public Faction(String name, String factionState, String goverment, String allegiance, String happiness,
-			Double myReputation, Double influence, List<String> activeStates, List<String> pendingStates,
-			List<String> recoveringStates, Boolean squadronSystem, Boolean happiestSystem, Boolean homeSystem) {
+			Double myReputation, Double influence, FactionState activeStates, FactionState pendingStates,
+			FactionState recoveringStates, Boolean squadronSystem, Boolean happiestSystem, Boolean homeSystem) {
 		this.name = name;
 		this.factionState = factionState;
 		this.goverment = goverment;
@@ -83,27 +81,27 @@ public class Faction {
 		this.influence = influence;
 	}
 
-	public List<String> getActiveStates() {
+	public FactionState getActiveStates() {
 		return activeStates;
 	}
 
-	public void setActiveStates(List<String> activeStates) {
+	public void setActiveStates(FactionState activeStates) {
 		this.activeStates = activeStates;
 	}
 
-	public List<String> getPendingStates() {
+	public FactionState getPendingStates() {
 		return pendingStates;
 	}
 
-	public void setPendingStates(List<String> pendingStates) {
+	public void setPendingStates(FactionState pendingStates) {
 		this.pendingStates = pendingStates;
 	}
 
-	public List<String> getRecoveringStates() {
+	public FactionState getRecoveringStates() {
 		return recoveringStates;
 	}
 
-	public void setRecoveringStates(List<String> recoveringStates) {
+	public void setRecoveringStates(FactionState recoveringStates) {
 		this.recoveringStates = recoveringStates;
 	}
 

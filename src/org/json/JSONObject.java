@@ -568,9 +568,9 @@ public class JSONObject {
             throw new JSONException("Null key.");
         }
         Object object = this.opt(key);
-        if (object == null) {
+        /*if (object == null) {
             throw new JSONException("JSONObject[" + quote(key) + "] not found.");
-        }
+        }*/
         return object;
     }
 
@@ -611,6 +611,7 @@ public class JSONObject {
      */
     public Boolean getBoolean(String key) throws JSONException {
         Object object = this.get(key);
+        if (object == null) return null;
         if (object.equals(Boolean.FALSE)
                 || (object instanceof String && ((String) object)
                         .equalsIgnoreCase("false"))) {
@@ -869,6 +870,7 @@ public class JSONObject {
      */
     public String getString(String key) throws JSONException {
         Object object = this.get(key);
+        if(object == null) return null;
         if (object instanceof String) {
             return (String) object;
         }
@@ -2640,10 +2642,12 @@ public class JSONObject {
      */
     public String pullString(String key) throws JSONException {
         Object object = this.get(key);
+        if(object == null) return null;
         if (object instanceof String) {
         	this.remove(key);
             return (String) object;
         }
+        
         throw wrongValueFormatException(key, "string", null);
     }
 
@@ -2875,7 +2879,8 @@ public class JSONObject {
      */
     public Boolean pullBoolean(String key) throws JSONException {
         Object object = this.get(key);
-        if (object.equals(Boolean.FALSE)
+        if(object == null) return null;
+        if(object.equals(Boolean.FALSE)
                 || (object instanceof String && ((String) object)
                         .equalsIgnoreCase("false"))) {
         	this.remove(key);

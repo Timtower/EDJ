@@ -10,7 +10,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class EngineerCraftEvent extends Event {
 	
-	private String engineer, blueprintName;
+	private String engineer, blueprintName, slot, module;
 	private Integer engineerID, blueprintID, level;
 	private Double quality;
 	private List<Ingredient> ingredients;
@@ -19,16 +19,34 @@ public class EngineerCraftEvent extends Event {
 	public EngineerCraftEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
+		this.module = json.pullString("Module");
+		this.slot = json.pullString("Slot");
 		this.engineer = json.pullString("Engineer");
 		this.blueprintName = json.pullString("BlueprintName");
 		this.engineerID = json.pullInt("EngineerID");
 		this.blueprintID = json.pullInt("BlueprintID");
 		this.level = json.pullInt("Level");
-		this.quality = json.getDouble("Quality");
-		this.ingredients = JournalUtils.createIngredientsList(json.getJSONArray("Ingredients"));
-		this.modifiers = JournalUtils.createModifierList(json.getJSONArray("Modifiers"));
+		this.quality = json.pullDouble("Quality");
+		this.ingredients = JournalUtils.createIngredientsList(json.pullJSONArray("Ingredients"));
+		this.modifiers = JournalUtils.createModifierList(json.pullJSONArray("Modifiers"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
+	}
+
+	public String getSlot() {
+		return slot;
+	}
+
+	public void setSlot(String slot) {
+		this.slot = slot;
+	}
+
+	public String getModule() {
+		return module;
+	}
+
+	public void setModule(String module) {
+		this.module = module;
 	}
 
 	public String getEngineer() {

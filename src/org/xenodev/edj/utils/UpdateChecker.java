@@ -37,9 +37,12 @@ public class UpdateChecker {
 		
 	}
 	
+	/**
+	 * Check if the API is up-to-date to the latest github release
+	 */
 	public void checkIsLatestVersion() {
-		Integer currentVersionInt = Integer.parseInt(EDJApi.VERSION.replaceAll("\\.", ""));
-		Integer latestVersionInt = Integer.parseInt(latestVersion.replaceAll("\\.", ""));
+		Integer currentVersionInt = Integer.parseInt(EDJApi.VERSION.replaceAll("\\.", "").split("-")[0]);
+		Integer latestVersionInt = Integer.parseInt(latestVersion.replaceAll("\\.", "").split("-")[0]);
 		
 		Compare(currentVersionInt, latestVersionInt);
 	}

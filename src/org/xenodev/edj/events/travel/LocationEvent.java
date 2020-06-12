@@ -5,21 +5,31 @@ import java.util.List;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.storage.Faction;
+import org.xenodev.edj.events.storage.StationEconomy;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class LocationEvent extends Event {
 	
-	String starSystem, systemAllegiance, systemEconomy, systemEconomy_Localised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernment_Localised, systemSecurity, systemSecurity_Localised, body, bodyType, systemFaction_Name, systemFaction_State, powerplayState;
-	Double[] starPos;
-	Long systemAddress, population, marketID;
-	Integer bodyID;
-	Boolean docked;
-	List<Faction> factions;
-	List<String> powers;
+	private String starSystem, systemAllegiance, systemEconomy, systemEconomy_Localised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernment_Localised,
+	systemSecurity, systemSecurity_Localised, body, bodyType, systemFactionName, systemFactionState, powerplayState, stationName, stationType, stationEconomy, stationFactionName, stationFactionState,
+	stationAllegiance, stationGovernment, stationEconomyLocalised, stationGovernmentLocalised;
+	private Double[] starPos;
+	private Long systemAddress, population, marketID;
+	private Integer bodyID;
+	private Boolean docked;
+	private List<Faction> factions;
+	private List<String> powers, stationServices;
+	private List<StationEconomy> stationEconomies;
 	
 	public LocationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
+		JSONObject systemFaction = json.pullJSONObject("SystemFaction");
+		JSONObject stationFaction = json.pullJSONObject("StationFaction");
+		
+		this.stationName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
+		this.stationEconomy = json.pullString("StationEconomy");
 		this.starSystem = json.pullString("StarSystem");
 		this.systemAllegiance = json.pullString("SystemAllegiance");
 		this.systemEconomy = json.pullString("SystemEconomy");
@@ -32,18 +42,119 @@ public class LocationEvent extends Event {
 		this.systemSecurity_Localised = json.pullString("SystemSecurity_Localised");
 		this.body = json.pullString("Body");
 		this.bodyType = json.pullString("BodyType");
-		this.systemFaction_Name = json.getJSONObject("SystemFaction").getString("FactionName");
-		this.systemFaction_State = json.getJSONObject("SystemFaction").getString("FactionState");
+		this.stationFactionName = stationFaction.pullString("Name");
+		this.stationFactionState = stationFaction.pullString("FactionState");
+		this.systemFactionName = systemFaction.pullString("Name");
+		this.systemFactionState = systemFaction.pullString("FactionState");
+		this.factions = JournalUtils.createFactionsList(json.pullJSONArray("Factions"));
 		this.powerplayState = json.pullString("PowerplayState");
-		this.starPos = JournalUtils.createPositionArray(json.getJSONArray("StarPos"));
+		this.starPos = JournalUtils.createPositionArray(json.pullJSONArray("StarPos"));
 		this.systemAddress = json.pullLong("SystemAddress");
 		this.population = json.pullLong("Population");
 		this.marketID = json.pullLong("MarketID");
 		this.bodyID = json.pullInt("BodyID");
 		this.docked = json.pullBoolean("Docked");
-		this.powers = json.has("Powers") ? JournalUtils.createPowersArray(json.getJSONArray("Powers")) : null;
+		this.powers = json.has("Powers") ? JournalUtils.createPowersArray(json.pullJSONArray("Powers")) : null;
+		this.stationServices = JournalUtils.createStationServiceList(json.pullJSONArray("StationServices"));
+		this.stationEconomies = JournalUtils.createStationEconomiesList(json.pullJSONArray("StationEconomies"));
+		this.stationAllegiance = json.pullString("StationAllegiance");
+		this.stationGovernment = json.pullString("StationGovernment");
+		this.stationEconomyLocalised = json.pullString("StationEconomy_Localised");
+		this.stationGovernmentLocalised = json.pullString("StationGovernment_Localised");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
+	}
+
+	public String getStationName() {
+		return stationName;
+	}
+
+	public void setStationName(String stationName) {
+		this.stationName = stationName;
+	}
+
+	public String getStationType() {
+		return stationType;
+	}
+
+	public void setStationType(String stationType) {
+		this.stationType = stationType;
+	}
+
+	public String getStationEconomy() {
+		return stationEconomy;
+	}
+
+	public void setStationEconomy(String stationEconomy) {
+		this.stationEconomy = stationEconomy;
+	}
+
+	public String getStationFactionName() {
+		return stationFactionName;
+	}
+
+	public void setStationFactionName(String stationFactionName) {
+		this.stationFactionName = stationFactionName;
+	}
+
+	public String getStationFactionState() {
+		return stationFactionState;
+	}
+
+	public void setStationFactionState(String stationFactionState) {
+		this.stationFactionState = stationFactionState;
+	}
+
+	public String getStationAllegiance() {
+		return stationAllegiance;
+	}
+
+	public void setStationAllegiance(String stationAllegiance) {
+		this.stationAllegiance = stationAllegiance;
+	}
+
+	public String getStationGovernment() {
+		return stationGovernment;
+	}
+
+	public void setStationGovernment(String stationGovernment) {
+		this.stationGovernment = stationGovernment;
+	}
+
+	public String getStationEconomyLocalised() {
+		return stationEconomyLocalised;
+	}
+
+	public void setStationEconomyLocalised(String stationEconomyLocalised) {
+		this.stationEconomyLocalised = stationEconomyLocalised;
+	}
+
+	public String getStationGovernmentLocalised() {
+		return stationGovernmentLocalised;
+	}
+
+	public void setStationGovernmentLocalised(String stationGovernmentLocalised) {
+		this.stationGovernmentLocalised = stationGovernmentLocalised;
+	}
+
+	public List<String> getStationServices() {
+		return stationServices;
+	}
+
+	public void setStationServices(List<String> stationServices) {
+		this.stationServices = stationServices;
+	}
+
+	public List<StationEconomy> getStationEconomies() {
+		return stationEconomies;
+	}
+
+	public void setStationEconomies(List<StationEconomy> stationEconomies) {
+		this.stationEconomies = stationEconomies;
+	}
+
+	public void setSystemFactionState(String systemFactionState) {
+		this.systemFactionState = systemFactionState;
 	}
 
 	public String getStarSystem() {
@@ -142,20 +253,20 @@ public class LocationEvent extends Event {
 		this.bodyType = bodyType;
 	}
 
-	public String getSystemFaction_Name() {
-		return systemFaction_Name;
+	public String getSystemFactionName() {
+		return systemFactionName;
 	}
 
-	public void setSystemFaction_Name(String systemFaction_Name) {
-		this.systemFaction_Name = systemFaction_Name;
+	public void setSystemFactionName(String systemFactionName) {
+		this.systemFactionName = systemFactionName;
 	}
 
-	public String getSystemFaction_State() {
-		return systemFaction_State;
+	public String getSystemFactionState() {
+		return systemFactionState;
 	}
 
-	public void setSystemFaction_State(String systemFaction_State) {
-		this.systemFaction_State = systemFaction_State;
+	public void setSystemFaction_State(String systemFactionState) {
+		this.systemFactionState = systemFactionState;
 	}
 
 	public String getPowerplayState() {

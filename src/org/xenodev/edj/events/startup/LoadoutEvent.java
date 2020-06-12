@@ -10,12 +10,13 @@ import org.xenodev.edj.utils.JournalUtils;
 public class LoadoutEvent extends Event {
 	
 	String ship, shipName, shipIdent;
-	Integer shipID, hullValue, moduleValue, rebuy;
-	Double hullHealth;
+	Integer shipID, hullValue, moduleValue, rebuy, cargoCapcity, main;
+	Double hullHealth, maxJumpRange, reserve, unladenMass;
 	List<Module> modules;
 	
 	public LoadoutEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		JSONObject fuelCapcity = json.pullJSONObject("FuelCapacity");
 		
 		this.ship = json.pullString("Ship");
 		this.shipName = json.pullString("ShipName");
@@ -23,9 +24,14 @@ public class LoadoutEvent extends Event {
 		this.shipID = json.pullInt("ShipID");
 		this.hullValue = json.pullInt("HullValue");
 		this.moduleValue = json.pullInt("ModulesValue");
-		this.hullHealth = json.getDouble("HullHealth");
+		this.hullHealth = json.pullDouble("HullHealth");
 		this.rebuy = json.pullInt("Rebuy");
-		this.modules = JournalUtils.createModuleList(json.getJSONArray("Modules"));
+		this.maxJumpRange = json.pullDouble("MaxJumpRange");
+		this.cargoCapcity = json.pullInt("CargoCapacity");
+		this.main = fuelCapcity.getInt("Main");
+		this.reserve = fuelCapcity.getDouble("Reserve");
+		this.unladenMass = json.pullDouble("UnladenMass");
+		this.modules = JournalUtils.createModuleList(json.pullJSONArray("Modules"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -100,6 +106,46 @@ public class LoadoutEvent extends Event {
 
 	public void setModules(List<Module> modules) {
 		this.modules = modules;
+	}
+
+	public Integer getCargoCapcity() {
+		return cargoCapcity;
+	}
+
+	public void setCargoCapcity(Integer cargoCapcity) {
+		this.cargoCapcity = cargoCapcity;
+	}
+
+	public Integer getMainFuelCapcity() {
+		return main;
+	}
+
+	public void setMainFuelCapcity(Integer main) {
+		this.main = main;
+	}
+
+	public Double getMaxJumpRange() {
+		return maxJumpRange;
+	}
+
+	public void setMaxJumpRange(Double maxJumpRange) {
+		this.maxJumpRange = maxJumpRange;
+	}
+
+	public Double getReserveFuelCapcity() {
+		return reserve;
+	}
+
+	public void setReserveFuelCapcity(Double reserve) {
+		this.reserve = reserve;
+	}
+
+	public Double getUnladenMass() {
+		return unladenMass;
+	}
+
+	public void setUnladenMass(Double unladenMass) {
+		this.unladenMass = unladenMass;
 	}
 	
 }

@@ -22,20 +22,20 @@ public class StatisticsEvent extends Event {
 	
 	public StatisticsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
-		JSONObject bankAccount = json.getJSONObject("Bank_Account");
-		JSONObject combat = json.getJSONObject("Combat");
-		JSONObject crime = json.getJSONObject("Crime");
-		JSONObject smuggling = json.getJSONObject("Smuggling");
-		JSONObject trading = json.getJSONObject("Trading");
-		JSONObject mining = json.getJSONObject("Mining");
-		JSONObject exploration = json.getJSONObject("Exploration");
-		JSONObject passengers = json.getJSONObject("Passengers");
-		JSONObject searchAndRescue = json.getJSONObject("Search_And_Rescue");
-		JSONObject thargoid = json.getJSONObject("TG_ENCOUNTERS");
-		JSONObject crafting = json.getJSONObject("Crafting");
-		JSONObject crew = json.getJSONObject("Crew");
-		JSONObject multicrew = json.getJSONObject("Multicrew");
-		JSONObject materialTrader = json.getJSONObject("Material_Trader_Stats");
+		JSONObject bankAccount = json.pullJSONObject("Bank_Account");
+		JSONObject combat = json.pullJSONObject("Combat");
+		JSONObject crime = json.pullJSONObject("Crime");
+		JSONObject smuggling = json.pullJSONObject("Smuggling");
+		JSONObject trading = json.pullJSONObject("Trading");
+		JSONObject mining = json.pullJSONObject("Mining");
+		JSONObject exploration = json.pullJSONObject("Exploration");
+		JSONObject passengers = json.pullJSONObject("Passengers");
+		JSONObject searchAndRescue = json.pullJSONObject("Search_And_Rescue");
+		JSONObject thargoid = json.pullJSONObject("TG_ENCOUNTERS");
+		JSONObject crafting = json.pullJSONObject("Crafting");
+		JSONObject crew = json.pullJSONObject("Crew");
+		JSONObject multicrew = json.pullJSONObject("Multicrew");
+		JSONObject materialTrader = json.pullJSONObject("Material_Trader_Stats");
 		
 		// Bank Account
 		this.currentWealth = bankAccount.getLong("Current_Wealth");

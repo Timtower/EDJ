@@ -19,7 +19,7 @@ public class RankEvent extends Event {
 		
 		this.combat = json.pullInt("Combat");
 		this.trade =  json.pullInt("Trade");
-		this.explore = json.pullInt("Combat");
+		this.explore = json.pullInt("Explore");
 		this.empire = json.pullInt("Empire");
 		this.federation = json.pullInt("Federation");
 		this.cqc = json.pullInt("CQC");

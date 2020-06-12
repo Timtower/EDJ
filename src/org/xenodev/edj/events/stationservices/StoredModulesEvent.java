@@ -26,7 +26,7 @@ public class StoredModulesEvent extends Event {
 		this.marketId = json.pullLong("MarketID");
 		this.stationName = json.pullString("StationName");
 		this.starSystem = json.pullString("StarSystem");
-		this.moduleList = JournalUtils.createStoredModuleList(json.getJSONArray("Items"));
+		this.moduleList = JournalUtils.createStoredModuleList(json.pullJSONArray("Items"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

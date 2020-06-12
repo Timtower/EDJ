@@ -8,6 +8,8 @@ package org.xenodev.edj.utils.exceptions;
 
 public class UnusedEventDataException extends Exception {
 
+	private static final long serialVersionUID = 1L;
+
 	public UnusedEventDataException() {}
 
 }

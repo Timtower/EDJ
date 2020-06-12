@@ -4,13 +4,16 @@ import org.xenodev.edj.events.interfaces.ScanStageInfo;
 
 public class ShipScanStage1 extends ShipScanStage0 implements ScanStageInfo {
 	
-	String pilotName, pilotName_Localised, pilotRank;
+	String pilotName, pilotNameLocalised, pilotRank, shipLocalised, power;
 
-	public ShipScanStage1(Boolean targetLocked, String ship, Integer scanStage, String pilotName, String pilotName_Localised, String pilotRank) {
+	public ShipScanStage1(Boolean targetLocked, String ship, Integer scanStage, String pilotName,
+			String pilotNameLocalised, String pilotRank, String shipLocalised, String power) {
 		super(targetLocked, ship, scanStage);
 		this.pilotName = pilotName;
-		this.pilotName_Localised = pilotName_Localised;
+		this.pilotNameLocalised = pilotNameLocalised;
 		this.pilotRank = pilotRank;
+		this.shipLocalised = shipLocalised;
+		this.power = power;
 	}
 
 	public String getPilotName() {
@@ -21,12 +24,12 @@ public class ShipScanStage1 extends ShipScanStage0 implements ScanStageInfo {
 		this.pilotName = pilotName;
 	}
 
-	public String getPilotName_Localised() {
-		return pilotName_Localised;
+	public String getPilotNameLocalised() {
+		return pilotNameLocalised;
 	}
 
-	public void setPilotName_Localised(String pilotName_Localised) {
-		this.pilotName_Localised = pilotName_Localised;
+	public void setPilotNameLocalised(String pilotNameLocalised) {
+		this.pilotNameLocalised = pilotNameLocalised;
 	}
 
 	public String getPilotRank() {
@@ -37,4 +40,22 @@ public class ShipScanStage1 extends ShipScanStage0 implements ScanStageInfo {
 		this.pilotRank = pilotRank;
 	}
 
+	public String getShipLocalised() {
+		return shipLocalised;
+	}
+
+	public void setShipLocalised(String shipLocalised) {
+		this.shipLocalised = shipLocalised;
+	}
+
+	public String getPower() {
+		return power;
+	}
+
+	public void setPower(String power) {
+		this.power = power;
+	}
+
+	
+	
 }

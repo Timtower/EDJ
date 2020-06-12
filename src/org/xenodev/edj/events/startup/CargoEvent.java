@@ -8,15 +8,17 @@ import org.xenodev.edj.events.storage.CargoInventory;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class CargoEvent extends Event {
-	
+
 	String vessel;
+	Integer count;
 	List<CargoInventory> inventory;
 	
 	public CargoEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
 		this.vessel = json.pullString("Vessel");
-		this.inventory =  JournalUtils.createCargoInventory(json.getJSONArray("Inventory"));
+		this.count = json.pullInt("Count");
+		this.inventory =  JournalUtils.createCargoInventory(json.pullJSONArray("Inventory"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -35,6 +37,14 @@ public class CargoEvent extends Event {
 
 	public void setInventory(List<CargoInventory> inventory) {
 		this.inventory = inventory;
+	}
+	
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 
 }

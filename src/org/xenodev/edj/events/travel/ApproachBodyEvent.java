@@ -6,14 +6,14 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ApproachBodyEvent extends Event {
 	
-	String startSystem, body;
+	String starSystem, body;
 	Integer bodyID;
 	Long systemAddress;
 	
 	public ApproachBodyEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.startSystem = json.pullString("StartSystem");
+		this.starSystem = json.pullString("StarSystem");
 		this.body = json.pullString("Body");
 		this.bodyID = json.pullInt("BodyID");
 		this.systemAddress = json.pullLong("SystemAddress");
@@ -21,12 +21,12 @@ public class ApproachBodyEvent extends Event {
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public String getStartSystem() {
-		return startSystem;
+	public String getStarSystem() {
+		return starSystem;
 	}
 
-	public void setStartSystem(String startSystem) {
-		this.startSystem = startSystem;
+	public void setStarSystem(String starSystem) {
+		this.starSystem = starSystem;
 	}
 
 	public String getBody() {

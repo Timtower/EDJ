@@ -4,10 +4,13 @@ import org.xenodev.edj.events.interfaces.ScanStageInfo;
 
 public class ShipScanStage2 extends ShipScanStage1 implements ScanStageInfo {
 	
-	double shieldHealth, hullHealth;
+	Double shieldHealth, hullHealth;
 
-	public ShipScanStage2(Boolean targetLocked, String ship, Integer scanStage, String pilotName, String pilotName_Localised, String pilotRank, Double shieldHealth, Double hullHealth) {
-		super(targetLocked, ship, scanStage, pilotName, pilotName_Localised, pilotRank);
+
+	public ShipScanStage2(Boolean targetLocked, String ship, Integer scanStage, String pilotName,
+			String pilotNameLocalised, String pilotRank, String shipLocalised, String power, Double shieldHealth,
+			Double hullHealth) {
+		super(targetLocked, ship, scanStage, pilotName, pilotNameLocalised, pilotRank, shipLocalised, power);
 		this.shieldHealth = shieldHealth;
 		this.hullHealth = hullHealth;
 	}
@@ -16,15 +19,15 @@ public class ShipScanStage2 extends ShipScanStage1 implements ScanStageInfo {
 		return shieldHealth;
 	}
 
-	public void setShieldHealth(double shieldHealth) {
+	public void setShieldHealth(Double shieldHealth) {
 		this.shieldHealth = shieldHealth;
 	}
 
-	public double getHullHealth() {
+	public Double getHullHealth() {
 		return hullHealth;
 	}
 
-	public void setHullHealth(double hullHealth) {
+	public void setHullHealth(Double hullHealth) {
 		this.hullHealth = hullHealth;
 	}
 

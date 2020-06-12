@@ -14,9 +14,9 @@ public class MissionsEvent extends Event {
 	public MissionsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.active = JournalUtils.createMissionList(json.getJSONArray("Active"));
-		this.failed = JournalUtils.createMissionList(json.getJSONArray("Failed"));
-		this.complete = JournalUtils.createMissionList(json.getJSONArray("Complete"));
+		this.active = JournalUtils.createMissionList(json.pullJSONArray("Active"));
+		this.failed = JournalUtils.createMissionList(json.pullJSONArray("Failed"));
+		this.complete = JournalUtils.createMissionList(json.pullJSONArray("Complete"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

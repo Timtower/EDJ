@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class LoadGameEvent extends Event {
 	
-	String commander, FID, ship, shipName, shipIdent, gameMode;
+	String commander, FID, ship, shipLocalised, shipName, shipIdent, gameMode;
 	Integer shipId;
 	Double fuelLevel, fuelCapacity;
 	Long credits, loan;
@@ -18,12 +18,13 @@ public class LoadGameEvent extends Event {
 		this.commander = json.pullString("Commander");
 		this.FID = json.pullString("FID");
 		this.ship = json.pullString("Ship");
+		this.shipLocalised = json.pullString("Ship_Localised");
 		this.shipName = json.pullString("ShipName");
 		this.shipIdent = json.pullString("ShipIdent");
 		this.gameMode = json.pullString("GameMode");
 		this.shipId = json.pullInt("ShipID");
-		this.fuelLevel = json.getDouble("FuelLevel");
-		this.fuelCapacity = json.getDouble("FuelCapacity");
+		this.fuelLevel = json.pullDouble("FuelLevel");
+		this.fuelCapacity = json.pullDouble("FuelCapacity");
 		this.credits = json.pullLong("Credits");
 		this.loan = json.pullLong("Loan");
 		this.horizons = json.pullBoolean("Horizons");

@@ -1,9 +1,18 @@
 package org.xenodev.edj.utils;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,7 +21,11 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.storage.CargoInventory;
+import org.xenodev.edj.events.storage.ConflicFaction;
+import org.xenodev.edj.events.storage.Conflict;
 import org.xenodev.edj.events.storage.Engineering;
+import org.xenodev.edj.events.storage.Faction;
+import org.xenodev.edj.events.storage.FactionState;
 import org.xenodev.edj.events.storage.Killer;
 import org.xenodev.edj.events.storage.Mission;
 import org.xenodev.edj.events.storage.Modifier;
@@ -21,6 +34,8 @@ import org.xenodev.edj.events.storage.ModuleItem;
 import org.xenodev.edj.events.storage.PassengerManifest;
 import org.xenodev.edj.events.storage.StationEconomy;
 import org.xenodev.edj.events.storage.StoredModule;
+import org.xenodev.edj.events.storage.StoredShipHere;
+import org.xenodev.edj.events.storage.StoredShipRemote;
 import org.xenodev.edj.events.storage.TradeData;
 import org.xenodev.edj.events.storage.bounty.BountyReward;
 import org.xenodev.edj.events.storage.bounty.FactionBounty;
@@ -60,16 +75,105 @@ public class JournalUtils {
 	public static void isAllEventDataProcessed(Event event, JSONObject json) {
 		
 		try {
-			
 			if(json.length() > 0) {
 				throw new UnusedEventDataException();
 			}
 			
 		}catch(UnusedEventDataException e) {
-			System.out.println(String.format("We found unused event data in %s, please report the unused data to the API developer: %s", event.getClass().getName(), json.toString()));
+			sendUnusedEventData(event.getClass().getSimpleName().replace("Event", ""), json.toString());
 		}
 		
 	}
+	
+	public static void sendUnprocessedEvent(String event, JSONObject json) {
+
+        try {
+        	URL url = new URL("http://192.168.0.100/edj/uereporter.php"); // URL to your application
+        	Map<String,Object> params = new LinkedHashMap<>();
+        	params.put("eventname", event); // All parameters, also easy
+        	params.put("jsontext", json.toString().replace("'", "").replace("\\\\", "-").replace("/", "-"));
+        	
+        	StringBuilder postData = new StringBuilder();
+        	// POST as urlencoded is basically key-value pairs, as with GET
+        	// This creates key=value&key=value&... pairs
+        	for (Map.Entry<String,Object> param : params.entrySet()) {
+        		if (postData.length() != 0) postData.append('&');
+        		postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+        		postData.append('=');
+        		postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+        	}
+        	
+        	// Convert string to byte array, as it should be sent
+        	byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        	
+        	// Connect, easy
+        	HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        	// Tell server that this is POST and in which format is the data
+        	conn.setRequestMethod("POST");
+        	conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        	conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        	conn.setDoOutput(true);
+        	conn.getOutputStream().write(postDataBytes);
+        	
+        	// This gets the output from your server
+        	
+        	Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+	
+        	/*
+			for (int c; (c = in.read()) >= 0;) {
+         		System.out.print((char)c);
+         	}
+         	*/
+        }catch (IOException e) {
+        	e.printStackTrace();
+        }
+
+    }
+	
+	private static void sendUnusedEventData(String event, String s) {
+        try {
+        	URL url = new URL("http://192.168.0.100/edj/uedreporter.php"); // URL to your application
+        	Map<String,Object> params = new LinkedHashMap<>();
+        	params.put("eventname", event); // All parameters, also easy
+        	params.put("jsontext", s.replace("'", ""));
+        	
+        	StringBuilder postData = new StringBuilder();
+        	// POST as urlencoded is basically key-value pairs, as with GET
+        	// This creates key=value&key=value&... pairs
+        	for (Map.Entry<String,Object> param : params.entrySet()) {
+        		if (postData.length() != 0) postData.append('&');
+        		postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+        		postData.append('=');
+        		postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+        	}
+        	
+        	// Convert string to byte array, as it should be sent
+        	byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+        	
+        	// Connect, easy
+        	HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+        	// Tell server that this is POST and in which format is the data
+        	conn.setRequestMethod("POST");
+        	conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        	conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        	conn.setDoOutput(true);
+        	conn.getOutputStream().write(postDataBytes);
+        	
+        	// This gets the output from your server
+        	
+        	Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        	
+        	/*
+        	for (int c; (c = in.read()) >= 0;) {
+        		System.out.print((char)c);
+        	}
+        	*/
+        	 
+        }catch (IOException e) {
+        	e.printStackTrace();
+        }
+
+    }
 	
 	public static long getTimeMillis(String timestamp) {
 		long millis = 0;
@@ -85,36 +189,30 @@ public class JournalUtils {
 	}
 	
 	//EventData Generators
-	public static Item[] createItemList(JSONArray array) {
-		Item[] items = new Item[] {};
-		int arrayPos = 0;
+	public static List<Item> createItemList(JSONArray array) {
+		List<Item> itemsList = new ArrayList<Item>();
 		
 		for(Object comp : array) {
-			Item item;
 			JSONObject json = new JSONObject(comp.toString());
 			
-			item = new Item(json.getInt("id"), json.getInt("BuyPrice"),	json.getInt("SellPrice"), json.getInt("MeanPrice"), json.getInt("StockBracket"), json.getInt("DemandBracket"),
+			Item item = new Item(json.getInt("id"), json.getInt("BuyPrice"),	json.getInt("SellPrice"), json.getInt("MeanPrice"), json.getInt("StockBracket"), json.getInt("DemandBracket"),
 			json.getInt("Stock"), json.getInt("Demand"), json.getString("Name"), json.getString("Category"), json.getBoolean("Consumer"), json.getBoolean("Producer"), json.getBoolean("Rare"));
 			
-			items[arrayPos] = item;
-			arrayPos++;	
+			itemsList.add(item);
 		}
 		
-		return items;
+		return itemsList;
 	}
 	
-	public static EngineerProgress[] createEngineerProgressList(JSONArray array) {
-		EngineerProgress[] engineerProgressList = new EngineerProgress[] {};
-		int arrayPos = 0;
+	public static List<EngineerProgress> createEngineerProgressList(JSONArray array) {
+		List<EngineerProgress> engineerProgressList = new ArrayList<EngineerProgress>();
 		
 		for(Object comp : array) {
-			EngineerProgress engineerProgress;
 			JSONObject json = new JSONObject(comp.toString());
 			
-			engineerProgress = new EngineerProgress(json.getString("Engineer"), json.getString("Progress"), json.getInt("Rank"), json.getInt("EngineerID"), json.getDouble("RankProgress"));
+			EngineerProgress engineerProgress = new EngineerProgress(json.getString("Engineer"), json.getString("Progress"), json.getInt("Rank"), json.getInt("EngineerID"), json.getDouble("RankProgress"));
 			
-			engineerProgressList[arrayPos] = engineerProgress;
-			arrayPos++;	
+			engineerProgressList.add(engineerProgress);
 		}
 		
 		return engineerProgressList;
@@ -346,21 +444,18 @@ public class JournalUtils {
 		return bountyRewards;				
 	}
 	
-	public static StationEconomy[] createStationEconomiesList(JSONArray array) {
-		StationEconomy[] stationEconomies = new StationEconomy[] {};
+	public static List<StationEconomy> createStationEconomiesList(JSONArray array) {
+		List<StationEconomy> stationEconomiesList = new ArrayList<StationEconomy>();
 		
 		for(Object str : array) {
 			JSONObject json = new JSONObject(str.toString());
-			StationEconomy stationEconomy;
-			int pos = 0;
-				
-			stationEconomy = new StationEconomy(json.getString("Name"), json.getString("Name_Localised"), json.getDouble("Proportion"));
+			StationEconomy stationEconomy = new StationEconomy(json.getString("Name"), json.getString("Name_Localised"), json.getDouble("Proportion"));
 			
-			stationEconomies[pos] = stationEconomy;
-			pos++;
+			stationEconomiesList.add(stationEconomy);
+			
 		}
 		
-		return stationEconomies;				
+		return stationEconomiesList;				
 	}
 	
 	public static List<Module> createModuleList(JSONArray array) {
@@ -556,6 +651,77 @@ public class JournalUtils {
 			stationServiceList.add(str.toString());
 		}
 		return stationServiceList;
+	}
+
+	public static List<Faction> createFactionsList(JSONArray array) {
+		List<Faction> factionsList = new ArrayList<Faction>();
+		
+		for(Object str : array) {
+			JSONObject json = new JSONObject(str.toString());
+			JSONArray activeStatesArray = json.has("ActiveStates") ? json.getJSONArray("ActiveStates") : null;
+			JSONArray recoveringStatesArray = json.has("RecoveringStates") ? json.getJSONArray("RecoveringStates") : null;
+			JSONArray pendingStatesArray = json.has("PendingStates") ? json.getJSONArray("PendingStates") : null;
+			
+			factionsList.add(new Faction(json.getString("Name"), json.getString("FactionState"), json.getString("Goverment"), json.getString("Allegiance"), json.getString("Happiness"),
+					json.getDouble("MyReputation"), json.getDouble("Influence"), JournalUtils.createFactionStates(activeStatesArray), JournalUtils.createFactionStates(pendingStatesArray),
+					JournalUtils.createFactionStates(recoveringStatesArray), json.getBoolean("SquadronSystem"), json.getBoolean("HappiestSystem"), json.getBoolean("HomeSystem")));
+		}
+		return factionsList;
+	}
+
+	private static FactionState createFactionStates(JSONArray array) {
+		if(array != null) {
+			for(Object o : array) {
+				JSONObject json = new JSONObject(o.toString());
+				return new FactionState(json.getString("State"), json.getDouble("Trend"));
+			}
+		}
+		return null;
+	}
+
+	public static Conflict createConflict(JSONArray array) {
+		List<ConflicFaction> conflictFactionList = new ArrayList<>();
+		
+		JSONObject json = new JSONObject(array.toString());
+		JSONObject faction1 = new JSONObject(json.getJSONObject("Faction1"));
+		JSONObject faction2 = new JSONObject(json.getJSONObject("Faction2"));
+		
+		String status = json.getString("Status");
+		String warType = json.getString("WarType");
+		
+		ConflicFaction cf1 = new ConflicFaction(faction1.getString("Name"), faction1.getString("Stake"), faction1.getInt("WonDays"));
+		ConflicFaction cf2 = new ConflicFaction(faction2.getString("Name"), faction2.getString("Stake"), faction2.getInt("WonDays"));
+		
+		conflictFactionList.add(cf1);
+		conflictFactionList.add(cf2);
+		
+		return new Conflict(status, warType, conflictFactionList);
+	}
+
+	public static List<StoredShipHere> createStoredShipsHereList(JSONArray array) {
+		List<StoredShipHere> storedShipHereList = new ArrayList<>();
+		
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			
+			storedShipHereList.add(new StoredShipHere(json.getBoolean("Hot"), json.getString("Name"), json.getString("ShipType"), json.getString("ShipType_Localised"),
+					json.getLong("Value"), json.getInt("ShipID")));
+		}
+		
+		return storedShipHereList;
+	}
+	
+	public static List<StoredShipRemote> createStoredShipsRemoteList(JSONArray array) {
+		List<StoredShipRemote> storedShipRemoteList = new ArrayList<>();
+		
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			
+			storedShipRemoteList.add(new StoredShipRemote(json.getBoolean("Hot"), json.getString("Name"), json.getString("ShipType"), json.getString("ShipType_Localised"),
+					json.getString("StarSystem"),  json.getLong("Value"), json.getLong("ShipMarketID"), json.getLong("TransferTime"), json.getLong("TransferPrice"), json.getInt("ShipID")));
+		}
+		
+		return storedShipRemoteList;
 	}
 
 }

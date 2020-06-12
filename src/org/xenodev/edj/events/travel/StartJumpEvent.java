@@ -13,9 +13,9 @@ public class StartJumpEvent extends Event {
 		super(timestamp);
 		
 		this.jumpType = json.pullString("JumpType");
-		this.starSystem = jumpType.equals("SuperCruise") ? json.pullString("StarSystem") : null;
-		this.starClass = jumpType.equals("SuperCruise") ? json.pullString("StarClass") : null;
-		this.systemAddress = jumpType.equals("SuperCruise") ? json.pullLong("SystemAddress") : null;
+		this.starSystem = json.pullString("StarSystem");
+		this.starClass = json.pullString("StarClass");
+		this.systemAddress = json.pullLong("SystemAddress");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

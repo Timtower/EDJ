@@ -18,9 +18,9 @@ public class MaterialsEvent extends Event {
 	public MaterialsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.raw = JournalUtils.createRawMaterialList(json.getJSONArray("Raw"));
-		this.manufactured = JournalUtils.createManufacturedMaterialList(json.getJSONArray("Manufactured"));
-		this.encoded = JournalUtils.createEncodedMaterialList(json.getJSONArray("Encoded"));
+		this.raw = JournalUtils.createRawMaterialList(json.pullJSONArray("Raw"));
+		this.manufactured = JournalUtils.createManufacturedMaterialList(json.pullJSONArray("Manufactured"));
+		this.encoded = JournalUtils.createEncodedMaterialList(json.pullJSONArray("Encoded"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

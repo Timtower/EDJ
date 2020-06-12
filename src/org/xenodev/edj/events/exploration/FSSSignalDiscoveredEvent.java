@@ -25,7 +25,7 @@ public class FSSSignalDiscoveredEvent extends Event {
 		this.spawningFaction_Localised = json.pullString("SpawningFaction_Localised");
 		this.threatLevel = json.pullInt("ThreatLevel");
 		this.systemAddress = json.pullLong("SystemAddress");
-		this.timeRemaining = json.getDouble("TimeRemaining");
+		this.timeRemaining = json.pullDouble("TimeRemaining");
 		this.isStation = json.pullBoolean("IsStation");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);

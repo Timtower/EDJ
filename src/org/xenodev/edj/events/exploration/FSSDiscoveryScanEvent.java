@@ -6,13 +6,17 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class FSSDiscoveryScanEvent extends Event {
 	
-	Double progress;
-	Integer bodyCount, nonBodyCount;
+	private String systemName;
+	private Long systemAddress;
+	private Double progress;
+	private Integer bodyCount, nonBodyCount;
 	
 	public FSSDiscoveryScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.progress = json.getDouble("Progress");
+		this.systemName = json.pullString("systemName");
+		this.systemAddress = json.pullLong("SystemAddress");
+		this.progress = json.pullDouble("Progress");
 		this.bodyCount = json.pullInt("BodyCount");
 		this.nonBodyCount = json.pullInt("NonBodyCount");
 		
@@ -41,6 +45,22 @@ public class FSSDiscoveryScanEvent extends Event {
 
 	public void setNonBodyCount(Integer nonBodyCount) {
 		this.nonBodyCount = nonBodyCount;
+	}
+
+	public String getSystemName() {
+		return systemName;
+	}
+
+	public void setSystemName(String systemName) {
+		this.systemName = systemName;
+	}
+
+	public Long getSystemAddress() {
+		return systemAddress;
+	}
+
+	public void setSystemAddress(Long systemAddress) {
+		this.systemAddress = systemAddress;
 	}
 
 }

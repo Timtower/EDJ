@@ -120,6 +120,22 @@ import org.xenodev.edj.events.travel.SupercruiseExitEvent;
 import org.xenodev.edj.events.travel.TouchdownEvent;
 import org.xenodev.edj.events.travel.UndockedEvent;
 
+/**
+ * The Eventlistener to extend from to execute code when a certain event with a registered eventlistener has been found.
+ * <p>
+ * <pre>{@code 
+ * public class FSDJumpListener extends Eventlistener {
+ * 
+ * 	@Override
+ * 	public void onFSDJumpEvent(FSDJumpEvent event) {
+ * 		//TODO: Code to execute when an FSDJump event is detected
+ * 	}
+ * 
+ * }</pre>
+ * 
+ * @author XenoPyax
+ *
+ */
 public abstract class EventListener {
 	
 	//Startup Events

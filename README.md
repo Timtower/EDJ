@@ -1,14 +1,12 @@
 
 [download-shield]: https://img.shields.io/github/v/release/XenoPyax/EDJ
 [download]: https://github.com/XenoPyax/EDJ/releases
-[discord-invite]: https://discord.gg/cWHPQfF
-[discord-shield]: https://discordapp.com/api/guilds/699925356735496213/widget.png
 [license]: https://github.com/XenoPyax/EDJ/blob/master/LICENSE
 [license-shield]: https://img.shields.io/github/license/XenoPyax/EDJ
 [faq]: https://github.com/XenoPyax/EDJ/wiki
 [faq-shield]: https://img.shields.io/badge/Wiki-FAQ-blue.svg
 
-[ ![download-shield][] ][download] [ ![license-shield][] ][license] [ ![discord-shield][] ][discord-invite] [ ![faq-shield] ][faq]
+[ ![download-shield][] ][download] [ ![license-shield][] ][license] [ ![faq-shield] ][faq]
 
 # Welcome to Elite Dangerous Java API <img align=right src="https://i.imgur.com/C6hP0fT.png">
 I am a second year Java Development student and also a Double Elite Commander. I am always trying to make new 3rd Party Applications for ED, so I started making my very own ED Java API. Not only to see if I can do it but also to maybe helps some of you out there that don't want to go through this tedious part of their App.

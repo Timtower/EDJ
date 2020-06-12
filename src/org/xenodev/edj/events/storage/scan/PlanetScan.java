@@ -1,8 +1,6 @@
 package org.xenodev.edj.events.storage.scan;
 
-import org.json.JSONObject;
 import org.xenodev.edj.events.interfaces.ScanInfo;
-import org.xenodev.edj.utils.JournalUtils;
 
 public class PlanetScan implements ScanInfo {
 	
@@ -17,36 +15,42 @@ public class PlanetScan implements ScanInfo {
 	Material[] materials;
 	Composition[] composition;
 	
-	public PlanetScan(JSONObject json) {
-		this.scanType = json.getString("ScanType");
-		this.bodyName = json.getString("BodyName");
-		this.terraformState = json.getString("TerraformState");
-		this.planetClass = json.getString("PlanetClass");
-		this.atmosphere = json.getString("Atmosphere");
-		this.atmosphereType = json.getString("AtmosphereType");
-		this.atmosphereComposition = JournalUtils.createAtmosphereCompositionList(json.getJSONArray("AtmosphereComposition"));
-		this.volcanism = json.getString("Volcanism");
-		this.reserveLevel = json.getString("ReserveLevel");
-		this.distanceFromArrivalLS = json.getDouble("DistanceFromArrivalLS");
-		this.massEM = json.getDouble("MassEM");
-		this.surfaceGravity = json.getDouble("SurfaceGravity");
-		this.surfaceTemperature = json.getDouble("SurfaceTemperature");
-		this.surfacePressure = json.getDouble("SurfacePressure");
-		this.eccentricity = json.getDouble("Eccentricity");
-		this.orbitalInclination = json.getDouble("OrbitalInclination");
-		this.periapsis = json.getDouble("Periapsis");
-		this.rotationPeriod = json.getDouble("RotationPeriod");
-		this.axialTilt = json.getDouble("AxialTilt");
-		this.bodyID = json.getInt("BodyID");
-		this.radius = json.getLong("Radius");
-		this.semiMajorAxis = json.getLong("SemiMajorAxis");
-		this.orbitalPeriod = json.getLong("OrbitalPeriod");
-		this.tidalLock = json.getBoolean("TidalLock");
-		this.landable = json.getBoolean("Landable");
-		this.parents = JournalUtils.createParentList(json);
-		this.rings = JournalUtils.createRingsList(json.getJSONArray("Rings"));
-		this.materials = JournalUtils.createMaterialList(json);
-		this.composition = JournalUtils.createCompositionList(json);
+	public PlanetScan(String scanType, String bodyName, String terraformState, String planetClass, String atmosphere,
+			String atmosphereType, String volcanism, String reserveLevel, Double distanceFromArrivalLS, Double massEM,
+			Double surfaceGravity, Double surfaceTemperature, Double surfacePressure, Double eccentricity,
+			Double orbitalInclination, Double periapsis, Double rotationPeriod, Double axialTilt, Integer bodyID,
+			Long radius, Long semiMajorAxis, Long orbitalPeriod, Boolean tidalLock, Boolean landable, Parent[] parents,
+			AtmosphereComposition[] atmosphereComposition, Ring[] rings, Material[] materials,
+			Composition[] composition) {
+		this.scanType = scanType;
+		this.bodyName = bodyName;
+		this.terraformState = terraformState;
+		this.planetClass = planetClass;
+		this.atmosphere = atmosphere;
+		this.atmosphereType = atmosphereType;
+		this.volcanism = volcanism;
+		this.reserveLevel = reserveLevel;
+		this.distanceFromArrivalLS = distanceFromArrivalLS;
+		this.massEM = massEM;
+		this.surfaceGravity = surfaceGravity;
+		this.surfaceTemperature = surfaceTemperature;
+		this.surfacePressure = surfacePressure;
+		this.eccentricity = eccentricity;
+		this.orbitalInclination = orbitalInclination;
+		this.periapsis = periapsis;
+		this.rotationPeriod = rotationPeriod;
+		this.axialTilt = axialTilt;
+		this.bodyID = bodyID;
+		this.radius = radius;
+		this.semiMajorAxis = semiMajorAxis;
+		this.orbitalPeriod = orbitalPeriod;
+		this.tidalLock = tidalLock;
+		this.landable = landable;
+		this.parents = parents;
+		this.atmosphereComposition = atmosphereComposition;
+		this.rings = rings;
+		this.materials = materials;
+		this.composition = composition;
 	}
 
 	public String getScanType() {

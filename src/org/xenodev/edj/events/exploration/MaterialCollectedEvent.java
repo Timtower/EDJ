@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MaterialCollectedEvent extends Event {
 	
-	private String category, name;
+	private String category, name, nameLocalised;
 	private Integer count;
 	
 	public MaterialCollectedEvent(String timestamp, JSONObject json) {
@@ -14,6 +14,7 @@ public class MaterialCollectedEvent extends Event {
 		
 		this.category = json.pullString("Category");
 		this.name = json.pullString("Name");
+		this.nameLocalised = json.pullString("Name_Localised");
 		this.count = json.pullInt("Count");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -41,6 +42,14 @@ public class MaterialCollectedEvent extends Event {
 
 	public void setCount(Integer count) {
 		this.count = count;
+	}
+
+	public String getNameLocalised() {
+		return nameLocalised;
+	}
+
+	public void setNameLocalised(String nameLocalised) {
+		this.nameLocalised = nameLocalised;
 	}
 	
 }

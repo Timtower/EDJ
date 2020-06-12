@@ -3,6 +3,7 @@ package org.xenodev.edj.events.storage.market;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +14,7 @@ public class MarketFile {
 	
 	private Integer marketID;
 	private String stationName, starSystem;
-	private Item[] items;
+	private List<Item> items;
 	
 	public MarketFile() {
 		String marketFileContent = null;
@@ -50,7 +51,7 @@ public class MarketFile {
 		this.starSystem = starSystem;
 	}
 
-	public void setItems(Item[] items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 
@@ -62,7 +63,7 @@ public class MarketFile {
 		return starSystem;
 	}
 
-	public Item[] getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 

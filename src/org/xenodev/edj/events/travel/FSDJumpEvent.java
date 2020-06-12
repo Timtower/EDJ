@@ -4,20 +4,27 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
+import org.xenodev.edj.events.storage.Conflict;
 import org.xenodev.edj.events.storage.Faction;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class FSDJumpEvent extends Event {
 	
-	String starSystem, systemAllegiance, systemEconomy, systemEconomyLocalised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernmentLocalised, systemSecurity, systemSecurityLocalised;
+	String starSystem, systemAllegiance, systemEconomy, systemEconomyLocalised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernmentLocalised,
+	systemSecurity, systemSecurityLocalised, body, bodyType, powerplayState;
 	Long population, systemAddress;
+	Integer bodyId;
 	Double jumpDistance, fuelUsed, fuelLevel;
 	List<Faction> factions;
+	Conflict conflict;
 	Double[] starPos;
 	
 	public FSDJumpEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
+		this.body = json.pullString("Body");
+		this.bodyId = json.pullInt("BodyID");
+		this.bodyType = json.pullString("BodyType");
 		this.starSystem = json.pullString("StarSystem");
 		this.systemAllegiance = json.pullString("SystemAllegiance");
 		this.systemEconomy = json.pullString("SystemEconomy");
@@ -30,10 +37,13 @@ public class FSDJumpEvent extends Event {
 		this.systemSecurityLocalised = json.pullString("SystemSecurity_Localised");
 		this.population = json.pullLong("Population");
 		this.systemAddress = json.pullLong("SystemAddress");
-		this.jumpDistance = json.getDouble("JumpDist");
-		this.fuelUsed = json.getDouble("FuelUsed");
-		this.fuelLevel = json.getDouble("FuelLevel");
-		this.starPos = JournalUtils.createPositionArray(json.getJSONArray("StarPos"));
+		this.jumpDistance = json.pullDouble("JumpDist");
+		this.fuelUsed = json.pullDouble("FuelUsed");
+		this.fuelLevel = json.pullDouble("FuelLevel");
+		this.starPos = JournalUtils.createPositionArray(json.pullJSONArray("StarPos"));
+		this.factions = JournalUtils.createFactionsList(json.pullJSONArray("Factions"));
+		this.conflict = JournalUtils.createConflict(json.pullJSONArray("Conflicts"));
+		this.powerplayState = json.pullString("PowerplayState");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -172,6 +182,46 @@ public class FSDJumpEvent extends Event {
 
 	public void setStarPos(Double[] starPos) {
 		this.starPos = starPos;
+	}
+
+	public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	public String getBodyType() {
+		return bodyType;
+	}
+
+	public void setBodyType(String bodyType) {
+		this.bodyType = bodyType;
+	}
+
+	public String getPowerplayState() {
+		return powerplayState;
+	}
+
+	public void setPowerplayState(String powerplayState) {
+		this.powerplayState = powerplayState;
+	}
+
+	public Integer getBodyId() {
+		return bodyId;
+	}
+
+	public void setBodyId(Integer bodyId) {
+		this.bodyId = bodyId;
+	}
+
+	public Conflict getConflict() {
+		return conflict;
+	}
+
+	public void setConflict(Conflict conflict) {
+		this.conflict = conflict;
 	}
 
 }

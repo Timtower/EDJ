@@ -9,29 +9,30 @@ import org.xenodev.edj.utils.JournalUtils;
 public class DockedEvent extends Event {
 	
 	String stationName, stationType, starSystem, stationFactionName, stationFactionState, stationGovernment, stationGovernmentLocalised, stationAllegiance, stationEconomy, stationEconomyLocalised;
-	StationEconomy[] stationEconomies;
+	List<StationEconomy> stationEconomies;
 	Long systemAddress, marketID;
 	Double distanceFromStarLS;
 	List<String> stationServices;
 	
 	public DockedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		JSONObject stationFaction = json.pullJSONObject("StationFaction");
 		
 		this.stationName = json.pullString("StationName");
 		this.stationType = json.pullString("StationType");
 		this.starSystem = json.pullString("StarSystem");
-		this.stationFactionName = json.getJSONObject("StationFaction").getString("FactionName");
-		this.stationFactionState = json.getJSONObject("StationFaction").getString("FactionState");
+		this.stationFactionName = stationFaction.pullString("Name");
+		this.stationFactionState = stationFaction.pullString("FactionState");
 		this.stationGovernment = json.pullString("StationGovernment");
 		this.stationGovernmentLocalised = json.pullString("StationGovernment_Localised");
 		this.stationAllegiance = json.pullString("StationAllegiance");
 		this.stationEconomy = json.pullString("StationEconomy");
 		this.stationEconomyLocalised = json.pullString("StationEconomy_Localised");
-		this.stationEconomies = JournalUtils.createStationEconomiesList(json.getJSONArray("StationEconomies"));
+		this.stationEconomies = JournalUtils.createStationEconomiesList(json.pullJSONArray("StationEconomies"));
 		this.systemAddress = json.pullLong("SystemAddress");
 		this.marketID = json.pullLong("MarketID");
-		this.distanceFromStarLS = json.getDouble("DistFromStarLS");
-		this.stationServices = JournalUtils.createStationServiceList(json.getJSONArray("StationServices"));
+		this.distanceFromStarLS = json.pullDouble("DistFromStarLS");
+		this.stationServices = JournalUtils.createStationServiceList(json.pullJSONArray("StationServices"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -116,11 +117,11 @@ public class DockedEvent extends Event {
 		this.stationEconomyLocalised = stationEconomyLocalised;
 	}
 
-	public StationEconomy[] getStationEconomies() {
+	public List<StationEconomy> getStationEconomies() {
 		return stationEconomies;
 	}
 
-	public void setStationEconomies(StationEconomy[] stationEconomies) {
+	public void setStationEconomies(List<StationEconomy> stationEconomies) {
 		this.stationEconomies = stationEconomies;
 	}
 

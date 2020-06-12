@@ -12,14 +12,14 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class RefuelAllEvent extends Event {
 	
-	Long cost;
-	Double amount;
+	private Long cost;
+	private Double amount;
 	
 	public RefuelAllEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
 		this.cost = json.pullLong("Cost");
-		this.amount = json.getDouble("Amount");
+		this.amount = json.pullDouble("Amount");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
