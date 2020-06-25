@@ -1,5 +1,7 @@
 package org.xenodev.edj.events.exploration;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.storage.station.Discovered;
@@ -7,13 +9,13 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MultiSellExplorationDataEvent extends Event {
 	
-	private Discovered[] discovered;
+	private List<Discovered> discovered;
 	private Integer baseValue, totalEarnings, bonus;
 	
 	public MultiSellExplorationDataEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.discovered = JournalUtils.createDiscoveredList(json.getJSONArray("Discovered"));
+		this.discovered = JournalUtils.createDiscoveredList(json.pullJSONArray("Discovered"));
 		this.baseValue = json.pullInt("BaseValue");
 		this.totalEarnings = json.pullInt("TotalEarnings");
 		this.bonus = json.pullInt("Bonus");
@@ -21,11 +23,11 @@ public class MultiSellExplorationDataEvent extends Event {
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public Discovered[] getDiscovered() {
+	public List<Discovered> getDiscovered() {
 		return discovered;
 	}
 
-	public void setDiscovered(Discovered[] discovered) {
+	public void setDiscovered(List<Discovered> discovered) {
 		this.discovered = discovered;
 	}
 

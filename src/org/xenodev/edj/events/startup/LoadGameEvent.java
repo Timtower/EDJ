@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class LoadGameEvent extends Event {
 	
-	String commander, FID, ship, shipLocalised, shipName, shipIdent, gameMode;
+	String commander, FID, ship, shipLocalised, shipName, shipIdent, gameMode, group;
 	Integer shipId;
 	Double fuelLevel, fuelCapacity;
 	Long credits, loan;
@@ -27,6 +27,7 @@ public class LoadGameEvent extends Event {
 		this.fuelCapacity = json.pullDouble("FuelCapacity");
 		this.credits = json.pullLong("Credits");
 		this.loan = json.pullLong("Loan");
+		this.group = json.has("Group") ? json.pullString("Group") : null;
 		this.horizons = json.pullBoolean("Horizons");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -126,6 +127,22 @@ public class LoadGameEvent extends Event {
 
 	public void setHorizons(Boolean horizons) {
 		this.horizons = horizons;
+	}
+
+	public String getShipLocalised() {
+		return shipLocalised;
+	}
+
+	public void setShipLocalised(String shipLocalised) {
+		this.shipLocalised = shipLocalised;
+	}
+
+	public String getGroup() {
+		return group;
+	}
+
+	public void setGroup(String group) {
+		this.group = group;
 	}
 
 }

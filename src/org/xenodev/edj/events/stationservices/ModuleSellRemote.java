@@ -19,13 +19,13 @@ public class ModuleSellRemote extends Event {
 	public ModuleSellRemote(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.storageSlot = json.getInt("StorageSlot");
-		this.shipId = json.getInt("ShipID");
-		this.sellItem = json.getString("SellItem");
-		this.sellItemLocalised = json.getString("SellItem_Localised");
-		this.ship = json.getString("Ship");
-		this.serverId = json.getLong("ServerId");
-		this.sellPrice = json.getLong("SellPrice");
+		this.storageSlot = json.pullInt("StorageSlot");
+		this.shipId = json.pullInt("ShipID");
+		this.sellItem = json.pullString("SellItem");
+		this.sellItemLocalised = json.pullString("SellItem_Localised");
+		this.ship = json.pullString("Ship");
+		this.serverId = json.pullLong("ServerId");
+		this.sellPrice = json.pullLong("SellPrice");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

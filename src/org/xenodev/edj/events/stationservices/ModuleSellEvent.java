@@ -13,7 +13,7 @@ import org.xenodev.edj.utils.JournalUtils;
 public class ModuleSellEvent extends Event {
 	
 	String slot, sellItem, sellItemLocalised, ship;
-	Long sellPrice;
+	Long sellPrice, marketId;
 	Integer shipId;
 	
 	public ModuleSellEvent(String timestamp, JSONObject json) {
@@ -25,6 +25,7 @@ public class ModuleSellEvent extends Event {
 		this.ship = json.pullString("Ship");
 		this.sellPrice = json.pullLong("SellPrice");
 		this.shipId = json.pullInt("ShipID");
+		this.marketId = json.pullLong("MarketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -75,6 +76,14 @@ public class ModuleSellEvent extends Event {
 
 	public void setShipId(Integer shipId) {
 		this.shipId = shipId;
+	}
+
+	public Long getMarketId() {
+		return marketId;
+	}
+
+	public void setMarketId(Long marketId) {
+		this.marketId = marketId;
 	}
 
 }

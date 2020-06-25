@@ -11,7 +11,7 @@ import org.xenodev.edj.utils.localiser.Reputation;
  */
 public class ReputationEvent extends Event {
 
-	Integer empire, federation, alliance;
+	Integer empire, federation, alliance, independent;
 
 	public ReputationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -19,6 +19,7 @@ public class ReputationEvent extends Event {
 		this.empire = json.pullDouble("Empire").intValue();
 		this.federation = json.pullDouble("Federation").intValue();
 		this.alliance = json.pullDouble("Alliance").intValue();
+		this.independent = json.has("Independent") ? json.pullDouble("Independent").intValue() : null;
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

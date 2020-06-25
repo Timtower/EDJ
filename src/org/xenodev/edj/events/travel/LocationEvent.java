@@ -24,8 +24,8 @@ public class LocationEvent extends Event {
 	public LocationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		JSONObject systemFaction = json.pullJSONObject("SystemFaction");
-		JSONObject stationFaction = json.pullJSONObject("StationFaction");
+		JSONObject systemFaction = json.has("SystemFaction") ? json.pullJSONObject("SystemFaction") : null;
+		JSONObject stationFaction = json.has("StationFaction") ? json.pullJSONObject("StationFaction") : null;
 		
 		this.stationName = json.pullString("StationName");
 		this.stationType = json.pullString("StationType");
@@ -42,11 +42,11 @@ public class LocationEvent extends Event {
 		this.systemSecurity_Localised = json.pullString("SystemSecurity_Localised");
 		this.body = json.pullString("Body");
 		this.bodyType = json.pullString("BodyType");
-		this.stationFactionName = stationFaction.pullString("Name");
-		this.stationFactionState = stationFaction.pullString("FactionState");
-		this.systemFactionName = systemFaction.pullString("Name");
-		this.systemFactionState = systemFaction.pullString("FactionState");
-		this.factions = JournalUtils.createFactionsList(json.pullJSONArray("Factions"));
+		this.stationFactionName = stationFaction == null ? null : stationFaction.pullString("Name");
+		this.stationFactionState = stationFaction == null ? null : stationFaction.pullString("FactionState");
+		this.systemFactionName = systemFaction == null ? null : systemFaction.pullString("Name");
+		this.systemFactionState = systemFaction == null ? null : systemFaction.pullString("FactionState");
+		this.factions = json.has("Factions") ? JournalUtils.createFactionsList(json.pullJSONArray("Factions")) : null;
 		this.powerplayState = json.pullString("PowerplayState");
 		this.starPos = JournalUtils.createPositionArray(json.pullJSONArray("StarPos"));
 		this.systemAddress = json.pullLong("SystemAddress");
@@ -55,8 +55,8 @@ public class LocationEvent extends Event {
 		this.bodyID = json.pullInt("BodyID");
 		this.docked = json.pullBoolean("Docked");
 		this.powers = json.has("Powers") ? JournalUtils.createPowersArray(json.pullJSONArray("Powers")) : null;
-		this.stationServices = JournalUtils.createStationServiceList(json.pullJSONArray("StationServices"));
-		this.stationEconomies = JournalUtils.createStationEconomiesList(json.pullJSONArray("StationEconomies"));
+		this.stationServices = json.has("StationServices") ? JournalUtils.createStationServiceList(json.pullJSONArray("StationServices")) : null;
+		this.stationEconomies = json.has("StationEconomies") ? JournalUtils.createStationEconomiesList(json.pullJSONArray("StationEconomies")) : null;
 		this.stationAllegiance = json.pullString("StationAllegiance");
 		this.stationGovernment = json.pullString("StationGovernment");
 		this.stationEconomyLocalised = json.pullString("StationEconomy_Localised");

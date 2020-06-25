@@ -7,7 +7,7 @@ import org.xenodev.edj.utils.JournalUtils;
 public class MarketBuyEvent extends Event {
 	
 	private Long marketID;
-	private String type;
+	private String type, typeLocalised;
 	private Integer count, buyPrice, totalCost;
 	
 	public MarketBuyEvent(String timestamp, JSONObject json) {
@@ -15,6 +15,7 @@ public class MarketBuyEvent extends Event {
 		
 		this.marketID = json.pullLong("MarketID");
 		this.type = json.pullString("Type");
+		this.typeLocalised = json.pullString("Type_Localised");
 		this.count = json.pullInt("Count");
 		this.buyPrice = json.pullInt("BuyPrice");
 		this.totalCost = json.pullInt("TotalCost");
@@ -60,6 +61,14 @@ public class MarketBuyEvent extends Event {
 
 	public void setTotalCost(Integer totalCost) {
 		this.totalCost = totalCost;
+	}
+
+	public String getTypeLocalised() {
+		return typeLocalised;
+	}
+
+	public void setTypeLocalised(String typeLocalised) {
+		this.typeLocalised = typeLocalised;
 	}
 
 }

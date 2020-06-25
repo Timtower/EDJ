@@ -148,7 +148,6 @@ public class EDJApiBuilder {
 	 */
 	public EDJApiBuilder(Boolean debug) {
 		this.debug = debug;
-		//new UpdateChecker().checkIsLatestVersion();
 	}
 	
     /**
@@ -210,7 +209,6 @@ public class EDJApiBuilder {
 					if(debug) System.out.println("DEBUG: " + journalEntries.get(i));
 					
 					fireEvent(new JSONObject(journalEntries.get(i)), null);
-					
 					lineCount++;
 				}
 				
@@ -236,7 +234,6 @@ public class EDJApiBuilder {
 							if(debug) System.out.println(journalEntries.get(i));
 							
 							fireEvent(new JSONObject(journalEntries.get(i)), l);
-							
 							lineCount++;
 						}
 						

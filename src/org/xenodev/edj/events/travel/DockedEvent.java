@@ -12,6 +12,7 @@ public class DockedEvent extends Event {
 	List<StationEconomy> stationEconomies;
 	Long systemAddress, marketID;
 	Double distanceFromStarLS;
+	Boolean activeFine;
 	List<String> stationServices;
 	
 	public DockedEvent(String timestamp, JSONObject json) {
@@ -33,6 +34,7 @@ public class DockedEvent extends Event {
 		this.marketID = json.pullLong("MarketID");
 		this.distanceFromStarLS = json.pullDouble("DistFromStarLS");
 		this.stationServices = JournalUtils.createStationServiceList(json.pullJSONArray("StationServices"));
+		this.activeFine = json.pullBoolean("ActiveFine");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -155,6 +157,14 @@ public class DockedEvent extends Event {
 
 	public void setStationServices(List<String> stationServices) {
 		this.stationServices = stationServices;
+	}
+
+	public Boolean getActiveFine() {
+		return activeFine;
+	}
+
+	public void setActiveFine(Boolean activeFine) {
+		this.activeFine = activeFine;
 	}
 
 }

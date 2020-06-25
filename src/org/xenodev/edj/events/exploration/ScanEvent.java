@@ -1,5 +1,7 @@
 package org.xenodev.edj.events.exploration;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.ScanInfo;
@@ -19,53 +21,53 @@ public class ScanEvent extends Event {
 	private Integer bodyID;
 	private Long radius, semiMajorAxis, orbitalPeriod, ageMY;
 	private Boolean tidalLock, landable, star;
-	private Parent[] parents;
-	private AtmosphereComposition[] atmosphereComposition;
-	private Ring[] rings;
-	private Material[] materials;
-	private Composition[] composition;
+	private List<Parent> parents;
+	private List<AtmosphereComposition> atmosphereComposition;
+	private List<Ring> rings;
+	private List<Material> materials;
+	private List<Composition> composition;
 	
 	public ScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
 		this.star = json.has("StarType");
-		this.scanType = json.getString("ScanType");
-		this.bodyName = json.getString("BodyName");
-		this.distanceFromArrivalLS = json.getDouble("DistanceFromArrivalLS");
-		this.eccentricity = json.getDouble("Eccentricity");
-		this.orbitalInclination = json.getDouble("OrbitalInclination");
-		this.periapsis = json.getDouble("Periapsis");
-		this.rotationPeriod = json.getDouble("RotationPeriod");
-		this.axialTilt = json.getDouble("AxialTilt");
-		this.bodyID = json.getInt("BodyID");
-		this.radius = json.getLong("Radius");
-		this.semiMajorAxis = json.getLong("SemiMajorAxis");
-		this.orbitalPeriod = json.getLong("OrbitalPeriod");
-		this.surfaceTemperature = json.getDouble("SurfaceTemperature");
-		this.parents = JournalUtils.createParentList(json);
-		this.rings = JournalUtils.createRingsList(json.getJSONArray("Rings"));
+		this.scanType = json.pullString("ScanType");
+		this.bodyName = json.pullString("BodyName");
+		this.distanceFromArrivalLS = json.pullDouble("DistanceFromArrivalLS");
+		this.eccentricity = json.pullDouble("Eccentricity");
+		this.orbitalInclination = json.pullDouble("OrbitalInclination");
+		this.periapsis = json.pullDouble("Periapsis");
+		this.rotationPeriod = json.pullDouble("RotationPeriod");
+		this.axialTilt = json.pullDouble("AxialTilt");
+		this.bodyID = json.pullInt("BodyID");
+		this.radius = json.pullLong("Radius");
+		this.semiMajorAxis = json.pullLong("SemiMajorAxis");
+		this.orbitalPeriod = json.pullLong("OrbitalPeriod");
+		this.surfaceTemperature = json.pullDouble("SurfaceTemperature");
+		this.parents = json.has("Parents") ? JournalUtils.createParentList(json.pullJSONArray("Parents")) : null;
+		this.rings = json.has("Rings") ? JournalUtils.createRingsList(json.pullJSONArray("Rings")) : null;
 		
 		// Star
-		this.starType = json.getString("StarType");
-		this.luminosity = json.getString("Luminosity");
-		this.stellarMass = json.getDouble("StellarMass");
-		this.ageMY = json.getLong("AgeMY");
+		this.starType = json.pullString("StarType");
+		this.luminosity = json.pullString("Luminosity");
+		this.stellarMass = json.pullDouble("StellarMass");
+		this.ageMY = json.pullLong("AgeMY");
 		
 		// Planet
-		this.terraformState = json.getString("TerraformState");
-		this.planetClass = json.getString("PlanetClass");
-		this.atmosphere = json.getString("Atmosphere");
-		this.atmosphereType = json.getString("AtmosphereType");
-		this.atmosphereComposition = JournalUtils.createAtmosphereCompositionList(json.getJSONArray("AtmosphereComposition"));
-		this.volcanism = json.getString("Volcanism");
-		this.reserveLevel = json.getString("ReserveLevel");
-		this.massEM = json.getDouble("MassEM");
-		this.surfaceGravity = json.getDouble("SurfaceGravity");
-		this.surfacePressure = json.getDouble("SurfacePressure");
-		this.tidalLock = json.getBoolean("TidalLock");
-		this.landable = json.getBoolean("Landable");
-		this.materials = JournalUtils.createMaterialList(json);
-		this.composition = JournalUtils.createCompositionList(json);
+		this.terraformState = json.pullString("TerraformState");
+		this.planetClass = json.pullString("PlanetClass");
+		this.atmosphere = json.pullString("Atmosphere");
+		this.atmosphereType = json.pullString("AtmosphereType");
+		this.atmosphereComposition = json.has("AtmosphereComposition") ? JournalUtils.createAtmosphereCompositionList(json.pullJSONArray("AtmosphereComposition")) : null;
+		this.volcanism = json.pullString("Volcanism");
+		this.reserveLevel = json.pullString("ReserveLevel");
+		this.massEM = json.pullDouble("MassEM");
+		this.surfaceGravity = json.pullDouble("SurfaceGravity");
+		this.surfacePressure = json.pullDouble("SurfacePressure");
+		this.tidalLock = json.pullBoolean("TidalLock");
+		this.landable = json.pullBoolean("Landable");
+		this.materials = json.has("Materials") ? JournalUtils.createMaterialList(json.pullJSONArray("Materials")) : null;
+		this.composition = json.has("Composition") ? JournalUtils.createCompositionList(json.pullJSONObject("Composition")) : null;
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

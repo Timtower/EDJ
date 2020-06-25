@@ -11,16 +11,18 @@ import org.xenodev.edj.utils.JournalUtils;
 public class FSDJumpEvent extends Event {
 	
 	String starSystem, systemAllegiance, systemEconomy, systemEconomyLocalised, systemSecondEconomy, systemSecondEconomy_Localised, systemGovernment, systemGovernmentLocalised,
-	systemSecurity, systemSecurityLocalised, body, bodyType, powerplayState;
-	Long population, systemAddress;
+	systemSecurity, systemSecurityLocalised, body, bodyType, powerplayState, systemfactionName, systemfactionState;
+	Long population, systemAddress, boostUsed;
 	Integer bodyId;
 	Double jumpDistance, fuelUsed, fuelLevel;
 	List<Faction> factions;
 	Conflict conflict;
 	Double[] starPos;
+	List<String> powers;
 	
 	public FSDJumpEvent(String timestamp, JSONObject json) {
 		super(timestamp);
+		JSONObject systemFaction = json.has("SystemFaction") ? json.pullJSONObject("SystemFaction") : null;
 		
 		this.body = json.pullString("Body");
 		this.bodyId = json.pullInt("BodyID");
@@ -40,9 +42,13 @@ public class FSDJumpEvent extends Event {
 		this.jumpDistance = json.pullDouble("JumpDist");
 		this.fuelUsed = json.pullDouble("FuelUsed");
 		this.fuelLevel = json.pullDouble("FuelLevel");
+		this.boostUsed = json.pullLong("BoostUsed");
+		this.powers = json.has("Powers") ? JournalUtils.createPowersArray(json.pullJSONArray("Powers")) : null;
+		this.systemfactionName = systemFaction != null ? systemFaction.getString("Name") : null;
+		this.systemfactionState = systemFaction != null ? systemFaction.getString("FactionState") : null;
 		this.starPos = JournalUtils.createPositionArray(json.pullJSONArray("StarPos"));
-		this.factions = JournalUtils.createFactionsList(json.pullJSONArray("Factions"));
-		this.conflict = JournalUtils.createConflict(json.pullJSONArray("Conflicts"));
+		this.factions = json.has("Factions") ? JournalUtils.createFactionsList(json.pullJSONArray("Factions")) : null;
+		this.conflict = json.has("Conflicts") ? JournalUtils.createConflict(json.pullJSONArray("Conflicts")) : null;
 		this.powerplayState = json.pullString("PowerplayState");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -222,6 +228,38 @@ public class FSDJumpEvent extends Event {
 
 	public void setConflict(Conflict conflict) {
 		this.conflict = conflict;
+	}
+
+	public List<String> getPowers() {
+		return powers;
+	}
+
+	public void setPowers(List<String> powers) {
+		this.powers = powers;
+	}
+
+	public String getSystemfactionName() {
+		return systemfactionName;
+	}
+
+	public void setSystemfactionName(String systemfactionName) {
+		this.systemfactionName = systemfactionName;
+	}
+
+	public String getSystemfactionState() {
+		return systemfactionState;
+	}
+
+	public void setSystemfactionState(String systemfactionState) {
+		this.systemfactionState = systemfactionState;
+	}
+
+	public Long getBoostUsed() {
+		return boostUsed;
+	}
+
+	public void setBoostUsed(Long boostUsed) {
+		this.boostUsed = boostUsed;
 	}
 
 }

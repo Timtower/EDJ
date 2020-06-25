@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class EjectCargoEvent extends Event {
 	
-	private String type, powerplayOrigin;
+	private String type, typeLocalised, powerplayOrigin;
 	private Integer count;
 	private Long missionID;
 	private Boolean abondoned;
@@ -15,10 +15,11 @@ public class EjectCargoEvent extends Event {
 		super(timestamp);
 		
 		this.type = json.pullString("Type");
+		this.typeLocalised = json.pullString("Type_Localised");
 		this.powerplayOrigin = json.pullString("PowerplayOrigin");
 		this.count = json.pullInt("Count");
 		this.missionID = json.pullLong("MissionID");
-		this.abondoned = json.pullBoolean("Abondoned");
+		this.abondoned = json.pullBoolean("Abandoned");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -61,6 +62,14 @@ public class EjectCargoEvent extends Event {
 
 	public void setAbondoned(Boolean abondoned) {
 		this.abondoned = abondoned;
+	}
+
+	public String getTypeLocalised() {
+		return typeLocalised;
+	}
+
+	public void setTypeLocalised(String typeLocalised) {
+		this.typeLocalised = typeLocalised;
 	}
 
 }

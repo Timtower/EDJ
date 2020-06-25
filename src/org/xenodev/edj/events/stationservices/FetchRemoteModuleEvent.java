@@ -12,11 +12,11 @@ public class FetchRemoteModuleEvent extends Event {
 	public FetchRemoteModuleEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.storageSlots = json.pullInt("StorageSlots");
+		this.storageSlots = json.pullInt("StorageSlot");
 		this.serverId = json.pullInt("ServerId");
 		this.transferCost = json.pullInt( "TransferCost");
 		this.transferTime = json.pullInt("TransferTime");
-		this.shipId = json.pullInt("ShipId");
+		this.shipId = json.pullInt("ShipID");
 		this.storedItem = json.pullString("StoredItem");
 		this.storedItem_Localised = json.pullString("StoredItem_Localised");
 		this.ship = json.pullString("Ship");

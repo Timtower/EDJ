@@ -17,6 +17,7 @@ public class RedeemVoucherEvent extends Event {
 	
 	String type;
 	Long totalAmount;
+	Integer brokerPercentage;
 	List<FactionBounty> factionBounties;
 	
 	public RedeemVoucherEvent(String timestamp, JSONObject json) {
@@ -24,7 +25,8 @@ public class RedeemVoucherEvent extends Event {
 		
 		this.type = json.pullString("Type");
 		this.totalAmount = json.pullLong("Amount");
-		this.factionBounties = JournalUtils.createFactionBountyList(json.getJSONArray("Factions"));
+		this.brokerPercentage = json.pullInt("BrokerPercentage");
+		this.factionBounties = JournalUtils.createFactionBountyList(json.pullJSONArray("Factions"));
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

@@ -8,6 +8,7 @@ public class SAAScanCompleteEvent extends Event {
 	
 	private String bodyName;
 	private Integer bodyID, probesUsed, efficiencyTarget;
+	private Long systemAddress;
 	
 	public SAAScanCompleteEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -16,6 +17,7 @@ public class SAAScanCompleteEvent extends Event {
 		this.bodyID = json.pullInt("BodyID");
 		this.probesUsed = json.pullInt("ProbesUsed");
 		this.efficiencyTarget = json.pullInt("EfficiencyTarget");
+		this.systemAddress = json.pullLong("SystemAddress");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
@@ -50,6 +52,14 @@ public class SAAScanCompleteEvent extends Event {
 
 	public void setEfficiencyTarget(Integer efficiencyTarget) {
 		this.efficiencyTarget = efficiencyTarget;
+	}
+
+	public Long getSystemAddress() {
+		return systemAddress;
+	}
+
+	public void setSystemAddress(Long systemAddress) {
+		this.systemAddress = systemAddress;
 	}
 
 }

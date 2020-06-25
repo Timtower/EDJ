@@ -7,7 +7,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MarketEvent extends Event {
 	
-	private String stationName, starSystem;
+	private String stationName, starSystem, stationType, carrierDockingAccess;
 	private Integer marketID;
 	private MarketFile marketFile;
 	
@@ -15,8 +15,10 @@ public class MarketEvent extends Event {
 		super(timestamp);
 		
 		this.stationName = json.pullString("StationName");
+		this.stationType = json.pullString("StationType");
 		this.starSystem = json.pullString("StarSystem");
 		this.marketID = json.pullInt("MarketID");
+		this.carrierDockingAccess = json.has("CarrierDockingAccess") ? json.pullString("CarrierDockingAccess") : null;
 		this.marketFile = new MarketFile();
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -52,6 +54,22 @@ public class MarketEvent extends Event {
 
 	public void setMarketFile(MarketFile marketFile) {
 		this.marketFile = marketFile;
+	}
+
+	public String getStationType() {
+		return stationType;
+	}
+
+	public void setStationType(String stationType) {
+		this.stationType = stationType;
+	}
+
+	public String getCarrierDockingAccess() {
+		return carrierDockingAccess;
+	}
+
+	public void setCarrierDockingAccess(String carrierDockingAccess) {
+		this.carrierDockingAccess = carrierDockingAccess;
 	}
 
 }

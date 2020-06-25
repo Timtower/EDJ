@@ -14,6 +14,8 @@ public class ModuleStoreEvent extends Event {
 	
 	String slot, storedItem, storedItemLocalised, ship;
 	Integer shipId;
+	Boolean hot;
+	Long marketId;
 	
 	public ModuleStoreEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -23,6 +25,8 @@ public class ModuleStoreEvent extends Event {
 		this.storedItemLocalised = json.pullString("StoredItem_Localised");
 		this.ship = json.pullString("Ship");
 		this.shipId = json.pullInt("ShipID");
+		this.hot = json.pullBoolean("Hot");
+		this.marketId = json.pullLong("MarketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

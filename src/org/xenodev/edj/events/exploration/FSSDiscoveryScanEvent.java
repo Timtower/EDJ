@@ -14,7 +14,7 @@ public class FSSDiscoveryScanEvent extends Event {
 	public FSSDiscoveryScanEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.systemName = json.pullString("systemName");
+		this.systemName = json.pullString("SystemName");
 		this.systemAddress = json.pullLong("SystemAddress");
 		this.progress = json.pullDouble("Progress");
 		this.bodyCount = json.pullInt("BodyCount");

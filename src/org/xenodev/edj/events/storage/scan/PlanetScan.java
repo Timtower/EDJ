@@ -1,5 +1,7 @@
 package org.xenodev.edj.events.storage.scan;
 
+import java.util.List;
+
 import org.xenodev.edj.events.interfaces.ScanInfo;
 
 public class PlanetScan implements ScanInfo {
@@ -9,19 +11,19 @@ public class PlanetScan implements ScanInfo {
 	Integer bodyID;
 	Long radius, semiMajorAxis, orbitalPeriod;
 	Boolean tidalLock, landable;
-	Parent[] parents;
-	AtmosphereComposition[] atmosphereComposition;
-	Ring[] rings;
-	Material[] materials;
-	Composition[] composition;
+	List<Parent> parents;
+	List<AtmosphereComposition> atmosphereComposition;
+	List<Ring> rings;
+	List<Material> materials;
+	List<Composition> composition;
 	
 	public PlanetScan(String scanType, String bodyName, String terraformState, String planetClass, String atmosphere,
 			String atmosphereType, String volcanism, String reserveLevel, Double distanceFromArrivalLS, Double massEM,
 			Double surfaceGravity, Double surfaceTemperature, Double surfacePressure, Double eccentricity,
 			Double orbitalInclination, Double periapsis, Double rotationPeriod, Double axialTilt, Integer bodyID,
-			Long radius, Long semiMajorAxis, Long orbitalPeriod, Boolean tidalLock, Boolean landable, Parent[] parents,
-			AtmosphereComposition[] atmosphereComposition, Ring[] rings, Material[] materials,
-			Composition[] composition) {
+			Long radius, Long semiMajorAxis, Long orbitalPeriod, Boolean tidalLock, Boolean landable, List<Parent> parents,
+			List<AtmosphereComposition> atmosphereComposition, List<Ring> rings, List<Material> materials,
+			List<Composition> composition) {
 		this.scanType = scanType;
 		this.bodyName = bodyName;
 		this.terraformState = terraformState;
@@ -245,43 +247,43 @@ public class PlanetScan implements ScanInfo {
 		this.landable = landable;
 	}
 
-	public Parent[] getParents() {
+	public List<Parent> getParents() {
 		return parents;
 	}
 
-	public void setParents(Parent[] parents) {
+	public void setParents(List<Parent> parents) {
 		this.parents = parents;
 	}
 
-	public AtmosphereComposition[] getAtmosphereComposition() {
+	public List<AtmosphereComposition> getAtmosphereComposition() {
 		return atmosphereComposition;
 	}
 
-	public void setAtmosphereComposition(AtmosphereComposition[] atmosphereComposition) {
+	public void setAtmosphereComposition(List<AtmosphereComposition> atmosphereComposition) {
 		this.atmosphereComposition = atmosphereComposition;
 	}
 
-	public Ring[] getRings() {
+	public List<Ring> getRings() {
 		return rings;
 	}
 
-	public void setRings(Ring[] rings) {
+	public void setRings(List<Ring> rings) {
 		this.rings = rings;
 	}
 
-	public Material[] getMaterials() {
+	public List<Material> getMaterials() {
 		return materials;
 	}
 
-	public void setMaterials(Material[] materials) {
+	public void setMaterials(List<Material> materials) {
 		this.materials = materials;
 	}
 
-	public Composition[] getComposition() {
+	public List<Composition> getComposition() {
 		return composition;
 	}
 
-	public void setComposition(Composition[] composition) {
+	public void setComposition(List<Composition> composition) {
 		this.composition = composition;
 	}
 

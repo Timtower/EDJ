@@ -1,5 +1,7 @@
 package org.xenodev.edj.events.storage.scan;
 
+import java.util.List;
+
 import org.xenodev.edj.events.interfaces.ScanInfo;
 
 public class StarScan implements ScanInfo {
@@ -8,13 +10,13 @@ public class StarScan implements ScanInfo {
 	Double distanceFromArrivalLS, stellarMass, surfaceTemperature, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt, absoluteMagnitude;
 	Integer bodyID;
 	Long radius, semiMajorAxis, orbitalPeriod, ageMY;
-	Parent[] parents;
-	Ring[] rings;
+	List<Parent> parents;
+	List<Ring> rings;
 
 	public StarScan(String scanType, String bodyName, String starType, String luminosity, Double distanceFromArrivalLS,
 			Double stellarMass, Double surfaceTemperature, Double eccentricity, Double orbitalInclination,
 			Double periapsis, Double rotationPeriod, Double axialTilt, Double absoluteMagnitude, Integer bodyID,
-			Long radius, Long semiMajorAxis, Long orbitalPeriod, Long ageMY, Parent[] parents, Ring[] rings) {
+			Long radius, Long semiMajorAxis, Long orbitalPeriod, Long ageMY, List<Parent> parents, List<Ring> rings) {
 		this.scanType = scanType;
 		this.bodyName = bodyName;
 		this.starType = starType;
@@ -181,19 +183,19 @@ public class StarScan implements ScanInfo {
 		this.ageMY = ageMY;
 	}
 
-	public Parent[] getParents() {
+	public List<Parent> getParents() {
 		return parents;
 	}
 
-	public void setParents(Parent[] parents) {
+	public void setParents(List<Parent> parents) {
 		this.parents = parents;
 	}
 
-	public Ring[] getRings() {
+	public List<Ring> getRings() {
 		return rings;
 	}
 
-	public void setRings(Ring[] rings) {
+	public void setRings(List<Ring> rings) {
 		this.rings = rings;
 	}
 	

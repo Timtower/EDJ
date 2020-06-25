@@ -7,7 +7,7 @@ import org.xenodev.edj.utils.JournalUtils;
 public class MarketSellEvent extends Event {
 	
 	private Long marketID;
-	private String type;
+	private String type, typeLocalised;
 	private Integer count, sellPrice, totalSale, avgPricePaid;
 	private Boolean illegalGoods, stolenGoods, blackMarket;
 	
@@ -16,9 +16,10 @@ public class MarketSellEvent extends Event {
 		
 		this.marketID = json.pullLong("MarketID");
 		this.type = json.pullString("Type");
+		this.typeLocalised = json.pullString("Type_Localised");
 		this.count = json.pullInt("Count");
 		this.sellPrice = json.pullInt("SellPrice");
-		this.totalSale = json.pullInt("TotalPrice");
+		this.totalSale = json.pullInt("TotalSale");
 		this.avgPricePaid = json.pullInt("AvgPricePaid");
 		this.illegalGoods = json.pullBoolean("IllegalGoods");
 		this.stolenGoods = json.pullBoolean("StolenGoods");
@@ -97,6 +98,14 @@ public class MarketSellEvent extends Event {
 
 	public void setBlackMarket(Boolean blackMarket) {
 		this.blackMarket = blackMarket;
+	}
+
+	public String getTypeLocalised() {
+		return typeLocalised;
+	}
+
+	public void setTypeLocalised(String typeLocalised) {
+		this.typeLocalised = typeLocalised;
 	}
 
 }

@@ -15,7 +15,7 @@ public class DockingDeniedEvent extends Event {
 		this.reason = json.pullString("Reason");
 		this.stationName = json.pullString("StationName");
 		this.stationType = json.pullString("StationType");
-		this.marketID = json.pullLong("marketID");
+		this.marketID = json.pullLong("MarketID");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}

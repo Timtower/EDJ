@@ -44,6 +44,7 @@ That's it! Now the API will run the code defined in the EventListeners whenever 
 
 * **Gabriel Smith** - Initial work - [XenoPyax](https://github.com/XenoPyax)
 * **drh713** - submitted 90+ missing event strings - [u/drh713](https://www.reddit.com/user/drh713/)
+* **EmulatedPenguin** - provided 720+ lines of data which made 15 new event detections and 8 bug fixes - [cmdr_emulatedpenguin](https://www.twitch.tv/cmdr_emulatedpenguin)
 
 *Also see here for a list of all [contributors](https://github.com/XenoPyax/EDJ/contributors) of EDJ.*
 

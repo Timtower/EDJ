@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class BuyDronesEvent extends Event {
 	
-	private Integer count, buyPrice, totalPrice;
+	private Integer count, buyPrice, totalCost;
 	private String type;
 	
 	public BuyDronesEvent(String timestamp, JSONObject json) {
@@ -14,7 +14,7 @@ public class BuyDronesEvent extends Event {
 		
 		this.count = json.pullInt("Count");
 		this.buyPrice = json.pullInt("BuyPrice");
-		this.totalPrice = json.pullInt("TotalPrice");
+		this.totalCost = json.pullInt("TotalCost");
 		this.type = json.pullString("Type");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -36,12 +36,12 @@ public class BuyDronesEvent extends Event {
 		this.buyPrice = buyPrice;
 	}
 
-	public Integer getTotalPrice() {
-		return totalPrice;
+	public Integer getTotalCost() {
+		return totalCost;
 	}
 
-	public void setTotalPrice(Integer totalPrice) {
-		this.totalPrice = totalPrice;
+	public void setTotalCost(Integer totalCost) {
+		this.totalCost = totalCost;
 	}
 
 	public String getType() {

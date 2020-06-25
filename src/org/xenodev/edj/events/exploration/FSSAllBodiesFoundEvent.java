@@ -7,14 +7,14 @@ import org.xenodev.edj.utils.JournalUtils;
 public class FSSAllBodiesFoundEvent extends Event {
 	
 	String systemName;
-	Long systemAdress;
+	Long systemAddress;
 	Integer count;
 	
 	public FSSAllBodiesFoundEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
 		this.systemName = json.pullString("SystemName");
-		this.systemAdress = json.pullLong("SystemAdress");
+		this.systemAddress = json.pullLong("SystemAddress");
 		this.count = json.pullInt("Count");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
@@ -28,12 +28,12 @@ public class FSSAllBodiesFoundEvent extends Event {
 		this.systemName = systemName;
 	}
 
-	public Long getSystemAdress() {
-		return systemAdress;
+	public Long getSystemAddress() {
+		return systemAddress;
 	}
 
-	public void setSystemAdress(Long systemAdress) {
-		this.systemAdress = systemAdress;
+	public void setSystemAddress(Long systemAddress) {
+		this.systemAddress = systemAddress;
 	}
 
 	public Integer getCount() {

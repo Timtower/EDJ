@@ -1,10 +1,8 @@
 package org.xenodev.edj.utils;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -12,6 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,10 +84,11 @@ public class JournalUtils {
 		
 	}
 	
+	@SuppressWarnings("unused")
 	public static void sendUnprocessedEvent(String event, JSONObject json) {
 
         try {
-        	URL url = new URL("http://192.168.0.100/edj/uereporter.php"); // URL to your application
+        	URL url = new URL("http://192.168.178.46/edj/uereporter.php"); // URL to your application
         	Map<String,Object> params = new LinkedHashMap<>();
         	params.put("eventname", event); // All parameters, also easy
         	params.put("jsontext", json.toString().replace("'", "").replace("\\\\", "-").replace("/", "-"));
@@ -117,22 +117,25 @@ public class JournalUtils {
         	
         	// This gets the output from your server
         	
-        	Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 	
-        	/*
-			for (int c; (c = in.read()) >= 0;) {
+        	
+			/*
+        	for (int c; (c = in.read()) >= 0;) {
          		System.out.print((char)c);
          	}
          	*/
+         	
         }catch (IOException e) {
         	e.printStackTrace();
         }
 
     }
 	
+	@SuppressWarnings("unused")
 	private static void sendUnusedEventData(String event, String s) {
         try {
-        	URL url = new URL("http://192.168.0.100/edj/uedreporter.php"); // URL to your application
+        	URL url = new URL("http://192.168.178.46/edj/uedreporter.php"); // URL to your application
         	Map<String,Object> params = new LinkedHashMap<>();
         	params.put("eventname", event); // All parameters, also easy
         	params.put("jsontext", s.replace("'", ""));
@@ -161,7 +164,7 @@ public class JournalUtils {
         	
         	// This gets the output from your server
         	
-        	Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+        	BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
         	
         	/*
         	for (int c; (c = in.read()) >= 0;) {
@@ -257,103 +260,71 @@ public class JournalUtils {
 		return discoveries;
 	}
 	
-	public static Discovered[] createDiscoveredList(JSONArray array) {
-		Discovered[] discoveries = new Discovered[] {};
-		int arrayPos = 0;
+	public static List<Discovered> createDiscoveredList(JSONArray array) {
+		List<Discovered> discoveries = new ArrayList<Discovered>();
 		
 		for(Object comp : array) {
-			Discovered discovered;
 			JSONObject json = new JSONObject(comp.toString());
 			
-			discovered = new Discovered(json.getString("SystemName"), json.getInt("NumBodies"));
-			
-			discoveries[arrayPos] = discovered;
-			arrayPos++;	
+			discoveries.add(new Discovered(json.getString("SystemName"), json.getInt("NumBodies")));
 		}
 		
 		return discoveries;
 	}
 	
-	public static Material[] createMaterialList(JSONObject json) {
-		Material[] materials = new Material[] {};
+	public static List<Material> createMaterialList(JSONArray array) {
+		List<Material> materials = new ArrayList<>();
 		
-		Map<String, Object> obj = new JSONObject(json).getJSONObject("Material").toMap();
-		for(Entry<String, Object> map : obj.entrySet()) {
-			Material material;
-			int pos = 0;
-				
-			material = new Material(map.getKey(), (Double) map.getValue());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			materials.add(new Material(json.getString("Name"), json.getDouble("Percent")));
 			
-			materials[pos] = material;
-			pos++;
 		}
 		
 		return materials;		
 	}
 	
-	public static Parent[] createParentList(JSONObject json) {
-		Parent[] parents = new Parent[] {};
+	public static List<Parent> createParentList(JSONArray array) {
+		List<Parent> parents = new ArrayList<>();
 		
-		Map<String, Object> obj = new JSONObject(json).getJSONObject("Parents").toMap();
-		for(Entry<String, Object> map : obj.entrySet()) {
-			Parent parent;
-			int pos = 0;
-				
-			parent = new Parent(map.getKey(), (int)map.getValue());
-			
-			parents[pos] = parent;
-			pos++;
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			for(Entry<String, Object> map : json.toMap().entrySet()) {
+				parents.add(new Parent(map.getKey(), (Integer)map.getValue()));
+			}
 		}
 		
 		return parents;		
 	}
 	
-	public static Ring[] createRingsList(JSONArray array) {
-		Ring[] rings = new Ring[] {};
-		int arrayPos = 0;
+	public static List<Ring> createRingsList(JSONArray array) {
+		List<Ring> rings = new ArrayList<>();
 		
-		for(Object comp : array) {
-			Ring ring;
-			JSONObject json = new JSONObject(comp.toString());
-			
-			ring = new Ring(json.getString("Name"), json.getString("RingClass"), json.getLong("MassMT"), json.getLong("InnerRad"), json.getLong("OuterRad"));
-			
-			rings[arrayPos] = ring;
-			arrayPos++;
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			rings.add(new Ring(json.getString("Name"), json.getString("RingClass"), json.getLong("MassMT"), json.getLong("InnerRad"), json.getLong("OuterRad")));
 		}
 		
 		return rings;		
 	}
 	
-	public static Composition[] createCompositionList(JSONObject json) {
-		Composition[] compositions = new Composition[] {};
+	public static List<Composition> createCompositionList(JSONObject json) {
+		List<Composition> compositions = new ArrayList<Composition>();
 		
-		Map<String, Object> obj = new JSONObject(json).getJSONObject("Composition").toMap();
-		for(Entry<String, Object> map : obj.entrySet()) {
-			Composition composition;
-			int pos = 0;
-				
-			composition = new Composition(map.getKey(), (double)map.getValue());
-			
-			compositions[pos] = composition;
-			pos++;
+		for(Entry<String, Object> map : json.toMap().entrySet()) {				
+			compositions.add(new Composition(map.getKey(), (double)map.getValue()));
 		}
 		
 		return compositions;		
 	}
 	
-	public static AtmosphereComposition[] createAtmosphereCompositionList(JSONArray array) {
-		AtmosphereComposition[] atmosphereCompositions = new AtmosphereComposition[] {};
-		int arrayPos = 0;
+	public static List<AtmosphereComposition> createAtmosphereCompositionList(JSONArray array) {
+		List<AtmosphereComposition> atmosphereCompositions = new ArrayList<AtmosphereComposition>();
 		
 		for(Object comp : array) {
-			AtmosphereComposition atmosphereComposition;
 			JSONObject obj = new JSONObject(comp.toString());
 				
-			atmosphereComposition = new AtmosphereComposition(obj.getString("Name"), obj.getDouble("Percent"));
-			
-			atmosphereCompositions[arrayPos] = atmosphereComposition;
-			arrayPos++;
+			atmosphereCompositions.add(new AtmosphereComposition(obj.getString("Name"), obj.getDouble("Percent")));	
 		}
 		
 		return atmosphereCompositions;		
@@ -682,7 +653,7 @@ public class JournalUtils {
 	public static Conflict createConflict(JSONArray array) {
 		List<ConflicFaction> conflictFactionList = new ArrayList<>();
 		
-		JSONObject json = new JSONObject(array.toString());
+		JSONObject json = array.getJSONObject(0);
 		JSONObject faction1 = new JSONObject(json.getJSONObject("Faction1"));
 		JSONObject faction2 = new JSONObject(json.getJSONObject("Faction2"));
 		

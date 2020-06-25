@@ -6,19 +6,24 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class StatisticsEvent extends Event {
 	
-	Long currentWealth, spentOnShips, spentOnOutfitting, spentOnRepairs, spentOnFuel, spentOnAmmoConsumables, spentOnInsurance, bountyHuntingProfit, combatBondsProfit, assassinationProfits,
-	totalFines, totalBounties, blackMarketsProfit, averageSmugglingProfit, marketProfit, miningProfits, explorationProfits, searchRescueProfit, totalNpcCrewWages;
+	private Long currentWealth, spentOnShips, spentOnOutfitting, spentOnRepairs, spentOnFuel, spentOnAmmoConsumables, spentOnInsurance, bountyHuntingProfit, combatBondsProfit, assassinationProfits,
+	totalFines, totalBounties, blackMarketsProfit, averageSmugglingProfit, marketProfit, miningProfits, explorationProfits, searchRescueProfit, totalNpcCrewWages, fleetCarrierRearmTotal,
+	fleetCarrierExportTotal, fleetCarrierImportTotal, fleetCarrierRefuelTotal, fleetCarrierRefuelProfit, fleetCarrierRepairsTotal, fleetCarrierShipyardSold, fleetCarrierOutfittingSold,
+	fleetCarrierShipyardProfit, fleetCarrierVouchersProfit, fleetCarrierTradespendTotal, fleetCarrierOutfittingProfit, fleetCarrierStolenspendTotal, fleetCarrierTradeprofitTotal,
+	fleetCarrierVouchersRedeemed, fleetCarrierStolenprofitTotal, cqcKills, cqcTimePlayed, cqcCreditsEarned, fleetCarrierTotalJumps;
 	
-	Integer bountiesReceived, insuranceClaims, ownedShipCount, bountiesClaimed, combatBonds, assassinations, highestSingleReward, skimmersKilled, notoriety, fines, highestBounty,
+	private Integer bountiesReceived, insuranceClaims, ownedShipCount, bountiesClaimed, combatBonds, assassinations, highestSingleReward, skimmersKilled, notoriety, fines, highestBounty,
 	blackMartketsTradedWith, ressourcesSmuggled, highestSingleSmugglingTransaction, marketsTradedWith, ressourcesTraded, averageTradingProfit, highestSingleTradingTransaction, quantityMined,
 	materialsCollected, systemsVisited, planetsScannedToLevel2, planetsScannedToLevel3, efficientScans, highestPayout, totalHyperspaceDistance, totalHyperspaceJumps, greatestDistanceFromStart,
-	timePlayed, passengersMissionsAccepted, passengersMissionsDisgruntled, passengersMissionsBulk, passengersMissionsVIP, passengersMissionsDelivered, passengersMissionsEjected, searchRescueTraded,
-	searchRescueCount, totalTGEncounters, tGScoutCount, engineersUsedCount, totalRecipesGenerated, recipesGeneratedRank1, recipesGeneratedRank2, recipesGeneratedRank3, recipesGeneratedRank4,
-	recipesGeneratedRank5, hiredNpcCrew, firedNpcCrew, totalMulticrewTime, totalMulticrewTimeGunner, totalMulticrewTimeFighter, totalMulticrewCredits, totalMulticrewFines,
+	timePlayed, passengersMissionsAccepted, passengersMissionsDisgruntled, passengersMissionsBulk, passengersMissionsVIP, passengersMissionsDelivered, passengersMissionsEjected,
+	searchRescueTraded,	searchRescueCount, totalTGEncounters, tGScoutCount, engineersUsedCount, totalRecipesGenerated, recipesGeneratedRank1, recipesGeneratedRank2, recipesGeneratedRank3,
+	recipesGeneratedRank4, recipesGeneratedRank5, hiredNpcCrew, firedNpcCrew, totalMulticrewTime, totalMulticrewTimeGunner, totalMulticrewTimeFighter, totalMulticrewCredits, totalMulticrewFines,
 	materialTraderTradesCompledted, materialTraderMaterialsTraded, materialTraderEncodedMaterialsTraded, materialTraderGrade1Traded, materialTraderGrade2Traded, materialTraderGrade3Traded,
 	materialTraderGrade4Traded, materialTraderGrade5Traded;
 	
-	String lastTGEncounterSystem, lastTGEncounterTime, lastTGEncounterShip;
+	private String lastTGEncounterSystem, lastTGEncounterTime, lastTGEncounterShip, fleetCarrierDistanceTravelled;
+	
+	private Double cqcKD, cqcWL;
 	
 	public StatisticsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -36,6 +41,8 @@ public class StatisticsEvent extends Event {
 		JSONObject crew = json.pullJSONObject("Crew");
 		JSONObject multicrew = json.pullJSONObject("Multicrew");
 		JSONObject materialTrader = json.pullJSONObject("Material_Trader_Stats");
+		JSONObject fleetCarrier = json.pullJSONObject("FLEETCARRIER");
+		JSONObject cqc = json.pullJSONObject("CQC");
 		
 		// Bank Account
 		this.currentWealth = bankAccount.getLong("Current_Wealth");
@@ -148,6 +155,33 @@ public class StatisticsEvent extends Event {
 		this.materialTraderGrade4Traded = materialTrader.getInt("Grade_4_Materials_Traded");
 		this.materialTraderGrade5Traded = materialTrader.getInt("Grade_5_Materials_Traded");
 		
+		// Fleet Carrier
+		this.fleetCarrierRearmTotal = fleetCarrier.pullLong("FLEETCARRIER_REARM_TOTAL");
+		this.fleetCarrierTotalJumps = fleetCarrier.pullLong("FLEETCARRIER_TOTAL_JUMPS");
+		this.fleetCarrierExportTotal = fleetCarrier.pullLong("FLEETCARRIER_EXPORT_TOTAL");
+		this.fleetCarrierImportTotal = fleetCarrier.pullLong("FLEETCARRIER_IMPORT_TOTAL");
+		this.fleetCarrierRefuelTotal = fleetCarrier.pullLong("FLEETCARRIER_REFUEL_TOTAL");
+		this.fleetCarrierRefuelProfit = fleetCarrier.pullLong("FLEETCARRIER_REFUEL_PROFIT");
+		this.fleetCarrierRepairsTotal = fleetCarrier.pullLong("FLEETCARRIER_REPAIRS_TOTAL");
+		this.fleetCarrierShipyardSold = fleetCarrier.pullLong("FLEETCARRIER_SHIPYARD_SOLD");
+		this.fleetCarrierOutfittingSold = fleetCarrier.pullLong("FLEETCARRIER_OUTFITTING_SOLD");
+		this.fleetCarrierShipyardProfit = fleetCarrier.pullLong("FLEETCARRIER_SHIPYARD_PROFIT");
+		this.fleetCarrierVouchersProfit = fleetCarrier.pullLong("FLEETCARRIER_VOUCHERS_PROFIT");
+		this.fleetCarrierTradespendTotal = fleetCarrier.pullLong("FLEETCARRIER_TRADESPEND_TOTAL");
+		this.fleetCarrierOutfittingProfit = fleetCarrier.pullLong("FLEETCARRIER_OUTFITTING_PROFIT");
+		this.fleetCarrierStolenspendTotal = fleetCarrier.pullLong("FLEETCARRIER_STOLENSPEND_TOTAL");
+		this.fleetCarrierTradeprofitTotal = fleetCarrier.pullLong("FLEETCARRIER_TRADEPROFIT_TOTAL");
+		this.fleetCarrierVouchersRedeemed = fleetCarrier.pullLong("FLEETCARRIER_VOUCHERS_REDEEMED");
+		this.fleetCarrierStolenprofitTotal = fleetCarrier.pullLong("FLEETCARRIER_STOLENPROFIT_TOTAL");
+		this.fleetCarrierDistanceTravelled = fleetCarrier.pullString("FLEETCARRIER_DISTANCE_TRAVELLED");
+		
+		//CQC
+		this.cqcKD = cqc.pullDouble("CQC_KD");
+		this.cqcWL = cqc.pullDouble("CQC_WL");
+		this.cqcKills = cqc.pullLong("CQC_Kills");
+		this.cqcTimePlayed = cqc.pullLong("CQC_Time_Played");
+		this.cqcCreditsEarned = cqc.pullLong("CQC_Credits_Earned");
+			
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
@@ -813,6 +847,190 @@ public class StatisticsEvent extends Event {
 
 	public void setLastTGEncounterShip(String lastTGEncounterShip) {
 		this.lastTGEncounterShip = lastTGEncounterShip;
+	}
+
+	public Long getFleetCarrierRearmTotal() {
+		return fleetCarrierRearmTotal;
+	}
+
+	public void setFleetCarrierRearmTotal(Long fleetCarrierRearmTotal) {
+		this.fleetCarrierRearmTotal = fleetCarrierRearmTotal;
+	}
+
+	public Long getFleetCarrierExportTotal() {
+		return fleetCarrierExportTotal;
+	}
+
+	public void setFleetCarrierExportTotal(Long fleetCarrierExportTotal) {
+		this.fleetCarrierExportTotal = fleetCarrierExportTotal;
+	}
+
+	public Long getFleetCarrierImportTotal() {
+		return fleetCarrierImportTotal;
+	}
+
+	public void setFleetCarrierImportTotal(Long fleetCarrierImportTotal) {
+		this.fleetCarrierImportTotal = fleetCarrierImportTotal;
+	}
+
+	public Long getFleetCarrierRefuelTotal() {
+		return fleetCarrierRefuelTotal;
+	}
+
+	public void setFleetCarrierRefuelTotal(Long fleetCarrierRefuelTotal) {
+		this.fleetCarrierRefuelTotal = fleetCarrierRefuelTotal;
+	}
+
+	public Long getFleetCarrierRefuelProfit() {
+		return fleetCarrierRefuelProfit;
+	}
+
+	public void setFleetCarrierRefuelProfit(Long fleetCarrierRefuelProfit) {
+		this.fleetCarrierRefuelProfit = fleetCarrierRefuelProfit;
+	}
+
+	public Long getFleetCarrierRepairsTotal() {
+		return fleetCarrierRepairsTotal;
+	}
+
+	public void setFleetCarrierRepairsTotal(Long fleetCarrierRepairsTotal) {
+		this.fleetCarrierRepairsTotal = fleetCarrierRepairsTotal;
+	}
+
+	public Long getFleetCarrierShipyardSold() {
+		return fleetCarrierShipyardSold;
+	}
+
+	public void setFleetCarrierShipyradSold(Long fleetCarrierShipyardSold) {
+		this.fleetCarrierShipyardSold = fleetCarrierShipyardSold;
+	}
+
+	public Long getFleetCarrierOutfittingSold() {
+		return fleetCarrierOutfittingSold;
+	}
+
+	public void setFleetCarrierOutfittingSold(Long fleetCarrierOutfittingSold) {
+		this.fleetCarrierOutfittingSold = fleetCarrierOutfittingSold;
+	}
+
+	public Long getFleetCarrierShipyardProfit() {
+		return fleetCarrierShipyardProfit;
+	}
+
+	public void setFleetCarrierShipyardProfit(Long fleetCarrierShipyardProfit) {
+		this.fleetCarrierShipyardProfit = fleetCarrierShipyardProfit;
+	}
+
+	public Long getFleetCarrierVouchersProfit() {
+		return fleetCarrierVouchersProfit;
+	}
+
+	public void setFleetCarrierVouchersProfit(Long fleetCarrierVouchersProfit) {
+		this.fleetCarrierVouchersProfit = fleetCarrierVouchersProfit;
+	}
+
+	public Long getFleetCarrierTradeSpendTotal() {
+		return fleetCarrierTradespendTotal;
+	}
+
+	public void setFleetCarrierTradeSpendTotal(Long fleetCarrierTradespendTotal) {
+		this.fleetCarrierTradespendTotal = fleetCarrierTradespendTotal;
+	}
+
+	public Long getFleetCarrierOutfittingProfit() {
+		return fleetCarrierOutfittingProfit;
+	}
+
+	public void setFleetCarrierOutfittingProfit(Long fleetCarrierOutfittingProfit) {
+		this.fleetCarrierOutfittingProfit = fleetCarrierOutfittingProfit;
+	}
+
+	public Long getFleetCarrierStolenSpendTotal() {
+		return fleetCarrierStolenspendTotal;
+	}
+
+	public void setFleetCarrierStolenSpendTotal(Long fleetCarrierStolenspendTotal) {
+		this.fleetCarrierStolenspendTotal = fleetCarrierStolenspendTotal;
+	}
+
+	public Long getFleetCarrierTradeProfitTotal() {
+		return fleetCarrierTradeprofitTotal;
+	}
+
+	public void setFleetCarrierTradeProfitTotal(Long fleetCarrierTradeprofitTotal) {
+		this.fleetCarrierTradeprofitTotal = fleetCarrierTradeprofitTotal;
+	}
+
+	public Long getFleetCarrierVouchersRedeemed() {
+		return fleetCarrierVouchersRedeemed;
+	}
+
+	public void setFleetCarrierVouchersRedeemed(Long fleetCarrierVouchersRedeemed) {
+		this.fleetCarrierVouchersRedeemed = fleetCarrierVouchersRedeemed;
+	}
+
+	public Long getFleetCarrierStolenProfitTotal() {
+		return fleetCarrierStolenprofitTotal;
+	}
+
+	public void setFleetCarrierStolenProfitTotal(Long fleetCarrierStolenprofitTotal) {
+		this.fleetCarrierStolenprofitTotal = fleetCarrierStolenprofitTotal;
+	}
+
+	public Long getCQCKills() {
+		return cqcKills;
+	}
+
+	public void setCQCKills(Long cqcKills) {
+		this.cqcKills = cqcKills;
+	}
+
+	public Long getCQCTimePlayed() {
+		return cqcTimePlayed;
+	}
+
+	public void setCQCTimePlayed(Long cqcTimePlayed) {
+		this.cqcTimePlayed = cqcTimePlayed;
+	}
+
+	public Long getCQCCreditsEarned() {
+		return cqcCreditsEarned;
+	}
+
+	public void setCQCCreditsEarned(Long cqcCreditsEarned) {
+		this.cqcCreditsEarned = cqcCreditsEarned;
+	}
+
+	public Long getFleetCarrierTotalJumps() {
+		return fleetCarrierTotalJumps;
+	}
+
+	public void setFleetCarrierTotalJumps(Long fleetCarrierTotalJumps) {
+		this.fleetCarrierTotalJumps = fleetCarrierTotalJumps;
+	}
+
+	public String getFleetCarrierDistanceTravelled() {
+		return fleetCarrierDistanceTravelled;
+	}
+
+	public void setFleetCarrierDistanceTravelled(String fleetCarrierDistanceTravelled) {
+		this.fleetCarrierDistanceTravelled = fleetCarrierDistanceTravelled;
+	}
+
+	public Double getCQCKD() {
+		return cqcKD;
+	}
+
+	public void setCQCKD(Double cqcKD) {
+		this.cqcKD = cqcKD;
+	}
+
+	public Double getCQCWL() {
+		return cqcWL;
+	}
+
+	public void setCQCWL(Double cqcWL) {
+		this.cqcWL = cqcWL;
 	}
 	
 }

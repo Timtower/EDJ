@@ -13,11 +13,15 @@ import org.xenodev.edj.utils.JournalUtils;
 public class PayFinesEvent extends Event {
 	
 	Long amount;
+	Integer shipId;
+	Boolean allFines;
 
 	public PayFinesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
 		this.amount = json.pullLong("Amount");
+		this.shipId = json.pullInt("ShipID");
+		this.allFines = json.pullBoolean("AllFines");
 		
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
