@@ -9,9 +9,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class CargoEvent extends Event {
 
-	String vessel;
-	Integer count;
-	List<CargoInventory> inventory;
+	private String vessel;
+	private Integer count;
+	private List<CargoInventory> inventory;
 	
 	public CargoEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -27,24 +27,12 @@ public class CargoEvent extends Event {
 		return vessel;
 	}
 
-	public void setVessel(String vessel) {
-		this.vessel = vessel;
-	}
-
 	public List<CargoInventory> getInventory() {
 		return inventory;
-	}
-
-	public void setInventory(List<CargoInventory> inventory) {
-		this.inventory = inventory;
 	}
 	
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 }

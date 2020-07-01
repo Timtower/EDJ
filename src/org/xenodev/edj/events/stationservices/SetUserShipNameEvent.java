@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SetUserShipNameEvent extends Event {
 	
-	String ship;
-	Integer shipId;
-	String userShipName, userShipId;
+	private String ship;
+	private Integer shipId;
+	private String userShipName, userShipId;
 	
 	public SetUserShipNameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -31,32 +31,16 @@ public class SetUserShipNameEvent extends Event {
 		return ship;
 	}
 
-	public void setShip(String ship) {
-		this.ship = ship;
-	}
-
 	public Integer getShipId() {
 		return shipId;
-	}
-
-	public void setShipId(Integer shipId) {
-		this.shipId = shipId;
 	}
 
 	public String getUserShipName() {
 		return userShipName;
 	}
 
-	public void setUserShipName(String userShipName) {
-		this.userShipName = userShipName;
-	}
-
 	public String getUserShipId() {
 		return userShipId;
-	}
-
-	public void setUserShipId(String userShipId) {
-		this.userShipId = userShipId;
 	}
 
 }

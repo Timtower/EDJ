@@ -18,41 +18,27 @@ public class MarketFile {
 	
 	public MarketFile() {
 		String marketFileContent = null;
-		try {
-			File file = FileHandler.getMarketFile();
-			FileInputStream fis = new FileInputStream(file);
-			byte[] data = new byte[(int) file.length()];
+		File file = FileHandler.getMarketFile();
+		if(file != null) {
+			try {
+				FileInputStream fis = new FileInputStream(file);
+				byte[] data = new byte[(int) file.length()];
+				
+				fis.read(data);
+				fis.close();
+	
+				marketFileContent = new String(data, "UTF-8");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
-			fis.read(data);
-			fis.close();
-
-			marketFileContent = new String(data, "UTF-8");
-		} catch (IOException e) {
-			e.printStackTrace();
+			JSONArray array = new JSONObject(marketFileContent).getJSONArray("Items");
+			items = JournalUtils.createItemList(array);
 		}
-		
-		JSONArray array = new JSONObject(marketFileContent).getJSONArray("Items");
-		items = JournalUtils.createItemList(array);
 	}
 
 	public Integer getMarketID() {
 		return marketID;
-	}
-
-	public void setMarketID(Integer marketID) {
-		this.marketID = marketID;
-	}
-
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
-
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
 	}
 
 	public String getStationName() {

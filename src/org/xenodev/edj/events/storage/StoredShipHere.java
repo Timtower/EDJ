@@ -16,52 +16,28 @@ public class StoredShipHere {
 		this.shipId = shipId;
 	}
 
-	public String getShipTypeLocalised() {
-		return shipTypeLocalised;
-	}
-
-	public void setShipTypeLocalised(String shipTypeLocalised) {
-		this.shipTypeLocalised = shipTypeLocalised;
-	}
-
 	public Boolean getHot() {
 		return hot;
-	}
-
-	public void setHot(Boolean hot) {
-		this.hot = hot;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getShipType() {
 		return shipType;
 	}
 
-	public void setShipType(String shipType) {
-		this.shipType = shipType;
+	public String getShipTypeLocalised() {
+		return shipTypeLocalised;
 	}
 
 	public Long getValue() {
 		return value;
 	}
 
-	public void setValue(Long value) {
-		this.value = value;
-	}
-
 	public Integer getShipId() {
 		return shipId;
-	}
-
-	public void setShipId(Integer shipId) {
-		this.shipId = shipId;
 	}
 
 }

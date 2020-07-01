@@ -16,9 +16,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class StoredModulesEvent extends Event {
 	
-	Long marketId;
-	String stationName, starSystem;
-	List<StoredModule> moduleList = new ArrayList<>();
+	private Long marketId;
+	private String stationName, starSystem;
+	private List<StoredModule> moduleList = new ArrayList<>();
 	
 	public StoredModulesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -35,32 +35,16 @@ public class StoredModulesEvent extends Event {
 		return marketId;
 	}
 
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
-	}
-
 	public String getStationName() {
 		return stationName;
-	}
-
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
 	}
 
 	public String getStarSystem() {
 		return starSystem;
 	}
 
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
 	public List<StoredModule> getModuleList() {
 		return moduleList;
-	}
-
-	public void setModuleList(List<StoredModule> moduleList) {
-		this.moduleList = moduleList;
 	}
 
 }

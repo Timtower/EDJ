@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipyardSellEvent extends Event {
 	
-	String shipType, shipTypeLocalised;
-	Integer sellShipId;
-	Long shipPrice, marketId;
+	private String shipType, shipTypeLocalised;
+	private Integer sellShipId;
+	private Long shipPrice, marketId;
 	
 	public ShipyardSellEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -32,40 +32,20 @@ public class ShipyardSellEvent extends Event {
 		return shipType;
 	}
 
-	public void setShipType(String shipType) {
-		this.shipType = shipType;
-	}
-
 	public String getShipTypeLocalised() {
 		return shipTypeLocalised;
-	}
-
-	public void setShipTypeLocalised(String shipTypeLocalised) {
-		this.shipTypeLocalised = shipTypeLocalised;
 	}
 
 	public Integer getSellShipId() {
 		return sellShipId;
 	}
 
-	public void setSellShipId(Integer sellShipId) {
-		this.sellShipId = sellShipId;
-	}
-
 	public Long getShipPrice() {
 		return shipPrice;
 	}
 
-	public void setShipPrice(Long shipPrice) {
-		this.shipPrice = shipPrice;
-	}
-
 	public Long getMarketId() {
 		return marketId;
-	}
-
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
 	}
 
 }

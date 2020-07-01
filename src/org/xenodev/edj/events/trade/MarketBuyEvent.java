@@ -27,48 +27,24 @@ public class MarketBuyEvent extends Event {
 		return marketID;
 	}
 
-	public void setMarketID(Long marketID) {
-		this.marketID = marketID;
-	}
-
 	public String getType() {
 		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	public Integer getBuyPrice() {
-		return buyPrice;
-	}
-
-	public void setBuyPrice(Integer buyPrice) {
-		this.buyPrice = buyPrice;
-	}
-
-	public Integer getTotalCost() {
-		return totalCost;
-	}
-
-	public void setTotalCost(Integer totalCost) {
-		this.totalCost = totalCost;
 	}
 
 	public String getTypeLocalised() {
 		return typeLocalised;
 	}
 
-	public void setTypeLocalised(String typeLocalised) {
-		this.typeLocalised = typeLocalised;
+	public Integer getCount() {
+		return count;
+	}
+
+	public Integer getBuyPrice() {
+		return buyPrice;
+	}
+
+	public Integer getTotalCost() {
+		return totalCost;
 	}
 
 }

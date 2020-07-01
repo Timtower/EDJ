@@ -12,8 +12,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MissionFailedEvent extends Event {
 	
-	String name;
-	Long missionId;
+	private String name;
+	private Long missionId;
 	
 	public MissionFailedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -28,16 +28,8 @@ public class MissionFailedEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Long getMissionId() {
 		return missionId;
-	}
-
-	public void setMissionId(Long missionId) {
-		this.missionId = missionId;
 	}
 
 }

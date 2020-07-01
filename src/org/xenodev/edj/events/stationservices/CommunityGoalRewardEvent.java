@@ -20,36 +20,20 @@ public class CommunityGoalRewardEvent extends Event{
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public Integer getCGID() {
+	public Integer getCgid() {
 		return cgid;
-	}
-
-	public void setCGID(Integer cgid) {
-		this.cgid = cgid;
 	}
 
 	public Integer getReward() {
 		return reward;
 	}
 
-	public void setReward(Integer reward) {
-		this.reward = reward;
-	}
-
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getSystem() {
 		return system;
-	}
-
-	public void setSystem(String system) {
-		this.system = system;
 	}
 
 }

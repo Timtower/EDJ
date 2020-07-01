@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class PvPKillEvent extends Event {
 	
-	String victim;
-	Integer combatRank;
+	private String victim;
+	private Integer combatRank;
 	
 	public PvPKillEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,16 +22,8 @@ public class PvPKillEvent extends Event {
 		return victim;
 	}
 
-	public void setVictim(String victim) {
-		this.victim = victim;
-	}
-
 	public Integer getCombatRank() {
 		return combatRank;
-	}
-
-	public void setCombatRank(Integer combatRank) {
-		this.combatRank = combatRank;
 	}
 
 }

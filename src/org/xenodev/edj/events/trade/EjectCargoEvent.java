@@ -28,48 +28,24 @@ public class EjectCargoEvent extends Event {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public String getTypeLocalised() {
+		return typeLocalised;
 	}
 
 	public String getPowerplayOrigin() {
 		return powerplayOrigin;
 	}
 
-	public void setPowerplayOrigin(String powerplayOrigin) {
-		this.powerplayOrigin = powerplayOrigin;
-	}
-
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 	public Long getMissionID() {
 		return missionID;
 	}
 
-	public void setMissionID(Long missionID) {
-		this.missionID = missionID;
-	}
-
 	public Boolean getAbondoned() {
 		return abondoned;
-	}
-
-	public void setAbondoned(Boolean abondoned) {
-		this.abondoned = abondoned;
-	}
-
-	public String getTypeLocalised() {
-		return typeLocalised;
-	}
-
-	public void setTypeLocalised(String typeLocalised) {
-		this.typeLocalised = typeLocalised;
 	}
 
 }

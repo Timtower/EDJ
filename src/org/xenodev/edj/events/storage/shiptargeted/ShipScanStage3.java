@@ -21,24 +21,12 @@ public class ShipScanStage3 extends ShipScanStage2 implements ScanStageInfo {
 		return bounty;
 	}
 
-	public void setBounty(Long bounty) {
-		this.bounty = bounty;
-	}
-
 	public String getFaction() {
 		return faction;
 	}
-
-	public void setFaction(String faction) {
-		this.faction = faction;
-	}
-
+	
 	public String getLegalStatus() {
 		return legalStatus;
-	}
-
-	public void setLegalStatus(String legalStatus) {
-		this.legalStatus = legalStatus;
 	}
 
 }

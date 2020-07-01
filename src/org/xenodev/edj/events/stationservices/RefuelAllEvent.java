@@ -28,16 +28,8 @@ public class RefuelAllEvent extends Event {
 		return cost;
 	}
 
-	public void setCost(Long cost) {
-		this.cost = cost;
-	}
-
 	public Double getAmount() {
 		return amount;
-	}
-
-	public void setAmount(Double amount) {
-		this.amount = amount;
 	}
 
 }

@@ -11,10 +11,10 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class EngineerProgressEvent extends Event {
 	
-	String engineer, progress;
-	Integer engineerId, rank;
-	Double rankProgress;
-	JSONArray engineersArray;
+	private String engineer, progress;
+	private Integer engineerId, rank;
+	private Double rankProgress;
+	private JSONArray engineersArray;
 
 	public EngineerProgressEvent(String timestamp, JSONObject json) {
 		super(timestamp);

@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class StartJumpEvent extends Event {
 	
-	String jumpType, starSystem, starClass;
-	Long systemAddress;
+	private String jumpType, starSystem, starClass;
+	private Long systemAddress;
 	
 	public StartJumpEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -24,32 +24,16 @@ public class StartJumpEvent extends Event {
 		return jumpType;
 	}
 
-	public void setJumpType(String jumpType) {
-		this.jumpType = jumpType;
-	}
-
 	public String getStarSystem() {
 		return starSystem;
-	}
-
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
 	}
 
 	public String getStarClass() {
 		return starClass;
 	}
 
-	public void setStarClass(String starClass) {
-		this.starClass = starClass;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
 	}
 	
 }

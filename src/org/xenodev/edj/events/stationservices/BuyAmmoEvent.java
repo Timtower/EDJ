@@ -20,8 +20,4 @@ public class BuyAmmoEvent extends Event {
 		return cost;
 	}
 
-	public void setCost(Integer cost) {
-		this.cost = cost;
-	}
-
 }

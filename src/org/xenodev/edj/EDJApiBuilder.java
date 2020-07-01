@@ -132,8 +132,11 @@ import org.xenodev.edj.events.travel.TouchdownEvent;
 import org.xenodev.edj.events.travel.UndockedEvent;
 import org.xenodev.edj.utils.FileHandler;
 import org.xenodev.edj.utils.JournalUtils;
+import org.xenodev.edj.utils.exceptions.UnsupportedGameVersion;
 
 public class EDJApiBuilder {
+	
+	private final String[] SUPPORTED_VERSIONS = new String[] {"Fleet Carriers Update", "Fleet Carriers Update - Update 1"};
 	
 	private List<EventListener> listenerList = new ArrayList<>();
 	private String watchFileName = FileHandler.getLatestJournalFile().getName();
@@ -204,9 +207,12 @@ public class EDJApiBuilder {
     		
     		try {
         		List<String> journalEntries = Files.readAllLines(new File(EDJApi.getJournalDir() + "/" + watchFileName).toPath());
-        		
 				for(int i = lineCount; i < journalEntries.size(); i++) {
-					if(debug) System.out.println("DEBUG: " + journalEntries.get(i));
+					if(debug) System.out.println(journalEntries.get(i));
+					if(!isGameVersionSupported(new JSONObject(journalEntries.get(0)))) {
+						lineCount = journalEntries.size();
+						throw new UnsupportedGameVersion();
+					}
 					
 					fireEvent(new JSONObject(journalEntries.get(i)), null);
 					lineCount++;
@@ -221,6 +227,8 @@ public class EDJApiBuilder {
 				
 			} catch (JSONException | IOException e) {
 				e.printStackTrace();
+			}catch (UnsupportedGameVersion e) {
+				if(debug) System.out.println(watchFileName + " was created by an unsupported version, skipping for now...");
 			}
     		
     	}else {
@@ -232,6 +240,10 @@ public class EDJApiBuilder {
                 		
 						for(int i = lineCount; i < journalEntries.size(); i++) {
 							if(debug) System.out.println(journalEntries.get(i));
+							if(!isGameVersionSupported(new JSONObject(journalEntries.get(0)))) {
+								lineCount = journalEntries.size();
+								throw new UnsupportedGameVersion();
+							}
 							
 							fireEvent(new JSONObject(journalEntries.get(i)), l);
 							lineCount++;
@@ -246,6 +258,8 @@ public class EDJApiBuilder {
 						
 					} catch (JSONException | IOException e) {
 						e.printStackTrace();
+					} catch (UnsupportedGameVersion e) {
+						if(debug) System.out.println(watchFileName + " was created by an unsupported version, skipping for now...");
 					}
                 }
             });
@@ -253,7 +267,16 @@ public class EDJApiBuilder {
     	
     }
     
-    /**
+    private Boolean isGameVersionSupported(JSONObject json) {
+		for(String version : SUPPORTED_VERSIONS) {
+			if(version.toLowerCase().equalsIgnoreCase(json.getString("gameversion"))) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
      * Fires the JSON string with the eventlistener registered.
      * 
      * @param json the json event string from the player journal.
@@ -325,6 +348,10 @@ public class EDJApiBuilder {
 		case "ApproachBody":
 			ApproachBodyEvent approachBodyEvent = new ApproachBodyEvent(timestamp, json);
 			if(listener != null) listener.onApproachBodyEvent(approachBodyEvent);
+			break;
+		case "ApproachSettlement":
+			ApproachSettlementEvent approachSettlementEvent = new ApproachSettlementEvent(timestamp, json);
+			if(listener != null) listener.onApproachSettlementEvent(approachSettlementEvent);
 			break;
 		case "Docked":
 			DockedEvent dockedEvent = new DockedEvent(timestamp, json);
@@ -744,7 +771,8 @@ public class EDJApiBuilder {
 			if(listener != null) listener.onStoredShips(storedShipsEvent);
 			break;
 		case "TechnologyBroker":
-			//TechnologyBrokerEvent technologyBrokerEent= new TechnologyBrokerEvent(timestamp, json); Continue
+			TechnologyBrokerEvent technologyBrokerEvent= new TechnologyBrokerEvent(timestamp, json);
+			if(listener != null) listener.onTechnologyBrokerEvent(technologyBrokerEvent);
 			break;
 		default:
 			JournalUtils.sendUnprocessedEvent(event, json);

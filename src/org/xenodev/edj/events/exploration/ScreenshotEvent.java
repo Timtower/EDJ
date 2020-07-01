@@ -30,72 +30,36 @@ public class ScreenshotEvent extends Event {
 		return filename;
 	}
 
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
 	public String getSystem() {
 		return system;
-	}
-
-	public void setSystem(String system) {
-		this.system = system;
 	}
 
 	public String getBody() {
 		return body;
 	}
 
-	public void setBody(String body) {
-		this.body = body;
-	}
-
 	public Integer getWidth() {
 		return width;
-	}
-
-	public void setWidth(Integer width) {
-		this.width = width;
 	}
 
 	public Integer getHeight() {
 		return height;
 	}
 
-	public void setHeight(Integer height) {
-		this.height = height;
-	}
-
 	public Integer getHeading() {
 		return heading;
-	}
-
-	public void setHeading(Integer heading) {
-		this.heading = heading;
 	}
 
 	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
 	public Double getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
-	}
-
 	public Double getAltitude() {
 		return altitude;
-	}
-
-	public void setAltitude(Double altitude) {
-		this.altitude = altitude;
 	}
 
 }

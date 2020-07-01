@@ -12,8 +12,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MissionAcceptedEvent extends Event {
 	
-	String faction, name, localisedName, targetFaction, destinationSystem, destinationStation, influence, reputation;
-	Long reward, missionId, expiry;
+	private String faction, name, localisedName, targetFaction, destinationSystem, destinationStation, influence, reputation;
+	private Long reward, missionId, expiry;
 	
 	public MissionAcceptedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -37,88 +37,44 @@ public class MissionAcceptedEvent extends Event {
 		return faction;
 	}
 
-	public void setFaction(String faction) {
-		this.faction = faction;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public String getLocalisedName() {
 		return localisedName;
 	}
 
-	public void setLocalisedName(String localisedName) {
-		this.localisedName = localisedName;
-	}
-
 	public String getTargetFaction() {
 		return targetFaction;
-	}
-
-	public void setTargetFaction(String targetFaction) {
-		this.targetFaction = targetFaction;
 	}
 
 	public String getDestinationSystem() {
 		return destinationSystem;
 	}
 
-	public void setDestinationSystem(String destinationSystem) {
-		this.destinationSystem = destinationSystem;
-	}
-
 	public String getDestinationStation() {
 		return destinationStation;
-	}
-
-	public void setDestinationStation(String destinationStation) {
-		this.destinationStation = destinationStation;
 	}
 
 	public Long getExpiry() {
 		return expiry;
 	}
 
-	public void setExpiry(Long expiry) {
-		this.expiry = expiry;
-	}
-
 	public String getInfluence() {
 		return influence;
-	}
-
-	public void setInfluence(String influence) {
-		this.influence = influence;
 	}
 
 	public String getReputation() {
 		return reputation;
 	}
 
-	public void setReputation(String reputation) {
-		this.reputation = reputation;
-	}
-
 	public Long getReward() {
 		return reward;
 	}
 
-	public void setReward(Long reward) {
-		this.reward = reward;
-	}
-
 	public Long getMissionId() {
 		return missionId;
-	}
-
-	public void setMissionId(Long missionId) {
-		this.missionId = missionId;
 	}
 
 }

@@ -6,8 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class CommanderEvent extends Event {
 	
-	String name;
-	String FID;
+	private String name, FID;
 	
 	public CommanderEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,16 +21,8 @@ public class CommanderEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getFID() {
 		return FID;
-	}
-
-	public void setFID(String fID) {
-		FID = fID;
 	}
 
 }

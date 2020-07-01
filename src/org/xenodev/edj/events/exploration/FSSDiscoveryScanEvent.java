@@ -27,40 +27,20 @@ public class FSSDiscoveryScanEvent extends Event {
 		return progress;
 	}
 
-	public void setProgress(Double progress) {
-		this.progress = progress;
-	}
-
 	public Integer getBodyCount() {
 		return bodyCount;
-	}
-
-	public void setBodyCount(Integer bodyCount) {
-		this.bodyCount = bodyCount;
 	}
 
 	public Integer getNonBodyCount() {
 		return nonBodyCount;
 	}
-
-	public void setNonBodyCount(Integer nonBodyCount) {
-		this.nonBodyCount = nonBodyCount;
-	}
-
+	
 	public String getSystemName() {
 		return systemName;
 	}
 
-	public void setSystemName(String systemName) {
-		this.systemName = systemName;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
 	}
 
 }

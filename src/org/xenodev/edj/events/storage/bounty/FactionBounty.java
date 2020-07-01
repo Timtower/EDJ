@@ -8,8 +8,8 @@ package org.xenodev.edj.events.storage.bounty;
 
 public class FactionBounty {
 	
-	String faction;
-	Long amount;
+	private String faction;
+	private Long amount;
 	
 	public FactionBounty(String faction, Long amount) {
 		this.faction = faction;
@@ -20,16 +20,8 @@ public class FactionBounty {
 		return faction;
 	}
 
-	public void setFaction(String faction) {
-		this.faction = faction;
-	}
-
 	public Long getAmount() {
 		return amount;
-	}
-
-	public void setAmount(Long amount) {
-		this.amount = amount;
 	}
 
 }

@@ -15,10 +15,10 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class RedeemVoucherEvent extends Event {
 	
-	String type;
-	Long totalAmount;
-	Integer brokerPercentage;
-	List<FactionBounty> factionBounties;
+	private String type;
+	private Long totalAmount;
+	private Integer brokerPercentage;
+	private List<FactionBounty> factionBounties;
 	
 	public RedeemVoucherEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -35,24 +35,16 @@ public class RedeemVoucherEvent extends Event {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public Long getTotalAmount() {
 		return totalAmount;
 	}
 
-	public void setTotalAmount(Long totalAmount) {
-		this.totalAmount = totalAmount;
+	public Integer getBrokerPercentage() {
+		return brokerPercentage;
 	}
 
 	public List<FactionBounty> getFactionBounties() {
 		return factionBounties;
-	}
-
-	public void setFactionBounties(List<FactionBounty> factionBounties) {
-		this.factionBounties = factionBounties;
 	}
 
 }

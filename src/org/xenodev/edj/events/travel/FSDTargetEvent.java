@@ -6,9 +6,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class FSDTargetEvent extends Event {
 	
-	String name, starClass;
-	Long systemAdress;
-	Integer remainingJumpsInRoute;
+	private String name, starClass;
+	private Long systemAdress;
+	private Integer remainingJumpsInRoute;
 	
 	public FSDTargetEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -25,32 +25,16 @@ public class FSDTargetEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getStarClass() {
+		return starClass;
 	}
 
 	public Long getSystemAdress() {
 		return systemAdress;
 	}
 
-	public void setSystemAdress(Long systemAdress) {
-		this.systemAdress = systemAdress;
-	}
-
-	public String getStarClass() {
-		return starClass;
-	}
-
-	public void setStarClass(String starClass) {
-		this.starClass = starClass;
-	}
-
 	public Integer getRemainingJumpsInRoute() {
 		return remainingJumpsInRoute;
-	}
-
-	public void setRemainingJumpsInRoute(Integer remainingJumpsInRoute) {
-		this.remainingJumpsInRoute = remainingJumpsInRoute;
 	}
 
 }

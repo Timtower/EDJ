@@ -24,32 +24,16 @@ public class MaterialCollectedEvent extends Event {
 		return category;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Integer getCount() {
 		return count;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
 	public String getNameLocalised() {
 		return nameLocalised;
-	}
-
-	public void setNameLocalised(String nameLocalised) {
-		this.nameLocalised = nameLocalised;
 	}
 	
 }

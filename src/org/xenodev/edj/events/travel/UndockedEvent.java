@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class UndockedEvent extends Event {
 	
-	String stationName, stationType;
-	Long marketID;
+	private String stationName, stationType;
+	private Long marketID;
 	
 	public UndockedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,24 +22,12 @@ public class UndockedEvent extends Event {
 		return stationName;
 	}
 
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
-
 	public String getStationType() {
 		return stationType;
 	}
 
-	public void setStationType(String stationType) {
-		this.stationType = stationType;
-	}
-
 	public Long getMarketID() {
 		return marketID;
-	}
-
-	public void setMarketID(Long marketID) {
-		this.marketID = marketID;
 	}
 
 }

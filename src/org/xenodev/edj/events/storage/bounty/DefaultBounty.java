@@ -1,16 +1,18 @@
 package org.xenodev.edj.events.storage.bounty;
 
+import java.util.List;
+
 import org.xenodev.edj.events.interfaces.BountyInfo;
 
 public class DefaultBounty implements BountyInfo {
 	
-	String target, victimFaction;
-	Long totalReward;
-	BountyReward[] rewards;
+	private String target, victimsFaction;
+	private Long totalReward;
+	private List<BountyReward> rewards;
 	
-	public DefaultBounty(String target, String victimFaction, Long totalReward, BountyReward[] rewards) {
+	public DefaultBounty(String target, String victimsFaction, Long totalReward, List<BountyReward> rewards) {
 		this.target = target;
-		this.victimFaction = victimFaction;
+		this.victimsFaction = victimsFaction;
 		this.totalReward = totalReward;
 		this.rewards = rewards;
 	}
@@ -19,31 +21,15 @@ public class DefaultBounty implements BountyInfo {
 		return target;
 	}
 
-	public String getVictimFaction() {
-		return victimFaction;
-	}
-
-	public void setTarget(String target) {
-		this.target = target;
-	}
-
-	public void setVictimFaction(String victimFaction) {
-		this.victimFaction = victimFaction;
-	}
-
-	public void setTotalReward(Long totalReward) {
-		this.totalReward = totalReward;
-	}
-
-	public void setRewards(BountyReward[] rewards) {
-		this.rewards = rewards;
+	public String getVictimsFaction() {
+		return victimsFaction;
 	}
 
 	public Long getTotalReward() {
 		return totalReward;
 	}
 
-	public BountyReward[] getRewards() {
+	public List<BountyReward> getRewards() {
 		return rewards;
 	}
 

@@ -22,16 +22,8 @@ public class NavBeaconScanEvent extends Event {
 		return systemAddress;
 	}
 
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
-	}
-
 	public Integer getNumBodies() {
 		return numBodies;
-	}
-
-	public void setNumBodies(Integer numBodies) {
-		this.numBodies = numBodies;
 	}
 
 }

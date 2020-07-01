@@ -18,16 +18,8 @@ public class CrewFireEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Integer getCrewID() {
 		return crewID;
-	}
-
-	public void setCrewID(Integer crewID) {
-		this.crewID = crewID;
 	}
 
 }

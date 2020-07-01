@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SearchAndRescueEvent extends Event {
 	
-	Long marketId, reward;
-	String name, nameLocalised;
-	Integer count;
+	private Long marketId, reward;
+	private String name, nameLocalised;
+	private Integer count;
 	
 	public SearchAndRescueEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -32,40 +32,20 @@ public class SearchAndRescueEvent extends Event {
 		return marketId;
 	}
 
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
-	}
-
 	public Long getReward() {
 		return reward;
-	}
-
-	public void setReward(Long reward) {
-		this.reward = reward;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getNameLocalised() {
 		return nameLocalised;
 	}
 
-	public void setNameLocalised(String nameLocalised) {
-		this.nameLocalised = nameLocalised;
-	}
-
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 }

@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class TouchdownEvent extends Event {
 	
-	Boolean playerControlled;
-	Double latitude, longitude;
+	private Boolean playerControlled;
+	private Double latitude, longitude;
 	
 	public TouchdownEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -23,24 +23,12 @@ public class TouchdownEvent extends Event {
 		return playerControlled;
 	}
 
-	public void setPlayerControlled(Boolean playerControlled) {
-		this.playerControlled = playerControlled;
-	}
-
 	public Double getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(Double latitude) {
-		this.latitude = latitude;
-	}
-
 	public Double getLongitude() {
 		return longitude;
-	}
-
-	public void setLongitude(Double longitude) {
-		this.longitude = longitude;
 	}
 
 }

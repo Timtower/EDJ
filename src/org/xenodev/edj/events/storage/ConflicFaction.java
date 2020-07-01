@@ -15,24 +15,12 @@ public class ConflicFaction {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getStake() {
 		return stake;
 	}
 
-	public void setStake(String stake) {
-		this.stake = stake;
-	}
-
 	public Integer getDaysWon() {
 		return daysWon;
-	}
-
-	public void setDaysWon(Integer daysWon) {
-		this.daysWon = daysWon;
 	}
 
 }

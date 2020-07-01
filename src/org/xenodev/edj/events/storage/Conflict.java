@@ -17,24 +17,12 @@ public class Conflict {
 		return status;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	public String getWarType() {
 		return warType;
 	}
 
-	public void setWarType(String warType) {
-		this.warType = warType;
-	}
-
 	public List<ConflicFaction> getcFactionList() {
 		return cFactionList;
-	}
-
-	public void setcFactionList(List<ConflicFaction> cFactionList) {
-		this.cFactionList = cFactionList;
 	}
 
 }

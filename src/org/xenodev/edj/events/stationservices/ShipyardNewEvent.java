@@ -12,8 +12,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipyardNewEvent extends Event {
 	
-	String shipType;
-	Integer newShipId;
+	private String shipType;
+	private Integer newShipId;
 	
 	public ShipyardNewEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -28,16 +28,8 @@ public class ShipyardNewEvent extends Event {
 		return shipType;
 	}
 
-	public void setShipType(String shipType) {
-		this.shipType = shipType;
-	}
-
 	public Integer getNewShipId() {
 		return newShipId;
-	}
-
-	public void setNewShipId(Integer newShipId) {
-		this.newShipId = newShipId;
 	}
 
 }

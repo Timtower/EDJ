@@ -6,9 +6,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SupercruiseExitEvent extends Event {
 
-	String starSystem, body, bodyType;
-	Long systemAddress;
-	Integer bodyID;
+	private String starSystem, body, bodyType;
+	private Long systemAddress;
+	private Integer bodyID;
 	
 	public SupercruiseExitEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -26,40 +26,20 @@ public class SupercruiseExitEvent extends Event {
 		return starSystem;
 	}
 
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
 	public String getBody() {
 		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
 	}
 
 	public String getBodyType() {
 		return bodyType;
 	}
 
-	public void setBodyType(String bodyType) {
-		this.bodyType = bodyType;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
 	}
 
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
-	}
-
 	public Integer getBodyID() {
 		return bodyID;
-	}
-
-	public void setBodyID(Integer bodyID) {
-		this.bodyID = bodyID;
 	}
 
 }

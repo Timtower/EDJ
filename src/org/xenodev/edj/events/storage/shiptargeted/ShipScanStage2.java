@@ -4,7 +4,7 @@ import org.xenodev.edj.events.interfaces.ScanStageInfo;
 
 public class ShipScanStage2 extends ShipScanStage1 implements ScanStageInfo {
 	
-	Double shieldHealth, hullHealth;
+	private Double shieldHealth, hullHealth;
 
 
 	public ShipScanStage2(Boolean targetLocked, String ship, Integer scanStage, String pilotName,
@@ -15,20 +15,12 @@ public class ShipScanStage2 extends ShipScanStage1 implements ScanStageInfo {
 		this.hullHealth = hullHealth;
 	}
 
-	public double getShieldHealth() {
+	public Double getShieldHealth() {
 		return shieldHealth;
-	}
-
-	public void setShieldHealth(Double shieldHealth) {
-		this.shieldHealth = shieldHealth;
 	}
 
 	public Double getHullHealth() {
 		return hullHealth;
-	}
-
-	public void setHullHealth(Double hullHealth) {
-		this.hullHealth = hullHealth;
 	}
 
 }

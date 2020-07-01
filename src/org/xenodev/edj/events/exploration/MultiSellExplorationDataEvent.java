@@ -27,32 +27,16 @@ public class MultiSellExplorationDataEvent extends Event {
 		return discovered;
 	}
 
-	public void setDiscovered(List<Discovered> discovered) {
-		this.discovered = discovered;
-	}
-
 	public Integer getBaseValue() {
 		return baseValue;
-	}
-
-	public void setBaseValue(Integer baseValue) {
-		this.baseValue = baseValue;
 	}
 
 	public Integer getTotalEarnings() {
 		return totalEarnings;
 	}
 
-	public void setTotalEarnings(Integer totalEarnings) {
-		this.totalEarnings = totalEarnings;
-	}
-
 	public Integer getBonus() {
 		return bonus;
-	}
-
-	public void setBonus(Integer bonus) {
-		this.bonus = bonus;
 	}
 	
 }

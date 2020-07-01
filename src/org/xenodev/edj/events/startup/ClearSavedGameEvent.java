@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ClearSavedGameEvent extends Event {
 	
-	String name;
-	String FID;
+	private String name;
+	private String FID;
 	
 	public ClearSavedGameEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,16 +22,8 @@ public class ClearSavedGameEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getFID() {
 		return FID;
-	}
-
-	public void setFID(String fID) {
-		FID = fID;
 	}
 
 }

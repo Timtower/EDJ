@@ -12,8 +12,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipyardEvent extends Event {
 	
-	Long marketId;
-	String stationName, starSystem;
+	private Long marketId;
+	private String stationName, starSystem;
 	
 	public ShipyardEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -29,24 +29,12 @@ public class ShipyardEvent extends Event {
 		return marketId;
 	}
 
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
-	}
-
 	public String getStationName() {
 		return stationName;
 	}
 
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
-
 	public String getStarSystem() {
 		return starSystem;
-	}
-
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
 	}
 
 }

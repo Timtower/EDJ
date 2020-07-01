@@ -6,13 +6,13 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SellExplorationDataEvent extends Event {
 	
-	private String[] systemns, discovered;
+	private String[] systems, discovered;
 	private Integer baseValue, bonus, totalEarnings;
 	
 	public SellExplorationDataEvent(String timestamp, JSONObject json) {
 		super(timestamp);
 		
-		this.systemns = JournalUtils.createDataSystemsList(json.getJSONArray("Systems"));
+		this.systems = JournalUtils.createDataSystemsList(json.getJSONArray("Systems"));
 		this.discovered = JournalUtils.createDataDiscoveredList(json.getJSONArray("Discovered"));
 		this.baseValue = json.pullInt("BaseValue");
 		this.bonus = json.pullInt("Bonus");
@@ -21,44 +21,24 @@ public class SellExplorationDataEvent extends Event {
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public String[] getSystemns() {
-		return systemns;
-	}
-
-	public void setSystemns(String[] systemns) {
-		this.systemns = systemns;
+	public String[] getSystems() {
+		return systems;
 	}
 
 	public String[] getDiscovered() {
 		return discovered;
 	}
 
-	public void setDiscovered(String[] discovered) {
-		this.discovered = discovered;
-	}
-
 	public Integer getBaseValue() {
 		return baseValue;
-	}
-
-	public void setBaseValue(Integer baseValue) {
-		this.baseValue = baseValue;
 	}
 
 	public Integer getBonus() {
 		return bonus;
 	}
 
-	public void setBonus(Integer bonus) {
-		this.bonus = bonus;
-	}
-
 	public Integer getTotalEarnings() {
 		return totalEarnings;
-	}
-
-	public void setTotalEarnings(Integer totalEarnings) {
-		this.totalEarnings = totalEarnings;
 	}
 
 }

@@ -35,96 +35,48 @@ public class FSSSignalDiscoveredEvent extends Event {
 		return signalName;
 	}
 
-	public void setSignalName(String signalName) {
-		this.signalName = signalName;
-	}
-
 	public String getSignalName_Localised() {
 		return signalName_Localised;
-	}
-
-	public void setSignalName_Localised(String signalName_Localised) {
-		this.signalName_Localised = signalName_Localised;
 	}
 
 	public String getUSSType() {
 		return USSType;
 	}
 
-	public void setUSSType(String uSSType) {
-		USSType = uSSType;
-	}
-
 	public String getUSSType_Localised() {
 		return USSType_Localised;
-	}
-
-	public void setUSSType_Localised(String uSSType_Localised) {
-		USSType_Localised = uSSType_Localised;
 	}
 
 	public String getSpawningState() {
 		return spawningState;
 	}
 
-	public void setSpawningState(String spawningState) {
-		this.spawningState = spawningState;
-	}
-
 	public String getSpawningState_Localised() {
 		return spawningState_Localised;
-	}
-
-	public void setSpawningState_Localised(String spawningState_Localised) {
-		this.spawningState_Localised = spawningState_Localised;
 	}
 
 	public String getSpawningFaction() {
 		return spawningFaction;
 	}
 
-	public void setSpawningFaction(String spawningFaction) {
-		this.spawningFaction = spawningFaction;
-	}
-
 	public String getSpawningFaction_Localised() {
 		return spawningFaction_Localised;
-	}
-
-	public void setSpawningFaction_Localised(String spawningFaction_Localised) {
-		this.spawningFaction_Localised = spawningFaction_Localised;
 	}
 
 	public Integer getThreatLevel() {
 		return threatLevel;
 	}
 
-	public void setThreatLevel(Integer threatLevel) {
-		this.threatLevel = threatLevel;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
 	}
 
 	public Double getTimeRemaining() {
 		return timeRemaining;
 	}
 
-	public void setTimeRemaining(Double timeRemaining) {
-		this.timeRemaining = timeRemaining;
-	}
-
 	public Boolean getIsStation() {
 		return isStation;
 	}
 
-	public void setIsStation(Boolean isStation) {
-		this.isStation = isStation;
-	}
-	
 }

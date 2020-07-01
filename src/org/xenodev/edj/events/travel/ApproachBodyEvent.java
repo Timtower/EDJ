@@ -6,9 +6,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ApproachBodyEvent extends Event {
 	
-	String starSystem, body;
-	Integer bodyID;
-	Long systemAddress;
+	private String starSystem, body;
+	private Integer bodyID;
+	private Long systemAddress;
 	
 	public ApproachBodyEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -25,32 +25,16 @@ public class ApproachBodyEvent extends Event {
 		return starSystem;
 	}
 
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
 	public String getBody() {
 		return body;
-	}
-
-	public void setBody(String body) {
-		this.body = body;
 	}
 
 	public Integer getBodyID() {
 		return bodyID;
 	}
 
-	public void setBodyID(Integer bodyID) {
-		this.bodyID = bodyID;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
 	}
 
 }

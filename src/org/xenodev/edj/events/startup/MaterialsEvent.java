@@ -11,9 +11,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class MaterialsEvent extends Event {
 	
-	List<Raw> raw;
-	List<Manufactured> manufactured;
-	List<Encoded> encoded;
+	private List<Raw> raw;
+	private List<Manufactured> manufactured;
+	private List<Encoded> encoded;
 	
 	public MaterialsEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -29,25 +29,12 @@ public class MaterialsEvent extends Event {
 		return raw;
 	}
 
-	public void setRaw(List<Raw> raw) {
-		this.raw = raw;
-	}
-
 	public List<Manufactured> getManufactured() {
 		return manufactured;
-	}
-
-	public void setManufactured(List<Manufactured> manufactured) {
-		this.manufactured = manufactured;
 	}
 
 	public List<Encoded> getEncoded() {
 		return encoded;
 	}
-
-	public void setEncoded(List<Encoded> encoded) {
-		this.encoded = encoded;
-	}
 	
-
 }

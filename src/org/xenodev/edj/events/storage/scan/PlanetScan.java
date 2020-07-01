@@ -6,16 +6,16 @@ import org.xenodev.edj.events.interfaces.ScanInfo;
 
 public class PlanetScan implements ScanInfo {
 	
-	String scanType, bodyName, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel;
-	Double distanceFromArrivalLS, massEM, surfaceGravity, surfaceTemperature, surfacePressure, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt;
-	Integer bodyID;
-	Long radius, semiMajorAxis, orbitalPeriod;
-	Boolean tidalLock, landable;
-	List<Parent> parents;
-	List<AtmosphereComposition> atmosphereComposition;
-	List<Ring> rings;
-	List<Material> materials;
-	List<Composition> composition;
+	private String scanType, bodyName, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel, starSystem;
+	private Double distanceFromArrivalLS, massEM, surfaceGravity, surfaceTemperature, surfacePressure, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt;
+	private Integer bodyID, subclass;
+	private Long radius, semiMajorAxis, orbitalPeriod, systemAddress;
+	private Boolean tidalLock, landable, wasMapped, wasDiscovered;
+	private List<Parent> parents;
+	private List<AtmosphereComposition> atmosphereComposition;
+	private List<Ring> rings;
+	private List<Material> materials;
+	private List<Composition> composition;
 	
 	public PlanetScan(String scanType, String bodyName, String terraformState, String planetClass, String atmosphere,
 			String atmosphereType, String volcanism, String reserveLevel, Double distanceFromArrivalLS, Double massEM,
@@ -23,8 +23,10 @@ public class PlanetScan implements ScanInfo {
 			Double orbitalInclination, Double periapsis, Double rotationPeriod, Double axialTilt, Integer bodyID,
 			Long radius, Long semiMajorAxis, Long orbitalPeriod, Boolean tidalLock, Boolean landable, List<Parent> parents,
 			List<AtmosphereComposition> atmosphereComposition, List<Ring> rings, List<Material> materials,
-			List<Composition> composition) {
+			List<Composition> composition, Boolean wasMapped, Boolean wasDiscovered, String starSystem, Integer subclass, Long systemAddress) {
 		this.scanType = scanType;
+		this.subclass = subclass;
+		this.systemAddress = systemAddress;
 		this.bodyName = bodyName;
 		this.terraformState = terraformState;
 		this.planetClass = planetClass;
@@ -53,238 +55,145 @@ public class PlanetScan implements ScanInfo {
 		this.rings = rings;
 		this.materials = materials;
 		this.composition = composition;
+		this.wasMapped = wasMapped;
+		this.wasDiscovered = wasDiscovered;
+		this.starSystem = starSystem;
 	}
 
 	public String getScanType() {
 		return scanType;
 	}
 
-	public void setScanType(String scanType) {
-		this.scanType = scanType;
-	}
-
 	public String getBodyName() {
 		return bodyName;
-	}
-
-	public void setBodyName(String bodyName) {
-		this.bodyName = bodyName;
 	}
 
 	public String getTerraformState() {
 		return terraformState;
 	}
 
-	public void setTerraformState(String terraformState) {
-		this.terraformState = terraformState;
-	}
-
 	public String getPlanetClass() {
 		return planetClass;
-	}
-
-	public void setPlanetClass(String planetClass) {
-		this.planetClass = planetClass;
 	}
 
 	public String getAtmosphere() {
 		return atmosphere;
 	}
 
-	public void setAtmosphere(String atmosphere) {
-		this.atmosphere = atmosphere;
-	}
-
 	public String getAtmosphereType() {
 		return atmosphereType;
-	}
-
-	public void setAtmosphereType(String atmosphereType) {
-		this.atmosphereType = atmosphereType;
 	}
 
 	public String getVolcanism() {
 		return volcanism;
 	}
 
-	public void setVolcanism(String volcanism) {
-		this.volcanism = volcanism;
-	}
-
 	public String getReserveLevel() {
 		return reserveLevel;
 	}
 
-	public void setReserveLevel(String reserveLevel) {
-		this.reserveLevel = reserveLevel;
+	public String getStarSystem() {
+		return starSystem;
 	}
 
 	public Double getDistanceFromArrivalLS() {
 		return distanceFromArrivalLS;
 	}
 
-	public void setDistanceFromArrivalLS(Double distanceFromArrivalLS) {
-		this.distanceFromArrivalLS = distanceFromArrivalLS;
-	}
-
 	public Double getMassEM() {
 		return massEM;
-	}
-
-	public void setMassEM(Double massEM) {
-		this.massEM = massEM;
 	}
 
 	public Double getSurfaceGravity() {
 		return surfaceGravity;
 	}
 
-	public void setSurfaceGravity(Double surfaceGravity) {
-		this.surfaceGravity = surfaceGravity;
-	}
-
 	public Double getSurfaceTemperature() {
 		return surfaceTemperature;
-	}
-
-	public void setSurfaceTemperature(Double surfaceTemperature) {
-		this.surfaceTemperature = surfaceTemperature;
 	}
 
 	public Double getSurfacePressure() {
 		return surfacePressure;
 	}
 
-	public void setSurfacePressure(Double surfacePressure) {
-		this.surfacePressure = surfacePressure;
-	}
-
 	public Double getEccentricity() {
 		return eccentricity;
-	}
-
-	public void setEccentricity(Double eccentricity) {
-		this.eccentricity = eccentricity;
 	}
 
 	public Double getOrbitalInclination() {
 		return orbitalInclination;
 	}
 
-	public void setOrbitalInclination(Double orbitalInclination) {
-		this.orbitalInclination = orbitalInclination;
-	}
-
 	public Double getPeriapsis() {
 		return periapsis;
-	}
-
-	public void setPeriapsis(Double periapsis) {
-		this.periapsis = periapsis;
 	}
 
 	public Double getRotationPeriod() {
 		return rotationPeriod;
 	}
 
-	public void setRotationPeriod(Double rotationPeriod) {
-		this.rotationPeriod = rotationPeriod;
-	}
-
 	public Double getAxialTilt() {
 		return axialTilt;
-	}
-
-	public void setAxialTilt(Double axialTilt) {
-		this.axialTilt = axialTilt;
 	}
 
 	public Integer getBodyID() {
 		return bodyID;
 	}
 
-	public void setBodyID(Integer bodyID) {
-		this.bodyID = bodyID;
+	public Integer getSubclass() {
+		return subclass;
 	}
 
 	public Long getRadius() {
 		return radius;
 	}
 
-	public void setRadius(Long radius) {
-		this.radius = radius;
-	}
-
 	public Long getSemiMajorAxis() {
 		return semiMajorAxis;
-	}
-
-	public void setSemiMajorAxis(Long semiMajorAxis) {
-		this.semiMajorAxis = semiMajorAxis;
 	}
 
 	public Long getOrbitalPeriod() {
 		return orbitalPeriod;
 	}
 
-	public void setOrbitalPeriod(Long orbitalPeriod) {
-		this.orbitalPeriod = orbitalPeriod;
+	public Long getSystemAddress() {
+		return systemAddress;
 	}
 
 	public Boolean getTidalLock() {
 		return tidalLock;
 	}
 
-	public void setTidalLock(Boolean tidalLock) {
-		this.tidalLock = tidalLock;
-	}
-
 	public Boolean getLandable() {
 		return landable;
 	}
 
-	public void setLandable(Boolean landable) {
-		this.landable = landable;
+	public Boolean getWasMapped() {
+		return wasMapped;
+	}
+
+	public Boolean getWasDiscovered() {
+		return wasDiscovered;
 	}
 
 	public List<Parent> getParents() {
 		return parents;
 	}
 
-	public void setParents(List<Parent> parents) {
-		this.parents = parents;
-	}
-
 	public List<AtmosphereComposition> getAtmosphereComposition() {
 		return atmosphereComposition;
-	}
-
-	public void setAtmosphereComposition(List<AtmosphereComposition> atmosphereComposition) {
-		this.atmosphereComposition = atmosphereComposition;
 	}
 
 	public List<Ring> getRings() {
 		return rings;
 	}
 
-	public void setRings(List<Ring> rings) {
-		this.rings = rings;
-	}
-
 	public List<Material> getMaterials() {
 		return materials;
 	}
 
-	public void setMaterials(List<Material> materials) {
-		this.materials = materials;
-	}
-
 	public List<Composition> getComposition() {
 		return composition;
-	}
-
-	public void setComposition(List<Composition> composition) {
-		this.composition = composition;
 	}
 
 }

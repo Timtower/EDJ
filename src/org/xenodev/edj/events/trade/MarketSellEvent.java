@@ -32,80 +32,40 @@ public class MarketSellEvent extends Event {
 		return marketID;
 	}
 
-	public void setMarketID(Long marketID) {
-		this.marketID = marketID;
-	}
-
 	public String getType() {
 		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
-	public Integer getSellPrice() {
-		return sellPrice;
-	}
-
-	public void setSellPrice(Integer sellPrice) {
-		this.sellPrice = sellPrice;
-	}
-
-	public Integer getTotalSale() {
-		return totalSale;
-	}
-
-	public void setTotalSale(Integer totalSale) {
-		this.totalSale = totalSale;
-	}
-
-	public Integer getAvgPricePaid() {
-		return avgPricePaid;
-	}
-
-	public void setAvgPricePaid(Integer avgPricePaid) {
-		this.avgPricePaid = avgPricePaid;
-	}
-
-	public Boolean getIllegalGoods() {
-		return illegalGoods;
-	}
-
-	public void setIllegalGoods(Boolean illegalGoods) {
-		this.illegalGoods = illegalGoods;
-	}
-
-	public Boolean getStolenGoods() {
-		return stolenGoods;
-	}
-
-	public void setStolenGoods(Boolean stolenGoods) {
-		this.stolenGoods = stolenGoods;
-	}
-
-	public Boolean getBlackMarket() {
-		return blackMarket;
-	}
-
-	public void setBlackMarket(Boolean blackMarket) {
-		this.blackMarket = blackMarket;
 	}
 
 	public String getTypeLocalised() {
 		return typeLocalised;
 	}
 
-	public void setTypeLocalised(String typeLocalised) {
-		this.typeLocalised = typeLocalised;
+	public Integer getCount() {
+		return count;
+	}
+
+	public Integer getSellPrice() {
+		return sellPrice;
+	}
+
+	public Integer getTotalSale() {
+		return totalSale;
+	}
+
+	public Integer getAvgPricePaid() {
+		return avgPricePaid;
+	}
+
+	public Boolean getIllegalGoods() {
+		return illegalGoods;
+	}
+
+	public Boolean getStolenGoods() {
+		return stolenGoods;
+	}
+
+	public Boolean getBlackMarket() {
+		return blackMarket;
 	}
 
 }

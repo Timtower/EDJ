@@ -22,16 +22,8 @@ public class BuyExplorationDataEvent extends Event {
 		return system;
 	}
 
-	public void setSystem(String system) {
-		this.system = system;
-	}
-
 	public Integer getCost() {
 		return cost;
-	}
-
-	public void setCost(Integer cost) {
-		this.cost = cost;
 	}
 
 }

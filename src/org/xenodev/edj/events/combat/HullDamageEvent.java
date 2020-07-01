@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class HullDamageEvent extends Event {
 	
-	Double health;
-	Boolean playerPilot, fighter;
+	private Double health;
+	private Boolean playerPilot, fighter;
 	
 	public HullDamageEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -23,24 +23,12 @@ public class HullDamageEvent extends Event {
 		return health;
 	}
 
-	public void setHealth(Double health) {
-		this.health = health;
-	}
-
 	public Boolean getPlayerPilot() {
 		return playerPilot;
-	}
-
-	public void setPlayerPilot(Boolean playerPilot) {
-		this.playerPilot = playerPilot;
 	}
 
 	public Boolean getFighter() {
 		return fighter;
 	}
-
-	public void setFighter(Boolean fighter) {
-		this.fighter = fighter;
-	}	
 	
 }

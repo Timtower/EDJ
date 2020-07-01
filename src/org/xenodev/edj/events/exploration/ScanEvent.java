@@ -16,11 +16,12 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ScanEvent extends Event {
 	
-	private String scanType, bodyName, starType, luminosity, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel;
-	private Double distanceFromArrivalLS, stellarMass, surfaceTemperature, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt, absoluteMagnitude,massEM, surfaceGravity, surfacePressure;
-	private Integer bodyID;
-	private Long radius, semiMajorAxis, orbitalPeriod, ageMY;
-	private Boolean tidalLock, landable, star;
+	private String scanType, bodyName, starType, luminosity, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel, starSystem;
+	private Double distanceFromArrivalLS, stellarMass, surfaceTemperature, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt, absoluteMagnitude, massEM, surfaceGravity,
+	surfacePressure;
+	private Integer bodyID, subclass;
+	private Long radius, semiMajorAxis, orbitalPeriod, ageMY, systemAddress;
+	private Boolean tidalLock, landable, star, wasMapped, wasDiscovered;
 	private List<Parent> parents;
 	private List<AtmosphereComposition> atmosphereComposition;
 	private List<Ring> rings;
@@ -31,6 +32,7 @@ public class ScanEvent extends Event {
 		super(timestamp);
 		
 		this.star = json.has("StarType");
+		this.starSystem = json.pullString("StarSystem");
 		this.scanType = json.pullString("ScanType");
 		this.bodyName = json.pullString("BodyName");
 		this.distanceFromArrivalLS = json.pullDouble("DistanceFromArrivalLS");
@@ -46,15 +48,20 @@ public class ScanEvent extends Event {
 		this.surfaceTemperature = json.pullDouble("SurfaceTemperature");
 		this.parents = json.has("Parents") ? JournalUtils.createParentList(json.pullJSONArray("Parents")) : null;
 		this.rings = json.has("Rings") ? JournalUtils.createRingsList(json.pullJSONArray("Rings")) : null;
+		this.absoluteMagnitude = json.pullDouble("AbsoluteMagnitude");
+		this.wasDiscovered = json.pullBoolean("WasDiscovered");
+		this.systemAddress = json.pullLong("SystemAddress");
 		
 		// Star
 		this.starType = json.pullString("StarType");
 		this.luminosity = json.pullString("Luminosity");
 		this.stellarMass = json.pullDouble("StellarMass");
-		this.ageMY = json.pullLong("AgeMY");
+		this.ageMY = json.pullLong("Age_MY");
 		
 		// Planet
 		this.terraformState = json.pullString("TerraformState");
+		this.wasMapped = json.pullBoolean("WasMapped");
+		this.subclass = json.pullInt("Subclass");
 		this.planetClass = json.pullString("PlanetClass");
 		this.atmosphere = json.pullString("Atmosphere");
 		this.atmosphereType = json.pullString("AtmosphereType");
@@ -75,12 +82,12 @@ public class ScanEvent extends Event {
 	public ScanInfo getInfo() {
 		if(star) {
 			return new StarScan(scanType, bodyName, starType, luminosity, distanceFromArrivalLS, stellarMass, surfaceTemperature, eccentricity, orbitalInclination, periapsis, rotationPeriod,
-					axialTilt, absoluteMagnitude, bodyID, radius, semiMajorAxis, orbitalPeriod, ageMY, parents, rings);
+					axialTilt, absoluteMagnitude, bodyID, radius, semiMajorAxis, orbitalPeriod, ageMY, parents, rings, wasDiscovered, starSystem, systemAddress);
 		}
 		
-		return new PlanetScan(scanType, bodyName, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel, distanceFromArrivalLS, massEM, surfaceGravity, surfaceTemperature,
-				surfacePressure, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt, bodyID, radius, semiMajorAxis, orbitalPeriod, tidalLock, landable, parents,
-				atmosphereComposition, rings, materials, composition);
+		return new PlanetScan(scanType, bodyName, terraformState, planetClass, atmosphere, atmosphereType, volcanism, reserveLevel, distanceFromArrivalLS, massEM, surfaceGravity,
+				surfaceTemperature, surfacePressure, eccentricity, orbitalInclination, periapsis, rotationPeriod, axialTilt, bodyID, radius, semiMajorAxis, orbitalPeriod, tidalLock, landable,
+				parents, atmosphereComposition, rings, materials, composition, wasMapped, wasDiscovered, starSystem, subclass, systemAddress);
 	}
 
 	public String getScanType() {

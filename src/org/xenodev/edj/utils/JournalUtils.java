@@ -10,7 +10,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -364,52 +363,37 @@ public class JournalUtils {
 		return powers;
 	}
 	
-	public static Killer[] createKillerList(JSONArray array) {
-		Killer[] killers = new Killer[] {};
+	public static List<Killer> createKillerList(JSONArray array) {
+		List<Killer> killers = new ArrayList<Killer>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
-			Killer killer;
-			int pos = 0;
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 				
-			killer = new Killer(json.getString("Name"), json.getString("Ship"), json.getString("Rank"));
-			
-			killers[pos] = killer;
-			pos++;
+			killers.add(new Killer(json.getString("Name"), json.getString("Ship"), json.getString("Rank")));
 		}
 		
 		return killers;				
 	}
 	
-	public static PassengerManifest[] createPassengerManifest(JSONArray array) {
-		PassengerManifest[] passengers = new PassengerManifest[] {};
+	public static List<PassengerManifest> createPassengerManifest(JSONArray array) {
+		List<PassengerManifest> passengers = new ArrayList<PassengerManifest>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
-			PassengerManifest passenger;
-			int pos = 0;
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 				
-			passenger = new PassengerManifest(json.getString("Type"), json.getInt("Count"), json.getBoolean("VIP"), json.getBoolean("Wanted"), json.getLong("MissionID"));
-			
-			passengers[pos] = passenger;
-			pos++;
+			passengers.add(new PassengerManifest(json.getString("Type"), json.getInt("Count"), json.getBoolean("VIP"), json.getBoolean("Wanted"), json.getLong("MissionID")));
 		}
 		
 		return passengers;				
 	}
 	
-	public static BountyReward[] createBountyRewardList(JSONArray array) {
-		BountyReward[] bountyRewards = new BountyReward[] {};
+	public static List<BountyReward> createBountyRewardList(JSONArray array) {
+		List<BountyReward> bountyRewards = new ArrayList<BountyReward>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
-			BountyReward bountyReward;
-			int pos = 0;
-				
-			bountyReward = new BountyReward(json.getString("Faction"), json.getLong("Reward"));
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			
-			bountyRewards[pos] = bountyReward;
-			pos++;
+			bountyRewards.add(new BountyReward(json.getString("Faction"), json.getLong("Reward")));
 		}
 		
 		return bountyRewards;				
@@ -418,8 +402,8 @@ public class JournalUtils {
 	public static List<StationEconomy> createStationEconomiesList(JSONArray array) {
 		List<StationEconomy> stationEconomiesList = new ArrayList<StationEconomy>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			StationEconomy stationEconomy = new StationEconomy(json.getString("Name"), json.getString("Name_Localised"), json.getDouble("Proportion"));
 			
 			stationEconomiesList.add(stationEconomy);
@@ -432,8 +416,8 @@ public class JournalUtils {
 	public static List<Module> createModuleList(JSONArray array) {
 		List<Module> modules = new ArrayList<Module>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			Module module;
 			
 			if(json.has("Engineering")) {				
@@ -456,18 +440,13 @@ public class JournalUtils {
 		
 	}
 	
-	public static Mission[] createMissionList(JSONArray array) {
-		Mission[] missions = new Mission[] {};
+	public static List<Mission> createMissionList(JSONArray array) {
+		List<Mission> missions = new ArrayList<Mission>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
-			Mission mission;
-			int pos = 0;
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 				
-			mission = new Mission(json.getInt("MissionID"), json.getString("Name"), json.getBoolean("PassengerMission"), json.getInt("Expires"));
-			
-			missions[pos] = mission;
-			pos++;
+			missions.add(new Mission(json.getInt("MissionID"), json.getString("Name"), json.getBoolean("PassengerMission"), json.getInt("Expires")));
 		}
 		
 		return missions;				
@@ -476,8 +455,8 @@ public class JournalUtils {
 	public static List<Modifier> createModifierList(JSONArray array) {
 		List<Modifier> modifier = new ArrayList<Modifier>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			Modifier mod;
 				
 			mod = new Modifier(json.getString("Label"), json.getDouble("Value"), json.getDouble("OriginalValue"), json.getInt("LessIsGood"));
@@ -491,8 +470,8 @@ public class JournalUtils {
 	public static List<Raw> createRawMaterialList(JSONArray array) {
 		List<Raw> raw = new ArrayList<>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			Raw rawMat;
 			
 			rawMat = new Raw(json.getString("Name"), json.getInt("Count"));
@@ -506,8 +485,8 @@ public class JournalUtils {
 	public static List<Manufactured> createManufacturedMaterialList(JSONArray array) {
 		List<Manufactured> manufactured = new ArrayList<Manufactured>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			Manufactured manufacturedMat;
 				
 			manufacturedMat = new Manufactured(json.getString("Name"), json.getString("Name_Localised"), json.getInt("Count"));
@@ -521,8 +500,8 @@ public class JournalUtils {
 	public static List<Encoded> createEncodedMaterialList(JSONArray array) {
 		List<Encoded> encoded = new ArrayList<Encoded>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			Encoded encodedMat;
 				
 			encodedMat = new Encoded(json.getString("Name"), json.getString("Name_Localised"), json.getInt("Count"));
@@ -536,8 +515,8 @@ public class JournalUtils {
 	public static List<CargoInventory> createCargoInventory(JSONArray array) {
 		List<CargoInventory> inv = new ArrayList<CargoInventory>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			CargoInventory cargoInv;
 			
 			if(!json.has("MissionID")) {
@@ -570,8 +549,8 @@ public class JournalUtils {
 	public static List<ModuleItem> createModuleItemsList(JSONArray array) {
 		List<ModuleItem> itemList = new ArrayList<ModuleItem>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			String slot = json.getString("Slot");
 			String name = json.getString("Name");
 			String nameLocalised = json.getString("Name_Localised");
@@ -595,8 +574,8 @@ public class JournalUtils {
 	public static List<FactionBounty> createFactionBountyList(JSONArray array) {
 		List<FactionBounty> factionBountyList = new ArrayList<FactionBounty>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			factionBountyList.add(new FactionBounty(json.getString("Faction"), json.getLong("Amount")));
 		}
 		
@@ -606,8 +585,8 @@ public class JournalUtils {
 	public static List<StoredModule> createStoredModuleList(JSONArray array) {
 		List<StoredModule> storedModuleList = new ArrayList<StoredModule>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			storedModuleList.add(new StoredModule(json.getString("Name"), json.getString("Name_Localised"), json.getString("StarSystem"), json.getInt("StorageSlot"), json.getLong("MarketID"),
 					json.getLong("TransferCost"), json.getLong("TransferTime"), json.getLong("BuyPrice"), json.getBoolean("Hot")));
 		}
@@ -627,8 +606,8 @@ public class JournalUtils {
 	public static List<Faction> createFactionsList(JSONArray array) {
 		List<Faction> factionsList = new ArrayList<Faction>();
 		
-		for(Object str : array) {
-			JSONObject json = new JSONObject(str.toString());
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
 			JSONArray activeStatesArray = json.has("ActiveStates") ? json.getJSONArray("ActiveStates") : null;
 			JSONArray recoveringStatesArray = json.has("RecoveringStates") ? json.getJSONArray("RecoveringStates") : null;
 			JSONArray pendingStatesArray = json.has("PendingStates") ? json.getJSONArray("PendingStates") : null;

@@ -37,40 +37,20 @@ public class StoredShipsEvent extends Event {
 		return shipsHere;
 	}
 
-	public void setShipsHere(List<StoredShipHere> shipsHere) {
-		this.shipsHere = shipsHere;
-	}
-
 	public List<StoredShipRemote> getShipsRemote() {
 		return shipsRemote;
-	}
-
-	public void setShipsRemote(List<StoredShipRemote> shipsRemote) {
-		this.shipsRemote = shipsRemote;
 	}
 
 	public String getStationName() {
 		return stationName;
 	}
 
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
-
 	public String getStarSystem() {
 		return starSystem;
 	}
 
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
 	public Long getMarketId() {
 		return marketId;
-	}
-
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
 	}
 
 }

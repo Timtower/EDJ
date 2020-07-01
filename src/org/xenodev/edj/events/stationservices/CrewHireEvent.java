@@ -25,40 +25,20 @@ public class CrewHireEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getFaction() {
 		return faction;
-	}
-
-	public void setFaction(String faction) {
-		this.faction = faction;
 	}
 
 	public Integer getCrewID() {
 		return crewID;
 	}
 
-	public void setCrewID(Integer crewID) {
-		this.crewID = crewID;
-	}
-
 	public Integer getCost() {
 		return cost;
 	}
 
-	public void setCost(Integer cost) {
-		this.cost = cost;
-	}
-
 	public Integer getCombatRank() {
 		return combatRank;
-	}
-
-	public void setCombatRank(Integer combatRank) {
-		this.combatRank = combatRank;
 	}
 
 }

@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SupercruiseEntryEvent extends Event {
 	
-	String starSystem;
-	Long SystemAddress;
+	private String starSystem;
+	private Long SystemAddress;
 	
 	public SupercruiseEntryEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,16 +22,8 @@ public class SupercruiseEntryEvent extends Event {
 		return starSystem;
 	}
 
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
-	}
-
 	public Long getSystemAddress() {
 		return SystemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		SystemAddress = systemAddress;
 	}
 
 }

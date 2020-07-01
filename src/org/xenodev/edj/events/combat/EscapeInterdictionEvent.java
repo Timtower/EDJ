@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class EscapeInterdictionEvent extends Event {
 	
-	String interdictor;
-	Boolean isPlayer;
+	private String interdictor;
+	private Boolean isPlayer;
 	
 	public EscapeInterdictionEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,16 +22,8 @@ public class EscapeInterdictionEvent extends Event {
 		return interdictor;
 	}
 
-	public void setInterdictor(String interdictor) {
-		this.interdictor = interdictor;
-	}
-
 	public Boolean getIsPlayer() {
 		return isPlayer;
-	}
-
-	public void setIsPlayer(Boolean isPlayer) {
-		this.isPlayer = isPlayer;
 	}
 
 }

@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class PayBountiesEvent extends Event {
 	
-	Long amount;
-	String faction, factionLocalised;
-	Integer shipId, brokerPercentage;
+	private Long amount;
+	private String faction, factionLocalised;
+	private Integer shipId, brokerPercentage;
 	
 	public PayBountiesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -32,40 +32,20 @@ public class PayBountiesEvent extends Event {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
-		this.amount = amount;
-	}
-
 	public String getFaction() {
 		return faction;
-	}
-
-	public void setFaction(String faction) {
-		this.faction = faction;
 	}
 
 	public String getFactionLocalised() {
 		return factionLocalised;
 	}
 
-	public void setFactionLocalised(String factionLocalised) {
-		this.factionLocalised = factionLocalised;
-	}
-
 	public Integer getShipId() {
 		return shipId;
 	}
 
-	public void setShipId(Integer shipId) {
-		this.shipId = shipId;
-	}
-
 	public Integer getBrokerPercentage() {
 		return brokerPercentage;
-	}
-
-	public void setBrokerPercentage(Integer brokerPercentage) {
-		this.brokerPercentage = brokerPercentage;
 	}
 
 }

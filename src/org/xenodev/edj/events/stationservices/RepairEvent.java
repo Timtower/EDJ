@@ -12,8 +12,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class RepairEvent extends Event {
 	
-	String item;
-	Long cost;
+	private String item;
+	private Long cost;
 	
 	public RepairEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -28,16 +28,8 @@ public class RepairEvent extends Event {
 		return item;
 	}
 
-	public void setItem(String item) {
-		this.item = item;
-	}
-
 	public Long getCost() {
 		return cost;
-	}
-
-	public void setCost(Long cost) {
-		this.cost = cost;
 	}
 
 }

@@ -28,48 +28,24 @@ public class MarketEvent extends Event {
 		return stationName;
 	}
 
-	public void setStationName(String stationName) {
-		this.stationName = stationName;
-	}
-
 	public String getStarSystem() {
 		return starSystem;
-	}
-
-	public void setStarSystem(String starSystem) {
-		this.starSystem = starSystem;
 	}
 
 	public Integer getMarketID() {
 		return marketID;
 	}
 
-	public void setMarketID(Integer marketID) {
-		this.marketID = marketID;
-	}
-
 	public MarketFile getMarketFile() {
 		return marketFile;
-	}
-
-	public void setMarketFile(MarketFile marketFile) {
-		this.marketFile = marketFile;
 	}
 
 	public String getStationType() {
 		return stationType;
 	}
 
-	public void setStationType(String stationType) {
-		this.stationType = stationType;
-	}
-
 	public String getCarrierDockingAccess() {
 		return carrierDockingAccess;
-	}
-
-	public void setCarrierDockingAccess(String carrierDockingAccess) {
-		this.carrierDockingAccess = carrierDockingAccess;
 	}
 
 }

@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class CapShipBondEvent extends Event {
 	
-	String victimFaction, awardingFaction;
-	Integer reward;
+	private String victimFaction, awardingFaction;
+	private Integer reward;
 	
 	public CapShipBondEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -23,24 +23,12 @@ public class CapShipBondEvent extends Event {
 		return victimFaction;
 	}
 
-	public void setVictimFaction(String victimFaction) {
-		this.victimFaction = victimFaction;
-	}
-
 	public String getAwardingFaction() {
 		return awardingFaction;
 	}
 
-	public void setAwardingFaction(String awardingFaction) {
-		this.awardingFaction = awardingFaction;
-	}
-
 	public Integer getReward() {
 		return reward;
-	}
-
-	public void setReward(Integer reward) {
-		this.reward = reward;
 	}
 
 }

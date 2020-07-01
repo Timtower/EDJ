@@ -16,8 +16,4 @@ public class EngineerProgressStartup implements EngineerProgressInfo {
 		return engineerProgressList;
 	}
 
-	public void setEngineerProgress(List<EngineerProgress> engineerProgressList) {
-		this.engineerProgressList = engineerProgressList;
-	}
-
 }

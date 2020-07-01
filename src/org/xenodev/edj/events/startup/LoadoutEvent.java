@@ -9,10 +9,10 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class LoadoutEvent extends Event {
 	
-	String ship, shipName, shipIdent;
-	Integer shipID, hullValue, moduleValue, rebuy, cargoCapcity, main;
-	Double hullHealth, maxJumpRange, reserve, unladenMass;
-	List<Module> modules;
+	private String ship, shipName, shipIdent;
+	private Integer shipID, hullValue, moduleValue, rebuy, cargoCapcity, main;
+	private Double hullHealth, maxJumpRange, reserve, unladenMass;
+	private List<Module> modules;
 	
 	public LoadoutEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -40,112 +40,56 @@ public class LoadoutEvent extends Event {
 		return ship;
 	}
 
-	public void setShip(String ship) {
-		this.ship = ship;
-	}
-
 	public String getShipName() {
 		return shipName;
-	}
-
-	public void setShipName(String shipName) {
-		this.shipName = shipName;
 	}
 
 	public String getShipIdent() {
 		return shipIdent;
 	}
 
-	public void setShipIdent(String shipIdent) {
-		this.shipIdent = shipIdent;
-	}
-
 	public Integer getShipID() {
 		return shipID;
-	}
-
-	public void setShipID(Integer shipID) {
-		this.shipID = shipID;
 	}
 
 	public Integer getHullValue() {
 		return hullValue;
 	}
 
-	public void setHullValue(Integer hullValue) {
-		this.hullValue = hullValue;
-	}
-
 	public Integer getModuleValue() {
 		return moduleValue;
-	}
-
-	public void setModuleValue(Integer moduleValue) {
-		this.moduleValue = moduleValue;
 	}
 
 	public Integer getRebuy() {
 		return rebuy;
 	}
 
-	public void setRebuy(Integer rebuy) {
-		this.rebuy = rebuy;
+	public Integer getCargoCapcity() {
+		return cargoCapcity;
+	}
+
+	public Integer getMain() {
+		return main;
 	}
 
 	public Double getHullHealth() {
 		return hullHealth;
 	}
 
-	public void setHullHealth(Double hullHealth) {
-		this.hullHealth = hullHealth;
-	}
-
-	public List<Module> getModules() {
-		return modules;
-	}
-
-	public void setModules(List<Module> modules) {
-		this.modules = modules;
-	}
-
-	public Integer getCargoCapcity() {
-		return cargoCapcity;
-	}
-
-	public void setCargoCapcity(Integer cargoCapcity) {
-		this.cargoCapcity = cargoCapcity;
-	}
-
-	public Integer getMainFuelCapcity() {
-		return main;
-	}
-
-	public void setMainFuelCapcity(Integer main) {
-		this.main = main;
-	}
-
 	public Double getMaxJumpRange() {
 		return maxJumpRange;
 	}
 
-	public void setMaxJumpRange(Double maxJumpRange) {
-		this.maxJumpRange = maxJumpRange;
-	}
-
-	public Double getReserveFuelCapcity() {
+	public Double getReserve() {
 		return reserve;
-	}
-
-	public void setReserveFuelCapcity(Double reserve) {
-		this.reserve = reserve;
 	}
 
 	public Double getUnladenMass() {
 		return unladenMass;
 	}
 
-	public void setUnladenMass(Double unladenMass) {
-		this.unladenMass = unladenMass;
+	public List<Module> getModules() {
+		return modules;
 	}
-	
+
 }

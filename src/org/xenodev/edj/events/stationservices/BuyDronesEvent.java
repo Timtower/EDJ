@@ -24,32 +24,16 @@ public class BuyDronesEvent extends Event {
 		return count;
 	}
 
-	public void setCount(Integer count) {
-		this.count = count;
-	}
-
 	public Integer getBuyPrice() {
 		return buyPrice;
-	}
-
-	public void setBuyPrice(Integer buyPrice) {
-		this.buyPrice = buyPrice;
 	}
 
 	public Integer getTotalCost() {
 		return totalCost;
 	}
 
-	public void setTotalCost(Integer totalCost) {
-		this.totalCost = totalCost;
-	}
-
 	public String getType() {
 		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 }

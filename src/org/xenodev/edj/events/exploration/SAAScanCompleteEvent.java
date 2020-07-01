@@ -26,40 +26,20 @@ public class SAAScanCompleteEvent extends Event {
 		return bodyName;
 	}
 
-	public void setBodyName(String bodyName) {
-		this.bodyName = bodyName;
-	}
-
 	public Integer getBodyID() {
 		return bodyID;
-	}
-
-	public void setBodyID(Integer bodyID) {
-		this.bodyID = bodyID;
 	}
 
 	public Integer getProbesUsed() {
 		return probesUsed;
 	}
 
-	public void setProbesUsed(Integer probesUsed) {
-		this.probesUsed = probesUsed;
-	}
-
 	public Integer getEfficiencyTarget() {
 		return efficiencyTarget;
 	}
 
-	public void setEfficiencyTarget(Integer efficiencyTarget) {
-		this.efficiencyTarget = efficiencyTarget;
-	}
-
 	public Long getSystemAddress() {
 		return systemAddress;
-	}
-
-	public void setSystemAddress(Long systemAddress) {
-		this.systemAddress = systemAddress;
 	}
 
 }

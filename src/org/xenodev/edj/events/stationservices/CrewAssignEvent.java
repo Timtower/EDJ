@@ -23,24 +23,12 @@ public class CrewAssignEvent extends Event {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public String getRole() {
 		return role;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public Integer getCrewID() {
 		return crewID;
-	}
-
-	public void setCrewID(Integer crewID) {
-		this.crewID = crewID;
 	}
 
 }

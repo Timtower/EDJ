@@ -2,8 +2,8 @@ package org.xenodev.edj.events.storage.material;
 
 public class Raw {
 	
-	String name;
-	Integer count;
+	private String name;
+	private Integer count;
 	
 	public Raw(String name, Integer count) {
 		this.name = name;
@@ -14,16 +14,8 @@ public class Raw {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 }

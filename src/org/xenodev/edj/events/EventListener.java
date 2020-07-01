@@ -1,5 +1,6 @@
 package org.xenodev.edj.events;
 
+import org.xenodev.edj.ApproachSettlementEvent;
 import org.xenodev.edj.events.combat.BountyEvent;
 import org.xenodev.edj.events.combat.CapShipBondEvent;
 import org.xenodev.edj.events.combat.DiedByWingEvent;
@@ -269,5 +270,7 @@ public abstract class EventListener {
 	public void onShipyardSwap(ShipyardSwapEvent event) {}
 	public void onStoredModules(StoredModulesEvent event) {}
 	public void onStoredShips(StoredShipsEvent event) {}
+	public void onTechnologyBrokerEvent(TechnologyBrokerEvent event) {}
+	public void onApproachSettlementEvent(ApproachSettlementEvent event) {}
 	
 }

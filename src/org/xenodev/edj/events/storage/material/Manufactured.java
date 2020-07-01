@@ -2,9 +2,9 @@ package org.xenodev.edj.events.storage.material;
 
 public class Manufactured {
 	
-	String name;
-	String name_localised;
-	Integer count;
+	private String name;
+	private String name_localised;
+	private Integer count;
 	
 	public Manufactured(String name, String name_localised, Integer count) {
 		this.name = name;
@@ -16,24 +16,12 @@ public class Manufactured {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getName_localised() {
+	public String getNameLocalised() {
 		return name_localised;
-	}
-
-	public void setName_localised(String name_localised) {
-		this.name_localised = name_localised;
 	}
 
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 }

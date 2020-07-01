@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class PayFinesEvent extends Event {
 	
-	Long amount;
-	Integer shipId;
-	Boolean allFines;
+	private Long amount;
+	private Integer shipId;
+	private Boolean allFines;
 
 	public PayFinesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -30,8 +30,12 @@ public class PayFinesEvent extends Event {
 		return amount;
 	}
 
-	public void setAmount(Long amount) {
-		this.amount = amount;
+	public Integer getShipId() {
+		return shipId;
+	}
+
+	public Boolean getAllFines() {
+		return allFines;
 	}
 
 }

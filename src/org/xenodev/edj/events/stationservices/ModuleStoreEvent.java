@@ -12,10 +12,10 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ModuleStoreEvent extends Event {
 	
-	String slot, storedItem, storedItemLocalised, ship;
-	Integer shipId;
-	Boolean hot;
-	Long marketId;
+	private String slot, storedItem, storedItemLocalised, ship;
+	private Integer shipId;
+	private Boolean hot;
+	private Long marketId;
 	
 	public ModuleStoreEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -35,40 +35,28 @@ public class ModuleStoreEvent extends Event {
 		return slot;
 	}
 
-	public void setSlot(String slot) {
-		this.slot = slot;
-	}
-
 	public String getStoredItem() {
 		return storedItem;
-	}
-
-	public void setStoredItem(String storedItem) {
-		this.storedItem = storedItem;
 	}
 
 	public String getStoredItemLocalised() {
 		return storedItemLocalised;
 	}
 
-	public void setStoredItemLocalised(String storedItemLocalised) {
-		this.storedItemLocalised = storedItemLocalised;
-	}
-
 	public String getShip() {
 		return ship;
-	}
-
-	public void setShip(String ship) {
-		this.ship = ship;
 	}
 
 	public Integer getShipId() {
 		return shipId;
 	}
 
-	public void setShipId(Integer shipId) {
-		this.shipId = shipId;
+	public Boolean getHot() {
+		return hot;
+	}
+
+	public Long getMarketId() {
+		return marketId;
 	}
 
 }

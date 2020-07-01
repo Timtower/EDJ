@@ -6,9 +6,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class InterdictedEvent extends Event {
 	
-	boolean submitted, isPlayer;
-	String interdictor, faction, power;
-	Integer combatRank;
+	private Boolean submitted, isPlayer;
+	private String interdictor, faction, power;
+	private Integer combatRank;
 	
 	public InterdictedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -27,48 +27,24 @@ public class InterdictedEvent extends Event {
 		return submitted;
 	}
 
-	public void setSubmitted(boolean submitted) {
-		this.submitted = submitted;
-	}
-
 	public boolean isPlayer() {
 		return isPlayer;
-	}
-
-	public void setPlayer(boolean isPlayer) {
-		this.isPlayer = isPlayer;
 	}
 
 	public String getInterdictor() {
 		return interdictor;
 	}
 
-	public void setInterdictor(String interdictor) {
-		this.interdictor = interdictor;
-	}
-
 	public String getFaction() {
 		return faction;
-	}
-
-	public void setFaction(String faction) {
-		this.faction = faction;
 	}
 
 	public String getPower() {
 		return power;
 	}
 
-	public void setPower(String power) {
-		this.power = power;
-	}
-
 	public Integer getCombatRank() {
 		return combatRank;
-	}
-
-	public void setCombatRank(Integer combatRank) {
-		this.combatRank = combatRank;
 	}
 
 }

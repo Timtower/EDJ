@@ -12,7 +12,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class RepairAllEvent extends Event {
 	
-	Long cost;
+	private Long cost;
 
 	public RepairAllEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -24,10 +24,6 @@ public class RepairAllEvent extends Event {
 
 	public Long getCost() {
 		return cost;
-	}
-
-	public void setCost(Long cost) {
-		this.cost = cost;
 	}
 
 }

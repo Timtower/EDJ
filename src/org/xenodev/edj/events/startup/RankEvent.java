@@ -12,7 +12,7 @@ import org.xenodev.edj.utils.localiser.TradeRank;
 
 public class RankEvent extends Event {
 	
-	Integer combat, trade, explore, empire, federation, cqc;
+	private Integer combat, trade, explore, empire, federation, cqc;
 
 	public RankEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -28,9 +28,9 @@ public class RankEvent extends Event {
 	}
 
 	/**
-	 * Gets the Combat rank as an Integereger between 0 - 8.
+	 * Gets the Combat rank as an Integer between 0 - 8.
 	 * 
-	 * @return Integer Combat Rank as Integereger.
+	 * @return Integer Combat Rank as Integer.
 	 */
 	public Integer getCombatRank() {
 		return combat;
@@ -46,9 +46,9 @@ public class RankEvent extends Event {
 	}
 
 	/**
-	 * Gets Trade Rank as an Integereger between 0 - 8.
+	 * Gets Trade Rank as an Integer between 0 - 8.
 	 * 
-	 * @return Integer Trade Rank as Integereger.
+	 * @return Integer Trade Rank as Integer.
 	 */
 	public Integer getTradeRank() {
 		return trade;
@@ -59,14 +59,14 @@ public class RankEvent extends Event {
 	 * 
 	 * @return String Trade Rank name.
 	 */
-	public String getTradeRankkName() {
+	public String getTradeRankName() {
 		return TradeRank.getLocalisedName(trade);
 	}
 
 	/**
-	 * Gets the Explore rank as an Integereger between 0 - 8.
+	 * Gets the Explore rank as an Integer between 0 - 8.
 	 * 
-	 * @return Integer Explore Rank as Integereger.
+	 * @return Integer Explore Rank as Integer.
 	 */
 	public Integer getExploreRank() {
 		return explore;
@@ -77,14 +77,14 @@ public class RankEvent extends Event {
 	 * 
 	 * @return String Explore Rank name.
 	 */
-	public String getExplorerRankkName() {
+	public String getExplorerRankName() {
 		return ExplorationRank.getLocalisedName(explore);
 	}
 
 	/**
-	 * Gets the Explore rank as an Integereger between 0 - 14.
+	 * Gets the Empire rank as an Integer between 0 - 14.
 	 * 
-	 * @return Integer Empire Rank as Integereger.
+	 * @return Integer Empire Rank as Integer.
 	 */
 	public Integer getEmpireRank() {
 		return empire;
@@ -95,62 +95,45 @@ public class RankEvent extends Event {
 	 * 
 	 * @return String Empire Rank name.
 	 */
-	public String getEmpireRankkName() {
+	public String getEmpireRankName() {
 		return EmpireRank.getLocalisedName(empire);
 	}
 
 	/**
-	 * @return
+	 * Gets the Federation rank as an Integer between 0 - 14.
+	 * 
+	 * @return Integer Federation Rank as Integer.
 	 */
 	public Integer getFederationRank() {
 		return federation;
 	}
 	
 	/**
-	 * @return
+	 * Gets Federation Rank name.
+	 * 
+	 * @return String Federation Rank name.
 	 */
-	public String getFederationRankkName() {
+	public String getFederationRankName() {
 		return FederationRank.getLocalisedName(federation);
 	}
 
 	/**
-	 * @return
+	 * Gets the CQC rank as an Integer between 0 - 14.
+	 * 
+	 * @return Integer CQC Rank as Integer.
 	 */
-	public Integer getCqcRank() {
+	public Integer getCQCRank() {
 		return cqc;
 	}
 	
+
 	/**
-	 * @return
+	 * Gets CQC Rank name.
+	 * 
+	 * @return String CQC Rank name.
 	 */
-	public String getCQCRankkName() {
+	public String getCQCRankName() {
 		return CQCRank.getLocalisedName(cqc);
 	}
-
-	public void setCombat(Integer combat) {
-		this.combat = combat;
-	}
-
-	public void setTrade(Integer trade) {
-		this.trade = trade;
-	}
-
-	public void setExplore(Integer explore) {
-		this.explore = explore;
-	}
-
-	public void setEmpire(Integer empire) {
-		this.empire = empire;
-	}
-
-	public void setFederation(Integer federation) {
-		this.federation = federation;
-	}
-
-	public void setCqc(Integer cqc) {
-		this.cqc = cqc;
-	}
-	
-	
 	
 }

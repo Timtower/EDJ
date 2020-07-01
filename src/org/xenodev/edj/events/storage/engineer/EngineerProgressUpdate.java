@@ -14,8 +14,4 @@ public class EngineerProgressUpdate implements EngineerProgressInfo {
 		return progress;
 	}
 
-	public void setProgress(EngineerProgress progress) {
-		this.progress = progress;
-	}
-
 }

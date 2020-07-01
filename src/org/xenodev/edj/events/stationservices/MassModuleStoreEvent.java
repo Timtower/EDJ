@@ -35,32 +35,16 @@ public class MassModuleStoreEvent extends Event {
 		return marketID;
 	}
 
-	public void setMarketID(Long marketID) {
-		this.marketID = marketID;
-	}
-
 	public String getShip() {
 		return ship;
-	}
-
-	public void setShip(String ship) {
-		this.ship = ship;
 	}
 
 	public Integer getShipId() {
 		return shipId;
 	}
 
-	public void setShipId(Integer shipId) {
-		this.shipId = shipId;
-	}
-
 	public List<ModuleItem> getItems() {
 		return items;
-	}
-
-	public void setItems(List<ModuleItem> items) {
-		this.items = items;
 	}
 
 }

@@ -6,8 +6,8 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class FactionKillBondEvent extends Event {
 	
-	String victimFaction, awardingFaction;
-	int reward;
+	private String victimFaction, awardingFaction;
+	private  Integer reward;
 	
 	public FactionKillBondEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -23,24 +23,12 @@ public class FactionKillBondEvent extends Event {
 		return victimFaction;
 	}
 
-	public void setVictimFaction(String victimFaction) {
-		this.victimFaction = victimFaction;
-	}
-
 	public String getAwardingFaction() {
 		return awardingFaction;
 	}
 
-	public void setAwardingFaction(String awardingFaction) {
-		this.awardingFaction = awardingFaction;
-	}
-
 	public int getReward() {
 		return reward;
-	}
-
-	public void setReward(int reward) {
-		this.reward = reward;
 	}
 
 }

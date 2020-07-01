@@ -32,32 +32,16 @@ public class MaterialTradeEvent extends Event {
 		return marketId;
 	}
 
-	public void setMarketId(Long marketId) {
-		this.marketId = marketId;
-	}
-
 	public String getTraderType() {
 		return traderType;
-	}
-
-	public void setTraderType(String traderType) {
-		this.traderType = traderType;
 	}
 
 	public TradeData getPaid() {
 		return paid;
 	}
 
-	public void setPaid(TradeData paid) {
-		this.paid = paid;
-	}
-
 	public TradeData getReceived() {
 		return received;
-	}
-
-	public void setReceived(TradeData received) {
-		this.received = received;
 	}
 
 }

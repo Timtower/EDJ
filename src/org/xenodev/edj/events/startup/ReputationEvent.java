@@ -11,7 +11,7 @@ import org.xenodev.edj.utils.localiser.Reputation;
  */
 public class ReputationEvent extends Event {
 
-	Integer empire, federation, alliance, independent;
+	private Integer empire, federation, alliance, independent;
 
 	public ReputationEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -77,17 +77,23 @@ public class ReputationEvent extends Event {
 	public String getAllianceReputationLocalised() {
 		return Reputation.getReputationLocalised(alliance);
 	}
-
-	public void setEmpire(Integer empire) {
-		this.empire = empire;
+	
+	/**
+	 * Get Independent reputation as an Integer between -100 an +100.
+	 * 
+	 * @return Integer Reputation as integer.
+	 */
+	public Integer getIndependentReputation() {
+		return independent;
 	}
-
-	public void setFederation(Integer federation) {
-		this.federation = federation;
+	
+	/**
+	 * Get Independent reputation as localized String.
+	 * 
+	 * @return String Reputation Name.
+	 */
+	public String getIndependentReputationLocalised() {
+		return Reputation.getReputationLocalised(independent);
 	}
-
-	public void setAlliance(Integer alliance) {
-		this.alliance = alliance;
-	}	
 	
 }

@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class SellDronesEvent extends Event {
 	
-	String type;
-	Integer count;
-	Long sellPrice, totalSale;
+	private String type;
+	private Integer count;
+	private Long sellPrice, totalSale;
 	
 	public SellDronesEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -31,32 +31,16 @@ public class SellDronesEvent extends Event {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 	public Long getSellPrice() {
 		return sellPrice;
 	}
 
-	public void setSellPrice(Long sellPrice) {
-		this.sellPrice = sellPrice;
-	}
-
 	public Long getTotalSale() {
 		return totalSale;
 	}
 
-	public void setTotalSale(Long totalSale) {
-		this.totalSale = totalSale;
-	}
-	
 }

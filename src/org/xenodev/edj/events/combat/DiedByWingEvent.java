@@ -1,5 +1,7 @@
 package org.xenodev.edj.events.combat;
 
+import java.util.List;
+
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.storage.Killer;
@@ -7,7 +9,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class DiedByWingEvent extends Event {
 
-	Killer[] killers;
+	private List<Killer> killers;
 
 	public DiedByWingEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -17,12 +19,8 @@ public class DiedByWingEvent extends Event {
 		JournalUtils.isAllEventDataProcessed(this, json);
 	}
 
-	public Killer[] getKillers() {
+	public List<Killer> getKillers() {
 		return killers;
-	}
-
-	public void setKillers(Killer[] killers) {
-		this.killers = killers;
 	}
 	
 }

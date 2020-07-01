@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class ShieldStateEvent extends Event {
 	
-	Boolean shieldsUp;
+	private Boolean shieldsUp;
 
 	public ShieldStateEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -18,10 +18,6 @@ public class ShieldStateEvent extends Event {
 
 	public Boolean isShieldsUp() {
 		return shieldsUp;
-	}
-
-	public void setShieldsUp(Boolean shieldsUp) {
-		this.shieldsUp = shieldsUp;
 	}
 
 }

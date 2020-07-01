@@ -6,7 +6,7 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class DiedEvent extends Event {
 	
-	String killerName, killerShip, killerRank;
+	private String killerName, killerShip, killerRank;
 
 	public DiedEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -22,24 +22,12 @@ public class DiedEvent extends Event {
 		return killerName;
 	}
 
-	public void setKillerName(String killerName) {
-		this.killerName = killerName;
-	}
-
 	public String getKillerShip() {
 		return killerShip;
 	}
 
-	public void setKillerShip(String killerShip) {
-		this.killerShip = killerShip;
-	}
-
 	public String getKillerRank() {
 		return killerRank;
-	}
-
-	public void setKillerRank(String killerRank) {
-		this.killerRank = killerRank;
 	}
 
 }

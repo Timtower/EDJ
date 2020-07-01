@@ -12,9 +12,9 @@ import org.xenodev.edj.utils.JournalUtils;
 
 public class RestockVehicleEvent extends Event {
 	
-	String type, loadout;
-	Long cost;
-	Integer count;
+	private String type, loadout;
+	private Long cost;
+	private Integer count;
 	
 	public RestockVehicleEvent(String timestamp, JSONObject json) {
 		super(timestamp);
@@ -31,32 +31,16 @@ public class RestockVehicleEvent extends Event {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public String getLoadout() {
 		return loadout;
-	}
-
-	public void setLoadout(String loadout) {
-		this.loadout = loadout;
 	}
 
 	public Long getCost() {
 		return cost;
 	}
 
-	public void setCost(Long cost) {
-		this.cost = cost;
-	}
-
 	public Integer getCount() {
 		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 
 }

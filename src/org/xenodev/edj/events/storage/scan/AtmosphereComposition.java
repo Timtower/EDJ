@@ -2,10 +2,10 @@ package org.xenodev.edj.events.storage.scan;
 
 public class AtmosphereComposition {
 	
-	String name;
-	double percent;
+	private String name;
+	private Double percent;
 	
-	public AtmosphereComposition(String name, double percent) {
+	public AtmosphereComposition(String name, Double percent) {
 		this.name = name;
 		this.percent = percent;
 	}
@@ -14,16 +14,8 @@ public class AtmosphereComposition {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getPercent() {
+	public Double getPercent() {
 		return percent;
-	}
-
-	public void setPercent(double percent) {
-		this.percent = percent;
 	}
 	
 }

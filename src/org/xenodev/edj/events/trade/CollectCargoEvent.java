@@ -24,24 +24,12 @@ public class CollectCargoEvent extends Event {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public Long getMissionID() {
 		return missionID;
 	}
 
-	public void setMissionID(Long missionID) {
-		this.missionID = missionID;
-	}
-
 	public Boolean getStolen() {
 		return stolen;
-	}
-
-	public void setStolen(Boolean stolen) {
-		this.stolen = stolen;
 	}
 
 }
