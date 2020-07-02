@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.PassengerManifest;
+import org.xenodev.edj.events.datastorage.PassengerManifest;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class PassengersEvent extends Event {

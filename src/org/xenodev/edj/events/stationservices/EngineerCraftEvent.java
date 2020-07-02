@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.Modifier;
-import org.xenodev.edj.events.storage.engineer.Ingredient;
+import org.xenodev.edj.events.datastorage.Modifier;
+import org.xenodev.edj.events.datastorage.engineer.Ingredient;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class EngineerCraftEvent extends Event {

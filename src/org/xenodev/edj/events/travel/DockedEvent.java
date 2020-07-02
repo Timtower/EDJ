@@ -3,7 +3,7 @@ package org.xenodev.edj.events.travel;
 import java.util.List;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.StationEconomy;
+import org.xenodev.edj.events.datastorage.StationEconomy;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class DockedEvent extends Event {

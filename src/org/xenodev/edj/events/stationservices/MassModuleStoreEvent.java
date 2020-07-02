@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.ModuleItem;
+import org.xenodev.edj.events.datastorage.ModuleItem;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class MassModuleStoreEvent extends Event {

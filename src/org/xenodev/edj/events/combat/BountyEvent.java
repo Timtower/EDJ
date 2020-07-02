@@ -5,9 +5,9 @@ import java.util.List;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.BountyInfo;
-import org.xenodev.edj.events.storage.bounty.BountyReward;
-import org.xenodev.edj.events.storage.bounty.DefaultBounty;
-import org.xenodev.edj.events.storage.bounty.SkimmerBounty;
+import org.xenodev.edj.events.datastorage.bounty.BountyReward;
+import org.xenodev.edj.events.datastorage.bounty.DefaultBounty;
+import org.xenodev.edj.events.datastorage.bounty.SkimmerBounty;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class BountyEvent extends Event {

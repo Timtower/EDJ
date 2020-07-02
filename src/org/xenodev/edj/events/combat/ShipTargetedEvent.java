@@ -3,10 +3,10 @@ package org.xenodev.edj.events.combat;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.ScanStageInfo;
-import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage0;
-import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage1;
-import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage2;
-import org.xenodev.edj.events.storage.shiptargeted.ShipScanStage3;
+import org.xenodev.edj.events.datastorage.shiptargeted.ShipScanStage0;
+import org.xenodev.edj.events.datastorage.shiptargeted.ShipScanStage1;
+import org.xenodev.edj.events.datastorage.shiptargeted.ShipScanStage2;
+import org.xenodev.edj.events.datastorage.shiptargeted.ShipScanStage3;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class ShipTargetedEvent extends Event {

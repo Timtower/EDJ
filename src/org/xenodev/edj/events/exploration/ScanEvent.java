@@ -5,13 +5,13 @@ import java.util.List;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.ScanInfo;
-import org.xenodev.edj.events.storage.scan.AtmosphereComposition;
-import org.xenodev.edj.events.storage.scan.Composition;
-import org.xenodev.edj.events.storage.scan.Material;
-import org.xenodev.edj.events.storage.scan.Parent;
-import org.xenodev.edj.events.storage.scan.PlanetScan;
-import org.xenodev.edj.events.storage.scan.Ring;
-import org.xenodev.edj.events.storage.scan.StarScan;
+import org.xenodev.edj.events.datastorage.scan.AtmosphereComposition;
+import org.xenodev.edj.events.datastorage.scan.Composition;
+import org.xenodev.edj.events.datastorage.scan.Material;
+import org.xenodev.edj.events.datastorage.scan.Parent;
+import org.xenodev.edj.events.datastorage.scan.PlanetScan;
+import org.xenodev.edj.events.datastorage.scan.Ring;
+import org.xenodev.edj.events.datastorage.scan.StarScan;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class ScanEvent extends Event {

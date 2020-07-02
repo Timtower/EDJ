@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.material.Encoded;
-import org.xenodev.edj.events.storage.material.Manufactured;
-import org.xenodev.edj.events.storage.material.Raw;
+import org.xenodev.edj.events.datastorage.material.Encoded;
+import org.xenodev.edj.events.datastorage.material.Manufactured;
+import org.xenodev.edj.events.datastorage.material.Raw;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class MaterialsEvent extends Event {

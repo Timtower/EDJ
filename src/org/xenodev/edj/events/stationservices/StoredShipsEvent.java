@@ -10,8 +10,8 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.StoredShipHere;
-import org.xenodev.edj.events.storage.StoredShipRemote;
+import org.xenodev.edj.events.datastorage.StoredShipHere;
+import org.xenodev.edj.events.datastorage.StoredShipRemote;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class StoredShipsEvent extends Event {

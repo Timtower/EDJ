@@ -8,7 +8,7 @@ package org.xenodev.edj.events.stationservices;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.TradeData;
+import org.xenodev.edj.events.datastorage.TradeData;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class MaterialTradeEvent extends Event {

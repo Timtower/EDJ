@@ -4,9 +4,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
 import org.xenodev.edj.events.interfaces.EngineerProgressInfo;
-import org.xenodev.edj.events.storage.engineer.EngineerProgress;
-import org.xenodev.edj.events.storage.engineer.EngineerProgressStartup;
-import org.xenodev.edj.events.storage.engineer.EngineerProgressUpdate;
+import org.xenodev.edj.events.datastorage.engineer.EngineerProgress;
+import org.xenodev.edj.events.datastorage.engineer.EngineerProgressStartup;
+import org.xenodev.edj.events.datastorage.engineer.EngineerProgressUpdate;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class EngineerProgressEvent extends Event {

@@ -1,6 +1,5 @@
 package org.xenodev.edj.events;
 
-import org.xenodev.edj.ApproachSettlementEvent;
 import org.xenodev.edj.events.combat.BountyEvent;
 import org.xenodev.edj.events.combat.CapShipBondEvent;
 import org.xenodev.edj.events.combat.DiedByWingEvent;
@@ -97,6 +96,7 @@ import org.xenodev.edj.events.stationservices.ShipyardSwapEvent;
 import org.xenodev.edj.events.stationservices.ShipyardTransferEvent;
 import org.xenodev.edj.events.stationservices.StoredModulesEvent;
 import org.xenodev.edj.events.stationservices.StoredShipsEvent;
+import org.xenodev.edj.events.stationservices.TechnologyBrokerEvent;
 import org.xenodev.edj.events.trade.AsteroidCrackedEvent;
 import org.xenodev.edj.events.trade.BuyTradeDataEvent;
 import org.xenodev.edj.events.trade.CollectCargoEvent;
@@ -105,6 +105,7 @@ import org.xenodev.edj.events.trade.MarketBuyEvent;
 import org.xenodev.edj.events.trade.MarketSellEvent;
 import org.xenodev.edj.events.trade.MiningRefinedEvent;
 import org.xenodev.edj.events.travel.ApproachBodyEvent;
+import org.xenodev.edj.events.travel.ApproachSettlementEvent;
 import org.xenodev.edj.events.travel.DockedEvent;
 import org.xenodev.edj.events.travel.DockingCancelledEvent;
 import org.xenodev.edj.events.travel.DockingDeniedEvent;

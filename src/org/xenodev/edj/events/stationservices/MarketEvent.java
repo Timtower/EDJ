@@ -2,7 +2,7 @@ package org.xenodev.edj.events.stationservices;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.market.MarketFile;
+import org.xenodev.edj.events.datastorage.market.MarketFile;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class MarketEvent extends Event {

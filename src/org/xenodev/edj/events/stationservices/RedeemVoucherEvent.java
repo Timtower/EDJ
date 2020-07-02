@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.json.JSONObject;
 import org.xenodev.edj.events.Event;
-import org.xenodev.edj.events.storage.bounty.FactionBounty;
+import org.xenodev.edj.events.datastorage.bounty.FactionBounty;
 import org.xenodev.edj.utils.JournalUtils;
 
 public class RedeemVoucherEvent extends Event {
