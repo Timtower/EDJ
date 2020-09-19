@@ -39,6 +39,7 @@ import org.xenodev.edj.events.datastorage.bounty.BountyReward;
 import org.xenodev.edj.events.datastorage.bounty.FactionBounty;
 import org.xenodev.edj.events.datastorage.engineer.EngineerProgress;
 import org.xenodev.edj.events.datastorage.engineer.Ingredient;
+import org.xenodev.edj.events.datastorage.inventory.Transfer;
 import org.xenodev.edj.events.datastorage.market.Item;
 import org.xenodev.edj.events.datastorage.material.Encoded;
 import org.xenodev.edj.events.datastorage.material.Manufactured;
@@ -672,6 +673,17 @@ public class JournalUtils {
 		}
 		
 		return storedShipRemoteList;
+	}
+
+	public static List<Transfer> createTransferList(JSONArray array) {
+		List<Transfer> transferList = new ArrayList<>();
+		
+		for(Object o : array) {
+			JSONObject json = new JSONObject(o.toString());
+			
+			transferList.add(new Transfer(json.getString("Type"), json.getString("Type_Localised"), json.getString("Direction"), json.getInt("Count")));
+		}
+		return transferList;
 	}
 
 }

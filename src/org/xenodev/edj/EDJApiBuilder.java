@@ -11,127 +11,14 @@ import java.util.TimerTask;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.xenodev.edj.events.*;
-import org.xenodev.edj.events.combat.BountyEvent;
-import org.xenodev.edj.events.combat.CapShipBondEvent;
-import org.xenodev.edj.events.combat.DiedByWingEvent;
-import org.xenodev.edj.events.combat.DiedEvent;
-import org.xenodev.edj.events.combat.EscapeInterdictionEvent;
-import org.xenodev.edj.events.combat.FactionKillBondEvent;
-import org.xenodev.edj.events.combat.FighterDestroyedEvent;
-import org.xenodev.edj.events.combat.HeatDamageEvent;
-import org.xenodev.edj.events.combat.HeatWarningEvent;
-import org.xenodev.edj.events.combat.HullDamageEvent;
-import org.xenodev.edj.events.combat.InterdictedEvent;
-import org.xenodev.edj.events.combat.InterdictionEvent;
-import org.xenodev.edj.events.combat.PvPKillEvent;
-import org.xenodev.edj.events.combat.SRVDestroyedEvent;
-import org.xenodev.edj.events.combat.ShieldStateEvent;
-import org.xenodev.edj.events.combat.ShipTargetedEvent;
-import org.xenodev.edj.events.combat.UnderAttackEvent;
-import org.xenodev.edj.events.exploration.BuyExplorationDataEvent;
-import org.xenodev.edj.events.exploration.CodexEntryEvent;
-import org.xenodev.edj.events.exploration.DiscoveryScanEvent;
-import org.xenodev.edj.events.exploration.FSSAllBodiesFoundEvent;
-import org.xenodev.edj.events.exploration.FSSDiscoveryScanEvent;
-import org.xenodev.edj.events.exploration.FSSSignalDiscoveredEvent;
-import org.xenodev.edj.events.exploration.MaterialCollectedEvent;
-import org.xenodev.edj.events.exploration.MaterialDiscardedEvent;
-import org.xenodev.edj.events.exploration.MaterialDiscoveredEvent;
-import org.xenodev.edj.events.exploration.MultiSellExplorationDataEvent;
-import org.xenodev.edj.events.exploration.NavBeaconScanEvent;
-import org.xenodev.edj.events.exploration.SAAScanCompleteEvent;
-import org.xenodev.edj.events.exploration.ScanEvent;
-import org.xenodev.edj.events.exploration.ScreenshotEvent;
-import org.xenodev.edj.events.exploration.SellExplorationDataEvent;
-import org.xenodev.edj.events.startup.CargoEvent;
-import org.xenodev.edj.events.startup.ClearSavedGameEvent;
-import org.xenodev.edj.events.startup.CommanderEvent;
-import org.xenodev.edj.events.startup.LoadGameEvent;
-import org.xenodev.edj.events.startup.LoadoutEvent;
-import org.xenodev.edj.events.startup.MaterialsEvent;
-import org.xenodev.edj.events.startup.MissionsEvent;
-import org.xenodev.edj.events.startup.NewCommanderEvent;
-import org.xenodev.edj.events.startup.PassengersEvent;
-import org.xenodev.edj.events.startup.PowerplayEvent;
-import org.xenodev.edj.events.startup.ProgressEvent;
-import org.xenodev.edj.events.startup.RankEvent;
-import org.xenodev.edj.events.startup.ReputationEvent;
-import org.xenodev.edj.events.startup.StatisticsEvent;
-import org.xenodev.edj.events.stationservices.BuyAmmoEvent;
-import org.xenodev.edj.events.stationservices.BuyDronesEvent;
-import org.xenodev.edj.events.stationservices.CargoDepotEvent;
-import org.xenodev.edj.events.stationservices.CommunityGoalDiscardEvent;
-import org.xenodev.edj.events.stationservices.CommunityGoalEvent;
-import org.xenodev.edj.events.stationservices.CommunityGoalJoinEvent;
-import org.xenodev.edj.events.stationservices.CommunityGoalRewardEvent;
-import org.xenodev.edj.events.stationservices.CrewAssignEvent;
-import org.xenodev.edj.events.stationservices.CrewFireEvent;
-import org.xenodev.edj.events.stationservices.CrewHireEvent;
-import org.xenodev.edj.events.stationservices.EngineerContributionEvent;
-import org.xenodev.edj.events.stationservices.EngineerCraftEvent;
-import org.xenodev.edj.events.stationservices.EngineerProgressEvent;
-import org.xenodev.edj.events.stationservices.FetchRemoteModuleEvent;
-import org.xenodev.edj.events.stationservices.MarketEvent;
-import org.xenodev.edj.events.stationservices.MassModuleStoreEvent;
-import org.xenodev.edj.events.stationservices.MaterialTradeEvent;
-import org.xenodev.edj.events.stationservices.MissionAbandonedEvent;
-import org.xenodev.edj.events.stationservices.MissionAcceptedEvent;
-import org.xenodev.edj.events.stationservices.MissionCompletedEvent;
-import org.xenodev.edj.events.stationservices.MissionFailedEvent;
-import org.xenodev.edj.events.stationservices.MissionRedirectedEvent;
-import org.xenodev.edj.events.stationservices.ModuleBuyEvent;
-import org.xenodev.edj.events.stationservices.ModuleRetrieveEvent;
-import org.xenodev.edj.events.stationservices.ModuleSellEvent;
-import org.xenodev.edj.events.stationservices.ModuleSellRemote;
-import org.xenodev.edj.events.stationservices.ModuleStoreEvent;
-import org.xenodev.edj.events.stationservices.ModuleSwapEvent;
-import org.xenodev.edj.events.stationservices.OutfittingEvent;
-import org.xenodev.edj.events.stationservices.PayBountiesEvent;
-import org.xenodev.edj.events.stationservices.PayFinesEvent;
-import org.xenodev.edj.events.stationservices.RedeemVoucherEvent;
-import org.xenodev.edj.events.stationservices.RefuelAllEvent;
-import org.xenodev.edj.events.stationservices.RefuelPartialEvent;
-import org.xenodev.edj.events.stationservices.RepairAllEvent;
-import org.xenodev.edj.events.stationservices.RepairEvent;
-import org.xenodev.edj.events.stationservices.RestockVehicleEvent;
-import org.xenodev.edj.events.stationservices.ScientificResearchEvent;
-import org.xenodev.edj.events.stationservices.SearchAndRescueEvent;
-import org.xenodev.edj.events.stationservices.SellDronesEvent;
-import org.xenodev.edj.events.stationservices.SellShipOnRebuyEvent;
-import org.xenodev.edj.events.stationservices.SetUserShipNameEvent;
-import org.xenodev.edj.events.stationservices.ShipyardBuyEvent;
-import org.xenodev.edj.events.stationservices.ShipyardEvent;
-import org.xenodev.edj.events.stationservices.ShipyardNewEvent;
-import org.xenodev.edj.events.stationservices.ShipyardSellEvent;
-import org.xenodev.edj.events.stationservices.ShipyardSwapEvent;
-import org.xenodev.edj.events.stationservices.ShipyardTransferEvent;
-import org.xenodev.edj.events.stationservices.StoredModulesEvent;
-import org.xenodev.edj.events.stationservices.StoredShipsEvent;
-import org.xenodev.edj.events.stationservices.TechnologyBrokerEvent;
-import org.xenodev.edj.events.trade.AsteroidCrackedEvent;
-import org.xenodev.edj.events.trade.BuyTradeDataEvent;
-import org.xenodev.edj.events.trade.CollectCargoEvent;
-import org.xenodev.edj.events.trade.EjectCargoEvent;
-import org.xenodev.edj.events.trade.MarketBuyEvent;
-import org.xenodev.edj.events.trade.MarketSellEvent;
-import org.xenodev.edj.events.trade.MiningRefinedEvent;
-import org.xenodev.edj.events.travel.ApproachBodyEvent;
-import org.xenodev.edj.events.travel.ApproachSettlementEvent;
-import org.xenodev.edj.events.travel.DockedEvent;
-import org.xenodev.edj.events.travel.DockingCancelledEvent;
-import org.xenodev.edj.events.travel.DockingDeniedEvent;
-import org.xenodev.edj.events.travel.DockingGrantedEvent;
-import org.xenodev.edj.events.travel.DockingRequestedEvent;
-import org.xenodev.edj.events.travel.FSDJumpEvent;
-import org.xenodev.edj.events.travel.FSDTargetEvent;
-import org.xenodev.edj.events.travel.LeaveBodyEvent;
-import org.xenodev.edj.events.travel.LiftoffEvent;
-import org.xenodev.edj.events.travel.LocationEvent;
-import org.xenodev.edj.events.travel.StartJumpEvent;
-import org.xenodev.edj.events.travel.SupercruiseEntryEvent;
-import org.xenodev.edj.events.travel.SupercruiseExitEvent;
-import org.xenodev.edj.events.travel.TouchdownEvent;
-import org.xenodev.edj.events.travel.UndockedEvent;
+import org.xenodev.edj.events.fleetcarrier.*;
+import org.xenodev.edj.events.combat.*;
+import org.xenodev.edj.events.exploration.*;
+import org.xenodev.edj.events.inventory.*;
+import org.xenodev.edj.events.startup.*;
+import org.xenodev.edj.events.stationservices.*;
+import org.xenodev.edj.events.trade.*;
+import org.xenodev.edj.events.travel.*;
 import org.xenodev.edj.utils.FileHandler;
 import org.xenodev.edj.utils.JournalUtils;
 import org.xenodev.edj.utils.exceptions.UnsupportedGameVersion;
@@ -144,6 +31,7 @@ public class EDJApiBuilder {
 	private String watchFileName = FileHandler.getLatestJournalFile().getName();
 	private Integer lineCount = 0;
 	private Boolean debug;
+	private Boolean active = true;
 	
 	/**
 	 * First step to building the EDJ Api, the final API can be accessed after {@link #build()}
@@ -184,20 +72,27 @@ public class EDJApiBuilder {
      */
     public EDJApi build() {
     	
-    	Timer t = new Timer();
-    	
-    	t.scheduleAtFixedRate(new TimerTask() {
-			
-			@Override
-			public void run() {
-				
-				propagateEvents();
-				
-			}
-		}, 0, 5*1000);
+    	startPropagatingEvents();
     	
     	//TODO: return api
 		return new EDJApi();
+    }
+    
+    /**
+     * Will start propgating events until reenabled by {@link #startPropagatingEvents()}.
+     */
+    public void stopPropagatingEvents() {
+    	active = false;
+    }
+    
+    /**
+     * Will start propgating events until stopped by {@link #stopPropagatingEvents()}.
+     */
+    public void startPropagatingEvents() {
+    	active = true;
+    	while(active) {
+    		propagateEvents();
+    	}
     }
     
     /**
@@ -236,7 +131,7 @@ public class EDJApiBuilder {
     	}else {
     		//File has been modified, call event registered
         	listenerList.forEach(l -> {
-        		if (!l.getClass().equals(EventListener.class)) {
+        		if (!(l instanceof EventListener)) {
                 	try {
                 		List<String> journalEntries = Files.readAllLines(new File(EDJApi.getJournalDir() + "/" + watchFileName).toPath());
                 		
@@ -773,8 +668,27 @@ public class EDJApiBuilder {
 			if(listener != null) listener.onStoredShips(storedShipsEvent);
 			break;
 		case "TechnologyBroker":
-			TechnologyBrokerEvent technologyBrokerEvent= new TechnologyBrokerEvent(timestamp, json);
+			TechnologyBrokerEvent technologyBrokerEvent = new TechnologyBrokerEvent(timestamp, json);
 			if(listener != null) listener.onTechnologyBrokerEvent(technologyBrokerEvent);
+			break;
+		case "CargoTransfer":
+			CargoTransferEvent cargoTransferEvent = new CargoTransferEvent(timestamp, json);
+			if(listener != null) listener.onCargoTransferEvent(cargoTransferEvent);
+			break;
+		case "CarrierBankTransfer":
+			CarrierBankTransferEvent carrierBankTransferEvent = new CarrierBankTransferEvent(timestamp, json);
+			if(listener != null) listener.onCarrierBankTransferEvent(carrierBankTransferEvent);
+			break;
+		case "CarrierCrewServices":
+			CarrierCrewServicesEvent carrierCrewServicesEvent = new CarrierCrewServicesEvent(timestamp, json);
+			if(listener != null) listener.onCarrierCrewServicesEvent(carrierCrewServicesEvent);
+		case "CarrierDepositFuel":
+			CarrierDepositFuelEvent carrierDepositFuelEvent = new CarrierDepositFuelEvent(timestamp, json);
+			if(listener != null) listener.onCarrierDepositFuelEvent(carrierDepositFuelEvent);
+			break;
+		case "CarrierFinance":
+			CarrierFinanceEvent carrierFinanceEvent = new CarrierFinanceEvent(timestamp, json);
+			if(listener != null) listener.onCarrierFinanceEvent(carrierFinanceEvent);
 			break;
 		default:
 			JournalUtils.sendUnprocessedEvent(event, json);

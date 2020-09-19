@@ -32,6 +32,11 @@ import org.xenodev.edj.events.exploration.SAAScanCompleteEvent;
 import org.xenodev.edj.events.exploration.ScanEvent;
 import org.xenodev.edj.events.exploration.ScreenshotEvent;
 import org.xenodev.edj.events.exploration.SellExplorationDataEvent;
+import org.xenodev.edj.events.fleetcarrier.CarrierBankTransferEvent;
+import org.xenodev.edj.events.fleetcarrier.CarrierCrewServicesEvent;
+import org.xenodev.edj.events.fleetcarrier.CarrierDepositFuelEvent;
+import org.xenodev.edj.events.fleetcarrier.CarrierFinanceEvent;
+import org.xenodev.edj.events.inventory.CargoTransferEvent;
 import org.xenodev.edj.events.startup.CargoEvent;
 import org.xenodev.edj.events.startup.ClearSavedGameEvent;
 import org.xenodev.edj.events.startup.CommanderEvent;
@@ -272,6 +277,13 @@ public abstract class EventListener {
 	public void onStoredModules(StoredModulesEvent event) {}
 	public void onStoredShips(StoredShipsEvent event) {}
 	public void onTechnologyBrokerEvent(TechnologyBrokerEvent event) {}
+	
+	// TODO: Needs sorting
 	public void onApproachSettlementEvent(ApproachSettlementEvent event) {}
+	public void onCargoTransferEvent(CargoTransferEvent event) {}
+	public void onCarrierBankTransferEvent(CarrierBankTransferEvent event) {}
+	public void onCarrierCrewServicesEvent(CarrierCrewServicesEvent event) {}
+	public void onCarrierDepositFuelEvent(CarrierDepositFuelEvent event) {}
+	public void onCarrierFinanceEvent(CarrierFinanceEvent event) {}
 	
 }
